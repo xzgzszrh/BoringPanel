@@ -60,13 +60,13 @@ function ErrorDetails(props: ErrorDetailsProps): JSX.Element {
 	const columns = useMemo(
 		() => [
 			{
-				title: 'Key',
+				title: '钥匙',
 				width: 100,
 				dataIndex: 'key',
 				key: 'key',
 			},
 			{
-				title: 'Value',
+				title: '价值',
 				dataIndex: 'value',
 				width: 100,
 				key: 'value',
@@ -84,7 +84,7 @@ function ErrorDetails(props: ErrorDetailsProps): JSX.Element {
 		try {
 			if (id.length === 0) {
 				notifications.error({
-					message: 'Error Id cannot be empty',
+					message: '错误 ID 不能为空',
 				});
 				return;
 			}
@@ -144,7 +144,7 @@ function ErrorDetails(props: ErrorDetailsProps): JSX.Element {
 
 			<EventContainer>
 				<div>
-					<Typography>Event {errorDetail.errorId}</Typography>
+					<Typography>事件 {errorDetail.errorId}</Typography>
 					<Typography>
 						{formatTimezoneAdjustedTimestamp(
 							errorDetail.timestamp,

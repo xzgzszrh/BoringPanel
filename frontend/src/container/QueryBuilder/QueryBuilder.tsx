@@ -142,43 +142,13 @@ export const QueryBuilder = memo(function QueryBuilder({
 			{!isListViewPanel && (
 				<div className="new-query-formula-buttons-container">
 					<Button.Group>
-						<Tooltip
-							title={
-								<div style={{ textAlign: 'center' }}>
-									Add New Query
-									<Typography.Link
-										href="https://signoz.io/docs/userguide/query-builder/?utm_source=product&utm_medium=query-builder#multiple-queries-and-functions"
-										target="_blank"
-										style={{ textDecoration: 'underline' }}
-									>
-										{' '}
-										<br />
-										Learn more
-									</Typography.Link>
-								</div>
-							}
-						>
+						<Tooltip title={<div style={{ textAlign: 'center' }}>添加新查询</div>}>
 							<Button disabled={isDisabledQueryButton} onClick={addNewBuilderQuery}>
 								<DatabaseZap size={12} />
 							</Button>
 						</Tooltip>
 
-						<Tooltip
-							title={
-								<div style={{ textAlign: 'center' }}>
-									Add New Formula
-									<Typography.Link
-										href="https://signoz.io/docs/userguide/query-builder/?utm_source=product&utm_medium=query-builder#multiple-queries-and-functions"
-										target="_blank"
-										style={{ textDecoration: 'underline' }}
-									>
-										{' '}
-										<br />
-										Learn more
-									</Typography.Link>
-								</div>
-							}
-						>
+						<Tooltip title={<div style={{ textAlign: 'center' }}>添加新公式</div>}>
 							<Button disabled={isDisabledFormulaButton} onClick={addNewFormula}>
 								<Sigma size={12} />
 							</Button>
@@ -216,6 +186,7 @@ export const QueryBuilder = memo(function QueryBuilder({
 									isListViewPanel
 								/>
 							)}
+
 							{!isListViewPanel &&
 								currentQuery.builder.queryData.map((query, index) => (
 									<Col
@@ -237,6 +208,7 @@ export const QueryBuilder = memo(function QueryBuilder({
 										/>
 									</Col>
 								))}
+
 							{!isListViewPanel &&
 								currentQuery.builder.queryFormulas.map((formula, index) => {
 									const isAllMetricDataSource = currentQuery.builder.queryData.every(

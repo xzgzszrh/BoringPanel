@@ -20,7 +20,7 @@ export const logsQueryRangeSuccessResponse = {
 								eta: '2m0s',
 								location: 'frontend',
 								log_level: 'INFO',
-								message: 'Dispatch successful',
+								message: '发货成功',
 								service: 'frontend',
 								span_id: 'span_id',
 								trace_id: 'span_id',

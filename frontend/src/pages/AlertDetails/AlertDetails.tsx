@@ -100,9 +100,7 @@ function AlertDetails(): JSX.Element {
 				className="alert-details__breadcrumb"
 				items={[
 					{
-						title: (
-							<BreadCrumbItem title="Alert Rules" route={ROUTES.LIST_ALL_ALERT} />
-						),
+						title: <BreadCrumbItem title="告警规则" route={ROUTES.LIST_ALL_ALERT} />,
 					},
 					{
 						title: <BreadCrumbItem title={ruleId} isLast />,

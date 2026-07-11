@@ -96,7 +96,7 @@ function GraphManager({
 			name,
 		});
 		notifications.success({
-			message: 'The updated graphs & legends are saved',
+			message: '保存更新的图表和图例',
 		});
 		if (onToggleModelHandler) {
 			onToggleModelHandler();
@@ -116,16 +116,16 @@ function GraphManager({
 	return (
 		<div className="graph-manager-container">
 			<div className="graph-manager-header">
-				<Input onChange={filterHandler} placeholder="Filter Series" />
+				<Input onChange={filterHandler} placeholder="过滤器系列" />
 				<div className="save-cancel-container">
 					<span className="save-cancel-button">
 						<Button type="default" onClick={onToggleModelHandler}>
-							Cancel
+							取消
 						</Button>
 					</span>
 					<span className="save-cancel-button">
 						<Button type="primary" onClick={saveHandler}>
-							Save
+							保存
 						</Button>
 					</span>
 				</div>

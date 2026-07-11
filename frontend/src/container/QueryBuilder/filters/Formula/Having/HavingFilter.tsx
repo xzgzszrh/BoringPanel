@@ -178,7 +178,7 @@ function HavingFilter({ formula, onChange }: HavingFilterProps): JSX.Element {
 			onSearch={handleSearch}
 			searchValue={searchText}
 			data-testid="havingSelectFormula"
-			placeholder="Count(operation) > 5"
+			placeholder="计数（操作）> 5"
 			style={{ width: '100%' }}
 			tagRender={tagRender}
 			onDeselect={handleDeselect}
@@ -187,7 +187,7 @@ function HavingFilter({ formula, onChange }: HavingFilterProps): JSX.Element {
 			value={localValues}
 		>
 			{options.map((opt) => (
-				<Select.Option key={opt.value} value={opt.value} title="havingOption">
+				<Select.Option key={opt.value} value={opt.value} title="有选择权">
 					{opt.label}
 				</Select.Option>
 			))}

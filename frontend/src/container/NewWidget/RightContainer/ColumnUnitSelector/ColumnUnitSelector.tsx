@@ -41,7 +41,7 @@ export function ColumnUnitSelector(
 	}
 	return (
 		<section className="column-unit-selector">
-			<Typography.Text className="heading">Column Units</Typography.Text>
+			<Typography.Text className="heading">列单位</Typography.Text>
 			{aggregationQueries.map((query) => (
 				<YAxisUnitSelector
 					defaultValue={columnUnits[query]}

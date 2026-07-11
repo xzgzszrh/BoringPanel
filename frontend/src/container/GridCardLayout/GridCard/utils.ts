@@ -27,7 +27,7 @@ export const getLocalStorageGraphVisibilityState = ({
 		graphVisibilityStates: Array(apiResponse.length + 1).fill(true),
 		legendEntry: [
 			{
-				label: 'Timestamp',
+				label: '时间戳',
 				show: true,
 			},
 			...showAllDataSetFromApiResponse(apiResponse),

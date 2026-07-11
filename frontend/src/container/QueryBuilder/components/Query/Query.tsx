@@ -301,6 +301,7 @@ export const Query = memo(function Query({
 								</Row>
 							</Col>
 						)}
+
 						<Col span={11}>
 							<Row gutter={[11, 5]}>
 								<Col flex="5.93rem">
@@ -381,21 +382,7 @@ export const Query = memo(function Query({
 										{version && version === 'v3' && (
 											<Col flex="5.93rem">
 												<Tooltip
-													title={
-														<div style={{ textAlign: 'center' }}>
-															Select Aggregate Operator
-															<Typography.Link
-																className="learn-more"
-																href="https://signoz.io/docs/userguide/query-builder/?utm_source=product&utm_medium=query-builder#aggregation"
-																target="_blank"
-																style={{ textDecoration: 'underline' }}
-															>
-																{' '}
-																<br />
-																Learn more
-															</Typography.Link>
-														</div>
-													}
+													title={<div style={{ textAlign: 'center' }}>选择聚合运算符</div>}
 												>
 													<OperatorsSelect
 														value={query.aggregateOperator}
@@ -420,21 +407,7 @@ export const Query = memo(function Query({
 											operators.length > 0 && (
 												<Col flex="5.93rem">
 													<Tooltip
-														title={
-															<div style={{ textAlign: 'center' }}>
-																Select Aggregate Operator
-																<Typography.Link
-																	className="learn-more"
-																	href="https://signoz.io/docs/metrics-management/types-and-aggregation/?utm_source=product&utm_medium=query-builder#aggregation"
-																	target="_blank"
-																	style={{ textDecoration: 'underline' }}
-																>
-																	{' '}
-																	<br />
-																	Learn more
-																</Typography.Link>
-															</div>
-														}
+														title={<div style={{ textAlign: 'center' }}>选择聚合运算符</div>}
 													>
 														<OperatorsSelect
 															value={query.aggregateOperator}
@@ -456,6 +429,7 @@ export const Query = memo(function Query({
 											<FilterLabel label="WHERE" />
 										</Col>
 									)}
+
 									<Col flex="1" className="qb-search-container">
 										{isLogsExplorerPage ? (
 											<QueryBuilderSearchV2
@@ -480,20 +454,7 @@ export const Query = memo(function Query({
 							<Row gutter={[11, 5]}>
 								<Col flex="5.93rem">
 									<Tooltip
-										title={
-											<div style={{ textAlign: 'center' }}>
-												Select Aggregate Operator
-												<Typography.Link
-													href="https://signoz.io/docs/userguide/query-builder/?utm_source=product&utm_medium=query-builder#aggregation"
-													target="_blank"
-													style={{ textDecoration: 'underline' }}
-												>
-													{' '}
-													<br />
-													Learn more
-												</Typography.Link>
-											</div>
-										}
+										title={<div style={{ textAlign: 'center' }}>选择聚合运算符</div>}
 									>
 										<OperatorsSelect
 											value={query.aggregateOperator}
@@ -514,6 +475,7 @@ export const Query = memo(function Query({
 							</Row>
 						</Col>
 					)}
+
 					{!isListViewPanel && (
 						<Col span={24}>
 							<Row gutter={[11, 5]}>
@@ -545,6 +507,7 @@ export const Query = memo(function Query({
 													<FilterLabel label="Reduce to" />
 												</Col>
 											)}
+
 											<Col span={isVersionV4 && isMetricsDataSource ? 20 : 24}>
 												<ReduceToFilter query={query} onChange={handleChangeReduceTo} />
 											</Col>
@@ -576,6 +539,7 @@ export const Query = memo(function Query({
 							</Row>
 						</Col>
 					)}
+
 					{!isTracePanelType && !isListViewPanel && (
 						<Col span={24}>
 							<AdditionalFiltersToggler
@@ -587,6 +551,7 @@ export const Query = memo(function Query({
 							</AdditionalFiltersToggler>
 						</Col>
 					)}
+
 					{isListViewPanel && (
 						<Col span={24}>
 							<Row gutter={[0, 11]} justify="space-between">
@@ -594,24 +559,12 @@ export const Query = memo(function Query({
 							</Row>
 						</Col>
 					)}
+
 					{panelType !== PANEL_TYPES.LIST && panelType !== PANEL_TYPES.TRACE && (
 						<Row style={{ width: '100%' }}>
 							<Tooltip
 								placement="right"
-								title={
-									<div style={{ textAlign: 'center' }}>
-										Name of legend
-										<Typography.Link
-											style={{ textDecoration: 'underline' }}
-											href="https://signoz.io/docs/userguide/query-builder/?utm_source=product&utm_medium=query-builder#legend-format"
-											target="_blank"
-										>
-											{' '}
-											<br />
-											Learn more
-										</Typography.Link>
-									</div>
-								}
+								title={<div style={{ textAlign: 'center' }}>传说名称</div>}
 							>
 								<Input
 									onChange={handleChangeQueryLegend}

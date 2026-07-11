@@ -43,7 +43,7 @@ function Suggestions({ applySuggestion }: SuggestionsProps): JSX.Element {
 
 	return (
 		<div>
-			<CategoryHeading>SUGGESTIONS</CategoryHeading>
+			<CategoryHeading>建议</CategoryHeading>
 			<div>
 				{map(selected, (field) => (
 					<SuggestedItem

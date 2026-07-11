@@ -47,13 +47,13 @@ export const ALL_SHORTCUTS_DESCRIPTION: Record<
 
 export const shortcutColumns = [
 	{
-		title: 'Keyboard Shortcut',
+		title: '键盘快捷键',
 		dataIndex: 'shortcutKey',
 		key: 'shortcutKey',
 		width: '30%',
 	},
 	{
-		title: 'Description',
+		title: '描述',
 		dataIndex: 'shortcutDescription',
 		key: 'shortcutDescription',
 	},

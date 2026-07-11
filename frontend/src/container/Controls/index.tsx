@@ -42,7 +42,7 @@ function Controls({
 				disabled={isPreviousDisabled}
 				onClick={handleNavigatePrevious}
 			>
-				<LeftOutlined /> Previous
+				<LeftOutlined /> 以前的
 			</Button>
 			<Button
 				loading={isLoading}
@@ -51,7 +51,7 @@ function Controls({
 				disabled={isNextDisabled}
 				onClick={handleNavigateNext}
 			>
-				Next <RightOutlined />
+				下一步 <RightOutlined />
 			</Button>
 
 			{showSizeChanger && (

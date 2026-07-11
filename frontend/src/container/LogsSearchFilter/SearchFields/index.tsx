@@ -85,7 +85,7 @@ function SearchFields({
 
 		if (!fieldsQueryIsvalid(flatParsedQuery)) {
 			notifications.error({
-				message: 'Please enter a valid criteria for each of the selected fields',
+				message: '请为每个选定字段输入有效条件',
 			});
 			return;
 		}

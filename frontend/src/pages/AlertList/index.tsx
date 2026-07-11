@@ -26,7 +26,7 @@ function AllAlertList(): JSX.Element {
 			label: (
 				<div className="periscope-tab top-level-tab">
 					<GalleryVerticalEnd size={16} />
-					Triggered Alerts
+					触发告警
 				</div>
 			),
 			key: 'TriggeredAlerts',
@@ -36,7 +36,7 @@ function AllAlertList(): JSX.Element {
 			label: (
 				<div className="periscope-tab top-level-tab">
 					<Pyramid size={16} />
-					Alert Rules
+					告警规则
 				</div>
 			),
 			key: 'AlertRules',
@@ -47,7 +47,7 @@ function AllAlertList(): JSX.Element {
 			label: (
 				<div className="periscope-tab top-level-tab">
 					<ConfigureIcon />
-					Configuration
+					配置
 				</div>
 			),
 			key: 'Configuration',

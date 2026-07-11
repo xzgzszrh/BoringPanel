@@ -22,10 +22,7 @@ import { useHistory } from 'react-router-dom';
 import { isCloudUser } from 'utils/app';
 import { v4 as uuid } from 'uuid';
 
-import {
-	KAFKA_SETUP_DOC_LINK,
-	MessagingQueueHealthCheckService,
-} from '../MessagingQueuesUtils';
+import { MessagingQueueHealthCheckService } from '../MessagingQueuesUtils';
 
 interface AttributeCheckListProps {
 	visible: boolean;
@@ -76,10 +73,8 @@ function ErrorTitleAndKey({
 				link = '';
 		}
 
-		if (isCloudUserVal && !!link) {
+		if (link) {
 			history.push(link);
-		} else {
-			window.open(KAFKA_SETUP_DOC_LINK, '_blank');
 		}
 	};
 	return {
@@ -98,7 +93,7 @@ function ErrorTitleAndKey({
 						}}
 					>
 						<OctagonAlert size={14} />
-						Fix
+						使固定
 					</div>
 				</Tooltip>
 			</div>
@@ -132,7 +127,7 @@ function treeTitleAndKey({
 				</Typography.Text>
 				{isLeaf && (
 					<div className="success-attribute-icon">
-						<Tooltip title="Success">
+						<Tooltip title="成功">
 							<Check size={14} />
 						</Tooltip>
 					</div>
@@ -222,7 +217,7 @@ function AttributeCheckList({
 
 	return (
 		<Modal
-			title="Kafka Service Attributes"
+			title="Kafka 服务属性"
 			open={visible}
 			onCancel={onClose}
 			footer={false}
@@ -242,15 +237,15 @@ function AttributeCheckList({
 						options={[
 							{
 								value: AttributesFilters.ALL,
-								label: AttributeLabels({ title: 'Attributes: All' }),
+								label: AttributeLabels({ title: '属性：全部' }),
 							},
 							{
 								value: AttributesFilters.SUCCESS,
-								label: AttributeLabels({ title: 'Attributes: Success' }),
+								label: AttributeLabels({ title: '属性：成功' }),
 							},
 							{
 								value: AttributesFilters.ERROR,
-								label: AttributeLabels({ title: 'Attributes: Error' }),
+								label: AttributeLabels({ title: '属性：错误' }),
 							},
 						]}
 					/>

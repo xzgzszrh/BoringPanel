@@ -102,7 +102,7 @@ export function getColumns(
 												onClick={(): void => handleShowMore(index)}
 												className="remaing-count"
 											>
-												+ {remainingCount} more
+												+ {remainingCount} 更多的
 											</Typography>
 										)}
 									</div>
@@ -149,7 +149,7 @@ const showPaginationItem = (total: number, range: number[]): JSX.Element => (
 		<Typography.Text className="numbers">
 			{range[0]} &#8212; {range[1]}
 		</Typography.Text>
-		<Typography.Text className="total"> of {total}</Typography.Text>
+		<Typography.Text className="total"> 的 {total}</Typography.Text>
 	</>
 );
 

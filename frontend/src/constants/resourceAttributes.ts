@@ -6,12 +6,12 @@ export const OperatorConversions: Array<{
 	traceValue: OperatorValues;
 }> = [
 	{
-		label: 'IN',
+		label: '在',
 		metricValue: '=~',
 		traceValue: 'In',
 	},
 	{
-		label: 'Not IN',
+		label: '不在',
 		metricValue: '!~',
 		traceValue: 'NotIn',
 	},

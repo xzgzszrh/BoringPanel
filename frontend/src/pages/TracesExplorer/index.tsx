@@ -169,21 +169,9 @@ function TracesExplorer(): JSX.Element {
 				onSuccess: (data) => {
 					if (data.error) {
 						const message =
-							data.error === 'feature usage exceeded' ? (
-								<span>
-									Panel limit exceeded for {DataSource.TRACES} in community edition.
-									Please checkout our paid plans{' '}
-									<a
-										href="https://signoz.io/pricing/?utm_source=product&utm_medium=dashboard-limit"
-										rel="noreferrer noopener"
-										target="_blank"
-									>
-										here
-									</a>
-								</span>
-							) : (
-								data.error
-							);
+							data.error === 'feature usage exceeded'
+								? `${DataSource.TRACES} 面板数量已达到上限`
+								: data.error;
 						notifications.error({
 							message,
 						});
@@ -252,7 +240,7 @@ function TracesExplorer(): JSX.Element {
 				>
 					<div className={`trace-explorer-header ${isOpen ? 'single-child' : ''}`}>
 						{!isOpen && (
-							<Tooltip title="Expand filters" placement="right">
+							<Tooltip title="展开过滤器" placement="right">
 								<Button
 									onClick={(): void => setOpen(!isOpen)}
 									className="filter-outlined-btn"

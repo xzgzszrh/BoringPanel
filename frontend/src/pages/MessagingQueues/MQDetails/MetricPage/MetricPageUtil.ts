@@ -103,9 +103,8 @@ export const requestTimesWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Request Times',
-		description:
-			'This metric is used to measure the average latency experienced by requests across the Kafka broker.',
+		title: '请求时间',
+		description: '该指标用于测量 Kafka 代理上的请求所经历的平均延迟。',
 	}),
 );
 
@@ -142,8 +141,8 @@ export const brokerCountWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'sum',
 			},
 		],
-		title: 'Broker Count',
-		description: 'Total number of active brokers in the Kafka cluster.\n',
+		title: '经纪商数量',
+		description: 'Kafka 集群中的活动代理总数。',
 	}),
 );
 
@@ -180,9 +179,8 @@ export const producerFetchRequestPurgatoryWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Producer and Fetch Request Purgatory',
-		description:
-			'Measures the number of requests that Kafka brokers have received but cannot immediately fulfill',
+		title: '生产者和获取请求炼狱',
+		description: '衡量 Kafka 经纪商已收到但无法立即满足的请求数量',
 	}),
 );
 
@@ -220,9 +218,9 @@ export const brokerNetworkThroughputWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Broker Network Throughput',
+		title: '经纪商网络吞吐量',
 		description:
-			'Helps gauge the data throughput from the Kafka broker to consumer clients, focusing on the network usage associated with serving messages to consumers.',
+			'帮助衡量从 Kafka 代理到消费者客户端的数据吞吐量，重点关注与向消费者提供消息相关的网络使用情况。',
 	}),
 );
 
@@ -259,9 +257,9 @@ export const ioWaitTimeWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'rate',
 			},
 		],
-		title: 'I/O Wait Time',
+		title: '输入/输出等待时间',
 		description:
-			'This metric measures the total time that producers are in an I/O wait state, indicating potential bottlenecks in data transmission from producers to Kafka brokers.',
+			'该指标测量生产者处于 I/O 等待状态的总时间，表明从生产者到 Kafka 代理的数据传输存在潜在瓶颈。',
 	}),
 );
 
@@ -327,9 +325,9 @@ export const requestResponseWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Request and Response Rate',
+		title: '请求和响应率',
 		description:
-			"Indicates how many requests the producer is sending per second, reflecting the intensity of the producer's interaction with the Kafka cluster. Also, helps Kafka administrators gauge the responsiveness of brokers to producer requests.",
+			'指示生产者每秒发送的请求数，反映生产者与 Kafka 集群交互的强度。此外，还可以帮助 Kafka 管理员评估经纪人对生产者请求的响应能力。',
 	}),
 );
 
@@ -366,9 +364,8 @@ export const averageRequestLatencyWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Average Request Latency',
-		description:
-			'Helps Kafka administrators and developers understand the average latency experienced by producer requests.',
+		title: '平均请求延迟',
+		description: '帮助 Kafka 管理员和开发人员了解生产者请求所经历的平均延迟。',
 	}),
 );
 
@@ -414,9 +411,9 @@ export const kafkaProducerByteRateWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'kafka_producer_byte_rate',
+		title: 'kafka_生产者_字节_率',
 		description:
-			'Helps measure the data output rate from the producer, indicating the load a producer is placing on Kafka brokers.',
+			'帮助测量生产者的数据输出率，指示生产者对 Kafka 代理施加的负载。',
 	}),
 );
 
@@ -453,9 +450,9 @@ export const bytesConsumedWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Bytes Consumed',
+		title: '消耗的字节数',
 		description:
-			'Helps Kafka administrators monitor the data consumption rate of a consumer group, showing how much data (in bytes) is being read from the Kafka cluster over time.',
+			'帮助 Kafka 管理员监控消费者组的数据消耗率，显示随着时间的推移从 Kafka 集群读取了多少数据（以字节为单位）。',
 	}),
 );
 
@@ -517,8 +514,8 @@ export const consumerOffsetWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Consumer Offset',
-		description: 'Current offset of each consumer group for each topic partition',
+		title: '消费者抵消',
+		description: '每个主题分区的每个消费者组的当前偏移量',
 	}),
 );
 
@@ -564,8 +561,8 @@ export const consumerGroupMemberWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'sum',
 			},
 		],
-		title: 'Consumer Group Members',
-		description: 'Number of active users in each group',
+		title: '消费者团体成员',
+		description: '每组活跃用户数',
 	}),
 );
 
@@ -627,9 +624,8 @@ export const consumerLagByGroupWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Consumer Lag by Group',
-		description:
-			'Helps Kafka administrators assess whether consumer groups are keeping up with the incoming data stream or falling behind',
+		title: '按群体划分的消费者滞后',
+		description: '帮助 Kafka 管理员评估消费者组是否跟上传入数据流或落后',
 	}),
 );
 
@@ -675,9 +671,9 @@ export const consumerFetchRateWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Consumer Fetch Rate',
+		title: '消费者获取率',
 		description:
-			'Metric measures the rate at which fetch requests are made by a Kafka consumer to the broker, typically in requests per second.',
+			'指标衡量 Kafka 消费者向代理发出获取请求的速率，通常以每秒请求数为单位。',
 	}),
 );
 
@@ -714,9 +710,8 @@ export const messagesConsumedWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Messages Consumed',
-		description:
-			'Measures the rate at which a Kafka consumer is consuming records (messages) per second from Kafka brokers.',
+		title: '消耗的消息',
+		description: '测量 Kafka 消费者每秒消耗来自 Kafka 代理的记录（消息）的速率。',
 	}),
 );
 
@@ -753,9 +748,8 @@ export const jvmGCCountWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'rate',
 			},
 		],
-		title: 'JVM GC Count',
-		description:
-			'Tracks the total number of garbage collection (GC) events that have occurred in the Java Virtual Machine (JVM).',
+		title: 'JVM GC 计数',
+		description: '链路 Java 虚拟机 (JVM) 中发生的垃圾收集 (GC) 事件总数。',
 	}),
 );
 
@@ -794,7 +788,7 @@ export const jvmGcCollectionsElapsedWidgetData = getWidgetQueryBuilder(
 		],
 		title: 'jvm_gc_collections_elapsed',
 		description:
-			'Measures the total time (usually in milliseconds) spent on garbage collection (GC) events in the Java Virtual Machine (JVM).',
+			'测量 Java 虚拟机 (JVM) 中垃圾收集 (GC) 事件所花费的总时间（通常以毫秒为单位）。',
 	}),
 );
 
@@ -831,9 +825,9 @@ export const cpuRecentUtilizationWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'CPU Recent Utilization',
+		title: 'CPU 最近利用率',
 		description:
-			'This metric measures the recent CPU usage by the Java Virtual Machine (JVM), typically expressed as a percentage.',
+			'该指标衡量 Java 虚拟机 (JVM) 最近的 CPU 使用情况，通常以百分比表示。',
 	}),
 );
 
@@ -870,9 +864,8 @@ export const jvmMemoryHeapWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'JVM memory heap',
-		description:
-			'The metric represents the maximum amount of heap memory available to the Java Virtual Machine (JVM)',
+		title: 'JVM 内存堆',
+		description: '该指标表示 Java 虚拟机可用的最大堆内存量 (JVM)',
 	}),
 );
 
@@ -918,8 +911,8 @@ export const partitionCountPerTopicWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'sum',
 			},
 		],
-		title: 'Partition Count per Topic',
-		description: 'Number of partitions for each topic',
+		title: '每个主题的分区计数',
+		description: '每个主题的分区数量',
 	}),
 );
 
@@ -973,9 +966,8 @@ export const currentOffsetPartitionWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Current Offset ( Partition )',
-		description:
-			'Current offset of each partition, showing the latest position in each partition',
+		title: '当前偏移（分区）',
+		description: '每个分区的当前偏移量，显示每个分区的最新位置',
 	}),
 );
 
@@ -1029,9 +1021,8 @@ export const oldestOffsetWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'Oldest Offset (Partition)',
-		description:
-			'Oldest offset of each partition to identify log retention and offset range.',
+		title: '最旧的偏移量（分区）',
+		description: '每个分区的最旧偏移量，用于标识日志保留和偏移量范围。',
 	}),
 );
 
@@ -1085,8 +1076,7 @@ export const insyncReplicasWidgetData = getWidgetQueryBuilder(
 				timeAggregation: 'avg',
 			},
 		],
-		title: 'In-Sync Replicas (ISR)',
-		description:
-			'Count of in-sync replicas for each partition to ensure data availability.',
+		title: '同步副本 (ISR)',
+		description: '每个分区的同步副本数量，以确保数据可用性。',
 	}),
 );

@@ -80,18 +80,18 @@ function UserInfo(): JSX.Element {
 			<Space direction="vertical" size="middle">
 				<Flex gap={8}>
 					<Typography.Title level={4} style={{ marginTop: 0 }}>
-						User Details
+						用户详细信息
 					</Typography.Title>
 				</Flex>
 
 				<Flex gap={16}>
 					<Space>
 						<Typography className="userInfo-label" data-testid="name-label">
-							Name
+							名称
 						</Typography>
 						<NameInput
 							data-testid="name-textbox"
-							placeholder="Your Name"
+							placeholder="请输入姓名"
 							onChange={(event): void => {
 								setChangedName(event.target.value);
 							}}
@@ -108,14 +108,14 @@ function UserInfo(): JSX.Element {
 						data-testid="update-name-button"
 						type="primary"
 					>
-						<PencilIcon size={12} /> Update
+						<PencilIcon size={12} /> 更新
 					</Button>
 				</Flex>
 
 				<Space>
 					<Typography className="userInfo-label" data-testid="email-label">
 						{' '}
-						Email{' '}
+						邮箱{' '}
 					</Typography>
 					<Input
 						className="userInfo-value"
@@ -128,7 +128,7 @@ function UserInfo(): JSX.Element {
 				<Space>
 					<Typography className="userInfo-label" data-testid="role-label">
 						{' '}
-						Role{' '}
+						角色{' '}
 					</Typography>
 					<Input
 						className="userInfo-value"

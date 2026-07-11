@@ -111,7 +111,7 @@ function LiveLogsList({ logs }: LiveLogsListProps): JSX.Element {
 		<>
 			{options.format !== OptionFormatTypes.TABLE && (
 				<Heading>
-					<Typography.Text>Event</Typography.Text>
+					<Typography.Text>事件</Typography.Text>
 				</Heading>
 			)}
 

@@ -65,31 +65,31 @@ export interface SelectedModuleStepProps {
 export const useCases = {
 	APM: {
 		id: ModulesMap.APM,
-		title: 'Application Monitoring',
+		title: '应用监控',
 		desc:
 			'Monitor application metrics like p99 latency, error rates, external API calls, and db calls.',
 	},
 	LogsManagement: {
 		id: ModulesMap.LogsManagement,
-		title: 'Logs Management',
+		title: '日志管理',
 		desc:
 			'Easily filter and query logs, build dashboards and alerts based on attributes in logs',
 	},
 	InfrastructureMonitoring: {
 		id: ModulesMap.InfrastructureMonitoring,
-		title: 'Infrastructure Monitoring',
+		title: '基础设施监控',
 		desc:
 			'Monitor Kubernetes infrastructure metrics, hostmetrics, or metrics of any third-party integration',
 	},
 	AwsMonitoring: {
 		id: ModulesMap.AwsMonitoring,
-		title: 'AWS Monitoring',
+		title: 'AWS 监控',
 		desc:
 			'Monitor your traces, logs and metrics for AWS services like EC2, ECS, EKS etc.',
 	},
 	AzureMonitoring: {
 		id: ModulesMap.AzureMonitoring,
-		title: 'Azure Monitoring',
+		title: 'Azure 监控',
 		desc:
 			'Monitor your traces, logs and metrics for Azure services like AKS, Container Apps, App Service etc.',
 	},

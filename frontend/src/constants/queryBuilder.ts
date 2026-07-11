@@ -131,11 +131,11 @@ export const mapOfFormulaToFilters: Record<
 };
 
 export const REDUCE_TO_VALUES: SelectOption<ReduceOperators, string>[] = [
-	{ value: 'last', label: 'Latest of values in timeframe' },
-	{ value: 'sum', label: 'Sum of values in timeframe' },
-	{ value: 'avg', label: 'Average of values in timeframe' },
-	{ value: 'max', label: 'Max of values in timeframe' },
-	{ value: 'min', label: 'Min of values in timeframe' },
+	{ value: 'last', label: '时间范围内的最新值' },
+	{ value: 'sum', label: '时间范围内的值总和' },
+	{ value: 'avg', label: '时间范围内的平均值' },
+	{ value: 'max', label: '时间范围内的最大值' },
+	{ value: 'min', label: '时间范围内的最小值' },
 ];
 
 export const initialHavingValues: HavingForm = {

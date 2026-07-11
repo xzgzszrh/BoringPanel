@@ -3,15 +3,11 @@
 /* eslint-disable no-nested-ternary */
 import './IntegrationDetailPage.styles.scss';
 
-import { Color } from '@signozhq/design-tokens';
 import { Button, Flex, Skeleton, Typography } from 'antd';
 import { useGetIntegration } from 'hooks/Integrations/useGetIntegration';
 import { useGetIntegrationStatus } from 'hooks/Integrations/useGetIntegrationStatus';
 import { defaultTo } from 'lodash-es';
-import { ArrowLeft, MoveUpRight, RotateCw } from 'lucide-react';
-import { isCloudUser } from 'utils/app';
-
-import { handleContactSupport } from '../utils';
+import { ArrowLeft, RotateCw } from 'lucide-react';
 import IntegrationDetailContent from './IntegrationDetailContent';
 import IntegrationDetailHeader from './IntegrationDetailHeader';
 import IntergrationsUninstallBar from './IntegrationsUninstallBar';
@@ -73,7 +69,7 @@ function IntegrationDetailPage(props: IntegrationDetailPageProps): JSX.Element {
 						setSelectedIntegration(null);
 					}}
 				>
-					All Integrations
+					所有集成
 				</Button>
 			</Flex>
 
@@ -87,12 +83,10 @@ function IntegrationDetailPage(props: IntegrationDetailPageProps): JSX.Element {
 					<div className="error-content">
 						<img
 							src="/Icons/awwSnap.svg"
-							alt="error-emoji"
+							alt="错误表情符号"
 							className="error-state-svg"
 						/>
-						<Typography.Text>
-							Something went wrong :/ Please retry or contact support.
-						</Typography.Text>
+						<Typography.Text>出了点问题：/请重试或联系支持人员。</Typography.Text>
 						<div className="error-btns">
 							<Button
 								type="primary"
@@ -100,16 +94,8 @@ function IntegrationDetailPage(props: IntegrationDetailPageProps): JSX.Element {
 								onClick={(): Promise<any> => refetch()}
 								icon={<RotateCw size={14} />}
 							>
-								Retry
+								重试
 							</Button>
-							<div
-								className="contact-support"
-								onClick={(): void => handleContactSupport(isCloudUser())}
-							>
-								<Typography.Link className="text">Contact Support </Typography.Link>
-
-								<MoveUpRight size={14} color={Color.BG_ROBIN_400} />
-							</div>
 						</div>
 					</div>
 				</div>

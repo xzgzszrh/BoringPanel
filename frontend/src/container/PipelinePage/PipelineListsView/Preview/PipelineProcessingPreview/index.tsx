@@ -28,7 +28,7 @@ function PipelineProcessingPreview({
 	return (
 		<div>
 			<div className="pipeline-preview-section-header">
-				<div>Sample logs</div>
+				<div>样本日志</div>
 				<PreviewIntervalSelector
 					previewFilter={pipeline.filter}
 					value={logsSampleQueryInterval}
@@ -39,7 +39,7 @@ function PipelineProcessingPreview({
 				<SampleLogsResponseDisplay response={sampleLogsResponse} />
 			</div>
 			<div className="pipeline-preview-section-header">
-				<div>Processed Output</div>
+				<div>处理后的输出</div>
 			</div>
 			<div className="pipeline-preview-logs-container">
 				<LogsProcessingSimulator inputLogs={sampleLogs} pipeline={pipeline} />

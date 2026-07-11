@@ -21,7 +21,7 @@ function TopContributorsRows({
 }): JSX.Element {
 	const columns: ColumnsType<AlertRuleTopContributors> = [
 		{
-			title: 'labels',
+			title: '标签',
 			dataIndex: 'labels',
 			key: 'labels',
 			width: '51%',
@@ -40,7 +40,7 @@ function TopContributorsRows({
 			),
 		},
 		{
-			title: 'progressBar',
+			title: '进度条',
 			dataIndex: 'count',
 			key: 'progressBar',
 			width: '39%',
@@ -59,7 +59,7 @@ function TopContributorsRows({
 			),
 		},
 		{
-			title: 'count',
+			title: '数数',
 			dataIndex: 'count',
 			key: 'count',
 			width: '10%',

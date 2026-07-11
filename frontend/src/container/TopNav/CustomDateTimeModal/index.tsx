@@ -37,7 +37,7 @@ function CustomDateTimeModal({
 	return (
 		<Modal
 			open={visible}
-			title="Chose date and time range"
+			title="选择日期和时间范围"
 			okText="Apply"
 			cancelText="Cancel"
 			onCancel={onCancel}

@@ -6,6 +6,7 @@ import { isCloudUser, isEECloudUser } from 'utils/app';
 import {
 	alertChannels,
 	apiKeys,
+	debugModeSettings,
 	generalSettings,
 	ingestionSettings,
 	multiIngestionSettings,
@@ -38,6 +39,10 @@ export const getRoutes = (
 	}
 
 	settings.push(...alertChannels(t));
+
+	if (userRole === USER_ROLES.ADMIN) {
+		settings.push(...debugModeSettings());
+	}
 
 	if ((isCloudUser() || isEECloudUser()) && userRole === USER_ROLES.ADMIN) {
 		settings.push(...apiKeys(t));

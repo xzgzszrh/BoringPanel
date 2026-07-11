@@ -3,7 +3,6 @@ import { Tooltip, Typography } from 'antd';
 import getAll from 'api/channels/getAll';
 import logEvent from 'api/common/logEvent';
 import Spinner from 'components/Spinner';
-import TextToolTip from 'components/TextToolTip';
 import ROUTES from 'constants/routes';
 import useComponentPermission from 'hooks/useComponentPermission';
 import useFetch from 'hooks/useFetch';
@@ -57,11 +56,6 @@ function AlertChannels(): JSX.Element {
 				</Paragraph>
 
 				<RightActionContainer>
-					<TextToolTip
-						text={t('tooltip_notification_channels')}
-						url="https://signoz.io/docs/userguide/alerts-management/#setting-notification-channel"
-					/>
-
 					<Tooltip
 						title={
 							!addNewChannelPermission

@@ -49,7 +49,7 @@ function Tabs2({
 					onClick={(): void => handleTabClick(tabs[0].value)}
 					icon={<Undo size={14} color={Color.TEXT_VANILLA_400} />}
 				>
-					Reset
+					重置
 				</Button>
 			)}
 			<Button.Group>
@@ -67,7 +67,7 @@ function Tabs2({
 
 						{tab.isBeta && (
 							<Tag bordered={false} color="geekblue">
-								Beta
+								测试版
 							</Tag>
 						)}
 					</Button>

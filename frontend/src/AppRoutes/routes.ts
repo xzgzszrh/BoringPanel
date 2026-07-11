@@ -7,7 +7,6 @@ import {
 	AllAlertChannels,
 	AllErrors,
 	APIKeys,
-	BillingPage,
 	CreateAlertChannelAlerts,
 	CreateNewAlerts,
 	DashboardPage,
@@ -18,7 +17,6 @@ import {
 	InfrastructureMonitoring,
 	IngestionSettings,
 	InstalledIntegrations,
-	LicensePage,
 	ListAllALertsPage,
 	LiveLogs,
 	Login,
@@ -45,15 +43,12 @@ import {
 	SignupPage,
 	SomethingWentWrong,
 	StatusPage,
-	SupportPage,
 	TraceDetail,
 	TraceFilter,
 	TracesExplorer,
 	TracesSaveViews,
 	UnAuthorized,
 	UsageExplorerPage,
-	WorkspaceBlocked,
-	WorkspaceSuspended,
 } from './pageComponents';
 
 const routes: AppRoutes[] = [
@@ -268,6 +263,13 @@ const routes: AppRoutes[] = [
 		key: 'ORG_SETTINGS',
 	},
 	{
+		path: ROUTES.DEBUG_MODE,
+		exact: true,
+		component: SettingsPage,
+		isPrivate: true,
+		key: 'DEBUG_MODE',
+	},
+	{
 		path: ROUTES.INGESTION_SETTINGS,
 		exact: true,
 		component: IngestionSettings,
@@ -352,27 +354,6 @@ const routes: AppRoutes[] = [
 		isPrivate: false,
 	},
 	{
-		path: ROUTES.BILLING,
-		exact: true,
-		component: BillingPage,
-		key: 'BILLING',
-		isPrivate: true,
-	},
-	{
-		path: ROUTES.WORKSPACE_LOCKED,
-		exact: true,
-		component: WorkspaceBlocked,
-		isPrivate: true,
-		key: 'WORKSPACE_LOCKED',
-	},
-	{
-		path: ROUTES.WORKSPACE_SUSPENDED,
-		exact: true,
-		component: WorkspaceSuspended,
-		isPrivate: true,
-		key: 'WORKSPACE_SUSPENDED',
-	},
-	{
 		path: ROUTES.SHORTCUTS,
 		exact: true,
 		component: ShortcutsPage,
@@ -408,22 +389,6 @@ const routes: AppRoutes[] = [
 		isPrivate: true,
 	},
 ];
-
-export const SUPPORT_ROUTE: AppRoutes = {
-	path: ROUTES.SUPPORT,
-	exact: true,
-	component: SupportPage,
-	key: 'SUPPORT',
-	isPrivate: true,
-};
-
-export const LIST_LICENSES: AppRoutes = {
-	path: ROUTES.LIST_LICENSES,
-	exact: true,
-	component: LicensePage,
-	isPrivate: true,
-	key: 'LIST_LICENSES',
-};
 
 export const oldRoutes = [
 	'/pipelines',

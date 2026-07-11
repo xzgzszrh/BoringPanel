@@ -184,6 +184,7 @@ describe('dashboard list page', () => {
 				res(ctx.status(200), ctx.json(dashboardEmptyState)),
 			),
 		);
+
 		const { getByText, getByTestId } = render(
 			<MemoryRouter
 				initialEntries={[
@@ -206,10 +207,7 @@ describe('dashboard list page', () => {
 
 		// test the correct link to be added for the dashboards empty state
 		await waitFor(() =>
-			expect(mockWindowOpen).toHaveBeenCalledWith(
-				'https://signoz.io/docs/userguide/manage-dashboards?utm_source=product&utm_medium=dashboard-list-empty-state',
-				'_blank',
-			),
+			expect(mockWindowOpen).toHaveBeenCalledWith('', '_blank'),
 		);
 	});
 

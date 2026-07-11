@@ -189,7 +189,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 		updateDashboardMutation.mutate(updatedDashboard, {
 			onSuccess: (updatedDashboard) => {
 				notifications.success({
-					message: 'Dashboard renamed successfully',
+					message: '仪表盘重命名成功',
 				});
 				setIsRenameDashboardOpen(false);
 				if (updatedDashboard.payload)
@@ -327,12 +327,12 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 						className="dashboard-btn"
 						onClick={(): void => goToListPage()}
 					>
-						Dashboard /
+						仪表盘 /
 					</Button>
 					<Button type="text" className="id-btn dashboard-name-btn">
 						<img
 							src={image}
-							alt="dashboard-icon"
+							alt="仪表盘图标"
 							style={{ height: '14px', width: '14px' }}
 						/>
 						{title}
@@ -341,7 +341,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 			</div>
 			<section className="dashboard-details">
 				<div className="left-section">
-					<img src={image} alt="dashboard-img" className="dashboard-img" />
+					<img src={image} alt="仪表盘-img" className="dashboard-img" />
 					<Tooltip title={title.length > 30 ? title : ''}>
 						<Typography.Text
 							className="dashboard-title"
@@ -391,7 +391,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 												setIsDashbordSettingsOpen(false);
 											}}
 										>
-											Rename
+											重命名
 										</Button>
 									)}
 
@@ -400,7 +400,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 										icon={<Fullscreen size={14} />}
 										onClick={handle.enter}
 									>
-										Full screen
+										全屏
 									</Button>
 								</section>
 								<section className="section-2">
@@ -413,7 +413,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 												setIsDashbordSettingsOpen(false);
 											}}
 										>
-											New section
+											新版块
 										</Button>
 									)}
 
@@ -428,7 +428,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 											setIsDashbordSettingsOpen(false);
 										}}
 									>
-										Export JSON
+										出口JSON
 									</Button>
 									<Button
 										type="text"
@@ -440,7 +440,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 											setIsDashbordSettingsOpen(false);
 										}}
 									>
-										Copy as JSON
+										复制为 JSON
 									</Button>
 								</section>
 								<section className="delete-dashboard">
@@ -475,7 +475,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 							type="primary"
 							data-testid="add-panel-header"
 						>
-							New Panel
+							新面板
 						</Button>
 					)}
 				</div>
@@ -502,7 +502,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 
 			<Modal
 				open={isRenameDashboardOpen}
-				title="Rename Dashboard"
+				title="重命名仪表盘"
 				onOk={(): void => {
 					// handle update dashboard here
 				}}
@@ -519,7 +519,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 							onClick={onNameChangeHandler}
 							disabled={updateDashboardMutation.isLoading}
 						>
-							Rename Dashboard
+							重命名仪表盘
 						</Button>
 						<Button
 							type="text"
@@ -527,13 +527,13 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 							className="cancel-btn"
 							onClick={(): void => setIsRenameDashboardOpen(false)}
 						>
-							Cancel
+							取消
 						</Button>
 					</div>
 				}
 			>
 				<div className="dashboard-content">
-					<Typography.Text className="name-text">Enter a new name</Typography.Text>
+					<Typography.Text className="name-text">输入新名称</Typography.Text>
 					<Input
 						data-testid="dashboard-name"
 						className="dashboard-name-input"
@@ -544,7 +544,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 			</Modal>
 			<Modal
 				open={isPanelNameModalOpen}
-				title="New Section"
+				title="新版块"
 				rootClassName="section-naming"
 				onOk={(): void => handleAddRow()}
 				onCancel={(): void => {
@@ -560,7 +560,7 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 							onClick={(): void => handleAddRow()}
 							disabled={updateDashboardMutation.isLoading}
 						>
-							Create Section
+							创建部分
 						</Button>
 						<Button
 							type="text"
@@ -571,13 +571,13 @@ function DashboardDescription(props: DashboardDescriptionProps): JSX.Element {
 								setSectionName(DEFAULT_ROW_NAME);
 							}}
 						>
-							Cancel
+							取消
 						</Button>
 					</div>
 				}
 			>
 				<div className="section-naming-content">
-					<Typography.Text className="name-text">Enter Section name</Typography.Text>
+					<Typography.Text className="name-text">输入部分名称</Typography.Text>
 					<Input
 						data-testid="section-name"
 						className="section-name-input"

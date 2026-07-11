@@ -5,17 +5,17 @@ import { ViewModeOption } from './types';
 export const viewModeOptionList: ViewModeOption[] = [
 	{
 		key: 'raw',
-		label: 'Raw',
+		label: '生的',
 		value: 'raw',
 	},
 	{
 		key: 'table',
-		label: 'Table',
+		label: '桌子',
 		value: 'table',
 	},
 	{
 		key: 'list',
-		label: 'List',
+		label: '列表',
 		value: 'list',
 	},
 ];

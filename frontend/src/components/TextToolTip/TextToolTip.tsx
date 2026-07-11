@@ -20,30 +20,9 @@ function TextToolTip({
 }: TextToolTipProps): JSX.Element {
 	const isDarkMode = useIsDarkMode();
 
-	const onClickHandler = (
-		event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-	): void => {
-		event.stopPropagation();
-	};
-
 	const overlay = useMemo(
-		() => (
-			<div className="overlay--text-wrap">
-				{`${text} `}
-				{url && (
-					<a
-						// Stopping event propagation on click so that parent click listener are not triggered
-						onClick={onClickHandler}
-						href={url}
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						{urlText || 'here'}
-					</a>
-				)}
-			</div>
-		),
-		[text, url, urlText],
+		() => <div className="overlay--text-wrap">{text}</div>,
+		[text],
 	);
 
 	const iconStyle = useMemo(

@@ -30,7 +30,7 @@ function CopyClipboardHOC({
 		<span onClick={onClick} role="presentation" tabIndex={-1}>
 			<Popover
 				placement="top"
-				content={<span style={{ fontSize: '0.9rem' }}>Copy to clipboard</span>}
+				content={<span style={{ fontSize: '0.9rem' }}>复制到剪贴板</span>}
 			>
 				{children}
 			</Popover>

@@ -7,11 +7,11 @@ describe('ServicesTraces', () => {
 		await act(() => {
 			render(<ServiceTraces />);
 		});
-		const applicationHeader = screen.getByText(/application/i);
+		const applicationHeader = screen.getByText('应用');
 		expect(applicationHeader).toBeInTheDocument();
-		const p99LatencyHeader = screen.getByText(/p99 latency \(in ms\)/i);
+		const p99LatencyHeader = screen.getByText('P99 延迟（毫秒）');
 		expect(p99LatencyHeader).toBeInTheDocument();
-		const errorRateHeader = screen.getByText(/error rate \(% of total\)/i);
+		const errorRateHeader = screen.getByText('错误率（占总量百分比）');
 		expect(errorRateHeader).toBeInTheDocument();
 	});
 
@@ -31,7 +31,7 @@ describe('ServicesTraces', () => {
 		act(() => {
 			render(<ServiceTraces />);
 		});
-		const p99LatencyHeader = await screen.findByText(/p99 latency \(in ms\)/i);
+		const p99LatencyHeader = await screen.findByText('P99 延迟（毫秒）');
 		expect(p99LatencyHeader).toBeInTheDocument();
 		const firstServiceName = await screen.findByText(/TestService/i);
 		expect(firstServiceName).toBeInTheDocument();

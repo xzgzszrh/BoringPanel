@@ -75,16 +75,11 @@ export enum AlertDetectionTypes {
 }
 
 const ALERT_SETUP_GUIDE_URLS: Record<AlertTypes, string> = {
-	[AlertTypes.METRICS_BASED_ALERT]:
-		'https://signoz.io/docs/alerts-management/metrics-based-alerts/?utm_source=product&utm_medium=alert-creation-page',
-	[AlertTypes.LOGS_BASED_ALERT]:
-		'https://signoz.io/docs/alerts-management/log-based-alerts/?utm_source=product&utm_medium=alert-creation-page',
-	[AlertTypes.TRACES_BASED_ALERT]:
-		'https://signoz.io/docs/alerts-management/trace-based-alerts/?utm_source=product&utm_medium=alert-creation-page',
-	[AlertTypes.EXCEPTIONS_BASED_ALERT]:
-		'https://signoz.io/docs/alerts-management/exceptions-based-alerts/?utm_source=product&utm_medium=alert-creation-page',
-	[AlertTypes.ANOMALY_BASED_ALERT]:
-		'https://signoz.io/docs/alerts-management/anomaly-based-alerts/?utm_source=product&utm_medium=alert-creation-page',
+	[AlertTypes.METRICS_BASED_ALERT]: '',
+	[AlertTypes.LOGS_BASED_ALERT]: '',
+	[AlertTypes.TRACES_BASED_ALERT]: '',
+	[AlertTypes.EXCEPTIONS_BASED_ALERT]: '',
+	[AlertTypes.ANOMALY_BASED_ALERT]: '',
 };
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
@@ -161,6 +156,7 @@ function FormAlertRules({
 				...(getSelectedQueryOptions(currentQuery.builder.queryData) || []),
 				...(getSelectedQueryOptions(currentQuery.builder.queryFormulas) || []),
 			],
+
 			[EQueryType.PROM]: () => getSelectedQueryOptions(currentQuery.promql),
 			[EQueryType.CLICKHOUSE]: () =>
 				getSelectedQueryOptions(currentQuery.clickhouse_sql),
@@ -338,7 +334,7 @@ function FormAlertRules({
 
 		if (!currentQuery.promql || currentQuery.promql.length === 0) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('promql_required'),
 			});
 			return false;
@@ -347,7 +343,7 @@ function FormAlertRules({
 		currentQuery.promql.forEach((item) => {
 			if (item.query === '') {
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: t('promql_required'),
 				});
 				retval = false;
@@ -366,7 +362,7 @@ function FormAlertRules({
 			currentQuery.clickhouse_sql.length === 0
 		) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('chquery_required'),
 			});
 			return false;
@@ -375,7 +371,7 @@ function FormAlertRules({
 		currentQuery.clickhouse_sql.forEach((item) => {
 			if (item.query === '') {
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: t('chquery_required'),
 				});
 				retval = false;
@@ -393,7 +389,7 @@ function FormAlertRules({
 			currentQuery.builder.queryData?.length === 0
 		) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('condition_required'),
 			});
 			return false;
@@ -405,7 +401,7 @@ function FormAlertRules({
 			!alertDef.condition?.target
 		) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('target_missing'),
 			});
 			return false;
@@ -508,7 +504,7 @@ function FormAlertRules({
 				};
 
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 					description: logData.statusMessage,
 				});
 
@@ -533,7 +529,7 @@ function FormAlertRules({
 				};
 
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: logData.statusMessage,
 				});
 			}
@@ -544,7 +540,7 @@ function FormAlertRules({
 			};
 
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: logData.statusMessage,
 			});
 		}
@@ -583,6 +579,7 @@ function FormAlertRules({
 				{t('confirm_save_content_part2')}
 			</Typography.Text>
 		);
+
 		Modal.confirm({
 			icon: <ExclamationCircleOutlined />,
 			title: t('confirm_save_title'),
@@ -608,20 +605,20 @@ function FormAlertRules({
 				const { payload } = response;
 				if (payload?.alertCount === 0) {
 					notifications.error({
-						message: 'Error',
+						message: '错误',
 						description: t('no_alerts_found'),
 					});
 					statusResponse = { status: 'failed', message: t('no_alerts_found') };
 				} else {
 					notifications.success({
-						message: 'Success',
+						message: '成功',
 						description: t('rule_test_fired'),
 					});
 					statusResponse = { status: 'success', message: t('rule_test_fired') };
 				}
 			} else {
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: response.error || t('unexpected_error'),
 				});
 				statusResponse = {
@@ -631,7 +628,7 @@ function FormAlertRules({
 			}
 		} catch (e) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('unexpected_error'),
 			});
 			statusResponse = { status: 'failed', message: t('unexpected_error') };
@@ -720,29 +717,6 @@ function FormAlertRules({
 
 	const isRuleCreated = !ruleId || ruleId === 0;
 
-	function handleRedirection(option: AlertTypes): void {
-		let url;
-		if (
-			option === AlertTypes.METRICS_BASED_ALERT &&
-			alertTypeFromURL === AlertDetectionTypes.ANOMALY_DETECTION_ALERT
-		) {
-			url = ALERT_SETUP_GUIDE_URLS[AlertTypes.ANOMALY_BASED_ALERT];
-		} else {
-			url = ALERT_SETUP_GUIDE_URLS[option];
-		}
-
-		if (url) {
-			logEvent('Alert: Check example alert clicked', {
-				dataSource: ALERTS_DATA_SOURCE_MAP[alertDef?.alertType as AlertTypes],
-				isNewRule: !ruleId || ruleId === 0,
-				ruleId,
-				queryType: currentQuery.queryType,
-				link: url,
-			});
-			window.open(url, '_blank');
-		}
-	}
-
 	useEffect(() => {
 		if (!isRuleCreated) {
 			logEvent('Alert: Edit page visited', {
@@ -756,11 +730,11 @@ function FormAlertRules({
 	const tabs = [
 		{
 			value: AlertDetectionTypes.THRESHOLD_ALERT,
-			label: 'Threshold Alert',
+			label: '阈值告警',
 		},
 		{
 			value: AlertDetectionTypes.ANOMALY_DETECTION_ALERT,
-			label: 'Anomaly Detection Alert',
+			label: '异常检测告警',
 			isBeta: true,
 		},
 	];
@@ -792,14 +766,6 @@ function FormAlertRules({
 							</Typography.Title>
 						)}
 					</div>
-
-					<Button
-						className="periscope-btn"
-						onClick={(): void => handleRedirection(alertDef.alertType as AlertTypes)}
-						icon={<ExternalLink size={14} />}
-					>
-						Alert Setup Guide
-					</Button>
 				</div>
 
 				<MainFormContainer

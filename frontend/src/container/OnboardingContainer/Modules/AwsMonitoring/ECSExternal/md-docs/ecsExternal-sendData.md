@@ -4,7 +4,7 @@
 
 ## Send Traces Data
 
-To send traces data from applications deployed in ECS to SigNoz Cloud using Daemon Service we created in the previous section, follow these steps:
+To send traces data from applications deployed in ECS to Scry Cloud using Daemon Service we created in the previous section, follow these steps:
 
 ### Step 1: Instrument your application
 To add OpenTelemetry instrumentation to your application, check out the Application Monitoring section in onboarding you can follow the docs [here](https://signoz.io/docs/instrumentation/).
@@ -101,6 +101,6 @@ Once you follow the above steps, you need to rebuild the application container a
 
 &nbsp;
 
-### Step 5: Step 5: Verify Data in SigNoz
+### Step 5: Step 5: Verify Data in Scry
 
-Generate some traffic to your application and go to your SigNoz cloud services page to see your application name in the service list.
+Generate some traffic to your application and go to your Scry cloud services page to see your application name in the service list.

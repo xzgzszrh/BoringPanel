@@ -12,7 +12,7 @@ function DashboardName({ setName, name }: DashboardNameProps): JSX.Element {
 	return (
 		<Input
 			size="middle"
-			placeholder="Title"
+			placeholder="标题"
 			value={name}
 			onChangeHandler={onChangeHandler}
 		/>

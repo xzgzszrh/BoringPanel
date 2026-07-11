@@ -29,7 +29,7 @@ export function RequestIntegrationBtn(): JSX.Element {
 
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Integration Request Submitted',
+					message: '已提交集成请求',
 				});
 
 				setIsSubmittingRequestForIntegration(false);
@@ -57,14 +57,12 @@ export function RequestIntegrationBtn(): JSX.Element {
 
 	return (
 		<div className="request-entity-container">
-			<Typography.Text>
-				Cannot find what you’re looking for? Request more integrations
-			</Typography.Text>
+			<Typography.Text>找不到您要找的东西？请求更多集成</Typography.Text>
 
 			<div className="form-section">
 				<Space.Compact style={{ width: '100%' }}>
 					<Input
-						placeholder="Enter integration name..."
+						placeholder="输入集成名称..."
 						style={{ width: 300, marginBottom: 0 }}
 						value={requestedIntegrationName}
 						onChange={(e): void => setRequestedIntegrationName(e.target.value)}
@@ -86,7 +84,7 @@ export function RequestIntegrationBtn(): JSX.Element {
 							requestedIntegrationName?.trim().length === 0
 						}
 					>
-						Submit
+						提交
 					</Button>
 				</Space.Compact>
 			</div>

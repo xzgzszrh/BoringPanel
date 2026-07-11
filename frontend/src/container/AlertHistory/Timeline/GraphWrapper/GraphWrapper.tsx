@@ -48,7 +48,7 @@ function GraphWrapper({
 	return (
 		<div className="timeline-graph">
 			<div className="timeline-graph__title">
-				{totalCurrentTriggers} triggers in {relativeTime}
+				{totalCurrentTriggers} 触发于 {relativeTime}
 			</div>
 			<div className="timeline-graph__chart">
 				<DataStateRenderer

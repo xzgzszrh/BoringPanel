@@ -101,7 +101,7 @@ function CustomTimePickerPopoverContent({
 				<div className="date-time-options">
 					{isLogsExplorerPage && (
 						<Button className="data-time-live" type="text" onClick={handleGoLive}>
-							Live
+							居住
 						</Button>
 					)}
 					{options.map((option) => (
@@ -139,7 +139,7 @@ function CustomTimePickerPopoverContent({
 						/>
 					) : (
 						<div className="relative-times-container">
-							<div className="time-heading">RELATIVE TIMES</div>
+							<div className="time-heading">相对时间</div>
 							<div>{getTimeChips(RelativeDurationSuggestionOptions)}</div>
 						</div>
 					)}
@@ -154,7 +154,7 @@ function CustomTimePickerPopoverContent({
 						height={12}
 						width={12}
 					/>
-					<span className="timezone__icon">Current timezone</span>
+					<span className="timezone__icon">当前时区</span>
 					<div>⎯</div>
 					<button
 						type="button"

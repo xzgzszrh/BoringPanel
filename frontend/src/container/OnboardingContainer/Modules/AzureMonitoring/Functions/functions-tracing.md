@@ -22,7 +22,7 @@ To see how you can instrument your applications like FastAPI, NextJS, Node.js, S
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://<Your-Central-Collector-DNS>:4318/"
 ```
 
-For application-level traces, configure your application to use the DNS name of the **Central Collector** you set up earlier. This Central Collector will automatically forward the collected data to SigNoz.
+For application-level traces, configure your application to use the DNS name of the **Central Collector** you set up earlier. This Central Collector will automatically forward the collected data to Scry.
 
 &nbsp;
 

@@ -133,7 +133,7 @@ const Uplot = forwardRef<ToggleGraphProps | undefined, UplotProps>(
 				<div className="uplot-no-data not-found">
 					<LineChart size={48} strokeWidth={0.5} />
 
-					<Typography>No Data</Typography>
+					<Typography>无数据</Typography>
 				</div>
 			);
 		}
@@ -143,7 +143,7 @@ const Uplot = forwardRef<ToggleGraphProps | undefined, UplotProps>(
 				<div className="uplot-graph-container" ref={targetRef}>
 					{data && data[0] && data[0]?.length === 0 ? (
 						<div className="not-found">
-							<Typography>No Data</Typography>
+							<Typography>无数据</Typography>
 						</div>
 					) : null}
 				</div>

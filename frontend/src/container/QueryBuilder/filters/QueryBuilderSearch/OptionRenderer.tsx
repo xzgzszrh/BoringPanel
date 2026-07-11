@@ -18,11 +18,11 @@ function OptionRenderer({
 						<div className="option-value">{value}</div>
 						<div className="option-meta-data-container">
 							<TagContainer>
-								<TagLabel>Type: </TagLabel>
+								<TagLabel>类型： </TagLabel>
 								<TagValue>{type}</TagValue>
 							</TagContainer>
 							<TagContainer>
-								<TagLabel>Data type: </TagLabel>
+								<TagLabel>数据类型： </TagLabel>
 								<TagValue>{dataType}</TagValue>
 							</TagContainer>
 						</div>

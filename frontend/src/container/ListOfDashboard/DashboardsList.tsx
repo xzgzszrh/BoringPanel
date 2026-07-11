@@ -58,7 +58,6 @@ import {
 } from 'lucide-react';
 // #TODO: lucide will be removing brand icons like Github in future, in that case we can use simple icons
 // see more: https://github.com/lucide-icons/lucide/issues/94
-import { handleContactSupport } from 'pages/Integrations/utils';
 import { useDashboard } from 'providers/Dashboard/Dashboard';
 import { useTimezone } from 'providers/Timezone';
 import {
@@ -83,11 +82,9 @@ import {
 	Widgets,
 } from 'types/api/dashboard/getAll';
 import AppReducer from 'types/reducer/app';
-import { isCloudUser } from 'utils/app';
 
 import DashboardTemplatesModal from './DashboardTemplates/DashboardTemplatesModal';
 import ImportJSON from './ImportJSON';
-import { RequestDashboardBtn } from './RequestDashboardBtn';
 import { DeleteButton } from './TableComponents/DeleteButton';
 import {
 	DashboardDynamicColumns,
@@ -404,7 +401,7 @@ function DashboardsList(): JSX.Element {
 
 	const columns: TableProps<Data>['columns'] = [
 		{
-			title: 'Dashboards',
+			title: '仪表盘',
 			key: 'dashboard',
 			render: (dashboard: Data, _, index): JSX.Element => {
 				const formattedDateAndTime = formatTimezoneAdjustedTimestamp(
@@ -452,7 +449,7 @@ function DashboardsList(): JSX.Element {
 									>
 										<img
 											src={dashboard?.image || Base64Icons[0]}
-											alt="dashboard-image"
+											alt="仪表盘图像"
 											className="dashboard-icon"
 										/>
 										<Typography.Text
@@ -495,7 +492,7 @@ function DashboardsList(): JSX.Element {
 													icon={<Expand size={12} />}
 													onClick={onClickHandler}
 												>
-													View
+													看法
 												</Button>
 												<Button
 													type="text"
@@ -507,7 +504,7 @@ function DashboardsList(): JSX.Element {
 														setCopy(`${window.location.origin}${getLink()}`);
 													}}
 												>
-													Copy Link
+													复制链接
 												</Button>
 												<Button
 													type="text"
@@ -515,7 +512,7 @@ function DashboardsList(): JSX.Element {
 													icon={<FileJson size={12} />}
 													onClick={handleJsonExport}
 												>
-													Export JSON
+													出口JSON
 												</Button>
 											</section>
 											<section className="section-2">
@@ -573,9 +570,7 @@ function DashboardsList(): JSX.Element {
 
 							{dashboard.lastUpdatedBy && visibleColumns.updatedBy && (
 								<div className="updated-by">
-									<Typography.Text className="text">
-										Last Updated By - &nbsp;
-									</Typography.Text>
+									<Typography.Text className="text">最后更新者：</Typography.Text>
 									<div className="dashboard-tag">
 										<Typography.Text className="tag-text">
 											{dashboard.lastUpdatedBy?.substring(0, 1).toUpperCase()}
@@ -601,32 +596,10 @@ function DashboardsList(): JSX.Element {
 						className="create-dashboard-menu-item"
 						onClick={(): void => onModalHandler(false)}
 					>
-						<Radius size={14} /> Import JSON
+						<Radius size={14} /> 进口JSON
 					</div>
 				),
 				key: '1',
-			},
-			{
-				label: (
-					<a
-						href="https://github.com/SigNoz/dashboards"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Flex
-							justify="space-between"
-							align="center"
-							style={{ width: '100%' }}
-							gap="small"
-						>
-							<div className="create-dashboard-menu-item">
-								<Github size={14} /> View templates
-							</div>
-							<ExternalLink size={14} />
-						</Flex>
-					</a>
-				),
-				key: '2',
 			},
 		];
 
@@ -639,7 +612,7 @@ function DashboardsList(): JSX.Element {
 							onNewDashboardHandler();
 						}}
 					>
-						<LayoutGrid size={14} /> Create dashboard
+						<LayoutGrid size={14} /> 创建仪表盘
 					</div>
 				),
 				key: '0',
@@ -654,7 +627,7 @@ function DashboardsList(): JSX.Element {
 			<Typography.Text className="numbers">
 				{range[0]} &#8212; {range[1]}
 			</Typography.Text>
-			<Typography.Text className="total">of {total}</Typography.Text>
+			<Typography.Text className="total">的 {total}</Typography.Text>
 		</>
 	);
 
@@ -687,19 +660,12 @@ function DashboardsList(): JSX.Element {
 		<div className="dashboards-list-container">
 			<div className="dashboards-list-view-content">
 				<div className="dashboards-list-title-container">
-					<Typography.Title className="title">Dashboards</Typography.Title>
+					<Typography.Title className="title">仪表盘</Typography.Title>
 					<Flex align="center" justify="space-between">
 						<Typography.Text className="subtitle">
-							Create and manage dashboards for your workspace.
+							为您的工作区创建和管理仪表盘。
 						</Typography.Text>
 					</Flex>
-					{isCloudUser() && (
-						<div className="integrations-container">
-							<div className="integrations-content">
-								<RequestDashboardBtn />
-							</div>
-						</div>
-					)}
 				</div>
 
 				{isDashboardListLoading ||
@@ -713,14 +679,10 @@ function DashboardsList(): JSX.Element {
 					</div>
 				) : dashboardFetchError ? (
 					<div className="dashboard-error-state">
-						<img
-							src="/Icons/awwSnap.svg"
-							alt="something went wrong"
-							className="error-img"
-						/>
+						<img src="/Icons/awwSnap.svg" alt="出问题了" className="error-img" />
 
 						<Typography.Text className="error-text">
-							Something went wrong :/ Please retry or contact support.
+							出了点问题：/请重试或联系支持人员。
 						</Typography.Text>
 						<section className="action-btns">
 							<Button
@@ -729,31 +691,19 @@ function DashboardsList(): JSX.Element {
 								icon={<RotateCw size={16} />}
 								onClick={(): Promise<any> => refetchDashboardList()}
 							>
-								Retry
+								重试
 							</Button>
-							<Button
-								type="text"
-								className="learn-more"
-								onClick={(): void => handleContactSupport(isCloudUser())}
-							>
-								Contact Support
-							</Button>
-							<ArrowUpRight size={16} className="learn-more-arrow" />
 						</section>
 					</div>
 				) : dashboards?.length === 0 && !searchString ? (
 					<div className="dashboard-empty-state">
-						<img
-							src="/Icons/dashboards.svg"
-							alt="dashboards"
-							className="dashboard-img"
-						/>
+						<img src="/Icons/dashboards.svg" alt="仪表盘" className="dashboard-img" />
 						<section className="text">
 							<Typography.Text className="no-dashboard">
-								No dashboards yet.{' '}
+								还没有仪表盘。{' '}
 							</Typography.Text>
 							<Typography.Text className="info">
-								Create a dashboard to start visualizing your data
+								创建仪表盘以开始可视化您的数据
 							</Typography.Text>
 						</section>
 
@@ -773,23 +723,9 @@ function DashboardsList(): JSX.Element {
 											logEvent('Dashboard List: New dashboard clicked', {});
 										}}
 									>
-										New Dashboard
+										新仪表盘
 									</Button>
 								</Dropdown>
-								<Button
-									type="text"
-									className="learn-more"
-									data-testid="learn-more"
-									onClick={(): void => {
-										window.open(
-											'https://signoz.io/docs/userguide/manage-dashboards?utm_source=product&utm_medium=dashboard-list-empty-state',
-											'_blank',
-										);
-									}}
-								>
-									Learn more
-								</Button>
-								<ArrowUpRight size={16} className="learn-more-arrow" />
 							</section>
 						)}
 					</div>
@@ -797,7 +733,7 @@ function DashboardsList(): JSX.Element {
 					<>
 						<div className="dashboards-list-header-container">
 							<Input
-								placeholder="Search by name, description, or tags..."
+								placeholder="按名称、描述或标签搜索..."
 								prefix={<Search size={12} color={Color.BG_VANILLA_400} />}
 								value={searchString}
 								onChange={handleSearch}
@@ -817,7 +753,7 @@ function DashboardsList(): JSX.Element {
 											logEvent('Dashboard List: New dashboard clicked', {});
 										}}
 									>
-										New dashboard
+										新仪表盘
 									</Button>
 								</Dropdown>
 							)}
@@ -825,25 +761,23 @@ function DashboardsList(): JSX.Element {
 
 						{dashboards?.length === 0 ? (
 							<div className="no-search">
-								<img src="/Icons/emptyState.svg" alt="img" className="img" />
+								<img src="/Icons/emptyState.svg" alt="图像" className="img" />
 								<Typography.Text className="text">
-									No dashboards found for {searchString}. Create a new dashboard?
+									没有找到仪表盘 {searchString}。创建新的仪表盘？
 								</Typography.Text>
 							</div>
 						) : (
 							<>
 								<div className="all-dashboards-header">
-									<Typography.Text className="typography">
-										All Dashboards
-									</Typography.Text>
+									<Typography.Text className="typography">所有仪表盘</Typography.Text>
 									<section className="right-actions">
-										<Tooltip title="Sort">
+										<Tooltip title="种类">
 											<Popover
 												trigger="click"
 												content={
 													<div className="sort-content">
 														<Typography.Text className="sort-heading">
-															Sort By
+															排序方式
 														</Typography.Text>
 														<Button
 															type="text"
@@ -851,7 +785,7 @@ function DashboardsList(): JSX.Element {
 															onClick={(): void => sortHandle('createdAt')}
 															data-testid="sort-by-last-created"
 														>
-															Last created
+															最后创建
 															{sortOrder.columnKey === 'createdAt' && <Check size={14} />}
 														</Button>
 														<Button
@@ -860,7 +794,7 @@ function DashboardsList(): JSX.Element {
 															onClick={(): void => sortHandle('updatedAt')}
 															data-testid="sort-by-last-updated"
 														>
-															Last updated
+															最后更新
 															{sortOrder.columnKey === 'updatedAt' && <Check size={14} />}
 														</Button>
 													</div>
@@ -886,7 +820,7 @@ function DashboardsList(): JSX.Element {
 															setIsConfigureMetadata(true);
 														}}
 													>
-														Configure metadata
+														配置元数据
 													</Button>
 												</div>
 											}
@@ -936,7 +870,7 @@ function DashboardsList(): JSX.Element {
 						// reset to default if the changes are not applied
 						setVisibleColumns(getLocalStorageDynamicColumns());
 					}}
-					title="Configure Metadata"
+					title="配置元数据"
 					footer={
 						<Button
 							type="text"
@@ -947,7 +881,7 @@ function DashboardsList(): JSX.Element {
 								setDynamicColumnsLocalStorage(visibleColumns);
 							}}
 						>
-							Save Changes
+							保存更改
 						</Button>
 					}
 					rootClassName="configure-metadata-root"
@@ -957,7 +891,7 @@ function DashboardsList(): JSX.Element {
 							<section className="header">
 								<img
 									src={dashboards?.[0]?.data?.image || Base64Icons[0]}
-									alt="dashboard-image"
+									alt="仪表盘图像"
 									style={{ height: '14px', width: '14px' }}
 								/>
 								<Typography.Text className="title">
@@ -1006,7 +940,7 @@ function DashboardsList(): JSX.Element {
 						<div className="metadata-action">
 							<div className="left">
 								<CalendarClock size={14} />
-								<Typography.Text>Created at</Typography.Text>
+								<Typography.Text>创建于</Typography.Text>
 							</div>
 							<div className="connection-line" />
 							<div className="right">
@@ -1026,7 +960,7 @@ function DashboardsList(): JSX.Element {
 						<div className="metadata-action">
 							<div className="left">
 								<CalendarClock size={14} />
-								<Typography.Text>Created by</Typography.Text>
+								<Typography.Text>创建者：</Typography.Text>
 							</div>
 							<div className="connection-line" />
 							<div className="right">
@@ -1046,7 +980,7 @@ function DashboardsList(): JSX.Element {
 						<div className="metadata-action">
 							<div className="left">
 								<Clock4 size={14} />
-								<Typography.Text>Updated at</Typography.Text>
+								<Typography.Text>更新于</Typography.Text>
 							</div>
 							<div className="connection-line" />
 							<div className="right">
@@ -1065,7 +999,7 @@ function DashboardsList(): JSX.Element {
 						<div className="metadata-action">
 							<div className="left">
 								<Clock4 size={14} />
-								<Typography.Text>Updated by</Typography.Text>
+								<Typography.Text>更新者</Typography.Text>
 							</div>
 							<div className="connection-line" />
 							<div className="right">

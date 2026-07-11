@@ -8,10 +8,10 @@ describe('Metrics Component', () => {
 		render(<ServiceTraceTable services={services} loading={false} />);
 
 		await waitFor(() => {
-			expect(screen.getByText(/application/i)).toBeInTheDocument();
-			expect(screen.getByText(/p99 latency \(in ms\)/i)).toBeInTheDocument();
-			expect(screen.getByText(/error rate \(% of total\)/i)).toBeInTheDocument();
-			expect(screen.getByText(/operations per second/i)).toBeInTheDocument();
+			expect(screen.getByText('应用')).toBeInTheDocument();
+			expect(screen.getByText('P99 延迟（毫秒）')).toBeInTheDocument();
+			expect(screen.getByText('错误率（占总量百分比）')).toBeInTheDocument();
+			expect(screen.getByText('每秒操作数')).toBeInTheDocument();
 		});
 	});
 

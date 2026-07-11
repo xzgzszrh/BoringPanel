@@ -22,8 +22,8 @@ function LabelFilterForm({ setFilter }: LabelFilterProps): JSX.Element {
 						});
 					}}
 				>
-					<Option value="severity">Severity</Option>
-					<Option value="service">Service</Option>
+					<Option value="severity">严重性</Option>
+					<Option value="service">服务</Option>
 				</Select>
 				<Select
 					defaultValue="="
@@ -40,7 +40,7 @@ function LabelFilterForm({ setFilter }: LabelFilterProps): JSX.Element {
 				</Select>
 				<Input
 					style={{ width: '20%' }}
-					placeholder="enter a text here"
+					placeholder="在此输入文字"
 					onChange={(event): void => {
 						setFilter((value) => {
 							const first: LabelFilterStatement = value[0] as LabelFilterStatement;

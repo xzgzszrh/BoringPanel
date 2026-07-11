@@ -57,7 +57,7 @@ function QuerySection(): JSX.Element {
 				actions={
 					<ButtonWrapper>
 						<Button onClick={(): void => handleRunQuery()} type="primary">
-							Run Query
+							运行查询
 						</Button>
 					</ButtonWrapper>
 				}

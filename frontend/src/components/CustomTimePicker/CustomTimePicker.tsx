@@ -352,7 +352,7 @@ function CustomTimePicker({
 						inputValue && inputStatus === 'success' ? (
 							<CheckCircle size={14} color="#51E7A8" />
 						) : (
-							<Tooltip title="Enter time in format (e.g., 1m, 2h, 3d, 4w)">
+							<Tooltip title="按格式输入时间（例如 1m、2h、3d、4w）">
 								<Clock size={14} />
 							</Tooltip>
 						)

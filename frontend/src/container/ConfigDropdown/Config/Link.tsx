@@ -8,11 +8,7 @@ function LinkContainer({ children, href }: LinkContainerProps): JSX.Element {
 		return <Link to={href}>{children}</Link>;
 	}
 
-	return (
-		<a rel="noreferrer" target="_blank" href={href}>
-			{children}
-		</a>
-	);
+	return <></>;
 }
 
 interface LinkContainerProps {

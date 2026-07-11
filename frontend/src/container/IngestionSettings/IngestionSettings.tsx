@@ -19,7 +19,7 @@ export default function IngestionSettings(): JSX.Element {
 
 	const columns: ColumnsType<IngestionDataType> = [
 		{
-			title: 'Name',
+			title: '名称',
 			dataIndex: 'name',
 			key: 'name',
 			render: (text): JSX.Element => <Typography.Text> {text} </Typography.Text>,
@@ -73,8 +73,7 @@ export default function IngestionSettings(): JSX.Element {
 					margin: '16px 0px',
 				}}
 			>
-				You can use the following ingestion credentials to start sending your
-				telemetry data to SigNoz
+				您可以使用以下采集凭据开始将遥测数据发送到 Scry
 			</Typography>
 
 			<Table

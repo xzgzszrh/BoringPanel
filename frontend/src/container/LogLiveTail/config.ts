@@ -13,14 +13,14 @@ export const TIME_PICKER_OPTIONS = [
 	},
 	{
 		value: 60,
-		label: '1hr',
+		label: '1小时',
 	},
 	{
 		value: 360,
-		label: '6hrs',
+		label: '6小时',
 	},
 	{
 		value: 720,
-		label: '12hrs',
+		label: '12小时',
 	},
 ];

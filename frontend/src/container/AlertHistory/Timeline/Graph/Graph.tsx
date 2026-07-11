@@ -69,10 +69,10 @@ function HorizontalTimelineGraph({
 			padding: [null, 0, null, 0],
 			series: [
 				{
-					label: 'Time',
+					label: '时间',
 				},
 				{
-					label: 'States',
+					label: '州',
 				},
 			],
 			hooks: {

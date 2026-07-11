@@ -3,24 +3,21 @@ import { DataSource } from 'types/common/queryBuilder';
 export const ALERT_INFO_LINKS = [
 	{
 		infoText: 'How to create Metrics-based alerts',
-		link:
-			'https://signoz.io/docs/alerts-management/metrics-based-alerts/?utm_source=product&utm_medium=alert-empty-page',
+		link: '',
 		leftIconVisible: false,
 		rightIconVisible: true,
 		dataSource: DataSource.METRICS,
 	},
 	{
 		infoText: 'How to create Log-based alerts',
-		link:
-			'https://signoz.io/docs/alerts-management/log-based-alerts/?utm_source=product&utm_medium=alert-empty-page',
+		link: '',
 		leftIconVisible: false,
 		rightIconVisible: true,
 		dataSource: DataSource.LOGS,
 	},
 	{
 		infoText: 'How to create Trace-based alerts',
-		link:
-			'https://signoz.io/docs/alerts-management/trace-based-alerts/?utm_source=product&utm_medium=alert-empty-page',
+		link: '',
 		leftIconVisible: false,
 		rightIconVisible: true,
 		dataSource: DataSource.TRACES,
@@ -29,31 +26,27 @@ export const ALERT_INFO_LINKS = [
 
 export const ALERT_CARDS = [
 	{
-		header: 'Alert on high memory usage',
+		header: '高内存使用率告警',
 		subheader: "Monitor your host's memory usage",
 		dataSource: DataSource.METRICS,
-		link:
-			'https://signoz.io/docs/alerts-management/metrics-based-alerts/?utm_source=product&utm_medium=alert-empty-page#1-alert-when-memory-usage-for-host-goes-above-400-mb-or-any-fixed-memory',
+		link: '',
 	},
 	{
-		header: 'Alert on slow external API calls',
+		header: '外部 API 呼叫缓慢时发出告警',
 		subheader: 'Monitor your external API calls',
 		dataSource: DataSource.TRACES,
-		link:
-			'https://signoz.io/docs/alerts-management/trace-based-alerts/?utm_source=product&utm_medium=alert-empty-page#1-alert-when-external-api-latency-p90-is-over-1-second-for-last-5-mins',
+		link: '',
 	},
 	{
-		header: 'Alert on high percentage of timeout errors in logs',
+		header: '针对日志中高比例的超时错误发出告警',
 		subheader: 'Monitor your logs for errors',
 		dataSource: DataSource.LOGS,
-		link:
-			'https://signoz.io/docs/alerts-management/log-based-alerts/?utm_source=product&utm_medium=alert-empty-page#1-alert-when-percentage-of-redis-timeout-error-logs-greater-than-7-in-last-5-mins',
+		link: '',
 	},
 	{
-		header: 'Alert on high error percentage of an endpoint',
+		header: '端点错误百分比较高时发出告警',
 		subheader: 'Monitor your API endpoint',
 		dataSource: DataSource.METRICS,
-		link:
-			'https://signoz.io/docs/alerts-management/metrics-based-alerts/?utm_source=product&utm_medium=alert-empty-page#3-alert-when-the-error-percentage-for-an-endpoint-exceeds-5',
+		link: '',
 	},
 ];

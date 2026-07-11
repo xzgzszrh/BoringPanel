@@ -102,7 +102,7 @@ export function Section(props: SectionProps): JSX.Element {
 					onClick={onClearHandler}
 					data-testid={`collapse-${panelName}-clearBtn`}
 				>
-					Clear All
+					全部清除
 				</Button>
 			</div>
 		</div>

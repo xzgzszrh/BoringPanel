@@ -1,0 +1,54 @@
+{
+  "breadcrumb": "消息队列",
+  "header": "Kafka / 概述",
+  "overview": {
+    "title": "只需 20 分钟即可开始发送数据",
+    "subtitle": "连接并监控您的数据流"
+  },
+  "configureConsumer": {
+    "title": "配置消费者",
+    "description": "添加消费者数据源以获取见解并加强监控。",
+    "button": "开始使用"
+  },
+  "configureProducer": {
+    "title": "配置生产者",
+    "description": "添加生产者数据源以获取见解并加强监控。",
+    "button": "开始使用"
+  },
+  "monitorKafka": {
+    "title": "监控卡夫卡",
+    "description": "添加您的 Kafka 源以获取见解并增强活动链路。",
+    "button": "开始使用"
+  },
+  "summarySection": {
+    "viewDetailsButton": "查看详情",
+    "consumer": {
+      "title": "消费者滞后视图",
+      "description": "连接并监控您的数据流"
+    },
+    "producer": {
+      "title": "生产者延迟视图",
+      "description": "连接并监控您的数据流"
+    },
+    "partition": {
+      "title": "分区延迟视图",
+      "description": "连接并监控您的数据流"
+    },
+    "dropRate": {
+      "title": "掉率视图",
+      "description": "连接并监控您的数据流"
+    },
+    "metricPage": {
+      "title": "公制视图",
+      "description": "连接并监控您的数据流"
+    }
+  },
+  "confirmModal": {
+    "content": "在导航到详细信息页面之前，请确保您已配置所有必需的设置，以确保正确的数据监控。",
+    "okText": "继续"
+  },
+  "overviewSummarySection": {
+    "title": "监控您的数据流",
+    "subtitle": "监控关键的 Kafka 指标，例如消费者滞后和延迟，以确保高效的数据流和实时故障排除。"
+  }
+}

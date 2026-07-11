@@ -169,16 +169,16 @@ function UserFunction({
 				<Typography.Link
 					onClick={(): void => onModalToggleHandler(setIsModalVisible, true)}
 				>
-					Edit
+					编辑
 				</Typography.Link>
 				<Typography.Link
 					onClick={(): void => onModalToggleHandler(setIsDeleteModalVisible, true)}
 				>
-					Delete
+					删除
 				</Typography.Link>
 			</Space>
 			<Modal
-				title="Edit member details"
+				title="编辑会员详细信息"
 				open={isModalVisible}
 				onOk={(): void => onModalToggleHandler(setIsModalVisible, false)}
 				onCancel={(): void => onModalToggleHandler(setIsModalVisible, false)}
@@ -190,7 +190,7 @@ function UserFunction({
 						onClick={(): void => onModalToggleHandler(setIsModalVisible, false)}
 						type="default"
 					>
-						Cancel
+						取消
 					</Button>,
 					<Button
 						key="Invite_team_members"
@@ -199,7 +199,7 @@ function UserFunction({
 						disabled={isUpdateLoading}
 						loading={isUpdateLoading}
 					>
-						Update Details
+						更新详情
 					</Button>,
 				]}
 			>
@@ -216,7 +216,7 @@ function UserFunction({
 				/>
 			</Modal>
 			<Modal
-				title="Edit member details"
+				title="编辑会员详细信息"
 				open={isDeleteModalVisible}
 				onOk={onDeleteHandler}
 				onCancel={(): void => onModalToggleHandler(setIsDeleteModalVisible, false)}
@@ -256,25 +256,25 @@ function Members(): JSX.Element {
 
 	const columns: ColumnsType<DataType> = [
 		{
-			title: 'Name',
+			title: '名称',
 			dataIndex: 'name',
 			key: 'name',
 			width: 100,
 		},
 		{
-			title: 'Emails',
+			title: '电子邮件',
 			dataIndex: 'email',
 			key: 'email',
 			width: 100,
 		},
 		{
-			title: 'Access Level',
+			title: '访问级别',
 			dataIndex: 'accessLevel',
 			key: 'accessLevel',
 			width: 50,
 		},
 		{
-			title: 'Joined On',
+			title: '已加入',
 			dataIndex: 'joinedOn',
 			key: 'joinedOn',
 			width: 60,
@@ -288,7 +288,7 @@ function Members(): JSX.Element {
 			},
 		},
 		{
-			title: 'Action',
+			title: '操作',
 			dataIndex: 'action',
 			width: 80,
 			render: (_, record): JSX.Element => (
@@ -309,7 +309,7 @@ function Members(): JSX.Element {
 	return (
 		<Space direction="vertical" size="middle">
 			<Typography.Title level={3}>
-				Members{' '}
+				会员{' '}
 				{!isLoading && dataSource && (
 					<div className="members-count"> ({dataSource.length}) </div>
 				)}

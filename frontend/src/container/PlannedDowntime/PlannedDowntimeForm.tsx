@@ -125,9 +125,7 @@ export function PlannedDowntimeForm(
 	const { notifications } = useNotifications();
 
 	const datePickerFooter = (mode: any): any =>
-		mode === 'time' ? (
-			<span style={{ color: 'gray' }}>Please select the time</span>
-		) : null;
+		mode === 'time' ? <span style={{ color: 'gray' }}>请选择时间</span> : null;
 
 	const saveHanlder = useCallback(
 		async (values: PlannedDowntimeFormData) => {
@@ -166,7 +164,7 @@ export function PlannedDowntimeForm(
 				if (response.message === 'success') {
 					setIsOpen(false);
 					notifications.success({
-						message: 'Success',
+						message: '成功',
 						description: isEditMode
 							? 'Schedule updated successfully'
 							: 'Schedule created successfully',
@@ -174,14 +172,14 @@ export function PlannedDowntimeForm(
 					refetchAllSchedules();
 				} else {
 					notifications.error({
-						message: 'Error',
+						message: '错误',
 						description: response.error || 'unexpected_error',
 					});
 				}
 			} catch (e) {
 				notifications.error({
-					message: 'Error',
-					description: 'unexpected_error',
+					message: '错误',
+					description: '意外错误',
 				});
 			}
 			setSaveLoading(false);
@@ -446,7 +444,7 @@ export function PlannedDowntimeForm(
 				autoComplete="off"
 			>
 				<Form.Item label="Name" name="name" rules={formValidationRules}>
-					<Input placeholder="e.g. Upgrade downtime" />
+					<Input placeholder="例如升级停机时间" />
 				</Form.Item>
 				<Form.Item
 					label="Starts from"
@@ -475,10 +473,7 @@ export function PlannedDowntimeForm(
 					name={['recurrence', 'repeatType']}
 					rules={formValidationRules}
 				>
-					<Select
-						placeholder="Select option..."
-						options={recurrenceOptionWithSubmenu}
-					/>
+					<Select placeholder="选择选项..." options={recurrenceOptionWithSubmenu} />
 				</Form.Item>
 				{recurrenceType === recurrenceOptions.weekly.value && (
 					<Form.Item
@@ -487,7 +482,7 @@ export function PlannedDowntimeForm(
 						rules={formValidationRules}
 					>
 						<Select
-							placeholder="Select option..."
+							placeholder="选择选项..."
 							mode="multiple"
 							options={Object.values(recurrenceWeeklyOptions)}
 						/>
@@ -509,20 +504,20 @@ export function PlannedDowntimeForm(
 											setDurationUnit(value);
 										}}
 									>
-										<Select.Option value="m">Mins</Select.Option>
-										<Select.Option value="h">Hours</Select.Option>
+										<Select.Option value="m">分钟</Select.Option>
+										<Select.Option value="h">时间</Select.Option>
 									</Select>
 								}
 								className="duration-input"
 								type="number"
-								placeholder="Enter duration"
+								placeholder="输入持续时间"
 								min={1}
 								onWheel={(e): void => e.currentTarget.blur()}
 							/>
 						</Form.Item>
 					)}
 				<Form.Item label="Timezone" name="timezone" rules={formValidationRules}>
-					<Select options={timeZoneItems} placeholder="Select timezone" showSearch />
+					<Select options={timeZoneItems} placeholder="选择时区" showSearch />
 				</Form.Item>
 				<Form.Item
 					label="Ends on"
@@ -553,9 +548,9 @@ export function PlannedDowntimeForm(
 				)}
 				<div>
 					<div className="alert-rule-form">
-						<Typography style={{ marginBottom: 8 }}>Silence Alerts</Typography>
+						<Typography style={{ marginBottom: 8 }}>静音告警</Typography>
 						<Typography style={{ marginBottom: 8 }} className="alert-rule-info">
-							(Leave empty to silence all alerts)
+							（留空可使所有告警静音）
 						</Typography>
 					</div>
 					<Form.Item noStyle shouldUpdate>
@@ -567,7 +562,7 @@ export function PlannedDowntimeForm(
 					</Form.Item>
 					<Form.Item name={alertRuleFormName}>
 						<Select
-							placeholder="Search for alerts rules or groups..."
+							placeholder="搜索告警规则或组..."
 							mode="multiple"
 							status={isError ? 'error' : undefined}
 							loading={isLoading}
@@ -581,10 +576,10 @@ export function PlannedDowntimeForm(
 							notFoundContent={
 								isLoading ? (
 									<span>
-										<Spin size="small" /> Loading...
+										<Spin size="small" /> 加载中...
 									</span>
 								) : (
-									<span>No alert available.</span>
+									<span>没有可用的告警。</span>
 								)
 							}
 						>

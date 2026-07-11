@@ -10,40 +10,27 @@ export default function HostsEmptyOrIncorrectMetrics({
 	return (
 		<div className="hosts-empty-state-container">
 			<div className="hosts-empty-state-container-content">
-				<img className="eyes-emoji" src="/Images/eyesEmoji.svg" alt="eyes emoji" />
+				<img
+					className="eyes-emoji"
+					src="/Images/eyesEmoji.svg"
+					alt="眼睛表情符号"
+				/>
 
 				{noData && (
 					<div className="no-hosts-message">
 						<Typography.Title level={5} className="no-hosts-message-title">
-							No host metrics data received yet.
+							尚未收到主机指标数据。
 						</Typography.Title>
 
 						<Typography.Text className="no-hosts-message-text">
-							Infrastructure monitoring requires the{' '}
-							<a
-								href="https://github.com/open-telemetry/semantic-conventions/blob/main/docs/system/system-metrics.md"
-								target="_blank"
-								rel="noreferrer"
-							>
-								OpenTelemetry system metrics
-							</a>
-							. Please refer to{' '}
-							<a
-								href="https://signoz.io/docs/userguide/hostmetrics"
-								target="_blank"
-								rel="noreferrer"
-							>
-								this
-							</a>{' '}
-							to learn how to send host metrics to SigNoz.
+							基础设施监控需要 OpenTelemetry 系统指标。
 						</Typography.Text>
 					</div>
 				)}
 
 				{incorrectData && (
 					<Typography.Text className="incorrect-metrics-message">
-						To see host metrics, upgrade to the latest version of SigNoz k8s-infra
-						chart. Please contact support if you need help.
+						要查看主机指标，请升级到最新版本的 Scry k8s-infra 图表。
 					</Typography.Text>
 				)}
 			</div>

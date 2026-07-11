@@ -250,7 +250,7 @@ const useOptionsMenu = ({
 
 			if (!newSelectedColumns.length && dataSource !== DataSource.LOGS) {
 				notifications.error({
-					message: 'There must be at least one selected column',
+					message: '必须至少有一个选定的列',
 				});
 			} else {
 				const optionsData: OptionsQuery = {

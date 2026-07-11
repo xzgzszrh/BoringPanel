@@ -151,10 +151,10 @@ function TraceDetail({ response }: TraceDetailProps): JSX.Element {
 						flex={`${SPAN_DETAILS_LEFT_COL_WIDTH}px`}
 					>
 						<StyledTypography.Title styledclass={[styles.removeMargin]} level={5}>
-							Trace Details
+							追踪详情
 						</StyledTypography.Title>
 						<StyledTypography.Text styledclass={[styles.removeMargin]}>
-							{traceMetaData.totalSpans} Spans
+							{traceMetaData.totalSpans} 跨度
 						</StyledTypography.Text>
 						{hasMissingSpans && <MissingSpansMessage />}
 						{response[0]?.isSubTree && <SubTreeMessage />}
@@ -230,14 +230,14 @@ function TraceDetail({ response }: TraceDetailProps): JSX.Element {
 								icon={<FilterOutlined />}
 								data-testid="span-focus-btn"
 							>
-								Focus on selected span
+								专注于选定的跨度
 							</Button>
 							<Button
 								type="default"
 								onClick={onResetHandler}
 								data-testid="reset-focus"
 							>
-								Reset Focus
+								重置焦点
 							</Button>
 						</StyledSpace>
 					</Col>

@@ -1,0 +1,4 @@
+{
+  "delete_confirm_message": "您确定要删除 {{keyName}} 吗？删除采集密钥是不可逆的且无法撤消。",
+  "delete_limit_confirm_message": "您确定要删除采集密钥 {{keyName}} 的 {{limit_name}} 限制吗？"
+}

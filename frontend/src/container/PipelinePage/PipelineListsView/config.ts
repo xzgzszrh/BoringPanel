@@ -15,7 +15,7 @@ export const pipelineFields = [
 	{
 		id: 1,
 		fieldName: 'Name',
-		placeholder: 'pipeline_name_placeholder',
+		placeholder: '管道名称占位符',
 		name: 'name',
 		component: NameInput,
 	},
@@ -51,23 +51,23 @@ export const pipelineColumns: Array<
 	},
 	{
 		key: 'name',
-		title: 'Pipeline Name',
+		title: '管道名称',
 		dataIndex: 'name',
 	},
 	{
 		key: 'filter',
-		title: 'Filters',
+		title: '过滤器',
 		dataIndex: 'filter',
 	},
 
 	{
 		key: 'createdAt',
-		title: 'Last Edited',
+		title: '最后编辑',
 		dataIndex: 'createdAt',
 	},
 	{
 		key: 'createdBy',
-		title: 'Edited By',
+		title: '编辑者',
 		dataIndex: 'createdBy',
 	},
 ];
@@ -93,30 +93,30 @@ export const changeHistoryColumns: Array<
 > = [
 	{
 		key: 'version',
-		title: 'Version',
+		title: '版本',
 		dataIndex: 'version',
 	},
 	{
-		title: 'Deployment Stage',
+		title: '部署阶段',
 		key: 'deployStatus',
 		dataIndex: 'deployStatus',
 		render: DeploymentStage,
 	},
 	{
 		key: 'deployResult',
-		title: 'Last Deploy Message',
+		title: '最后部署消息',
 		dataIndex: 'deployResult',
 		ellipsis: true,
 	},
 	{
 		key: 'createdAt',
-		title: 'Last Deployed Time',
+		title: '最后部署时间',
 		dataIndex: 'createdAt',
 		render: DeploymentTime,
 	},
 	{
 		key: 'createdByName',
-		title: 'Edited by',
+		title: '编辑者',
 		dataIndex: 'createdByName',
 	},
 ];

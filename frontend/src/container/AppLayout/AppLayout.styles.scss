@@ -4,7 +4,9 @@
 	width: 100%;
 
 	.app-content {
-		width: calc(100% - 64px);
+		flex: 1;
+		min-width: 0;
+		width: auto;
 		z-index: 0;
 
 		margin: 0 auto;
@@ -17,6 +19,35 @@
 			height: 100%;
 			width: 100%;
 		}
+	}
+}
+
+.global-page-header {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px 24px;
+	min-height: 64px;
+	padding: 12px 0;
+
+	&--full-bleed {
+		padding-right: 16px;
+		padding-left: 16px;
+	}
+
+	h4.ant-typography {
+		margin: 0;
+		font-size: 20px;
+		line-height: 28px;
+		letter-spacing: 0;
+	}
+
+	.global-top-nav {
+		display: flex;
+		align-items: center;
+		margin-left: auto;
 	}
 }
 

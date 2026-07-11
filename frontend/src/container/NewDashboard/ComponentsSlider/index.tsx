@@ -78,7 +78,7 @@ function DashboardGraphSlider(): JSX.Element {
 			}}
 			rootClassName="graph-selection"
 			footer={null}
-			title="New Panel"
+			title="新面板"
 		>
 			<div className="panel-selection">
 				{menuItems.map(({ name, icon, display }) => (

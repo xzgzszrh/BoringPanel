@@ -69,17 +69,9 @@ function PipelinesListEmptyState(): JSX.Element {
 						allowFullScreen
 						title={t('learn_more')}
 					/>
+
 					<div>
-						<Typography>
-							{t('learn_more')}&nbsp;
-							<a
-								href="https://signoz.io/docs/logs-pipelines/introduction/?utm_source=product&utm_medium=pipelines-tab"
-								target="_blank"
-								rel="noreferrer"
-							>
-								here
-							</a>
-						</Typography>
+						<Typography>{t('learn_more')}&nbsp;</Typography>
 					</div>
 				</div>
 			</Card>
@@ -102,6 +94,7 @@ function PipelineListsView({
 	const [prevPipelineData, setPrevPipelineData] = useState<Array<PipelineData>>(
 		cloneDeep(pipelineData?.pipelines || []),
 	);
+
 	const [currPipelineData, setCurrPipelineData] = useState<Array<PipelineData>>(
 		cloneDeep(pipelineData?.pipelines || []),
 	);
@@ -113,12 +106,14 @@ function PipelineListsView({
 		() => currPipelineData?.find((p) => p.id === expandedPipelineId),
 		[currPipelineData, expandedPipelineId],
 	);
+
 	const setExpandedPipelineData = useCallback(
 		(newData: PipelineData): void => {
 			if (expandedPipelineId) {
 				const pipelineIdx = currPipelineData?.findIndex(
 					(p) => p.id === expandedPipelineId,
 				);
+
 				if (pipelineIdx >= 0) {
 					const newPipelineData = [...currPipelineData];
 					newPipelineData[pipelineIdx] = newData;
@@ -222,6 +217,7 @@ function PipelineListsView({
 				'id',
 				updateSwitch,
 			);
+
 			setCurrPipelineData(editedPipelineData);
 		},
 		[currPipelineData],
@@ -232,7 +228,7 @@ function PipelineListsView({
 		if (isEditingActionMode) {
 			fieldColumns.push(
 				{
-					title: 'Actions',
+					title: '行动',
 					dataIndex: 'smartAction',
 					key: 'smartAction',
 					align: 'center',
@@ -260,7 +256,7 @@ function PipelineListsView({
 			);
 		} else {
 			fieldColumns.push({
-				title: 'Actions',
+				title: '行动',
 				dataIndex: 'smartAction',
 				key: 'smartAction',
 				align: 'center',
@@ -340,6 +336,7 @@ function PipelineListsView({
 				prevPipelineData={prevPipelineData}
 			/>
 		),
+
 		[
 			handleAlert,
 			processorEditAction,
@@ -427,7 +424,7 @@ function PipelineListsView({
 			setActionMode(ActionMode.Editing);
 			setShowSaveButton(ActionMode.Editing);
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: response.error || t('something_went_wrong'),
 			});
 			setCurrPipelineData(modifiedPipelineData);
@@ -493,6 +490,7 @@ function PipelineListsView({
 				setCurrPipelineData={setCurrPipelineData}
 				currPipelineData={currPipelineData}
 			/>
+
 			<AddNewProcessor
 				isActionType={isActionType}
 				setActionType={setActionType}
@@ -501,6 +499,7 @@ function PipelineListsView({
 				expandedPipelineData={expandedPipelineData()}
 				setExpandedPipelineData={setExpandedPipelineData}
 			/>
+
 			{prevPipelineData?.length > 0 || currPipelineData?.length > 0 ? (
 				<>
 					<PipelinesSearchSection setPipelineSearchValue={setPipelineSearchValue} />
@@ -509,6 +508,7 @@ function PipelineListsView({
 							isActionMode={isActionMode}
 							version={pipelineData?.version}
 						/>
+
 						<DndProvider backend={HTML5Backend}>
 							<Table
 								rowKey="id"

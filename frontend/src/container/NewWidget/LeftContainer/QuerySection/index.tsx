@@ -157,7 +157,7 @@ function QuerySection({
 		const queryTypeComponents = {
 			[EQueryType.QUERY_BUILDER]: {
 				icon: <Atom size={14} />,
-				label: 'Query Builder',
+				label: '查询构建器',
 				component: (
 					<QueryBuilder
 						panelType={selectedGraph}
@@ -169,7 +169,7 @@ function QuerySection({
 			},
 			[EQueryType.CLICKHOUSE]: {
 				icon: <Terminal size={14} />,
-				label: 'ClickHouse Query',
+				label: 'ClickHouse 查询',
 				component: <ClickHouseQueryContainer />,
 			},
 			[EQueryType.PROM]: {
@@ -234,10 +234,6 @@ function QuerySection({
 				onChange={handleQueryCategoryChange}
 				tabBarExtraContent={
 					<span style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-						<TextToolTip
-							text="This will temporarily save the current query and graph state. This will persist across tab change"
-							url="https://signoz.io/docs/userguide/query-builder?utm_source=product&utm_medium=query-builder"
-						/>
 						<Button
 							loading={queryResponse.isFetching}
 							type="primary"
@@ -245,7 +241,7 @@ function QuerySection({
 							className="stage-run-query"
 							icon={<Play size={14} />}
 						>
-							Stage & Run Query
+							阶段和运行查询
 						</Button>
 					</span>
 				}

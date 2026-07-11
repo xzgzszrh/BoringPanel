@@ -39,7 +39,7 @@ export const ResourceAttributesFilterMachine =
 				on: {
 					NEXT: {
 						actions: 'onSelectLabelKey',
-						description: 'Enter a label key',
+						description: '输入标签键',
 						target: 'LabelKey',
 					},
 				},

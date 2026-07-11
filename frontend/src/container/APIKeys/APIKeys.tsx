@@ -71,12 +71,12 @@ type ExpiryOption = {
 export const EXPIRATION_WITHIN_SEVEN_DAYS = 7;
 
 const API_KEY_EXPIRY_OPTIONS: ExpiryOption[] = [
-	{ value: '1', label: '1 day' },
-	{ value: '7', label: '1 week' },
-	{ value: '30', label: '1 month' },
-	{ value: '90', label: '3 months' },
-	{ value: '365', label: '1 year' },
-	{ value: '0', label: 'No Expiry' },
+	{ value: '1', label: '1天' },
+	{ value: '7', label: '1周' },
+	{ value: '30', label: '1个月' },
+	{ value: '90', label: '3个月' },
+	{ value: '365', label: '1年' },
+	{ value: '0', label: '无有效期' },
 ];
 
 export const isExpiredToken = (expiryTimestamp: number): boolean => {
@@ -292,7 +292,7 @@ function APIKeys(): JSX.Element {
 	const handleCopyKey = (text: string): void => {
 		handleCopyToClipboard(text);
 		notifications.success({
-			message: 'Copied to clipboard',
+			message: '已复制到剪贴板',
 		});
 	};
 
@@ -332,7 +332,7 @@ function APIKeys(): JSX.Element {
 
 	const columns: TableProps<APIKeyProps>['columns'] = [
 		{
-			title: 'API Key',
+			title: 'API 钥匙',
 			key: 'api-key',
 			// eslint-disable-next-line sonarjs/cognitive-complexity
 			render: (APIKey: APIKeyProps): JSX.Element => {
@@ -438,7 +438,7 @@ function APIKeys(): JSX.Element {
 							<div className="api-key-info-container">
 								{APIKey?.createdByUser && (
 									<Row>
-										<Col span={6}> Creator </Col>
+										<Col span={6}> 创作者 </Col>
 										<Col span={12} className="user-info">
 											<Avatar className="user-avatar" size="small">
 												{APIKey?.createdByUser?.name?.substring(0, 1)}
@@ -451,14 +451,14 @@ function APIKeys(): JSX.Element {
 									</Row>
 								)}
 								<Row>
-									<Col span={6}> Created on </Col>
+									<Col span={6}> 创建于 </Col>
 									<Col span={12}>
 										<Typography.Text>{createdOn}</Typography.Text>
 									</Col>
 								</Row>
 								{updatedOn && (
 									<Row>
-										<Col span={6}> Updated on </Col>
+										<Col span={6}> 更新于 </Col>
 										<Col span={12}>
 											<Typography.Text>{updatedOn}</Typography.Text>
 										</Col>
@@ -466,7 +466,7 @@ function APIKeys(): JSX.Element {
 								)}
 
 								<Row>
-									<Col span={6}> Expires on </Col>
+									<Col span={6}> 到期日 </Col>
 									<Col span={12}>
 										<Typography.Text>{expiresOn}</Typography.Text>
 									</Col>
@@ -483,7 +483,7 @@ function APIKeys(): JSX.Element {
 						<div className="api-key-details">
 							<div className="api-key-last-used-at">
 								<CalendarClock size={14} />
-								Last used <Minus size={12} />
+								上次使用 <Minus size={12} />
 								<Typography.Text>{formattedDateAndTime}</Typography.Text>
 							</div>
 
@@ -494,13 +494,13 @@ function APIKeys(): JSX.Element {
 										expiresIn <= 3 ? 'danger' : 'warning',
 									)}
 								>
-									<span className="dot" /> Expires in {expiresIn} Days
+									<span className="dot" /> 到期时间 {expiresIn} 天
 								</div>
 							)}
 
 							{isExpired && (
 								<div className={cx('api-key-expires-in danger')}>
-									<span className="dot" /> Expired
+									<span className="dot" /> 已到期
 								</div>
 							)}
 						</div>
@@ -514,15 +514,15 @@ function APIKeys(): JSX.Element {
 		<div className="api-key-container">
 			<div className="api-key-content">
 				<header>
-					<Typography.Title className="title">Access Tokens </Typography.Title>
+					<Typography.Title className="title">访问令牌 </Typography.Title>
 					<Typography.Text className="subtitle">
-						Create and manage access tokens for the SigNoz API
+						创建和管理 Scry API 的访问令牌
 					</Typography.Text>
 				</header>
 
 				<div className="api-keys-search-add-new">
 					<Input
-						placeholder="Search for token..."
+						placeholder="搜索令牌..."
 						prefix={<Search size={12} color={Color.BG_VANILLA_400} />}
 						value={searchValue}
 						onChange={handleSearch}
@@ -533,7 +533,7 @@ function APIKeys(): JSX.Element {
 						type="primary"
 						onClick={showAddModal}
 					>
-						<Plus size={14} /> New Token
+						<Plus size={14} /> 新代币
 					</Button>
 				</div>
 
@@ -554,7 +554,7 @@ function APIKeys(): JSX.Element {
 			{/* Delete Key Modal */}
 			<Modal
 				className="delete-api-key-modal"
-				title={<span className="title">Delete Token</span>}
+				title={<span className="title">删除令牌</span>}
 				open={isDeleteModalOpen}
 				closable
 				afterClose={handleModalClose}
@@ -567,7 +567,7 @@ function APIKeys(): JSX.Element {
 						className="cancel-btn"
 						icon={<X size={16} />}
 					>
-						Cancel
+						取消
 					</Button>,
 					<Button
 						key="submit"
@@ -576,7 +576,7 @@ function APIKeys(): JSX.Element {
 						onClick={onDeleteHandler}
 						className="delete-btn"
 					>
-						Delete Token
+						删除令牌
 					</Button>,
 				]}
 			>
@@ -590,7 +590,7 @@ function APIKeys(): JSX.Element {
 			{/* Edit Key Modal */}
 			<Modal
 				className="api-key-modal"
-				title="Edit token"
+				title="编辑令牌"
 				open={isEditModalOpen}
 				key="edit-api-key-modal"
 				afterClose={handleModalClose}
@@ -604,7 +604,7 @@ function APIKeys(): JSX.Element {
 						className="periscope-btn cancel-btn"
 						icon={<X size={16} />}
 					>
-						Cancel
+						取消
 					</Button>,
 					<Button
 						className="periscope-btn primary"
@@ -614,7 +614,7 @@ function APIKeys(): JSX.Element {
 						icon={<Check size={14} />}
 						onClick={onUpdateApiKey}
 					>
-						Update Token
+						更新令牌
 					</Button>,
 				]}
 			>
@@ -634,7 +634,7 @@ function APIKeys(): JSX.Element {
 						label="Name"
 						rules={[{ required: true }, { type: 'string', min: 6 }]}
 					>
-						<Input placeholder="Enter Token Name" autoFocus />
+						<Input placeholder="输入代币名称" autoFocus />
 					</Form.Item>
 
 					<Form.Item name="role" label="Role">
@@ -646,17 +646,17 @@ function APIKeys(): JSX.Element {
 							>
 								<Radio.Button value={USER_ROLES.ADMIN} className={cx('tab')}>
 									<div className="role">
-										<Contact2 size={14} /> Admin
+										<Contact2 size={14} /> 行政
 									</div>
 								</Radio.Button>
 								<Radio.Button value={USER_ROLES.EDITOR} className={cx('tab')}>
 									<div className="role">
-										<ClipboardEdit size={14} /> Editor
+										<ClipboardEdit size={14} /> 编辑
 									</div>
 								</Radio.Button>
 								<Radio.Button value={USER_ROLES.VIEWER} className={cx('tab')}>
 									<div className="role">
-										<Eye size={14} /> Viewer
+										<Eye size={14} /> 观众
 									</div>
 								</Radio.Button>
 							</Radio.Group>
@@ -668,7 +668,7 @@ function APIKeys(): JSX.Element {
 			{/* Create New Key Modal */}
 			<Modal
 				className="api-key-modal"
-				title="Create new token"
+				title="创建新令牌"
 				open={isAddModalOpen}
 				key="create-api-key-modal"
 				closable
@@ -685,7 +685,7 @@ function APIKeys(): JSX.Element {
 									onClick={handleCopyClose}
 									icon={<Check size={12} />}
 								>
-									Copy token and close
+									复制令牌并关闭
 								</Button>,
 						  ]
 						: [
@@ -695,7 +695,7 @@ function APIKeys(): JSX.Element {
 									className="periscope-btn cancel-btn"
 									icon={<X size={16} />}
 								>
-									Cancel
+									取消
 								</Button>,
 								<Button
 									className="periscope-btn primary"
@@ -706,7 +706,7 @@ function APIKeys(): JSX.Element {
 									loading={isLoadingCreateAPIKey}
 									onClick={onCreateAPIKey}
 								>
-									Create new token
+									创建新令牌
 								</Button>,
 						  ]
 				}
@@ -730,7 +730,7 @@ function APIKeys(): JSX.Element {
 							rules={[{ required: true }, { type: 'string', min: 6 }]}
 							validateTrigger="onFinish"
 						>
-							<Input placeholder="Enter Token Name" autoFocus />
+							<Input placeholder="输入代币名称" autoFocus />
 						</Form.Item>
 
 						<Form.Item name="role" label="Role">
@@ -742,17 +742,17 @@ function APIKeys(): JSX.Element {
 								>
 									<Radio.Button value={USER_ROLES.ADMIN} className={cx('tab')}>
 										<div className="role" data-testid="create-form-admin-role-btn">
-											<Contact2 size={14} /> Admin
+											<Contact2 size={14} /> 行政
 										</div>
 									</Radio.Button>
 									<Radio.Button value={USER_ROLES.EDITOR} className="tab">
 										<div className="role" data-testid="create-form-editor-role-btn">
-											<ClipboardEdit size={14} /> Editor
+											<ClipboardEdit size={14} /> 编辑
 										</div>
 									</Radio.Button>
 									<Radio.Button value={USER_ROLES.VIEWER} className="tab">
 										<div className="role" data-testid="create-form-viewer-role-btn">
-											<Eye size={14} /> Viewer
+											<Eye size={14} /> 观众
 										</div>
 									</Radio.Button>
 								</Radio.Group>
@@ -761,7 +761,7 @@ function APIKeys(): JSX.Element {
 						<Form.Item name="expiration" label="Expiration">
 							<Select
 								className="expiration-selector"
-								placeholder="Expiration"
+								placeholder="到期日"
 								options={API_KEY_EXPIRY_OPTIONS}
 							/>
 						</Form.Item>
@@ -771,7 +771,7 @@ function APIKeys(): JSX.Element {
 				{showNewAPIKeyDetails && (
 					<div className="api-key-info-container">
 						<Row>
-							<Col span={8}>Token</Col>
+							<Col span={8}>代币</Col>
 							<Col span={16}>
 								<span className="copyable-text">
 									<Typography.Text>
@@ -793,35 +793,35 @@ function APIKeys(): JSX.Element {
 						</Row>
 
 						<Row>
-							<Col span={8}>Name</Col>
+							<Col span={8}>名称</Col>
 							<Col span={16}>{activeAPIKey?.name}</Col>
 						</Row>
 
 						<Row>
-							<Col span={8}>Role</Col>
+							<Col span={8}>角色</Col>
 							<Col span={16}>
 								{activeAPIKey?.role === USER_ROLES.ADMIN && (
 									<div className="role">
-										<Contact2 size={14} /> Admin
+										<Contact2 size={14} /> 行政
 									</div>
 								)}
 								{activeAPIKey?.role === USER_ROLES.EDITOR && (
 									<div className="role">
 										{' '}
-										<ClipboardEdit size={14} /> Editor
+										<ClipboardEdit size={14} /> 编辑
 									</div>
 								)}
 								{activeAPIKey?.role === USER_ROLES.VIEWER && (
 									<div className="role">
 										{' '}
-										<View size={14} /> Viewer
+										<View size={14} /> 观众
 									</div>
 								)}
 							</Col>
 						</Row>
 
 						<Row>
-							<Col span={8}>Creator</Col>
+							<Col span={8}>创作者</Col>
 
 							<Col span={16} className="user-info">
 								<Avatar className="user-avatar" size="small">
@@ -836,22 +836,22 @@ function APIKeys(): JSX.Element {
 
 						{activeAPIKey?.createdAt && (
 							<Row>
-								<Col span={8}>Created on</Col>
+								<Col span={8}>创建于</Col>
 								<Col span={16}>{getFormattedTime(activeAPIKey?.createdAt)}</Col>
 							</Row>
 						)}
 
 						{activeAPIKey?.expiresAt !== 0 && activeAPIKey?.expiresAt && (
 							<Row>
-								<Col span={8}>Expires on</Col>
+								<Col span={8}>到期日</Col>
 								<Col span={16}>{getFormattedTime(activeAPIKey?.expiresAt)}</Col>
 							</Row>
 						)}
 
 						{activeAPIKey?.expiresAt === 0 && (
 							<Row>
-								<Col span={8}>Expires on</Col>
-								<Col span={16}> No Expiry </Col>
+								<Col span={8}>到期日</Col>
+								<Col span={16}> 无有效期 </Col>
 							</Row>
 						)}
 					</div>

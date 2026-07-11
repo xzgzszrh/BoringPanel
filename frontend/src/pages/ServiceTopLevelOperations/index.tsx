@@ -50,37 +50,15 @@ export default function ServiceTopLevelOperations(): JSX.Element {
 
 	const alertDesc = (): ReactNode => (
 		<div className="">
-			SigNoz calculates the RED metrics for a service using the entry-point spans.
-			For more details, you can check out our
-			<a
-				href="https://signoz.io/docs/userguide/metrics/#open-the-services-section"
-				target="_blank"
-				rel="noreferrer"
-			>
-				{' '}
-				docs
-			</a>
-			. We expect the number of unique entry-point operations to be no more than
-			2500. The high number of top level operations might be due to an
-			instrumentation issue in your service. Below table shows the sample top level
-			operations. Please refer to official docs for span name guidelines{' '}
-			<a
-				href="https://opentelemetry.io/docs/specs/otel/trace/api/#span"
-				target="_blank"
-				rel="noreferrer"
-			>
-				{' '}
-				here
-			</a>{' '}
-			and update the instrumentation to to follow the guidelines. If there are any
-			dynamic IDs in the span name, make sure to use the span attributes instead.
-			If you have more questions, please reach out to us via support.
+			Scry 使用入口点 Span 计算服务的 RED 指标。唯一入口点操作的数量不应超过
+			2500。数量过多通常表示检测配置存在问题。请确保 Span 名称不包含动态
+			ID，动态值应放入 Span 属性。
 		</div>
 	);
 
 	const columns = [
 		{
-			title: 'Top Level Operation',
+			title: '顶级运营',
 			key: 'top-level-operation',
 			render: (operation: string): JSX.Element => (
 				<div className="top-level-operations-list-item" key={operation}>
@@ -96,7 +74,7 @@ export default function ServiceTopLevelOperations(): JSX.Element {
 				<Link to={ROUTES.APPLICATION}>
 					<span className="breadcrumb">
 						{' '}
-						<BarChart2 size={12} /> services{' '}
+						<BarChart2 size={12} /> 服务{' '}
 					</span>
 				</Link>
 				<div className="divider">/</div>
@@ -112,7 +90,7 @@ export default function ServiceTopLevelOperations(): JSX.Element {
 			{isLoading && (
 				<div className="loading-top-level-operations">
 					<Typography.Title level={5}>
-						<SyncOutlined spin /> Loading ...
+						<SyncOutlined spin /> 加载中 ...
 					</Typography.Title>
 				</div>
 			)}

@@ -94,7 +94,7 @@ function LabelSelect({
 
 	const handleClearAll = (): void => {
 		Modal.confirm({
-			title: 'Confirm',
+			title: '确认',
 			icon: <ExclamationCircleOutlined />,
 			content: t('remove_label_confirm'),
 			onOk() {

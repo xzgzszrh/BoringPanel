@@ -218,9 +218,9 @@ export function Filter(props: FilterProps): JSX.Element {
 				<Flex gap={8} align="center">
 					<div className="filter-title">
 						<FilterOutlined />
-						<Typography.Text>Filters</Typography.Text>
+						<Typography.Text>过滤器</Typography.Text>
 					</div>
-					<Tooltip title="Reset" placement="right">
+					<Tooltip title="重置" placement="right">
 						<Button
 							onClick={(): void => handleRun({ resetAll: true })}
 							className="sync-icon"
@@ -230,7 +230,7 @@ export function Filter(props: FilterProps): JSX.Element {
 						</Button>
 					</Tooltip>
 				</Flex>
-				<Tooltip title="Collapse" placement="right">
+				<Tooltip title="坍塌" placement="right">
 					<Button
 						onClick={(): void => setOpen(false)}
 						className="arrow-icon"

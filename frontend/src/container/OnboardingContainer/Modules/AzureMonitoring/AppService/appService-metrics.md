@@ -9,16 +9,16 @@ Follow these steps if you want to monitor System metrics like CPU Percentage, Me
 
 ## Dashboard Example
 
-Once you have completed the prerequisites, you can start monitoring your Azure App Service's system metrics with SigNoz Cloud. Here's how you can do it:
+Once you have completed the prerequisites, you can start monitoring your Azure App Service's system metrics with Scry Cloud. Here's how you can do it:
 
-1. Log in to your SigNoz account
+1. Log in to your Scry account
 2. Navigate to the Dashboards section, and [add a dashboard](https://signoz.io/docs/userguide/manage-dashboards/)
 3. Add a Timeseries Panel
 4. In **Metrics**, select `azure_memorypercentage_total`  and **Avg By** select tag `location`
 5. In Filter say `name = <app-svc-plan-name>`
 6. Hit “Save Changes” and you now have Memory Usage of your App Service in a Dashboard for reporting and alerting 
 
-In this way, you can monitor system metrics of your Azure App Service in SigNoz Cloud.
+In this way, you can monitor system metrics of your Azure App Service in Scry Cloud.
 
 &nbsp;
 

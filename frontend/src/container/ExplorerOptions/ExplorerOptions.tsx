@@ -168,6 +168,7 @@ function ExplorerOptions({
 				stringifiedQuery,
 			)}`,
 		);
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [handleConditionalQueryModification, history]);
 
@@ -241,7 +242,7 @@ function ExplorerOptions({
 			{
 				onSuccess: () => {
 					notifications.success({
-						message: 'View Updated Successfully',
+						message: '查看更新成功',
 					});
 					refetchAllView();
 				},
@@ -302,6 +303,7 @@ function ExplorerOptions({
 				key,
 				viewsData?.data?.data,
 			);
+
 			if (!currentViewDetails) return;
 			const {
 				query,
@@ -525,7 +527,7 @@ function ExplorerOptions({
 						'explorer-update',
 					)}
 				>
-					<Tooltip title="Clear this view" placement="top">
+					<Tooltip title="清除此视图" placement="top">
 						<Button
 							className="action-icon"
 							onClick={handleClearSelect}
@@ -541,7 +543,8 @@ function ExplorerOptions({
 								type="vertical"
 								className={isEditDeleteSupported ? '' : 'hidden'}
 							/>
-							<Tooltip title="Update this view" placement="top">
+
+							<Tooltip title="更新此视图" placement="top">
 								<Button
 									className={cx('action-icon', isEditDeleteSupported ? ' ' : 'hidden')}
 									disabled={isViewUpdating}
@@ -553,6 +556,7 @@ function ExplorerOptions({
 					)}
 				</div>
 			)}
+
 			{!isExplorerOptionHidden && (
 				<div
 					className="explorer-options"
@@ -565,7 +569,7 @@ function ExplorerOptions({
 					<div className="view-options">
 						<Select<string, { key: string; value: string }>
 							showSearch
-							placeholder="Select a view"
+							placeholder="选择一个视图"
 							loading={viewsIsLoading || isRefetching}
 							value={viewName || undefined}
 							onSelect={handleSelect}
@@ -608,7 +612,7 @@ function ExplorerOptions({
 							disabled={viewsIsLoading || isRefetching}
 							icon={<Disc3 size={16} />}
 						>
-							Save this view
+							保存此视图
 						</Button>
 					</div>
 
@@ -621,7 +625,7 @@ function ExplorerOptions({
 							onClick={onCreateAlertsHandler}
 							icon={<ConciergeBell size={16} />}
 						>
-							Create an Alert
+							创建告警
 						</Button>
 
 						<Button
@@ -631,33 +635,11 @@ function ExplorerOptions({
 							onClick={onAddToDashboard}
 							icon={<Plus size={16} />}
 						>
-							Add to Dashboard
+							添加到仪表盘
 						</Button>
 					</div>
 					<div className="actions">
-						<Tooltip
-							title={
-								<div>
-									{isLogsExplorer
-										? 'Learn more about Logs explorer '
-										: 'Learn more about Traces explorer '}
-									<Typography.Link
-										href={
-											isLogsExplorer
-												? 'https://signoz.io/docs/product-features/logs-explorer/?utm_source=product&utm_medium=logs-explorer-toolbar'
-												: 'https://signoz.io/docs/product-features/trace-explorer/?utm_source=product&utm_medium=trace-explorer-toolbar'
-										}
-										target="_blank"
-									>
-										{' '}
-										here
-									</Typography.Link>{' '}
-								</div>
-							}
-						>
-							<InfoCircleOutlined className="info-icon" />
-						</Tooltip>
-						<Tooltip title="Hide">
+						<Tooltip title="隐藏">
 							<Button
 								disabled={disabled}
 								shape="circle"
@@ -669,6 +651,7 @@ function ExplorerOptions({
 					</div>
 				</div>
 			)}
+
 			<ExplorerOptionsHideArea
 				viewName={viewName}
 				isExplorerOptionHidden={isExplorerOptionHidden}
@@ -679,9 +662,10 @@ function ExplorerOptions({
 				onUpdateQueryHandler={onUpdateQueryHandler}
 				isEditDeleteSupported={isEditDeleteSupported}
 			/>
+
 			<Modal
 				className="save-view-modal"
-				title={<span className="title">Save this view</span>}
+				title={<span className="title">保存此视图</span>}
 				open={isSaveModalOpen}
 				closable
 				onCancel={hideSaveViewModal}
@@ -694,18 +678,19 @@ function ExplorerOptions({
 						disabled={isSaveViewLoading}
 						data-testid="save-view-btn"
 					>
-						Save this view
+						保存此视图
 					</Button>,
 				]}
 			>
-				<Typography.Text>Label</Typography.Text>
+				<Typography.Text>标签</Typography.Text>
 				<div className="save-view-input">
 					<ColorPicker
 						value={color}
 						onChange={(value, hex): void => setColor(hex)}
 					/>
+
 					<Input
-						placeholder="e.g. External http method view"
+						placeholder="例如外部http方法视图"
 						value={newViewName}
 						onChange={(e): void => setNewViewName(e.target.value)}
 					/>

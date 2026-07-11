@@ -19,7 +19,7 @@ function Description({
 	return (
 		<Container>
 			<TextArea
-				placeholder="Description of the dashboard"
+				placeholder="仪表盘说明"
 				onChange={onChangeHandler}
 				value={description}
 			/>

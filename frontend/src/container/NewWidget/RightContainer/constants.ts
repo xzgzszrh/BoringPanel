@@ -9,8 +9,8 @@ export const operatorOptions: DefaultOptionType[] = [
 ];
 
 export const showAsOptions: DefaultOptionType[] = [
-	{ value: 'Text', label: 'Text' },
-	{ value: 'Background', label: 'Background' },
+	{ value: 'Text', label: '文本' },
+	{ value: 'Background', label: '背景' },
 ];
 
 export const panelTypeVsThreshold: { [key in PANEL_TYPES]: boolean } = {

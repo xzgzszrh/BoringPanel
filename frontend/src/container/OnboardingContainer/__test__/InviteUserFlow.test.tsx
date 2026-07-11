@@ -19,10 +19,6 @@ jest.mock('hooks/useNotifications', () => ({
 	})),
 }));
 
-window.analytics = {
-	track: jest.fn(),
-};
-
 describe('Onboarding invite team member flow', () => {
 	it('initial render and get started page', async () => {
 		const { findByText } = render(
@@ -31,7 +27,7 @@ describe('Onboarding invite team member flow', () => {
 			</OnboardingContextProvider>,
 		);
 
-		await expect(findByText('SigNoz')).resolves.toBeInTheDocument();
+		await expect(findByText('Scry')).resolves.toBeInTheDocument();
 
 		// Check all the option present
 		const monitoringTexts = [

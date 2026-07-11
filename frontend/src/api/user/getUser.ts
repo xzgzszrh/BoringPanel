@@ -17,7 +17,7 @@ const getUser = async (
 		return {
 			statusCode: 200,
 			error: null,
-			message: 'Success',
+			message: '成功',
 			payload: response.data,
 		};
 	} catch (error) {

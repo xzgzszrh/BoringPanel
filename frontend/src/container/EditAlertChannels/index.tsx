@@ -86,7 +86,7 @@ function EditAlertChannels({
 
 		if (selectedConfig?.api_url === '') {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('webhook_url_required'),
 			});
 			setSavingState(false);
@@ -97,7 +97,7 @@ function EditAlertChannels({
 
 		if (response.statusCode === 200) {
 			notifications.success({
-				message: 'Success',
+				message: '成功',
 				description: t('channel_edit_done'),
 			});
 
@@ -105,7 +105,7 @@ function EditAlertChannels({
 			return { status: 'success', statusMessage: t('channel_edit_done') };
 		}
 		notifications.error({
-			message: 'Error',
+			message: '错误',
 			description: response.error || t('channel_edit_failed'),
 		});
 		setSavingState(false);
@@ -133,7 +133,7 @@ function EditAlertChannels({
 
 		const showError = (msg: string): void => {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: msg,
 			});
 		};
@@ -154,7 +154,7 @@ function EditAlertChannels({
 
 		if (response.statusCode === 200) {
 			notifications.success({
-				message: 'Success',
+				message: '成功',
 				description: t('channel_edit_done'),
 			});
 
@@ -187,14 +187,14 @@ function EditAlertChannels({
 		const response = await editEmail(request);
 		if (response.statusCode === 200) {
 			notifications.success({
-				message: 'Success',
+				message: '成功',
 				description: t('channel_edit_done'),
 			});
 			history.replace(ROUTES.ALL_CHANNELS);
 			return { status: 'success', statusMessage: t('channel_edit_done') };
 		}
 		notifications.error({
-			message: 'Error',
+			message: '错误',
 			description: response.error || t('channel_edit_failed'),
 		});
 
@@ -229,7 +229,7 @@ function EditAlertChannels({
 
 		if (validationError !== '') {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: validationError,
 			});
 			setSavingState(false);
@@ -239,7 +239,7 @@ function EditAlertChannels({
 
 		if (response.statusCode === 200) {
 			notifications.success({
-				message: 'Success',
+				message: '成功',
 				description: t('channel_edit_done'),
 			});
 
@@ -247,7 +247,7 @@ function EditAlertChannels({
 			return { status: 'success', statusMessage: t('channel_edit_done') };
 		}
 		notifications.error({
-			message: 'Error',
+			message: '错误',
 			description: response.error || t('channel_edit_failed'),
 		});
 
@@ -275,7 +275,7 @@ function EditAlertChannels({
 
 		if (selectedConfig?.api_key === '') {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('api_key_required'),
 			});
 			setSavingState(false);
@@ -286,7 +286,7 @@ function EditAlertChannels({
 
 		if (response.statusCode === 200) {
 			notifications.success({
-				message: 'Success',
+				message: '成功',
 				description: t('channel_edit_done'),
 			});
 
@@ -294,7 +294,7 @@ function EditAlertChannels({
 			return { status: 'success', statusMessage: t('channel_edit_done') };
 		}
 		notifications.error({
-			message: 'Error',
+			message: '错误',
 			description: response.error || t('channel_edit_failed'),
 		});
 
@@ -322,7 +322,7 @@ function EditAlertChannels({
 
 		if (selectedConfig?.webhook_url === '') {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('webhook_url_required'),
 			});
 			setSavingState(false);
@@ -333,7 +333,7 @@ function EditAlertChannels({
 
 		if (response.statusCode === 200) {
 			notifications.success({
-				message: 'Success',
+				message: '成功',
 				description: t('channel_edit_done'),
 			});
 
@@ -341,7 +341,7 @@ function EditAlertChannels({
 			return { status: 'success', statusMessage: t('channel_edit_done') };
 		}
 		notifications.error({
-			message: 'Error',
+			message: '错误',
 			description: response.error || t('channel_edit_failed'),
 		});
 
@@ -421,7 +421,7 @@ function EditAlertChannels({
 						break;
 					default:
 						notifications.error({
-							message: 'Error',
+							message: '错误',
 							description: t('test_unsupported'),
 						});
 						setTestingState(false);
@@ -430,12 +430,12 @@ function EditAlertChannels({
 
 				if (response && response.statusCode === 200) {
 					notifications.success({
-						message: 'Success',
+						message: '成功',
 						description: t('channel_test_done'),
 					});
 				} else {
 					notifications.error({
-						message: 'Error',
+						message: '错误',
 						description: t('channel_test_failed'),
 					});
 				}
@@ -449,7 +449,7 @@ function EditAlertChannels({
 				});
 			} catch (error) {
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: t('channel_test_failed'),
 				});
 			}

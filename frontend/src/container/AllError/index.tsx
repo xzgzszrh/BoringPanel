@@ -244,7 +244,7 @@ function AllErrors(): JSX.Element {
 						icon={<SearchOutlined />}
 						size="small"
 					>
-						Search
+						搜索
 					</Button>
 				</Space>
 			</Card>
@@ -296,7 +296,7 @@ function AllErrors(): JSX.Element {
 
 	const columns: ColumnsType<Exception> = [
 		{
-			title: 'Exception Type',
+			title: '异常类型',
 			width: 100,
 			dataIndex: 'exceptionType',
 			key: 'exceptionType',
@@ -320,7 +320,7 @@ function AllErrors(): JSX.Element {
 			),
 		},
 		{
-			title: 'Error Message',
+			title: '错误信息',
 			dataIndex: 'exceptionMessage',
 			key: 'exceptionMessage',
 			width: 100,
@@ -337,7 +337,7 @@ function AllErrors(): JSX.Element {
 			),
 		},
 		{
-			title: 'Count',
+			title: '数数',
 			width: 50,
 			dataIndex: 'exceptionCount',
 			key: 'exceptionCount',
@@ -349,7 +349,7 @@ function AllErrors(): JSX.Element {
 			),
 		},
 		{
-			title: 'Last Seen',
+			title: '最后一次出现',
 			dataIndex: 'lastSeen',
 			width: 80,
 			key: 'lastSeen',
@@ -363,7 +363,7 @@ function AllErrors(): JSX.Element {
 			),
 		},
 		{
-			title: 'First Seen',
+			title: '第一次看到',
 			dataIndex: 'firstSeen',
 			width: 80,
 			key: 'firstSeen',
@@ -377,7 +377,7 @@ function AllErrors(): JSX.Element {
 			),
 		},
 		{
-			title: 'Application',
+			title: '应用',
 			dataIndex: 'serviceName',
 			width: 100,
 			key: 'serviceName',

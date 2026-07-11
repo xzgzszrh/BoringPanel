@@ -103,7 +103,7 @@ function Search({
 					value={value}
 					allowClear
 					disabled={traces.filterLoading}
-					placeholder="Click to filter by tags"
+					placeholder="点击按标签过滤"
 					type="search"
 					enterButton={<CaretRightFilled />}
 					onSearch={(string): void => {

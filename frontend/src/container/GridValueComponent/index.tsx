@@ -24,7 +24,7 @@ function GridValueComponent({
 	if (data.length === 0) {
 		return (
 			<ValueContainer>
-				<Typography>No Data</Typography>
+				<Typography>无数据</Typography>
 			</ValueContainer>
 		);
 	}

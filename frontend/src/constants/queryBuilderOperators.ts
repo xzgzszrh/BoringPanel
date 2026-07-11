@@ -12,28 +12,28 @@ export const metricAggregateOperatorOptions: SelectOption<string, string>[] = [
 	},
 	{
 		value: MetricAggregateOperator.COUNT,
-		label: 'Count',
+		label: '数数',
 	},
 	{
 		value: MetricAggregateOperator.COUNT_DISTINCT,
 		// eslint-disable-next-line sonarjs/no-duplicate-string
-		label: 'Count Distinct',
+		label: '计数不同',
 	},
 	{
 		value: MetricAggregateOperator.SUM,
-		label: 'Sum',
+		label: '和',
 	},
 	{
 		value: MetricAggregateOperator.AVG,
-		label: 'Avg',
+		label: '平均',
 	},
 	{
 		value: MetricAggregateOperator.MAX,
-		label: 'Max',
+		label: '最大限度',
 	},
 	{
 		value: MetricAggregateOperator.MIN,
-		label: 'Min',
+		label: '最小',
 	},
 	{
 		value: MetricAggregateOperator.P05,
@@ -73,39 +73,39 @@ export const metricAggregateOperatorOptions: SelectOption<string, string>[] = [
 	},
 	{
 		value: MetricAggregateOperator.RATE,
-		label: 'Rate',
+		label: '速度',
 	},
 	{
 		value: MetricAggregateOperator.SUM_RATE,
-		label: 'Sum_rate',
+		label: '总率',
 	},
 	{
 		value: MetricAggregateOperator.AVG_RATE,
-		label: 'Avg_rate',
+		label: '平均率',
 	},
 	{
 		value: MetricAggregateOperator.MAX_RATE,
-		label: 'Max_rate',
+		label: '最大速率',
 	},
 	{
 		value: MetricAggregateOperator.MIN_RATE,
-		label: 'Min_rate',
+		label: '最低速率',
 	},
 	{
 		value: MetricAggregateOperator.RATE_SUM,
-		label: 'Rate_sum',
+		label: '费率总和',
 	},
 	{
 		value: MetricAggregateOperator.RATE_AVG,
-		label: 'Rate_avg',
+		label: '平均价格',
 	},
 	{
 		value: MetricAggregateOperator.RATE_MIN,
-		label: 'Rate_min',
+		label: '最低速率',
 	},
 	{
 		value: MetricAggregateOperator.RATE_MAX,
-		label: 'Rate_max',
+		label: '最大速率',
 	},
 	{
 		value: MetricAggregateOperator.HIST_QUANTILE_50,
@@ -136,27 +136,27 @@ export const tracesAggregateOperatorOptions: SelectOption<string, string>[] = [
 	},
 	{
 		value: TracesAggregatorOperator.COUNT,
-		label: 'Count',
+		label: '数数',
 	},
 	{
 		value: TracesAggregatorOperator.COUNT_DISTINCT,
-		label: 'Count Distinct',
+		label: '计数不同',
 	},
 	{
 		value: TracesAggregatorOperator.SUM,
-		label: 'Sum',
+		label: '和',
 	},
 	{
 		value: TracesAggregatorOperator.AVG,
-		label: 'Avg',
+		label: '平均',
 	},
 	{
 		value: TracesAggregatorOperator.MAX,
-		label: 'Max',
+		label: '最大限度',
 	},
 	{
 		value: TracesAggregatorOperator.MIN,
-		label: 'Min',
+		label: '最小',
 	},
 	{
 		value: TracesAggregatorOperator.P05,
@@ -196,23 +196,23 @@ export const tracesAggregateOperatorOptions: SelectOption<string, string>[] = [
 	},
 	{
 		value: TracesAggregatorOperator.RATE,
-		label: 'Rate',
+		label: '速度',
 	},
 	{
 		value: TracesAggregatorOperator.RATE_SUM,
-		label: 'Rate_sum',
+		label: '费率总和',
 	},
 	{
 		value: TracesAggregatorOperator.RATE_AVG,
-		label: 'Rate_avg',
+		label: '平均价格',
 	},
 	{
 		value: TracesAggregatorOperator.RATE_MIN,
-		label: 'Rate_min',
+		label: '最低速率',
 	},
 	{
 		value: TracesAggregatorOperator.RATE_MAX,
-		label: 'Rate_max',
+		label: '最大速率',
 	},
 ];
 
@@ -223,27 +223,27 @@ export const logsAggregateOperatorOptions: SelectOption<string, string>[] = [
 	},
 	{
 		value: LogsAggregatorOperator.COUNT,
-		label: 'Count',
+		label: '数数',
 	},
 	{
 		value: LogsAggregatorOperator.COUNT_DISTINCT,
-		label: 'Count Distinct',
+		label: '计数不同',
 	},
 	{
 		value: LogsAggregatorOperator.SUM,
-		label: 'Sum',
+		label: '和',
 	},
 	{
 		value: LogsAggregatorOperator.AVG,
-		label: 'Avg',
+		label: '平均',
 	},
 	{
 		value: LogsAggregatorOperator.MAX,
-		label: 'Max',
+		label: '最大限度',
 	},
 	{
 		value: LogsAggregatorOperator.MIN,
-		label: 'Min',
+		label: '最小',
 	},
 	{
 		value: LogsAggregatorOperator.P05,
@@ -283,23 +283,23 @@ export const logsAggregateOperatorOptions: SelectOption<string, string>[] = [
 	},
 	{
 		value: LogsAggregatorOperator.RATE,
-		label: 'Rate',
+		label: '速度',
 	},
 	{
 		value: LogsAggregatorOperator.RATE_SUM,
-		label: 'Rate_sum',
+		label: '费率总和',
 	},
 	{
 		value: LogsAggregatorOperator.RATE_AVG,
-		label: 'Rate_avg',
+		label: '平均价格',
 	},
 	{
 		value: LogsAggregatorOperator.RATE_MIN,
-		label: 'Rate_min',
+		label: '最低速率',
 	},
 	{
 		value: LogsAggregatorOperator.RATE_MAX,
-		label: 'Rate_max',
+		label: '最大速率',
 	},
 ];
 
@@ -309,11 +309,11 @@ export const metricsSumAggregateOperatorOptions: SelectOption<
 >[] = [
 	{
 		value: MetricAggregateOperator.RATE,
-		label: 'Rate',
+		label: '速度',
 	},
 	{
 		value: MetricAggregateOperator.INCREASE,
-		label: 'Increase',
+		label: '增加',
 	},
 ];
 
@@ -323,31 +323,31 @@ export const metricsGaugeAggregateOperatorOptions: SelectOption<
 >[] = [
 	{
 		value: MetricAggregateOperator.LATEST,
-		label: 'Latest',
+		label: '最新的',
 	},
 	{
 		value: MetricAggregateOperator.SUM,
-		label: 'Sum',
+		label: '和',
 	},
 	{
 		value: MetricAggregateOperator.AVG,
-		label: 'Avg',
+		label: '平均',
 	},
 	{
 		value: MetricAggregateOperator.MIN,
-		label: 'Min',
+		label: '最小',
 	},
 	{
 		value: MetricAggregateOperator.MAX,
-		label: 'Max',
+		label: '最大限度',
 	},
 	{
 		value: MetricAggregateOperator.COUNT,
-		label: 'Count',
+		label: '数数',
 	},
 	{
 		value: MetricAggregateOperator.COUNT_DISTINCT,
-		label: 'Count Distinct',
+		label: '计数不同',
 	},
 ];
 
@@ -357,19 +357,19 @@ export const metricsSumSpaceAggregateOperatorOptions: SelectOption<
 >[] = [
 	{
 		value: MetricAggregateOperator.SUM,
-		label: 'Sum',
+		label: '和',
 	},
 	{
 		value: MetricAggregateOperator.AVG,
-		label: 'Avg',
+		label: '平均',
 	},
 	{
 		value: MetricAggregateOperator.MIN,
-		label: 'Min',
+		label: '最小',
 	},
 	{
 		value: MetricAggregateOperator.MAX,
-		label: 'Max',
+		label: '最大限度',
 	},
 ];
 
@@ -379,19 +379,19 @@ export const metricsGaugeSpaceAggregateOperatorOptions: SelectOption<
 >[] = [
 	{
 		value: MetricAggregateOperator.SUM,
-		label: 'Sum',
+		label: '和',
 	},
 	{
 		value: MetricAggregateOperator.AVG,
-		label: 'Avg',
+		label: '平均',
 	},
 	{
 		value: MetricAggregateOperator.MIN,
-		label: 'Min',
+		label: '最小',
 	},
 	{
 		value: MetricAggregateOperator.MAX,
-		label: 'Max',
+		label: '最大限度',
 	},
 ];
 

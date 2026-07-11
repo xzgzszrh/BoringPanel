@@ -5,128 +5,94 @@ import {
 	BellDot,
 	Boxes,
 	BugIcon,
-	Cloudy,
 	DraftingCompass,
-	FileKey2,
 	Layers2,
 	LayoutGrid,
 	ListMinus,
-	MessageSquare,
-	Receipt,
 	Route,
 	ScrollText,
 	Settings,
-	Slack,
 	Unplug,
 	// Unplug,
 	UserPlus,
 } from 'lucide-react';
 
-import { SecondaryMenuItemKey, SidebarItem } from './sideNav.types';
+import { SidebarItem } from './sideNav.types';
 
 export const getStartedMenuItem = {
 	key: ROUTES.GET_STARTED,
-	label: 'Get Started',
+	label: '开始使用',
 	icon: <RocketOutlined rotate={45} />,
 };
 
 export const inviteMemberMenuItem = {
 	key: `${ROUTES.ORG_SETTINGS}#invite-team-members`,
-	label: 'Invite Team Member',
+	label: '邀请团队成员',
 	icon: <UserPlus size={16} />,
-};
-
-export const manageLicenseMenuItem = {
-	key: ROUTES.LIST_LICENSES,
-	label: 'Manage Licenses',
-	icon: <FileKey2 size={16} />,
-};
-
-export const helpSupportMenuItem = {
-	key: ROUTES.SUPPORT,
-	label: 'Help & Support',
-	icon: <MessageSquare size={16} />,
 };
 
 export const shortcutMenuItem = {
 	key: ROUTES.SHORTCUTS,
-	label: 'Keyboard Shortcuts',
+	label: '键盘快捷键',
 	icon: <Layers2 size={16} />,
-};
-
-export const slackSupportMenuItem = {
-	key: SecondaryMenuItemKey.Slack,
-	label: 'Slack Support',
-	icon: <Slack size={16} />,
-};
-
-export const trySignozCloudMenuItem: SidebarItem = {
-	key: 'trySignozCloud',
-	label: 'Try Signoz Cloud',
-	icon: <Cloudy size={16} />,
 };
 
 const menuItems: SidebarItem[] = [
 	{
 		key: ROUTES.APPLICATION,
-		label: 'Services',
+		label: '服务',
 		icon: <BarChart2 size={16} />,
 	},
 	{
 		key: ROUTES.TRACES_EXPLORER,
-		label: 'Traces',
+		label: '链路',
 		icon: <DraftingCompass size={16} />,
 	},
 	{
 		key: ROUTES.LOGS,
-		label: 'Logs',
+		label: '日志',
 		icon: <ScrollText size={16} />,
 	},
 	{
 		key: ROUTES.INFRASTRUCTURE_MONITORING_HOSTS,
-		label: 'Infra Monitoring',
+		label: '基础设施监控',
 		icon: <Boxes size={16} />,
 		isNew: true,
 	},
 	{
 		key: ROUTES.ALL_DASHBOARD,
-		label: 'Dashboards',
+		label: '仪表盘',
 		icon: <LayoutGrid size={16} />,
 	},
 	{
 		key: ROUTES.MESSAGING_QUEUES,
-		label: 'Messaging Queues',
+		label: '消息队列',
 		icon: <ListMinus size={16} />,
 	},
 	{
 		key: ROUTES.LIST_ALL_ALERT,
-		label: 'Alerts',
+		label: '告警',
 		icon: <BellDot size={16} />,
 	},
 	{
 		key: ROUTES.INTEGRATIONS,
-		label: 'Integrations',
+		label: '集成',
 		icon: <Unplug size={16} />,
 	},
 	{
 		key: ROUTES.ALL_ERROR,
-		label: 'Exceptions',
+		label: '异常',
 		icon: <BugIcon size={16} />,
 	},
 	{
 		key: ROUTES.SERVICE_MAP,
-		label: 'Service Map',
+		label: '服务拓扑',
 		icon: <Route size={16} />,
 		isBeta: true,
 	},
 	{
-		key: ROUTES.BILLING,
-		label: 'Billing',
-		icon: <Receipt size={16} />,
-	},
-	{
 		key: ROUTES.SETTINGS,
-		label: 'Settings',
+		label: '设置',
 		icon: <Settings size={16} />,
 	},
 ];

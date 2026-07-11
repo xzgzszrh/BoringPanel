@@ -456,21 +456,9 @@ function LogsExplorerViews({
 				onSuccess: (data) => {
 					if (data.error) {
 						const message =
-							data.error === 'feature usage exceeded' ? (
-								<span>
-									Panel limit exceeded for {DataSource.LOGS} in community edition. Please
-									checkout our paid plans{' '}
-									<a
-										href="https://signoz.io/pricing/?utm_source=product&utm_medium=dashboard-limit"
-										rel="noreferrer noopener"
-										target="_blank"
-									>
-										here
-									</a>
-								</span>
-							) : (
-								data.error
-							);
+							data.error === 'feature usage exceeded'
+								? `${DataSource.LOGS} 面板数量已达到上限`
+								: data.error;
 						notifications.error({
 							message,
 						});
@@ -619,20 +607,20 @@ function LogsExplorerViews({
 	const formatItems = [
 		{
 			key: 'raw',
-			label: 'Raw',
+			label: '生的',
 			data: {
-				title: 'max lines per row',
+				title: '每行最大行数',
 			},
 		},
 		{
 			key: 'list',
-			label: 'Default',
+			label: '默认',
 		},
 		{
 			key: 'table',
-			label: 'Column',
+			label: '柱子',
 			data: {
-				title: 'columns',
+				title: '列',
 			},
 		},
 	];
@@ -719,7 +707,7 @@ function LogsExplorerViews({
 							onClick={(): void => handleModeChange(PANEL_TYPES.LIST)}
 							data-testid="logs-list-view"
 						>
-							List view
+							列表视图
 						</Button>
 						<Button
 							value={PANEL_TYPES.TIME_SERIES}
@@ -732,7 +720,7 @@ function LogsExplorerViews({
 							onClick={(): void => handleModeChange(PANEL_TYPES.TIME_SERIES)}
 							data-testid="time-series-view"
 						>
-							Time series
+							时间序列
 						</Button>
 						<Button
 							value={PANEL_TYPES.TABLE}
@@ -743,7 +731,7 @@ function LogsExplorerViews({
 							onClick={(): void => handleModeChange(PANEL_TYPES.TABLE)}
 							data-testid="table-view"
 						>
-							Table
+							桌子
 						</Button>
 					</Button.Group>
 					<div className="logs-actions-container">
@@ -764,7 +752,7 @@ function LogsExplorerViews({
 
 									{showFormatMenuItems && (
 										<LogsFormatOptionsMenu
-											title="FORMAT"
+											title="格式"
 											items={formatItems}
 											selectedOptionFormat={options.format}
 											config={config}
@@ -783,8 +771,7 @@ function LogsExplorerViews({
 								/>
 								{queryStats?.read_rows && (
 									<Typography.Text className="rows">
-										{getYAxisFormattedValue(queryStats.read_rows?.toString(), 'short')}{' '}
-										rows
+										{getYAxisFormattedValue(queryStats.read_rows?.toString(), 'short')} 行
 									</Typography.Text>
 								)}
 								{queryStats?.elapsed_ms && (

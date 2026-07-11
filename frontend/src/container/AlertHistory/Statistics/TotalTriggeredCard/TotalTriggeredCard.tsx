@@ -17,7 +17,7 @@ function TotalTriggeredCard({
 		<StatsCard
 			totalCurrentCount={totalCurrentTriggers}
 			totalPastCount={totalPastTriggers}
-			title="Total Triggered"
+			title="总触发次数"
 			timeSeries={timeSeries}
 		/>
 	);

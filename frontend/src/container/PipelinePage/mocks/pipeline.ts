@@ -34,7 +34,7 @@ export const pipelineMockData: Array<PipelineData> = [
 		orderId: 1,
 		name: 'Apache common parser',
 		alias: 'apachecommonparser',
-		description: 'This is a desc',
+		description: '这是一个描述',
 		enabled: false,
 		filter: mockPipelineFilter('source', '=', 'nginx'),
 		config: [
@@ -67,7 +67,7 @@ export const pipelineMockData: Array<PipelineData> = [
 		orderId: 2,
 		name: 'Moving pipeline new',
 		alias: 'movingpipelinenew',
-		description: 'This is a desc of move',
+		description: '这是移动的描述',
 		enabled: false,
 		filter: mockPipelineFilter('method', '=', 'POST'),
 		config: [

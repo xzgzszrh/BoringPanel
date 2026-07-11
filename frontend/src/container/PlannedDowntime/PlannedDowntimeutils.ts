@@ -121,7 +121,7 @@ export const deleteDowntimeHandler = ({
 				hideDeleteDowntimeScheduleModal();
 				clearSearch();
 				notifications.success({
-					message: 'Downtime schedule Deleted Successfully',
+					message: '停机时间计划已成功删除',
 				});
 				refetchAllSchedules();
 			},
@@ -143,22 +143,22 @@ export const createEditDowntimeSchedule = async (
 
 export const recurrenceOptions = {
 	doesNotRepeat: {
-		label: 'Does not repeat',
+		label: '不重复',
 		value: 'does-not-repeat',
 	},
-	daily: { label: 'Daily', value: 'daily' },
-	weekly: { label: 'Weekly', value: 'weekly' },
-	monthly: { label: 'Monthly', value: 'monthly' },
+	daily: { label: '日常的', value: 'daily' },
+	weekly: { label: '每周', value: 'weekly' },
+	monthly: { label: '每月', value: 'monthly' },
 };
 
 export const recurrenceWeeklyOptions = {
-	monday: { label: 'Monday', value: 'monday' },
-	tuesday: { label: 'Tuesday', value: 'tuesday' },
-	wednesday: { label: 'Wednesday', value: 'wednesday' },
-	thursday: { label: 'Thursday', value: 'thursday' },
-	friday: { label: 'Friday', value: 'friday' },
-	saturday: { label: 'Saturday', value: 'saturday' },
-	sunday: { label: 'Sunday', value: 'sunday' },
+	monday: { label: '周一', value: 'monday' },
+	tuesday: { label: '周二', value: 'tuesday' },
+	wednesday: { label: '周三', value: 'wednesday' },
+	thursday: { label: '周四', value: 'thursday' },
+	friday: { label: '星期五', value: 'friday' },
+	saturday: { label: '周六', value: 'saturday' },
+	sunday: { label: '星期日', value: 'sunday' },
 };
 interface DurationInfo {
 	value: number;

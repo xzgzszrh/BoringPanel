@@ -18,15 +18,13 @@ function Header(props: HeaderProps): JSX.Element {
 	};
 	return (
 		<div className="integrations-header">
-			<Typography.Title className="title">Integrations</Typography.Title>
+			<Typography.Title className="title">集成</Typography.Title>
 			<Flex justify="space-between" align="center">
-				<Typography.Text className="subtitle">
-					Manage Integrations for this workspace
-				</Typography.Text>
+				<Typography.Text className="subtitle">管理此工作区的集成</Typography.Text>
 			</Flex>
 
 			<Input
-				placeholder="Search for an integration..."
+				placeholder="搜索集成..."
 				prefix={<Search size={12} color={Color.BG_VANILLA_400} />}
 				value={searchTerm}
 				onChange={handleSearch}

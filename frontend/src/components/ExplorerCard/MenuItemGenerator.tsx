@@ -87,7 +87,7 @@ function MenuItemGenerator({
 						</Tooltip>
 					</Row>
 					<Row>
-						<Typography.Text type="secondary">Created by {createdBy}</Typography.Text>
+						<Typography.Text type="secondary">创建者： {createdBy}</Typography.Text>
 					</Row>
 				</Col>
 				<Col span={2}>

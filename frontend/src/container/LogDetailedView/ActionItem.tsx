@@ -29,11 +29,11 @@ function ActionItem({
 		() => (
 			<Col>
 				<Button type="text" size="small" onClick={onClickHandler(OPERATORS.IN)}>
-					<PlusCircleOutlined size={12} /> Filter for value
+					<PlusCircleOutlined size={12} /> 过滤值
 				</Button>
 				<br />
 				<Button type="text" size="small" onClick={onClickHandler(OPERATORS.NIN)}>
-					<MinusCircleOutlined size={12} /> Filter out value
+					<MinusCircleOutlined size={12} /> 过滤掉值
 				</Button>
 			</Col>
 		),

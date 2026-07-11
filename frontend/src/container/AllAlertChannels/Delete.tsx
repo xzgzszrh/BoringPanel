@@ -18,20 +18,20 @@ function Delete({ notifications, setChannels, id }: DeleteProps): JSX.Element {
 
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 					description: t('channel_delete_success'),
 				});
 				setChannels((preChannels) => preChannels.filter((e) => e.id !== id));
 			} else {
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: response.error || t('channel_delete_unexp_error'),
 				});
 			}
 			setLoading(false);
 		} catch (error) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description:
 					error instanceof Error
 						? error.toString()
@@ -48,7 +48,7 @@ function Delete({ notifications, setChannels, id }: DeleteProps): JSX.Element {
 			type="link"
 			onClick={onClickHandler}
 		>
-			Delete
+			删除
 		</Button>
 	);
 }

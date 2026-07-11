@@ -111,6 +111,7 @@ function SaveView(): JSX.Element {
 		const filteredData = viewsData?.data.data.filter((view) =>
 			view.name.toLowerCase().includes(e.target.value.toLowerCase()),
 		);
+
 		setDataSource(filteredData || []);
 	};
 
@@ -173,7 +174,7 @@ function SaveView(): JSX.Element {
 			{
 				onSuccess: () => {
 					notifications.success({
-						message: 'View Updated Successfully',
+						message: '查看更新成功',
 					});
 					hideEditViewModal();
 					refetchAllView();
@@ -192,6 +193,7 @@ function SaveView(): JSX.Element {
 			view.uuid,
 			viewsData?.data.data,
 		);
+
 		if (!currentViewDetails) return;
 		const { query, name, uuid, panelType: currentPanelType } = currentViewDetails;
 
@@ -212,7 +214,7 @@ function SaveView(): JSX.Element {
 
 	const columns: TableProps<ViewProps>['columns'] = [
 		{
-			title: 'Save View',
+			title: '保存视图',
 			key: 'view',
 			render: (view: ViewProps): JSX.Element => {
 				const extraData = view.extraData !== '' ? JSON.parse(view.extraData) : '';
@@ -225,6 +227,7 @@ function SaveView(): JSX.Element {
 					view.createdAt,
 					'HH:mm:ss ⎯ MMM D, YYYY (UTC Z)',
 				);
+
 				const isEditDeleteSupported = allowedRoles.includes(role as string);
 
 				return (
@@ -248,11 +251,13 @@ function SaveView(): JSX.Element {
 									data-testid="edit-view"
 									onClick={(): void => handleEditModelOpen(view, bgColor)}
 								/>
+
 								<Compass
 									size={14}
 									onClick={(): void => handleRedirectQuery(view)}
 									data-testid="go-to-explorer"
 								/>
+
 								<Trash2
 									size={14}
 									className={isEditDeleteSupported ? '' : 'hidden'}
@@ -287,19 +292,12 @@ function SaveView(): JSX.Element {
 	return (
 		<div className="save-view-container">
 			<div className="save-view-content">
-				<Typography.Title className="title">Views</Typography.Title>
+				<Typography.Title className="title">意见</Typography.Title>
 				<Typography.Text className="subtitle">
-					Manage your saved views for {ROUTES_VS_SOURCEPAGE[pathname]}.{' '}
-					<Typography.Link
-						className="learn-more"
-						href="https://signoz.io/docs/product-features/saved-view/?utm_source=product&utm_medium=views-tab"
-						target="_blank"
-					>
-						Learn more
-					</Typography.Link>
+					管理您保存的视图 {ROUTES_VS_SOURCEPAGE[pathname]}.{' '}
 				</Typography.Text>
 				<Input
-					placeholder="Search for views..."
+					placeholder="搜索视图..."
 					prefix={<Search size={12} color={Color.BG_VANILLA_400} />}
 					value={searchValue}
 					onChange={handleSearch}
@@ -316,7 +314,7 @@ function SaveView(): JSX.Element {
 
 			<Modal
 				className="delete-view-modal"
-				title={<span className="title">Delete view</span>}
+				title={<span className="title">删除视图</span>}
 				open={isDeleteModalOpen}
 				closable={false}
 				onCancel={hideDeleteViewModal}
@@ -327,7 +325,7 @@ function SaveView(): JSX.Element {
 						className="cancel-btn"
 						icon={<X size={16} />}
 					>
-						Cancel
+						取消
 					</Button>,
 					<Button
 						key="submit"
@@ -337,7 +335,7 @@ function SaveView(): JSX.Element {
 						disabled={isDeleteLoading}
 						data-testid="confirm-delete"
 					>
-						Delete view
+						删除视图
 					</Button>,
 				]}
 			>
@@ -350,7 +348,7 @@ function SaveView(): JSX.Element {
 
 			<Modal
 				className="save-view-modal"
-				title={<span className="title">Edit view details</span>}
+				title={<span className="title">编辑查看详情</span>}
 				open={isEditModalOpen}
 				closable={false}
 				onCancel={hideEditViewModal}
@@ -362,18 +360,19 @@ function SaveView(): JSX.Element {
 						disabled={isViewUpdating}
 						data-testid="save-view"
 					>
-						Save changes
+						保存更改
 					</Button>,
 				]}
 			>
-				<Typography.Text>Label</Typography.Text>
+				<Typography.Text>标签</Typography.Text>
 				<div className="save-view-input">
 					<ColorPicker
 						value={color}
 						onChange={(value, hex): void => setColor(hex)}
 					/>
+
 					<Input
-						placeholder="e.g. Crash landing view"
+						placeholder="例如坠机着陆视图"
 						value={newViewName}
 						data-testid="view-name"
 						onChange={(e): void => setNewViewName(e.target.value)}

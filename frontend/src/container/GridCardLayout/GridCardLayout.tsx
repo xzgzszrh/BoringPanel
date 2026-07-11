@@ -571,14 +571,14 @@ function GraphLayout(props: GraphLayoutProps): JSX.Element {
 						icon={<LockKeyhole size={14} />}
 						className="locked-text"
 					>
-						Locked
+						锁定
 					</Button>
 					<div className="locked-bar" />
 				</div>
 			)}
 			<Modal
 				open={isSettingsModalOpen}
-				title="Rename Section"
+				title="重命名部分"
 				rootClassName="rename-section"
 				destroyOnClose
 				footer={null}
@@ -588,12 +588,10 @@ function GraphLayout(props: GraphLayoutProps): JSX.Element {
 				}}
 			>
 				<Form form={form} onFinish={onSettingsModalSubmit} requiredMark>
-					<Typography.Text className="typography">
-						Enter section name
-					</Typography.Text>
+					<Typography.Text className="typography">输入部分名称</Typography.Text>
 					<Form.Item required name={['title']}>
 						<Input
-							placeholder="Enter row name here..."
+							placeholder="在此输入行名称..."
 							defaultValue={defaultTo(
 								widgets?.find((widget) => widget.id === currentSelectRowId)
 									?.title as string,
@@ -610,7 +608,7 @@ function GraphLayout(props: GraphLayoutProps): JSX.Element {
 								icon={<Check size={14} />}
 								disabled={updateDashboardMutation.isLoading}
 							>
-								Apply Changes
+								应用更改
 							</Button>
 							<Button
 								type="text"
@@ -621,7 +619,7 @@ function GraphLayout(props: GraphLayoutProps): JSX.Element {
 									setCurrentSelectRowId(null);
 								}}
 							>
-								Cancel
+								取消
 							</Button>
 						</div>
 					</Form.Item>
@@ -629,7 +627,7 @@ function GraphLayout(props: GraphLayoutProps): JSX.Element {
 			</Modal>
 			<Modal
 				open={isDeleteModalOpen}
-				title="Delete Row"
+				title="删除行"
 				destroyOnClose
 				onCancel={(): void => {
 					setIsDeleteModalOpen(false);
@@ -637,7 +635,7 @@ function GraphLayout(props: GraphLayoutProps): JSX.Element {
 				}}
 				onOk={(): void => handleRowDelete()}
 			>
-				<Typography.Text>Are you sure you want to delete this row</Typography.Text>
+				<Typography.Text>您确定要删除该行吗</Typography.Text>
 			</Modal>
 		</FullScreen>
 	);

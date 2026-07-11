@@ -115,7 +115,7 @@ export const useRouteTabUtils = (): { routes: TabRoutes[] } => {
 			name: (
 				<div className="tab-item">
 					<Table size={14} />
-					Overview
+					概述
 				</div>
 			),
 			route: getRouteUrl(AlertDetailsTab.OVERVIEW),
@@ -126,7 +126,7 @@ export const useRouteTabUtils = (): { routes: TabRoutes[] } => {
 			name: (
 				<div className="tab-item">
 					<History size={14} />
-					History
+					历史
 					<BetaTag />
 				</div>
 			),
@@ -487,8 +487,7 @@ export const useAlertRuleUpdate = ({
 		save,
 		{
 			onMutate: () => setUpdatedName(intermediateName),
-			onSuccess: () =>
-				notifications.success({ message: 'Alert renamed successfully' }),
+			onSuccess: () => notifications.success({ message: '告警重命名成功' }),
 			onError: (error) => {
 				setUpdatedName(alertDetails.alert);
 				handleError(error);

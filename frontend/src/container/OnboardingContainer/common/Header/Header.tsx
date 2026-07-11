@@ -12,7 +12,6 @@ export default function Header({
 	entity,
 	heading,
 	imgURL,
-	docsURL,
 	imgClassName,
 }: HeaderProps): JSX.Element {
 	return (
@@ -20,13 +19,6 @@ export default function Header({
 			<img className={imgClassName} src={imgURL} alt="" />
 			<div className="title">
 				<h1>{heading}</h1>
-
-				<div className="detailed-docs-link">
-					View detailed docs
-					<a target="_blank" href={docsURL} rel="noreferrer">
-						here
-					</a>
-				</div>
 			</div>
 		</div>
 	);

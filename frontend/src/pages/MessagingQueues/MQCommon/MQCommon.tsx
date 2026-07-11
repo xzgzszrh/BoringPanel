@@ -9,24 +9,12 @@ import { Info } from 'lucide-react';
 export function ComingSoon(): JSX.Element {
 	return (
 		<Tooltip
-			title={
-				<div>
-					Join our Slack community for more details:{' '}
-					<a
-						href="https://signoz.io/slack"
-						rel="noopener noreferrer"
-						target="_blank"
-						onClick={(e): void => e.stopPropagation()}
-					>
-						SigNoz Community
-					</a>
-				</div>
-			}
+			title={<div>加入我们的 Slack 社区了解更多详情： </div>}
 			placement="top"
 			overlayClassName="tooltip-overlay"
 		>
 			<div className="coming-soon">
-				<div className="coming-soon__text">Coming Soon</div>
+				<div className="coming-soon__text">即将推出</div>
 				<div className="coming-soon__icon">
 					<Info size={10} color={Color.BG_SIENNA_400} />
 				</div>

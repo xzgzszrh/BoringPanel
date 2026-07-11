@@ -26,6 +26,7 @@ import (
 
 	"go.signoz.io/signoz/pkg/query-service/agentConf"
 	"go.signoz.io/signoz/pkg/query-service/app/dashboards"
+	"go.signoz.io/signoz/pkg/query-service/app/debugmode"
 	"go.signoz.io/signoz/pkg/query-service/app/explorer"
 	"go.signoz.io/signoz/pkg/query-service/app/inframetrics"
 	"go.signoz.io/signoz/pkg/query-service/app/integrations"
@@ -127,6 +128,8 @@ type APIHandler struct {
 	jobsRepo         *inframetrics.JobsRepo
 
 	pvcsRepo *inframetrics.PvcsRepo
+
+	debugModeManager *debugmode.Manager
 }
 
 type APIHandlerOpts struct {
@@ -167,6 +170,8 @@ type APIHandlerOpts struct {
 	UseLogsNewSchema bool
 
 	UseTraceNewSchema bool
+
+	DebugModeManager *debugmode.Manager
 }
 
 // NewAPIHandler returns an APIHandler
@@ -241,6 +246,7 @@ func NewAPIHandler(opts APIHandlerOpts) (*APIHandler, error) {
 		statefulsetsRepo:              statefulsetsRepo,
 		jobsRepo:                      jobsRepo,
 		pvcsRepo:                      pvcsRepo,
+		debugModeManager:              opts.DebugModeManager,
 	}
 
 	logsQueryBuilder := logsv3.PrepareLogsQuery
@@ -476,6 +482,11 @@ func (aH *APIHandler) RegisterPrivateRoutes(router *mux.Router) {
 
 // RegisterRoutes registers routes for this handler on the given router
 func (aH *APIHandler) RegisterRoutes(router *mux.Router, am *AuthMiddleware) {
+	router.HandleFunc("/api/v1/debug-mode", am.AdminAccess(aH.getDebugMode)).Methods(http.MethodGet)
+	router.HandleFunc("/api/v1/debug-mode", am.AdminAccess(aH.updateDebugMode)).Methods(http.MethodPut)
+	router.HandleFunc("/api/v1/debug-mode/generate", am.AdminAccess(aH.generateDebugData)).Methods(http.MethodPost)
+	router.HandleFunc("/api/v1/debug-mode/cleanup", am.AdminAccess(aH.cleanupDebugData)).Methods(http.MethodPost)
+
 	router.HandleFunc("/api/v1/query_range", am.ViewAccess(aH.queryRangeMetrics)).Methods(http.MethodGet)
 	router.HandleFunc("/api/v1/query", am.ViewAccess(aH.queryMetrics)).Methods(http.MethodGet)
 	router.HandleFunc("/api/v1/channels", am.ViewAccess(aH.listChannels)).Methods(http.MethodGet)

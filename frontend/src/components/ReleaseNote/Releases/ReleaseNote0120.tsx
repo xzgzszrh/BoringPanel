@@ -51,21 +51,14 @@ export default function ReleaseNote0120({
 			show
 			message={
 				<div>
-					You are using {release} of SigNoz. We have introduced distributed setup in
-					v0.12.0 release. If you use or plan to use clickhouse queries in dashboard
-					or alerts, you might want to read about querying the new distributed tables{' '}
-					<a
-						href="https://signoz.io/docs/operate/migration/upgrade-0.12/#querying-distributed-tables"
-						target="_blank"
-						rel="noreferrer"
-					>
-						here
-					</a>
+					您正在使用 {release} Scry。我们在 v0.12.0
+					版本中引入了分布式设置。如果您在仪表盘或告警中使用或计划使用 clickhouse
+					查询，您可能需要阅读有关查询新分布式表的信息{' '}
 				</div>
 			}
 			action={
 				<Space>
-					<Button onClick={handleDontShow}>Do not show again</Button>
+					<Button onClick={handleDontShow}>不再显示</Button>
 				</Space>
 			}
 		/>

@@ -44,7 +44,7 @@ const dashboardVariablesQuery = async (
 		const formattedError = ErrorResponseHandler(error as AxiosError);
 
 		// eslint-disable-next-line @typescript-eslint/no-throw-literal
-		throw { message: 'Error fetching data', details: formattedError };
+		throw { message: '获取数据时出错', details: formattedError };
 	}
 };
 

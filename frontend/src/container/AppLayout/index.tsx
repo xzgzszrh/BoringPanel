@@ -4,31 +4,21 @@
 import './AppLayout.styles.scss';
 
 import * as Sentry from '@sentry/react';
-import { Flex } from 'antd';
-import manageCreditCardApi from 'api/billing/manage';
+import { Flex, Typography } from 'antd';
 import getUserLatestVersion from 'api/user/getLatestVersion';
 import getUserVersion from 'api/user/getVersion';
 import cx from 'classnames';
-import ChatSupportGateway from 'components/ChatSupportGateway/ChatSupportGateway';
 import OverlayScrollbar from 'components/OverlayScrollbar/OverlayScrollbar';
-import { SOMETHING_WENT_WRONG } from 'constants/api';
-import { FeatureKeys } from 'constants/features';
 import ROUTES from 'constants/routes';
 import SideNav from 'container/SideNav';
 import TopNav from 'container/TopNav';
-import dayjs from 'dayjs';
 import { useIsDarkMode } from 'hooks/useDarkMode';
-import useFeatureFlags from 'hooks/useFeatureFlag';
-import useLicense from 'hooks/useLicense';
 import { useNotifications } from 'hooks/useNotifications';
-import history from 'lib/history';
-import { isNull } from 'lodash-es';
 import ErrorBoundaryFallback from 'pages/ErrorBoundaryFallback/ErrorBoundaryFallback';
-import { useAppContext } from 'providers/App/App';
-import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { useMutation, useQueries } from 'react-query';
+import { useQueries } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Dispatch } from 'redux';
@@ -40,80 +30,20 @@ import {
 	UPDATE_LATEST_VERSION,
 	UPDATE_LATEST_VERSION_ERROR,
 } from 'types/actions/app';
-import { ErrorResponse, SuccessResponse } from 'types/api';
-import { CheckoutSuccessPayloadProps } from 'types/api/billing/checkout';
-import { LicenseEvent } from 'types/api/licensesV3/getActive';
 import AppReducer from 'types/reducer/app';
-import { isCloudUser } from 'utils/app';
-import {
-	getFormattedDate,
-	getFormattedDateWithMinutes,
-	getRemainingDays,
-} from 'utils/timeUtils';
 
 import { ChildrenContainer, Layout, LayoutContent } from './styles';
 import { getRouteKey } from './utils';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 function AppLayout(props: AppLayoutProps): JSX.Element {
-	const { isLoggedIn, user, role } = useSelector<AppState, AppReducer>(
+	const { isLoggedIn, user } = useSelector<AppState, AppReducer>(
 		(state) => state.app,
 	);
 
-	const { activeLicenseV3, isFetchingActiveLicenseV3 } = useAppContext();
 	const { notifications } = useNotifications();
 
-	const [
-		showPaymentFailedWarning,
-		setShowPaymentFailedWarning,
-	] = useState<boolean>(false);
-
-	const handleBillingOnSuccess = (
-		data: ErrorResponse | SuccessResponse<CheckoutSuccessPayloadProps, unknown>,
-	): void => {
-		if (data?.payload?.redirectURL) {
-			const newTab = document.createElement('a');
-			newTab.href = data.payload.redirectURL;
-			newTab.target = '_blank';
-			newTab.rel = 'noopener noreferrer';
-			newTab.click();
-		}
-	};
-
-	const handleBillingOnError = (): void => {
-		notifications.error({
-			message: SOMETHING_WENT_WRONG,
-		});
-	};
-
-	const {
-		mutate: manageCreditCard,
-		isLoading: isLoadingManageBilling,
-	} = useMutation(manageCreditCardApi, {
-		onSuccess: (data) => {
-			handleBillingOnSuccess(data);
-		},
-		onError: handleBillingOnError,
-	});
-
 	const isDarkMode = useIsDarkMode();
-
-	const { data: licenseData, isFetching } = useLicense();
-
-	const isPremiumChatSupportEnabled =
-		useFeatureFlags(FeatureKeys.PREMIUM_SUPPORT)?.active || false;
-
-	const isChatSupportEnabled =
-		useFeatureFlags(FeatureKeys.CHAT_SUPPORT)?.active || false;
-
-	const isCloudUserVal = isCloudUser();
-
-	const showAddCreditCardModal =
-		isLoggedIn &&
-		isChatSupportEnabled &&
-		isCloudUserVal &&
-		!isPremiumChatSupportEnabled &&
-		!licenseData?.payload?.trialConvertedToSubscription;
 
 	const { pathname } = useLocation();
 	const { t } = useTranslation(['titles']);
@@ -235,6 +165,7 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 
 	const routeKey = useMemo(() => getRouteKey(pathname), [pathname]);
 	const pageTitle = t(routeKey);
+	const displayPageTitle = pageTitle.replace(/^Scry\s*\|\s*/, '');
 	const renderFullScreen =
 		pathname === ROUTES.GET_STARTED ||
 		pathname === ROUTES.ONBOARDING ||
@@ -243,51 +174,6 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 		pathname === ROUTES.GET_STARTED_LOGS_MANAGEMENT ||
 		pathname === ROUTES.GET_STARTED_AWS_MONITORING ||
 		pathname === ROUTES.GET_STARTED_AZURE_MONITORING;
-
-	const [showTrialExpiryBanner, setShowTrialExpiryBanner] = useState(false);
-
-	useEffect(() => {
-		if (
-			!isFetching &&
-			licenseData?.payload?.onTrial &&
-			!licenseData?.payload?.trialConvertedToSubscription &&
-			!licenseData?.payload?.workSpaceBlock &&
-			getRemainingDays(licenseData?.payload.trialEnd) < 7
-		) {
-			setShowTrialExpiryBanner(true);
-		}
-	}, [licenseData, isFetching]);
-
-	useEffect(() => {
-		if (
-			!isFetchingActiveLicenseV3 &&
-			!isNull(activeLicenseV3) &&
-			activeLicenseV3?.event_queue?.event === LicenseEvent.FAILED_PAYMENT
-		) {
-			setShowPaymentFailedWarning(true);
-		}
-	}, [activeLicenseV3, isFetchingActiveLicenseV3]);
-
-	useEffect(() => {
-		// after logging out hide the trial expiry banner
-		if (!isLoggedIn) {
-			setShowTrialExpiryBanner(false);
-		}
-	}, [isLoggedIn]);
-
-	const handleUpgrade = (): void => {
-		if (role === 'ADMIN') {
-			history.push(ROUTES.BILLING);
-		}
-	};
-
-	const handleFailedPayment = (): void => {
-		manageCreditCard({
-			licenseKey: activeLicenseV3?.key || '',
-			successURL: window.location.href,
-			cancelURL: window.location.href,
-		});
-	};
 
 	const isLogsView = (): boolean =>
 		routeKey === 'LOGS' ||
@@ -317,6 +203,17 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 	const isTraceDetailsView = (): boolean =>
 		isPathMatch(/^\/trace\/[a-zA-Z0-9]+(\?.*)?$/);
 
+	const isFullBleedContent =
+		isLogsView() ||
+		isTracesView() ||
+		isDashboardView() ||
+		isDashboardWidgetView() ||
+		isDashboardListView() ||
+		isAlertHistory() ||
+		isAlertOverview() ||
+		isMessagingQueues() ||
+		isInfraMonitoringHosts();
+
 	useEffect(() => {
 		if (isDarkMode) {
 			document.body.classList.remove('lightMode');
@@ -333,84 +230,29 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 				<title>{pageTitle}</title>
 			</Helmet>
 
-			{showTrialExpiryBanner && !showPaymentFailedWarning && (
-				<div className="trial-expiry-banner">
-					You are in free trial period. Your free trial will end on{' '}
-					<span>
-						{getFormattedDate(licenseData?.payload?.trialEnd || Date.now())}.
-					</span>
-					{role === 'ADMIN' ? (
-						<span>
-							{' '}
-							Please{' '}
-							<a className="upgrade-link" onClick={handleUpgrade}>
-								upgrade
-							</a>
-							to continue using SigNoz features.
-						</span>
-					) : (
-						'Please contact your administrator for upgrading to a paid plan.'
-					)}
-				</div>
-			)}
-			{!showTrialExpiryBanner && showPaymentFailedWarning && (
-				<div className="payment-failed-banner">
-					Your bill payment has failed. Your workspace will get suspended on{' '}
-					<span>
-						{getFormattedDateWithMinutes(
-							dayjs(activeLicenseV3?.event_queue?.scheduled_at).unix() || Date.now(),
-						)}
-						.
-					</span>
-					{role === 'ADMIN' ? (
-						<span>
-							{' '}
-							Please{' '}
-							<a
-								className="upgrade-link"
-								onClick={(): void => {
-									if (!isLoadingManageBilling) {
-										handleFailedPayment();
-									}
-								}}
-							>
-								pay the bill
-							</a>
-							to continue using SigNoz features.
-						</span>
-					) : (
-						' Please contact your administrator to pay the bill.'
-					)}
-				</div>
-			)}
-
 			<Flex className={cx('app-layout', isDarkMode ? 'darkMode' : 'lightMode')}>
-				{isToDisplayLayout && !renderFullScreen && (
-					<SideNav licenseData={licenseData} isFetching={isFetching} />
-				)}
+				{isToDisplayLayout && !renderFullScreen && <SideNav />}
 				<div className="app-content" data-overlayscrollbars-initialize>
 					<Sentry.ErrorBoundary fallback={<ErrorBoundaryFallback />}>
 						<LayoutContent data-overlayscrollbars-initialize>
 							<OverlayScrollbar>
 								<ChildrenContainer
 									style={{
-										margin:
-											isLogsView() ||
-											isTracesView() ||
-											isDashboardView() ||
-											isDashboardWidgetView() ||
-											isDashboardListView() ||
-											isAlertHistory() ||
-											isAlertOverview() ||
-											isMessagingQueues() ||
-											isInfraMonitoringHosts()
-												? 0
-												: '0 1rem',
+										margin: isFullBleedContent ? 0 : '0 1rem',
 
 										...(isTraceDetailsView() ? { marginRight: 0 } : {}),
 									}}
 								>
-									{isToDisplayLayout && !renderFullScreen && <TopNav />}
+									{isToDisplayLayout && !renderFullScreen && (
+										<div
+											className={cx('global-page-header', {
+												'global-page-header--full-bleed': isFullBleedContent,
+											})}
+										>
+											<Typography.Title level={4}>{displayPageTitle}</Typography.Title>
+											<TopNav />
+										</div>
+									)}
 									{children}
 								</ChildrenContainer>
 							</OverlayScrollbar>
@@ -418,8 +260,6 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 					</Sentry.ErrorBoundary>
 				</div>
 			</Flex>
-
-			{showAddCreditCardModal && <ChatSupportGateway />}
 		</Layout>
 	);
 }

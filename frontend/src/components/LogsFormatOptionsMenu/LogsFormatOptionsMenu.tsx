@@ -221,7 +221,7 @@ export default function LogsFormatOptionsMenu({
 						type="text"
 					>
 						<ChevronLeft size={14} className="icon" />
-						<Typography.Text className="text">Select font size</Typography.Text>
+						<Typography.Text className="text">选择字体大小</Typography.Text>
 					</Button>
 					<div className="horizontal-line" />
 					<div className="content">
@@ -276,7 +276,7 @@ export default function LogsFormatOptionsMenu({
 									onClick={handleToggleAddNewColumn}
 								/>
 							</div>
-							Add New Column
+							添加新列
 						</div>
 
 						<Input
@@ -285,13 +285,13 @@ export default function LogsFormatOptionsMenu({
 							autoFocus
 							onFocus={addColumn?.onFocus}
 							onChange={handleSearchValueChange}
-							placeholder="Search..."
+							placeholder="搜索..."
 						/>
 					</div>
 
 					<div className="add-new-column-content">
 						{addColumn?.isFetching && (
-							<div className="loading-container"> Loading ... </div>
+							<div className="loading-container"> 加载中 ... </div>
 						)}
 
 						<div className="column-format-new-options" ref={listRef}>
@@ -330,7 +330,7 @@ export default function LogsFormatOptionsMenu({
 			{!isFontSizeOptionsOpen && !showAddNewColumnContainer && (
 				<div>
 					<div className="font-size-container">
-						<div className="title">Font Size</div>
+						<div className="title">字体大小</div>
 						<Button
 							className="value"
 							type="text"
@@ -370,7 +370,7 @@ export default function LogsFormatOptionsMenu({
 							<>
 								<div className="horizontal-line" />
 								<div className="max-lines-per-row">
-									<div className="title"> max lines per row </div>
+									<div className="title"> 每行最大行数 </div>
 									<div className="raw-format max-lines-per-row-input">
 										<button
 											type="button"
@@ -404,7 +404,7 @@ export default function LogsFormatOptionsMenu({
 								<div className="item-content">
 									{!showAddNewColumnContainer && (
 										<div className="title">
-											columns
+											列
 											<Plus size={14} onClick={handleToggleAddNewColumn} />{' '}
 										</div>
 									)}
@@ -425,9 +425,7 @@ export default function LogsFormatOptionsMenu({
 											</div>
 										))}
 										{addColumn && addColumn?.value?.length === 0 && (
-											<div className="column-name no-columns-selected">
-												No columns selected
-											</div>
+											<div className="column-name no-columns-selected">未选择任何列</div>
 										)}
 									</div>
 								</div>

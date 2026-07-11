@@ -282,7 +282,7 @@ function ChartPreview({
 						<Spinner size="large" tip="Loading..." height="100%" />
 					)}
 					{(queryResponse?.isError || queryResponse?.error) && (
-						<FailedMessageContainer color="red" title="Failed to refresh the chart">
+						<FailedMessageContainer color="red" title="刷新图表失败">
 							<InfoCircleOutlined />
 							{queryResponse.error.message || t('preview_chart_unexpected_error')}
 						</FailedMessageContainer>

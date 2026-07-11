@@ -85,11 +85,11 @@ function ExportPanelContainer({
 
 	return (
 		<Wrapper direction="vertical">
-			<Title>Export Panel</Title>
+			<Title>导出面板</Title>
 
 			<SelectWrapper direction="horizontal">
 				<DashboardSelect
-					placeholder="Select Dashboard"
+					placeholder="选择仪表盘"
 					options={options}
 					showSearch
 					loading={isDashboardLoading}
@@ -104,19 +104,19 @@ function ExportPanelContainer({
 					disabled={isDisabled}
 					onClick={handleExportClick}
 				>
-					Export
+					出口
 				</Button>
 			</SelectWrapper>
 
 			<Typography>
-				Or create dashboard with this panel -
+				或者使用此面板创建仪表盘 -
 				<NewDashboardButton
 					disabled={createDashboardLoading}
 					loading={createDashboardLoading}
 					type="link"
 					onClick={handleNewDashboard}
 				>
-					New Dashboard
+					新仪表盘
 				</NewDashboardButton>
 			</Typography>
 		</Wrapper>

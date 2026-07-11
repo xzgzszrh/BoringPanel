@@ -2,11 +2,11 @@ import { LegendEntryProps } from '../FullView/types';
 
 export const mocklegendEntryResult: LegendEntryProps[] = [
 	{
-		label: 'customer',
+		label: '顾客',
 		show: true,
 	},
 	{
-		label: 'demo-app',
+		label: '演示应用程序',
 		show: false,
 	},
 ];

@@ -14,7 +14,7 @@ npm install --save @opentelemetry/semantic-conventions@^1.21.0
 &nbsp;
 
 **Step 2.** Create `instrument.ts` file<br></br>
-You need to configure the endpoint for SigNoz cloud in this file.
+You need to configure the endpoint for Scry cloud in this file.
 
 ```bash
 import { registerInstrumentations } from '@opentelemetry/instrumentation';

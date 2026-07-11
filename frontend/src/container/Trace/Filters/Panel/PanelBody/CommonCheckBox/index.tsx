@@ -52,7 +52,7 @@ function CommonCheckBox(props: CommonCheckBoxProps): JSX.Element {
 					style={{
 						padding: '0 3%',
 					}}
-					placeholder="Filter Values"
+					placeholder="过滤值"
 				/>
 			)}
 
@@ -88,7 +88,7 @@ function CommonCheckBox(props: CommonCheckBoxProps): JSX.Element {
 
 			{isMoreButtonAvilable && (
 				<Button onClick={onClickMoreHandler} type="link">
-					More
+					更多的
 				</Button>
 			)}
 		</>

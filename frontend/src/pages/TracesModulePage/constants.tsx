@@ -8,7 +8,7 @@ export const tracesExplorer: TabRoutes = {
 	Component: TracesExplorer,
 	name: (
 		<div className="tab-item">
-			<Compass size={16} /> Explorer
+			<Compass size={16} /> 探险家
 		</div>
 	),
 	route: ROUTES.TRACES_EXPLORER,
@@ -19,7 +19,7 @@ export const tracesSaveView: TabRoutes = {
 	Component: SaveView,
 	name: (
 		<div className="tab-item">
-			<TowerControl size={16} /> Views
+			<TowerControl size={16} /> 意见
 		</div>
 	),
 	route: ROUTES.TRACES_SAVE_VIEWS,

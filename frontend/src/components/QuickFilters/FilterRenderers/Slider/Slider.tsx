@@ -10,5 +10,5 @@ interface ISliderProps {
 export default function Slider(props: ISliderProps): JSX.Element {
 	const { filter } = props;
 	console.log(filter);
-	return <div>Slider</div>;
+	return <div>滑块</div>;
 }

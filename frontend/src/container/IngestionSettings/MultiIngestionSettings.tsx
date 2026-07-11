@@ -95,12 +95,12 @@ type ExpiryOption = {
 };
 
 export const API_KEY_EXPIRY_OPTIONS: ExpiryOption[] = [
-	{ value: '1', label: '1 day' },
-	{ value: '7', label: '1 week' },
-	{ value: '30', label: '1 month' },
-	{ value: '90', label: '3 months' },
-	{ value: '365', label: '1 year' },
-	{ value: '0', label: 'No Expiry' },
+	{ value: '1', label: '1天' },
+	{ value: '7', label: '1周' },
+	{ value: '30', label: '1个月' },
+	{ value: '90', label: '3个月' },
+	{ value: '365', label: '1年' },
+	{ value: '0', label: '无有效期' },
 ];
 
 function MultiIngestionSettings(): JSX.Element {
@@ -391,7 +391,7 @@ function MultiIngestionSettings(): JSX.Element {
 	const handleCopyKey = (text: string): void => {
 		handleCopyToClipboard(text);
 		notifications.success({
-			message: 'Copied to clipboard',
+			message: '已复制到剪贴板',
 		});
 	};
 
@@ -555,7 +555,7 @@ function MultiIngestionSettings(): JSX.Element {
 
 	const columns: AntDTableProps<IngestionKeyProps>['columns'] = [
 		{
-			title: 'Ingestion Key',
+			title: '采集密钥',
 			key: 'ingestion-key',
 			// eslint-disable-next-line sonarjs/cognitive-complexity
 			render: (APIKey: IngestionKeyProps): JSX.Element => {
@@ -563,6 +563,7 @@ function MultiIngestionSettings(): JSX.Element {
 					APIKey.created_at,
 					formatTimezoneAdjustedTimestamp,
 				);
+
 				const formattedDateAndTime =
 					APIKey &&
 					APIKey?.expires_at &&
@@ -632,10 +633,11 @@ function MultiIngestionSettings(): JSX.Element {
 								</div>
 							</div>
 						),
+
 						children: (
 							<div className="ingestion-key-info-container">
 								<Row>
-									<Col span={6}> Created on </Col>
+									<Col span={6}> 创建于 </Col>
 									<Col span={12}>
 										<Typography.Text>{createdOn}</Typography.Text>
 									</Col>
@@ -643,7 +645,7 @@ function MultiIngestionSettings(): JSX.Element {
 
 								{updatedOn && (
 									<Row>
-										<Col span={6}> Updated on </Col>
+										<Col span={6}> 更新于 </Col>
 										<Col span={12}>
 											<Typography.Text>{updatedOn}</Typography.Text>
 										</Col>
@@ -652,7 +654,7 @@ function MultiIngestionSettings(): JSX.Element {
 
 								{APIKey.tags && Array.isArray(APIKey.tags) && APIKey.tags.length > 0 && (
 									<Row>
-										<Col span={6}> Tags </Col>
+										<Col span={6}> 标签 </Col>
 										<Col span={12}>
 											<div className="ingestion-key-tags-container">
 												<div className="ingestion-key-tags">
@@ -667,7 +669,7 @@ function MultiIngestionSettings(): JSX.Element {
 								)}
 
 								<div className="limits-container">
-									<h4 className=""> LIMITS </h4>
+									<h4 className=""> 限制 </h4>
 
 									<div className="limits-data">
 										<div className="signals">
@@ -725,7 +727,7 @@ function MultiIngestionSettings(): JSX.Element {
 																			});
 																		}}
 																	>
-																		Limits
+																		限制
 																	</Button>
 																)}
 															</div>
@@ -750,7 +752,7 @@ function MultiIngestionSettings(): JSX.Element {
 																		<div className="daily-limit">
 																			<div className="heading">
 																				<div className="title">
-																					Daily limit
+																					每日限额
 																					<div className="limit-enable-disable-toggle">
 																						<Form.Item name="enableDailyLimit">
 																							<Switch
@@ -772,9 +774,7 @@ function MultiIngestionSettings(): JSX.Element {
 																						</Form.Item>
 																					</div>
 																				</div>
-																				<div className="subtitle">
-																					Add a limit for data ingested daily
-																				</div>
+																				<div className="subtitle">添加每天采集的数据限制</div>
 																			</div>
 																			<div className="size">
 																				{activeSignal?.config?.day?.enabled ? (
@@ -784,17 +784,17 @@ function MultiIngestionSettings(): JSX.Element {
 																							key="dailyLimit"
 																							addonAfter={
 																								<Select defaultValue="GiB" disabled>
-																									<Option value="TiB"> TiB</Option>
-																									<Option value="GiB"> GiB</Option>
-																									<Option value="MiB"> MiB </Option>
-																									<Option value="KiB"> KiB </Option>
+																									<Option value="TiB"> 硼化钛</Option>
+																									<Option value="GiB"> 吉布</Option>
+																									<Option value="MiB"> 米布 </Option>
+																									<Option value="KiB"> 基布 </Option>
 																								</Select>
 																							}
 																						/>
 																					</Form.Item>
 																				) : (
 																					<div className="no-limit">
-																						<Infinity size={16} /> NO LIMIT
+																						<Infinity size={16} /> 无限制
 																					</div>
 																				)}
 																			</div>
@@ -803,7 +803,7 @@ function MultiIngestionSettings(): JSX.Element {
 																		<div className="second-limit">
 																			<div className="heading">
 																				<div className="title">
-																					Per Second limit{' '}
+																					每秒限制{' '}
 																					<div className="limit-enable-disable-toggle">
 																						<Form.Item name="enableSecondLimit">
 																							<Switch
@@ -825,9 +825,7 @@ function MultiIngestionSettings(): JSX.Element {
 																						</Form.Item>
 																					</div>
 																				</div>
-																				<div className="subtitle">
-																					Add a limit for data ingested every second
-																				</div>
+																				<div className="subtitle">添加每秒采集的数据限制</div>
 																			</div>
 
 																			<div className="size">
@@ -838,17 +836,17 @@ function MultiIngestionSettings(): JSX.Element {
 																							disabled={!activeSignal?.config?.second?.enabled}
 																							addonAfter={
 																								<Select defaultValue="GiB" disabled>
-																									<Option value="TiB"> TiB</Option>
-																									<Option value="GiB"> GiB</Option>
-																									<Option value="MiB"> MiB </Option>
-																									<Option value="KiB"> KiB </Option>
+																									<Option value="TiB"> 硼化钛</Option>
+																									<Option value="GiB"> 吉布</Option>
+																									<Option value="MiB"> 米布 </Option>
+																									<Option value="KiB"> 基布 </Option>
 																								</Select>
 																							}
 																						/>
 																					</Form.Item>
 																				) : (
 																					<div className="no-limit">
-																						<Infinity size={16} /> NO LIMIT
+																						<Infinity size={16} /> 无限制
 																					</div>
 																				)}
 																			</div>
@@ -898,7 +896,7 @@ function MultiIngestionSettings(): JSX.Element {
 																						}
 																					}}
 																				>
-																					Save
+																					保存
 																				</Button>
 																				<Button
 																					type="default"
@@ -909,7 +907,7 @@ function MultiIngestionSettings(): JSX.Element {
 																					}
 																					onClick={handleDiscardSaveLimit}
 																				>
-																					Discard
+																					丢弃
 																				</Button>
 																			</div>
 																		)}
@@ -918,7 +916,7 @@ function MultiIngestionSettings(): JSX.Element {
 																<div className="signal-limit-view-mode">
 																	<div className="signal-limit-value">
 																		<div className="limit-type">
-																			Daily <Minus size={16} />{' '}
+																			日常的 <Minus size={16} />{' '}
 																		</div>
 
 																		<div className="limit-value">
@@ -936,7 +934,7 @@ function MultiIngestionSettings(): JSX.Element {
 																				</>
 																			) : (
 																				<>
-																					<Infinity size={16} /> NO LIMIT
+																					<Infinity size={16} /> 无限制
 																				</>
 																			)}
 																		</div>
@@ -944,7 +942,7 @@ function MultiIngestionSettings(): JSX.Element {
 
 																	<div className="signal-limit-value">
 																		<div className="limit-type">
-																			Seconds <Minus size={16} />
+																			秒数 <Minus size={16} />
 																		</div>
 
 																		<div className="limit-value">
@@ -962,7 +960,7 @@ function MultiIngestionSettings(): JSX.Element {
 																				</>
 																			) : (
 																				<>
-																					<Infinity size={16} /> NO LIMIT
+																					<Infinity size={16} /> 无限制
 																				</>
 																			)}
 																		</div>
@@ -988,7 +986,7 @@ function MultiIngestionSettings(): JSX.Element {
 						<div className="ingestion-key-details">
 							<div className="ingestion-key-last-used-at">
 								<CalendarClock size={14} />
-								Expires on <Minus size={12} />
+								到期日 <Minus size={12} />
 								<Typography.Text>{formattedDateAndTime}</Typography.Text>
 							</div>
 						</div>
@@ -1011,38 +1009,19 @@ function MultiIngestionSettings(): JSX.Element {
 				<div className="ingestion-setup-details-links">
 					<Info size={14} />
 
-					<span>
-						Find your ingestion URL and learn more about sending data to SigNoz{' '}
-						<a
-							href="https://signoz.io/docs/ingestion/signoz-cloud/overview/"
-							target="_blank"
-							className="learn-more"
-							rel="noreferrer"
-						>
-							here <ArrowUpRight size={14} />
-						</a>
-					</span>
+					<span>找到您的采集 URL 并了解有关将数据发送到 Scry 的更多信息 </span>
 				</div>
 
 				<header>
-					<Typography.Title className="title"> Ingestion Keys </Typography.Title>
+					<Typography.Title className="title"> 采集键 </Typography.Title>
 					<Typography.Text className="subtitle">
-						Create and manage ingestion keys for the SigNoz Cloud{' '}
-						<a
-							href="https://signoz.io/docs/ingestion/signoz-cloud/keys/"
-							target="_blank"
-							className="learn-more"
-							rel="noreferrer"
-						>
-							{' '}
-							Learn more <ArrowUpRight size={14} />
-						</a>
+						为 Scry 云创建和管理采集密钥{' '}
 					</Typography.Text>
 				</header>
 
 				<div className="ingestion-keys-search-add-new">
 					<Input
-						placeholder="Search for ingestion key..."
+						placeholder="搜索采集密钥..."
 						prefix={<Search size={12} color={Color.BG_VANILLA_400} />}
 						value={searchValue}
 						onChange={handleSearch}
@@ -1053,7 +1032,7 @@ function MultiIngestionSettings(): JSX.Element {
 						type="primary"
 						onClick={showAddModal}
 					>
-						<Plus size={14} /> New Ingestion key
+						<Plus size={14} /> 新采集密钥
 					</Button>
 				</div>
 
@@ -1076,7 +1055,7 @@ function MultiIngestionSettings(): JSX.Element {
 			{/* Delete Key Modal */}
 			<Modal
 				className="delete-ingestion-key-modal"
-				title={<span className="title">Delete Ingestion Key</span>}
+				title={<span className="title">删除采集密钥</span>}
 				open={isDeleteModalOpen}
 				closable
 				afterClose={handleModalClose}
@@ -1089,7 +1068,7 @@ function MultiIngestionSettings(): JSX.Element {
 						className="cancel-btn"
 						icon={<X size={16} />}
 					>
-						Cancel
+						取消
 					</Button>,
 					<Button
 						key="submit"
@@ -1098,7 +1077,7 @@ function MultiIngestionSettings(): JSX.Element {
 						onClick={onDeleteHandler}
 						className="delete-btn"
 					>
-						Delete Ingestion Key
+						删除采集密钥
 					</Button>,
 				]}
 			>
@@ -1112,7 +1091,7 @@ function MultiIngestionSettings(): JSX.Element {
 			{/* Delete Limit Modal */}
 			<Modal
 				className="delete-ingestion-key-modal"
-				title={<span className="title">Delete Limit </span>}
+				title={<span className="title">删除限制 </span>}
 				open={isDeleteLimitModalOpen}
 				closable
 				afterClose={handleModalClose}
@@ -1125,7 +1104,7 @@ function MultiIngestionSettings(): JSX.Element {
 						className="cancel-btn"
 						icon={<X size={16} />}
 					>
-						Cancel
+						取消
 					</Button>,
 					<Button
 						key="submit"
@@ -1134,7 +1113,7 @@ function MultiIngestionSettings(): JSX.Element {
 						onClick={onDeleteLimitHandler}
 						className="delete-btn"
 					>
-						Delete Limit
+						删除限制
 					</Button>,
 				]}
 			>
@@ -1149,7 +1128,7 @@ function MultiIngestionSettings(): JSX.Element {
 			{/* Edit Modal */}
 			<Modal
 				className="ingestion-key-modal"
-				title="Edit Ingestion Key"
+				title="编辑采集密钥"
 				open={isEditModalOpen}
 				key="edit-ingestion-key-modal"
 				closable
@@ -1164,7 +1143,7 @@ function MultiIngestionSettings(): JSX.Element {
 						className="periscope-btn cancel-btn"
 						icon={<X size={16} />}
 					>
-						Cancel
+						取消
 					</Button>,
 					<Button
 						className="periscope-btn primary"
@@ -1174,7 +1153,7 @@ function MultiIngestionSettings(): JSX.Element {
 						icon={<Check size={14} />}
 						onClick={onUpdateApiKey}
 					>
-						Update Ingestion Key
+						更新采集密钥
 					</Button>,
 				]}
 			>
@@ -1195,7 +1174,7 @@ function MultiIngestionSettings(): JSX.Element {
 						label="Name"
 						rules={[{ required: true }, { type: 'string', min: 6 }]}
 					>
-						<Input placeholder="Enter Ingestion Key name" disabled />
+						<Input placeholder="输入采集密钥名称" disabled />
 					</Form.Item>
 
 					<Form.Item name="tags" label="Tags">
@@ -1219,7 +1198,7 @@ function MultiIngestionSettings(): JSX.Element {
 			{/* Create New Key Modal */}
 			<Modal
 				className="ingestion-key-modal"
-				title="Create new ingestion key"
+				title="创建新的采集密钥"
 				open={isAddModalOpen}
 				key="create-ingestion-key-modal"
 				closable
@@ -1232,7 +1211,7 @@ function MultiIngestionSettings(): JSX.Element {
 						className="periscope-btn cancel-btn"
 						icon={<X size={16} />}
 					>
-						Cancel
+						取消
 					</Button>,
 					<Button
 						className="periscope-btn primary"
@@ -1243,7 +1222,7 @@ function MultiIngestionSettings(): JSX.Element {
 						loading={isLoadingCreateAPIKey}
 						onClick={onCreateIngestionKey}
 					>
-						Create new Ingestion key
+						创建新的采集密钥
 					</Button>,
 				]}
 			>
@@ -1267,13 +1246,12 @@ function MultiIngestionSettings(): JSX.Element {
 							{ type: 'string', min: 6 },
 							{
 								pattern: /^[a-zA-Z0-9_-]*$/,
-								message:
-									'Ingestion key name should only contain letters, numbers, underscores, and hyphens.',
+								message: '采集键名称只能包含字母、数字、下划线和连字符。',
 							},
 						]}
 						validateTrigger="onBlur"
 					>
-						<Input placeholder="Enter Ingestion Key name" autoFocus />
+						<Input placeholder="输入采集密钥名称" autoFocus />
 					</Form.Item>
 
 					<Form.Item

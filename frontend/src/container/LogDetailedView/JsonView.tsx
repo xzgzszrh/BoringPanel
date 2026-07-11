@@ -81,7 +81,7 @@ function JSONView({ logData }: JSONViewProps): JSX.Element {
 			<div className="json-view-footer">
 				<div className="log-switch">
 					<div className="wrap-word-switch">
-						<Typography.Text>Wrap text</Typography.Text>
+						<Typography.Text>文字换行</Typography.Text>
 						<Switch checked={isWrapWord} onChange={handleWrapWord} size="small" />
 					</div>
 				</div>

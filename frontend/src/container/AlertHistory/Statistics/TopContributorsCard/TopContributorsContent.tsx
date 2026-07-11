@@ -12,8 +12,7 @@ function TopContributorsContent({
 			<div className="empty-content">
 				<div className="empty-content__icon">ℹ️</div>
 				<div className="empty-content__text">
-					Top contributors highlight the most frequently triggering group-by
-					attributes in multi-dimensional alerts
+					顶级贡献者强调了多维告警中最常触发的分组属性
 				</div>
 			</div>
 		);

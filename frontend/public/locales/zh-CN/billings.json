@@ -1,0 +1,14 @@
+{
+  "days_remaining": "您的结算周期中剩余的天数。",
+  "billing": "账单",
+  "manage_billing_and_costs": "管理您的账单信息、发票并监控成本。",
+  "enterprise_cloud": "企业云",
+  "enterprise": "企业版",
+  "card_details_recieved_and_billing_info": "我们已收到您的银行卡详细信息，您的计费仅在免费试用期结束后开始。",
+  "upgrade_plan": "升级计划",
+  "manage_billing": "管理账单",
+  "upgrade_now_text": "立即升级以获得不间断的访问",
+  "billing_start_info": "您的计费仅在试用期结束后开始",
+  "checkout_plans": "查看付费计划中的功能",
+  "here": "这里"
+}

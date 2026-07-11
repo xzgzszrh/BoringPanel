@@ -27,91 +27,91 @@ const templatesList: DashboardTemplate[] = [
 		name: 'Blank dashboard',
 		icon: <Drill />,
 		id: 'blank',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'Alert Manager',
 		icon: <ConciergeBell />,
 		id: 'alertManager',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'Apache',
 		icon: <ApacheIcon />,
 		id: 'apache',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'Docker',
 		icon: <DockerIcon />,
 		id: 'docker',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'Elasticsearch',
 		icon: <ElasticSearchIcon />,
 		id: 'elasticSearch',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'MongoDB',
 		icon: <MongoDBIcon />,
 		id: 'mongoDB',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'Heroku',
 		icon: <HerokuIcon />,
 		id: 'heroku',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'Nginx',
 		icon: <NginxIcon />,
 		id: 'nginx',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'Kubernetes',
 		icon: <KubernetesIcon />,
 		id: 'kubernetes',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'MySQL',
 		icon: <MySQLIcon />,
 		id: 'mySQL',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'PostgreSQL',
 		icon: <PostgreSQLIcon />,
 		id: 'postgreSQL',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 	{
 		name: 'Redis',
 		icon: <RedisIcon />,
 		id: 'redis',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/redisTemplatePreview.svg',
 	},
 	{
 		name: 'AWS',
 		icon: <DraftingCompass size={14} />,
 		id: 'aws',
-		description: 'Create a custom dashboard from scratch.',
+		description: '从头开始创建自定义仪表盘。',
 		previewImage: '/Images/blankDashboardTemplatePreview.svg',
 	},
 ];
@@ -153,7 +153,7 @@ export default function DashboardTemplatesModal({
 		>
 			<div className="new-dashboard-templates-content-container">
 				<div className="new-dashboard-templates-content-header">
-					<Typography.Text>New Dashboard</Typography.Text>
+					<Typography.Text>新仪表盘</Typography.Text>
 
 					<X size={14} className="periscope-btn ghost" onClick={onCancel} />
 				</div>
@@ -162,7 +162,7 @@ export default function DashboardTemplatesModal({
 					<div className="new-dashboard-templates-list">
 						<Input
 							className="new-dashboard-templates-search"
-							placeholder="🔍 Search..."
+							placeholder="🔍 搜索..."
 							onChange={handleDashboardTemplateSearch}
 						/>
 
@@ -206,7 +206,7 @@ export default function DashboardTemplatesModal({
 									icon={<Plus size={14} />}
 									onClick={onCreateNewDashboard}
 								>
-									New dashboard
+									新仪表盘
 								</Button>
 							</div>
 						</div>

@@ -6,7 +6,7 @@ function NotFound(): JSX.Element {
 				maxWidth: 480,
 			}}
 			src="/Images/notFound404.png"
-			alt="not-found"
+			alt="未找到"
 		/>
 	);
 }

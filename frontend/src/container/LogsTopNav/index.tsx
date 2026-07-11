@@ -76,7 +76,7 @@ function LogsTopNav(): JSX.Element {
 				type="primary"
 				size="small"
 			>
-				Go Live
+				上线
 			</LiveButtonStyled>
 		),
 		[handleGoLive],

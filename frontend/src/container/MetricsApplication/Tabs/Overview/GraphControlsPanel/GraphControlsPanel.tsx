@@ -24,7 +24,7 @@ function GraphControlsPanel({
 				onClick={onViewTracesClick}
 				style={{ color: Color.BG_VANILLA_100 }}
 			>
-				View traces
+				查看链路
 			</Button>
 			<Button
 				type="link"
@@ -33,7 +33,7 @@ function GraphControlsPanel({
 				onClick={onViewLogsClick}
 				style={{ color: Color.BG_VANILLA_100 }}
 			>
-				View logs
+				查看日志
 			</Button>
 		</div>
 	);

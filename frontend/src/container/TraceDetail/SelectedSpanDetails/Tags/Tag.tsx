@@ -50,7 +50,7 @@ function Tag({ tags, onToggleHandler, setText }: TagProps): JSX.Element {
 										onToggleHandler,
 										setText,
 										value,
-										buttonText: 'View full value',
+										buttonText: '查看完整价值',
 									}}
 								/>
 							)}

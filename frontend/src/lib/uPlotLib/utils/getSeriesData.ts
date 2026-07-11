@@ -35,9 +35,7 @@ const getSeries = ({
 	hiddenGraph,
 	isDarkMode,
 }: GetSeriesProps): uPlot.Options['series'] => {
-	const configurations: uPlot.Series[] = [
-		{ label: 'Timestamp', stroke: 'purple' },
-	];
+	const configurations: uPlot.Series[] = [{ label: '时间戳', stroke: 'purple' }];
 
 	const seriesList = series || [];
 

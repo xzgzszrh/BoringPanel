@@ -6,7 +6,7 @@ function EmptyWidget(): JSX.Element {
 	return (
 		<Container>
 			<Typography.Paragraph>
-				Click one of the widget types above (Time Series / Value) to add here
+				单击上面的小部件类型之一（时间序列/值）以添加到此处
 			</Typography.Paragraph>
 		</Container>
 	);

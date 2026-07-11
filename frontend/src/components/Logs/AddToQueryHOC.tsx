@@ -18,7 +18,7 @@ function AddToQueryHOC({
 		onAddToQuery(fieldKey, fieldValue, OPERATORS['=']);
 	};
 
-	const popOverContent = useMemo(() => <span>Add to query: {fieldKey}</span>, [
+	const popOverContent = useMemo(() => <span>添加到查询： {fieldKey}</span>, [
 		fieldKey,
 	]);
 

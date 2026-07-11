@@ -10,30 +10,30 @@ export const PER_PAGE_OPTIONS: number[] = [10, ...DEFAULT_PER_PAGE_OPTIONS];
 
 export const columns: ColumnsType<ListItem['data']> = [
 	{
-		title: 'Root Service Name',
+		title: '根服务名称',
 		dataIndex: 'subQuery.serviceName',
 		key: 'serviceName',
 	},
 	{
-		title: 'Root Operation Name',
+		title: '根操作名称',
 		dataIndex: 'subQuery.name',
 		key: 'name',
 	},
 	{
-		title: 'Root Duration (in ms)',
+		title: '根持续时间（以毫秒为单位）',
 		dataIndex: 'subQuery.durationNano',
 		key: 'durationNano',
 		render: (duration: number): JSX.Element => (
-			<Typography>{getMs(String(duration))}ms</Typography>
+			<Typography>{getMs(String(duration))}多发性硬化症</Typography>
 		),
 	},
 	{
-		title: 'No of Spans',
+		title: '跨度数',
 		dataIndex: 'span_count',
 		key: 'span_count',
 	},
 	{
-		title: 'TraceID',
+		title: '追踪ID',
 		dataIndex: 'traceID',
 		key: 'traceID',
 		render: (traceID: string): JSX.Element => (

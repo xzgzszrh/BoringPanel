@@ -25,19 +25,15 @@ describe('MultiIngestionSettings Page', () => {
 		).toBeInTheDocument();
 
 		const overviewLink = screen.getByRole('link', { name: /here/i });
-		expect(overviewLink).toHaveAttribute(
-			'href',
-			'https://signoz.io/docs/ingestion/signoz-cloud/overview/',
-		);
+		expect(overviewLink).toHaveAttribute('href', '');
+
 		expect(overviewLink).toHaveAttribute('target', '_blank');
 		expect(overviewLink).toHaveClass('learn-more');
 		expect(overviewLink).toHaveAttribute('rel', 'noreferrer');
 
 		const aboutKeyslink = screen.getByRole('link', { name: /Learn more/i });
-		expect(aboutKeyslink).toHaveAttribute(
-			'href',
-			'https://signoz.io/docs/ingestion/signoz-cloud/keys/',
-		);
+		expect(aboutKeyslink).toHaveAttribute('href', '');
+
 		expect(aboutKeyslink).toHaveAttribute('target', '_blank');
 		expect(aboutKeyslink).toHaveClass('learn-more');
 		expect(aboutKeyslink).toHaveAttribute('rel', 'noreferrer');

@@ -1,0 +1,16 @@
+{
+	"general": "一般的",
+	"alert_channels": "告警通道",
+	"organization_settings": "组织设置",
+	"ingestion_settings": "采集设置",
+	"api_keys": "访问令牌",
+	"my_settings": "我的设置",
+	"debug_mode": "调试模式",
+	"overview_metrics": "概览指标",
+	"dbcall_metrics": "数据库调用",
+	"external_metrics": "外部通话",
+	"pipeline": "管道",
+	"pipelines": "管道",
+	"archives": "档案",
+	"logs_to_metrics": "日志到指标"
+}

@@ -16,7 +16,7 @@ function PaginationInfoText(
 			<Typography.Text className="numbers">
 				{start} &#8212; {end}
 			</Typography.Text>
-			<Typography.Text className="total"> of {total}</Typography.Text>
+			<Typography.Text className="total"> 的 {total}</Typography.Text>
 		</span>
 	);
 }

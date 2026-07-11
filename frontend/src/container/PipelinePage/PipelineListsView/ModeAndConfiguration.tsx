@@ -10,8 +10,8 @@ function ModeAndConfiguration({
 
 	return (
 		<ModeAndConfigWrapper>
-			Mode: <span>{actionMode ? 'Editing' : 'Viewing'}</span>
-			<div>Configuration Version: {version}</div>
+			模式： <span>{actionMode ? 'Editing' : 'Viewing'}</span>
+			<div>配置版本： {version}</div>
 		</ModeAndConfigWrapper>
 	);
 }

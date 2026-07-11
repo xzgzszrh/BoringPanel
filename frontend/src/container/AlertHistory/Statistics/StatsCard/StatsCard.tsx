@@ -31,7 +31,7 @@ function ChangePercentage({
 					<ArrowDownLeft size={14} color={Color.BG_FOREST_500} />
 				</div>
 				<div className="change-percentage__label">
-					{percentage}% vs Last {duration}
+					{percentage}% 与上次相比 {duration}
 				</div>
 			</div>
 		);
@@ -43,7 +43,7 @@ function ChangePercentage({
 					<ArrowUpRight size={14} color={Color.BG_CHERRY_500} />
 				</div>
 				<div className="change-percentage__label">
-					{percentage}% vs Last {duration}
+					{percentage}% 与上次相比 {duration}
 				</div>
 			</div>
 		);
@@ -51,7 +51,7 @@ function ChangePercentage({
 
 	return (
 		<div className="change-percentage change-percentage--no-previous-data">
-			<div className="change-percentage__label">no previous data</div>
+			<div className="change-percentage__label">没有以前的数据</div>
 		</div>
 	);
 }

@@ -11,8 +11,6 @@ import {
 } from '@ant-design/icons';
 import { Button, Space, Steps, Typography } from 'antd';
 import logEvent from 'api/common/logEvent';
-import LaunchChatSupport from 'components/LaunchChatSupport/LaunchChatSupport';
-import { onboardingHelpMessage } from 'components/LaunchChatSupport/util';
 import ROUTES from 'constants/routes';
 import { stepsMap } from 'container/OnboardingContainer/constants/stepsConfig';
 import { DataSourceType } from 'container/OnboardingContainer/Steps/DataSource/DataSource';
@@ -389,9 +387,9 @@ export default function ModuleStepsContainer({
 				<div>
 					<div className="steps-container-header">
 						<div className="brand-logo" onClick={handleLogoClick}>
-							<img src="/Logos/signoz-brand-logo.svg" alt="SigNoz" />
+							<img src="/Logos/scry-brand-logo.svg" alt="Scry" />
 
-							<div className="brand-logo-name">SigNoz</div>
+							<div className="brand-logo-name">Scry</div>
 						</div>
 					</div>
 
@@ -425,7 +423,7 @@ export default function ModuleStepsContainer({
 					icon={<UserPlus size={16} />}
 					className="invite-user-btn"
 				>
-					Invite teammates
+					邀请队友
 				</Button>
 			</div>
 
@@ -468,28 +466,11 @@ export default function ModuleStepsContainer({
 						disabled={current === 0}
 						icon={<ArrowLeftOutlined />}
 					>
-						Back
+						返回
 					</Button>
 					<Button onClick={handleNext} type="primary" icon={<ArrowRightOutlined />}>
 						{current < lastStepIndex ? 'Continue to next step' : 'Done'}
 					</Button>
-					<LaunchChatSupport
-						attributes={{
-							dataSource: selectedDataSource?.id,
-							framework: selectedFramework,
-							environment: selectedEnvironment,
-							module: activeStep?.module?.id,
-							step: activeStep?.step?.id,
-							screen: 'Onboarding',
-						}}
-						eventName="Onboarding V2: Facing Issues Sending Data to SigNoz"
-						message={onboardingHelpMessage(
-							selectedDataSource?.name || '',
-							activeStep?.module?.id,
-						)}
-						buttonText="Facing issues sending data to SigNoz?"
-						onHoverText="Click here to get help with sending data to SigNoz"
-					/>
 				</div>
 			</div>
 		</div>

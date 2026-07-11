@@ -10,7 +10,7 @@ function Events({
 	firstSpanStartTime,
 }: EventsProps): JSX.Element {
 	if (events.length === 0) {
-		return <Typography>No events data in selected span</Typography>;
+		return <Typography>所选范围内没有事件数据</Typography>;
 	}
 
 	const sortedTraceEvents = events.sort((a, b) => {

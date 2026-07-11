@@ -50,14 +50,12 @@ export default function DashboardEmptyState(): JSX.Element {
 				<section className="heading">
 					<img
 						src="/Icons/dashboard_emoji.svg"
-						alt="header-image"
+						alt="标题图像"
 						style={{ height: '32px', width: '32px' }}
 					/>
-					<Typography.Text className="welcome">
-						Welcome to your new dashboard
-					</Typography.Text>
+					<Typography.Text className="welcome">欢迎使用您的新仪表盘</Typography.Text>
 					<Typography.Text className="welcome-info">
-						Follow the steps to populate it with data and share with your teammates
+						按照步骤填充数据并与您的队友共享
 					</Typography.Text>
 				</section>
 				<section className="actions">
@@ -66,15 +64,15 @@ export default function DashboardEmptyState(): JSX.Element {
 							<div className="actions-configure-text">
 								<img
 									src="/Icons/tools.svg"
-									alt="header-image"
+									alt="标题图像"
 									style={{ height: '14px', width: '14px' }}
 								/>
 								<Typography.Text className="configure">
-									Configure your new dashboard
+									配置您的新仪表盘
 								</Typography.Text>
 							</div>
 							<Typography.Text className="configure-info">
-								Give it a name, add description, tags and variables
+								为其命名，添加描述、标签和变量
 							</Typography.Text>
 						</div>
 						<SettingsDrawer drawerTitle="Dashboard Configuration" />
@@ -84,13 +82,13 @@ export default function DashboardEmptyState(): JSX.Element {
 							<div className="actions-panel-text">
 								<img
 									src="/Icons/landscape.svg"
-									alt="header-image"
+									alt="标题图像"
 									style={{ height: '14px', width: '14px' }}
 								/>
-								<Typography.Text className="panel">Add panels</Typography.Text>
+								<Typography.Text className="panel">添加面板</Typography.Text>
 							</div>
 							<Typography.Text className="panel-info">
-								Add panels to visualize your data
+								添加面板以可视化您的数据
 							</Typography.Text>
 						</div>
 						{!isDashboardLocked && addPanelPermission && (
@@ -101,7 +99,7 @@ export default function DashboardEmptyState(): JSX.Element {
 								type="primary"
 								data-testid="add-panel"
 							>
-								New Panel
+								新面板
 							</Button>
 						)}
 					</div>

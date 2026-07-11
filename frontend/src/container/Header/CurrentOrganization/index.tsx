@@ -32,7 +32,7 @@ function CurrentOrganization({
 
 	return (
 		<>
-			<Typography>CURRENT ORGANIZATION</Typography>
+			<Typography>目前的组织</Typography>
 
 			<OrganizationContainer>
 				<OrganizationWrapper>
@@ -49,7 +49,7 @@ function CurrentOrganization({
 							history.push(ROUTES.ORG_SETTINGS);
 						}}
 					>
-						Settings
+						设置
 					</Typography.Link>
 				)}
 			</OrganizationContainer>
@@ -63,7 +63,7 @@ function CurrentOrganization({
 							history.push(`${ROUTES.ORG_SETTINGS}${INVITE_MEMBERS_HASH}`);
 						}}
 					>
-						Invite Members
+						邀请会员
 					</Typography.Link>
 				</InviteMembersContainer>
 			)}

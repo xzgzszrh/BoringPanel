@@ -56,7 +56,7 @@ function InfraMetrics({
 				>
 					<div className="view-title">
 						<Table size={14} />
-						Node
+						节点
 					</div>
 				</Radio.Button>
 				{podName && (
@@ -65,8 +65,7 @@ function InfraMetrics({
 						value={VIEW_TYPES.POD}
 					>
 						<div className="view-title">
-							<History size={14} />
-							Pod
+							<History size={14} />荚
 						</div>
 					</Radio.Button>
 				)}

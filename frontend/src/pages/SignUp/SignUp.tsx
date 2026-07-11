@@ -91,7 +91,7 @@ function SignUp({ version }: SignUpProps): JSX.Element {
 				email: responseDetails.email,
 				name: responseDetails.name,
 				company_name: responseDetails.organization,
-				source: 'SigNoz Cloud',
+				source: 'Scry Cloud',
 			});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -319,7 +319,7 @@ function SignUp({ version }: SignUpProps): JSX.Element {
 					initialValues={{ hasOptedUpdates: true, isAnonymous: false }}
 					form={form}
 				>
-					<Title level={4}>Create your account</Title>
+					<Title level={4}>创建账户</Title>
 					<div>
 						<Label htmlFor="signupEmail">{t('label_email')}</Label>
 						<FormContainer.Item noStyle name="email">
@@ -433,8 +433,7 @@ function SignUp({ version }: SignUpProps): JSX.Element {
 								marginTop: '0.50rem',
 							}}
 						>
-							This will create an admin account. If you are not an admin, please ask
-							your admin for an invite link
+							这将创建管理员账户。如果你不是管理员，请向管理员索取邀请链接。
 						</Typography.Paragraph>
 					)}
 

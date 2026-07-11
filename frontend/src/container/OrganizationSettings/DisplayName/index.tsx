@@ -96,7 +96,7 @@ function DisplayName({
 					type="primary"
 					htmlType="submit"
 				>
-					Submit
+					提交
 				</Button>
 			</Form.Item>
 		</Form>

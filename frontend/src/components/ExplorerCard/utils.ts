@@ -135,7 +135,7 @@ export const saveViewHandler = ({
 					[QueryParams.viewKey]: data.data.data,
 				});
 				notifications.success({
-					message: 'View Saved Successfully',
+					message: '查看保存成功',
 				});
 			},
 			onError: (err) => {
@@ -177,7 +177,7 @@ export const deleteViewHandler = ({
 				);
 			}
 			notifications.success({
-				message: 'View Deleted Successfully',
+				message: '查看删除成功',
 			});
 			refetchAllView();
 		},

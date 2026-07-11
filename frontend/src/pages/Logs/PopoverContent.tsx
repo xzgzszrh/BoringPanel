@@ -12,7 +12,7 @@ function PopoverContent({
 	return (
 		<Row align="middle">
 			<Space align="center">
-				<Typography>Max lines per Row </Typography>
+				<Typography>每行最大行数 </Typography>
 				<InputNumber
 					min={1}
 					max={10}

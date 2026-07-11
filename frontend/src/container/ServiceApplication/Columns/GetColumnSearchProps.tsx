@@ -17,8 +17,7 @@ const MAX_TOP_LEVEL_OPERATIONS = 2500;
 
 const highTopLevelOperationsPopoverDesc = (metrics: string): JSX.Element => (
 	<div className="popover-description">
-		The service `{metrics}` has too many top level operations. It makes the
-		dashboard slow to load.
+		服务`{metrics}` 有太多顶级操作。它使仪表盘加载缓慢。
 	</div>
 );
 
@@ -64,7 +63,7 @@ export const getColumnSearchProps = (
 			<div className={`serviceName ${hasHighTopLevelOperations ? 'error' : ''} `}>
 				{hasHighTopLevelOperations && (
 					<Popconfirm
-						title="Too Many Top Level Operations"
+						title="过多的顶级操作"
 						description={highTopLevelOperationsPopoverDesc(metrics)}
 						placement="right"
 						overlayClassName="service-high-top-level-operations"

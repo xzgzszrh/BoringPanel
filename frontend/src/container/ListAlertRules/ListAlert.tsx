@@ -12,7 +12,6 @@ import {
 import DynamicColumnTable from 'components/ResizeTable/DynamicColumnTable';
 import DateComponent from 'components/ResizeTable/TableComponent/DateComponent';
 import LabelColumn from 'components/TableRenderer/LabelColumn';
-import TextToolTip from 'components/TextToolTip';
 import { QueryParams } from 'constants/query';
 import ROUTES from 'constants/routes';
 import useSortableTable from 'hooks/ResizeTable/useSortableTable';
@@ -154,8 +153,8 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 
 			if (response.statusCode === 200) {
 				notificationsApi.success({
-					message: 'Success',
-					description: 'Alert cloned successfully',
+					message: '成功',
+					description: '告警克隆成功',
 				});
 
 				const { data: refetchData, status } = await refetch();
@@ -174,7 +173,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 				}
 			} else {
 				notificationsApi.error({
-					message: 'Error',
+					message: '错误',
 					description: response.error || t('something_went_wrong'),
 				});
 			}
@@ -195,7 +194,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 
 	const dynamicColumns: ColumnsType<GettableAlert> = [
 		{
-			title: 'Created At',
+			title: '创建于',
 			dataIndex: 'createAt',
 			width: 80,
 			key: DynamicColumnsKey.CreatedAt,
@@ -213,14 +212,14 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 					: null,
 		},
 		{
-			title: 'Created By',
+			title: '创建者',
 			dataIndex: 'createBy',
 			width: 80,
 			key: DynamicColumnsKey.CreatedBy,
 			align: 'center',
 		},
 		{
-			title: 'Updated At',
+			title: '更新于',
 			dataIndex: 'updateAt',
 			width: 80,
 			key: DynamicColumnsKey.UpdatedAt,
@@ -238,7 +237,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 					: null,
 		},
 		{
-			title: 'Updated By',
+			title: '更新者',
 			dataIndex: 'updateBy',
 			width: 80,
 			key: DynamicColumnsKey.UpdatedBy,
@@ -248,7 +247,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 
 	const columns: ColumnsType<GettableAlert> = [
 		{
-			title: 'Status',
+			title: '状态',
 			dataIndex: 'state',
 			width: 80,
 			key: 'state',
@@ -259,7 +258,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 			sortOrder: sortedInfo.columnKey === 'state' ? sortedInfo.order : null,
 		},
 		{
-			title: 'Alert Name',
+			title: '告警名称',
 			dataIndex: 'alert',
 			width: 100,
 			key: 'name',
@@ -275,7 +274,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 			sortOrder: sortedInfo.columnKey === 'name' ? sortedInfo.order : null,
 		},
 		{
-			title: 'Severity',
+			title: '严重性',
 			dataIndex: 'labels',
 			width: 80,
 			key: 'severity',
@@ -292,7 +291,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 			sortOrder: sortedInfo.columnKey === 'severity' ? sortedInfo.order : null,
 		},
 		{
-			title: 'Labels',
+			title: '标签',
 			dataIndex: 'labels',
 			key: 'tags',
 			align: 'center',
@@ -314,7 +313,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 
 	if (action) {
 		columns.push({
-			title: 'Action',
+			title: '操作',
 			dataIndex: 'id',
 			key: 'action',
 			width: 10,
@@ -334,7 +333,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 							type="link"
 							loading={editLoader}
 						>
-							Edit
+							编辑
 						</ColumnButton>,
 						<ColumnButton
 							key="3"
@@ -342,7 +341,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 							type="link"
 							loading={cloneLoader}
 						>
-							Clone
+							克隆
 						</ColumnButton>,
 						<DeleteAlert
 							key="4"
@@ -363,7 +362,7 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 		<>
 			<SearchContainer>
 				<Search
-					placeholder="Search by Alert Name, Severity and Labels"
+					placeholder="按告警名称、严重性和标签搜索"
 					onChange={handleSearch}
 					defaultValue={searchString}
 				/>
@@ -374,17 +373,9 @@ function ListAlert({ allAlertRules, refetch }: ListAlertProps): JSX.Element {
 							onClick={onClickNewAlertHandler}
 							icon={<PlusOutlined />}
 						>
-							New Alert
+							新告警
 						</Button>
 					)}
-					<TextToolTip
-						{...{
-							text: `More details on how to create alerts`,
-							url:
-								'https://signoz.io/docs/alerts/?utm_source=product&utm_medium=list-alerts',
-							urlText: 'Learn More',
-						}}
-					/>
 				</Flex>
 			</SearchContainer>
 			<DynamicColumnTable

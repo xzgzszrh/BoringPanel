@@ -118,7 +118,7 @@ function Overview({
 						label: (
 							<Tag bordered={false}>
 								<Typography.Text style={{ color: Color.BG_ROBIN_400 }}>
-									body
+									身体
 								</Typography.Text>
 							</Tag>
 						),
@@ -149,7 +149,7 @@ function Overview({
 								/>
 								<div className="log-switch">
 									<div className="wrap-word-switch">
-										<Typography.Text>Wrap text</Typography.Text>
+										<Typography.Text>文字换行</Typography.Text>
 										<Switch checked={isWrapWord} onChange={handleWrapWord} size="small" />
 									</div>
 								</div>
@@ -180,7 +180,7 @@ function Overview({
 							>
 								<Tag bordered={false}>
 									<Typography.Text style={{ color: Color.BG_ROBIN_400 }}>
-										Attributes
+										属性
 									</Typography.Text>
 								</Tag>
 
@@ -201,7 +201,7 @@ function Overview({
 								{isSearchVisible && (
 									<Input
 										autoFocus
-										placeholder="Search for a field..."
+										placeholder="搜索字段..."
 										className="search-input"
 										value={fieldSearchInput}
 										onChange={(e): void => setFieldSearchInput(e.target.value)}

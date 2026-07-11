@@ -19,8 +19,7 @@ import {
 import { getPartitionLatencyDetails } from './MQDetails/MQTables/getPartitionLatencyDetails';
 import { getTopicThroughputDetails } from './MQDetails/MQTables/getTopicThroughputDetails';
 
-export const KAFKA_SETUP_DOC_LINK =
-	'https://signoz.io/docs/messaging-queues/kafka?utm_source=product&utm_medium=kafka-get-started';
+export const KAFKA_SETUP_DOC_LINK = '';
 
 export function convertToTitleCase(text: string): string {
 	return text
@@ -82,6 +81,7 @@ export function getFiltersFromConfigOptions(
 		{ key: 'topic', values: topic?.split(',') },
 		{ key: 'partition', values: partition?.split(',') },
 	];
+
 	return configOptions.reduce<TagFilterItem[]>(
 		(accumulator, { key, values }) => {
 			if (values && !isEmpty(values.filter((item) => item !== ''))) {
@@ -101,7 +101,7 @@ export function getWidgetQuery({
 	filterItems: TagFilterItem[];
 }): GetWidgetQueryBuilderProps {
 	return {
-		title: 'Consumer Lag',
+		title: '消费者滞后',
 		panelTypes: PANEL_TYPES.TIME_SERIES,
 		fillSpans: false,
 		yAxisUnit: 'none',
@@ -154,6 +154,7 @@ export function getWidgetQuery({
 								type: 'tag',
 							},
 						],
+
 						having: [],
 						legend: '{{group}}-{{topic}}-{{partition}}',
 						limit: null,
@@ -165,6 +166,7 @@ export function getWidgetQuery({
 						timeAggregation: 'max',
 					},
 				],
+
 				queryFormulas: [],
 			},
 			clickhouse_sql: [],
@@ -217,6 +219,7 @@ export function setSelectedTimelineQuery(
 		QueryParams.selectedTimelineQuery,
 		encodeURIComponent(JSON.stringify(selectedTimelineQuery)),
 	);
+
 	const generatedUrl = `${location.pathname}?${urlQuery.toString()}`;
 	history.replace(generatedUrl);
 }
@@ -231,23 +234,23 @@ export enum MessagingQueuesViewTypeOptions {
 
 export const MessagingQueuesViewType = {
 	consumerLag: {
-		label: 'Consumer Lag view',
+		label: '消费者滞后视图',
 		value: MessagingQueuesViewTypeOptions.ConsumerLag,
 	},
 	partitionLatency: {
-		label: 'Partition Latency view',
+		label: '分区延迟视图',
 		value: MessagingQueuesViewTypeOptions.PartitionLatency,
 	},
 	producerLatency: {
-		label: 'Producer Latency view',
+		label: '生产者延迟视图',
 		value: MessagingQueuesViewTypeOptions.ProducerLatency,
 	},
 	dropRate: {
-		label: 'Drop Rate view',
+		label: '掉率视图',
 		value: MessagingQueuesViewTypeOptions.DropRate,
 	},
 	metricPage: {
-		label: 'Metric view',
+		label: '公制视图',
 		value: MessagingQueuesViewTypeOptions.MetricPage,
 	},
 };

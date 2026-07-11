@@ -228,7 +228,7 @@ function Threshold({
 				<div style={{ width: '100%' }}>
 					{selectedGraph === PANEL_TYPES.TIME_SERIES && (
 						<div className="time-series-alerts">
-							<Typography.Text className="label">Label</Typography.Text>
+							<Typography.Text className="label">标签</Typography.Text>
 							{isEditMode ? (
 								<Input
 									defaultValue={label}
@@ -245,7 +245,7 @@ function Threshold({
 						selectedGraph === PANEL_TYPES.TABLE) && (
 						<div className="value-table-alerts">
 							<Typography.Text className="typography">
-								If value {selectedGraph === PANEL_TYPES.TABLE ? 'in' : 'is'}
+								如果值 {selectedGraph === PANEL_TYPES.TABLE ? 'in' : 'is'}
 							</Typography.Text>
 							{isEditMode ? (
 								<div>
@@ -260,7 +260,7 @@ function Threshold({
 												rootClassName="operator-input-root"
 												className="operator-input"
 											/>
-											<Typography.Text className="typography">is</Typography.Text>
+											<Typography.Text className="typography">是</Typography.Text>
 										</Space>
 									)}
 									<Select
@@ -285,7 +285,7 @@ function Threshold({
 												className="typography"
 												style={{ marginRight: '10px' }}
 											>
-												is
+												是
 											</Typography.Text>
 										</Space>
 									)}
@@ -350,8 +350,8 @@ function Threshold({
 				</div>
 				{isInvalidUnitComparison && (
 					<Typography.Text className="invalid-unit">
-						Threshold unit ({unit}) is not valid in comparison with the column unit (
-						{columnUnits?.[tableSelectedOption] || 'none'})
+						阈值单位（{unit}) 与列单位 ({columnUnits?.[tableSelectedOption] || 'none'}
+						)
 					</Typography.Text>
 				)}
 				{isEditMode && (
@@ -361,14 +361,14 @@ function Threshold({
 							icon={<X size={14} />}
 							onClick={discardHandler}
 						>
-							Discard
+							丢弃
 						</Button>
 						<Button
 							className="save-changes"
 							icon={<Check size={14} />}
 							onClick={saveHandler}
 						>
-							Save Changes
+							保存更改
 						</Button>
 					</div>
 				)}

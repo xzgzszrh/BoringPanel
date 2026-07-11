@@ -110,7 +110,7 @@ function InviteUserModal(props: InviteUserModalProps): JSX.Element {
 							});
 						} else if (statusCode === 200) {
 							notifications.success({
-								message: 'Invite sent successfully',
+								message: '邀请发送成功',
 							});
 						}
 					},

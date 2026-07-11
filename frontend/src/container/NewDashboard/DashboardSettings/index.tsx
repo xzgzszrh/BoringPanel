@@ -15,7 +15,7 @@ function DashboardSettingsContent({
 		{
 			label: (
 				<Button type="text" icon={<Table size="14" />} className="overview-btn">
-					Overview
+					概述
 				</Button>
 			),
 			key: 'general',
@@ -24,7 +24,7 @@ function DashboardSettingsContent({
 		{
 			label: (
 				<Button type="text" icon={<Braces size={14} />} className="variables-btn">
-					Variables
+					变量
 				</Button>
 			),
 			key: 'variables',

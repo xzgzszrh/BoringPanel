@@ -46,7 +46,7 @@ interface Props {
 }
 
 EllipsedButton.defaultProps = {
-	buttonText: 'View full log event message',
+	buttonText: '查看完整日志事件消息',
 };
 
 export default EllipsedButton;

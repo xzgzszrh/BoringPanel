@@ -92,7 +92,7 @@ function AddTags({ tags, setTags }: AddTagsProps): JSX.Element {
 					type="text"
 					value={inputValue}
 					rootClassName="tags-input"
-					placeholder="Start typing your tag name"
+					placeholder="开始输入您的标签名称"
 					onChangeHandler={(event): void =>
 						onChangeHandler(event.target.value, setInputValue)
 					}

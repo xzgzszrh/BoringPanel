@@ -116,7 +116,7 @@ function GeneralDashboardSettings(): JSX.Element {
 				>
 					<div>
 						<Typography style={{ marginBottom: '0.5rem' }} className="dashboard-name">
-							Dashboard Name
+							仪表盘名称
 						</Typography>
 						<section className="name-icon-input">
 							<Select
@@ -129,7 +129,7 @@ function GeneralDashboardSettings(): JSX.Element {
 							>
 								{Base64Icons.map((icon) => (
 									<Option value={icon} key={icon}>
-										<img src={icon} alt="dashboard-icon" className="list-item-image" />
+										<img src={icon} alt="仪表盘图标" className="list-item-image" />
 									</Option>
 								))}
 							</Select>
@@ -144,7 +144,7 @@ function GeneralDashboardSettings(): JSX.Element {
 
 					<div>
 						<Typography style={{ marginBottom: '0.5rem' }} className="dashboard-name">
-							Description
+							描述
 						</Typography>
 						<Input.TextArea
 							data-testid="dashboard-desc"
@@ -156,7 +156,7 @@ function GeneralDashboardSettings(): JSX.Element {
 					</div>
 					<div>
 						<Typography style={{ marginBottom: '0.5rem' }} className="dashboard-name">
-							Tags
+							标签
 						</Typography>
 						<AddTags tags={updatedTags} setTags={setUpdatedTags} />
 					</div>
@@ -167,7 +167,7 @@ function GeneralDashboardSettings(): JSX.Element {
 					<div className="unsaved">
 						<div className="unsaved-dot" />
 						<Typography.Text className="unsaved-changes">
-							{numberOfUnsavedChanges} unsaved change
+							{numberOfUnsavedChanges} 未保存的更改
 							{numberOfUnsavedChanges > 1 && 's'}
 						</Typography.Text>
 					</div>
@@ -179,7 +179,7 @@ function GeneralDashboardSettings(): JSX.Element {
 							type="text"
 							className="discard-btn"
 						>
-							Discard
+							丢弃
 						</Button>
 						<Button
 							style={{

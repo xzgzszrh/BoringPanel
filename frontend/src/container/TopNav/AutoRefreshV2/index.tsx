@@ -152,13 +152,13 @@ function AutoRefresh({
 						disabled={isDisabled}
 						className="auto-refresh-checkbox"
 					>
-						Auto Refresh
+						自动刷新
 					</Checkbox>
 					<Typography.Paragraph
 						disabled={isDisabled}
 						className="refresh-interval-text"
 					>
-						Refresh Interval
+						刷新间隔
 					</Typography.Paragraph>
 					{options
 						.filter((e) => e.label !== 'off')
@@ -179,7 +179,7 @@ function AutoRefresh({
 			}
 		>
 			<ButtonContainer
-				title="Set auto refresh"
+				title="设置自动刷新"
 				type={showAutoRefreshBtnPrimary ? 'primary' : 'default'}
 			>
 				<CaretDownFilled />

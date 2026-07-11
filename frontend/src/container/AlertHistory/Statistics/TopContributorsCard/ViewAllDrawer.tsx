@@ -29,7 +29,7 @@ function ViewAllDrawer({
 				overscrollBehavior: 'contain',
 				background: isDarkMode ? Color.BG_INK_400 : Color.BG_VANILLA_100,
 			}}
-			title="Viewing All Contributors"
+			title="查看所有贡献者"
 		>
 			<div className="top-contributors-card--view-all">
 				<div className="top-contributors-card__content">

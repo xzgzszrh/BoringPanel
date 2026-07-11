@@ -12,17 +12,17 @@ type ProcessorType = {
 };
 
 export const processorTypes: Array<ProcessorType> = [
-	{ key: 'grok_parser', value: 'grok_parser', label: 'Grok' },
-	{ key: 'regex_parser', value: 'regex_parser', label: 'Regex' },
-	{ key: 'json_parser', value: 'json_parser', label: 'Json Parser' },
-	{ key: 'trace_parser', value: 'trace_parser', label: 'Trace Parser' },
-	{ key: 'time_parser', value: 'time_parser', label: 'Timestamp Parser' },
-	{ key: 'severity_parser', value: 'severity_parser', label: 'Severity Parser' },
-	{ key: 'add', value: 'add', label: 'Add' },
-	{ key: 'remove', value: 'remove', label: 'Remove' },
+	{ key: 'grok_parser', value: 'grok_parser', label: '格罗克' },
+	{ key: 'regex_parser', value: 'regex_parser', label: '正则表达式' },
+	{ key: 'json_parser', value: 'json_parser', label: 'Json解析器' },
+	{ key: 'trace_parser', value: 'trace_parser', label: '链路解析器' },
+	{ key: 'time_parser', value: 'time_parser', label: '时间戳解析器' },
+	{ key: 'severity_parser', value: 'severity_parser', label: '严重性解析器' },
+	{ key: 'add', value: 'add', label: '添加' },
+	{ key: 'remove', value: 'remove', label: '消除' },
 	// { key: 'retain', value: 'retain', label: 'Retain' }, @Chintan - Commented as per Nitya's suggestion
-	{ key: 'move', value: 'move', label: 'Move' },
-	{ key: 'copy', value: 'copy', label: 'Copy' },
+	{ key: 'move', value: 'move', label: '移动' },
+	{ key: 'copy', value: 'copy', label: '复制' },
 ];
 
 export const DEFAULT_PROCESSOR_TYPE = processorTypes[0].value;
@@ -249,11 +249,11 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 			initialValue: 'strptime',
 			options: [
 				{
-					label: 'Unix Epoch',
+					label: 'Unix时代',
 					value: 'epoch',
 				},
 				{
-					label: 'strptime Format',
+					label: 'strptime 格式',
 					value: 'strptime',
 				},
 			],
@@ -282,31 +282,31 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 			initialValue: 's',
 			options: [
 				{
-					label: 'seconds',
+					label: '秒',
 					value: 's',
 				},
 				{
-					label: 'milliseconds',
+					label: '毫秒',
 					value: 'ms',
 				},
 				{
-					label: 'microseconds',
+					label: '微秒',
 					value: 'us',
 				},
 				{
-					label: 'nanoseconds',
+					label: '纳秒',
 					value: 'ns',
 				},
 				{
-					label: 'seconds.milliseconds (eg: 1136214245.123)',
+					label: '秒.毫秒（例如：1136214245.123）',
 					value: 's.ms',
 				},
 				{
-					label: 'seconds.microseconds (eg: 1136214245.123456)',
+					label: '秒.微秒（例如：1136214245.123456）',
 					value: 's.us',
 				},
 				{
-					label: 'seconds.nanoseconds (eg: 1136214245.123456789)',
+					label: '秒.纳秒（例如：1136214245.123456789）',
 					value: 's.ns',
 				},
 			],
@@ -314,7 +314,7 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 		{
 			id: 4,
 			fieldName: 'Timestamp Format',
-			placeholder: 'strptime directives based format. Eg: %Y-%m-%dT%H:%M:%S.%f%z',
+			placeholder: '基于 strptime 指令的格式。例如：%Y-%m-%dT%H:%M:%S.%f%z',
 			name: 'layout',
 			dependencies: ['layout_type'],
 			shouldRender: (form: FormInstance): boolean => {
@@ -341,7 +341,7 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 		{
 			id: 3,
 			fieldName: 'Values for level TRACE',
-			placeholder: 'Specify comma separated values. Eg: trace, 0',
+			placeholder: '指定逗号分隔值。例如：链路，0',
 			name: ['mapping', 'trace'],
 			rules: [],
 			initialValue: ['trace'],
@@ -350,7 +350,7 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 		{
 			id: 4,
 			fieldName: 'Values for level DEBUG',
-			placeholder: 'Specify comma separated values. Eg: debug, 2xx',
+			placeholder: '指定逗号分隔值。例如：调试，2xx',
 			name: ['mapping', 'debug'],
 			rules: [],
 			initialValue: ['debug'],
@@ -359,7 +359,7 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 		{
 			id: 5,
 			fieldName: 'Values for level INFO',
-			placeholder: 'Specify comma separated values. Eg: info, 3xx',
+			placeholder: '指定逗号分隔值。例如：信息、3xx',
 			name: ['mapping', 'info'],
 			rules: [],
 			initialValue: ['info'],
@@ -368,7 +368,7 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 		{
 			id: 6,
 			fieldName: 'Values for level WARN',
-			placeholder: 'Specify comma separated values. Eg: warning, 4xx',
+			placeholder: '指定逗号分隔值。例如：警告、4xx',
 			name: ['mapping', 'warn'],
 			rules: [],
 			initialValue: ['warn'],
@@ -377,7 +377,7 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 		{
 			id: 7,
 			fieldName: 'Values for level ERROR',
-			placeholder: 'Specify comma separated values. Eg: error, 5xx',
+			placeholder: '指定逗号分隔值。例如：错误，5xx',
 			name: ['mapping', 'error'],
 			rules: [],
 			initialValue: ['error'],
@@ -386,7 +386,7 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 		{
 			id: 8,
 			fieldName: 'Values for level FATAL',
-			placeholder: 'Specify comma separated values. Eg: fatal, panic',
+			placeholder: '指定逗号分隔值。例如：致命、恐慌',
 			name: ['mapping', 'fatal'],
 			rules: [],
 			initialValue: ['fatal'],
@@ -395,8 +395,7 @@ export const processorFields: { [key: string]: Array<ProcessorFormField> } = {
 		{
 			id: 9,
 			fieldName: 'Override Severity Text',
-			placeholder:
-				'Should the parsed severity set both severity and severityText?',
+			placeholder: '解析的严重性是否应该同时设置严重性和严重性文本？',
 			name: ['overwrite_text'],
 			rules: [],
 			initialValue: true,

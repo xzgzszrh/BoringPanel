@@ -425,7 +425,7 @@ export default function CheckboxFilter(props: ICheckboxProps): JSX.Element {
 								handleClearFilterAttribute();
 							}}
 						>
-							Clear All
+							全部清除
 						</Typography.Text>
 					)}
 				</section>
@@ -439,7 +439,7 @@ export default function CheckboxFilter(props: ICheckboxProps): JSX.Element {
 				<>
 					<section className="search">
 						<Input
-							placeholder="Filter values"
+							placeholder="过滤值"
 							onChange={(e): void => setSearchText(e.target.value)}
 							disabled={isFilterDisabled}
 						/>
@@ -485,7 +485,7 @@ export default function CheckboxFilter(props: ICheckboxProps): JSX.Element {
 												: 'Only'}
 										</Button>
 										<Button type="text" className="toggle-btn">
-											Toggle
+											切换
 										</Button>
 									</div>
 								</div>
@@ -493,7 +493,7 @@ export default function CheckboxFilter(props: ICheckboxProps): JSX.Element {
 						</section>
 					) : (
 						<section className="no-data">
-							<Typography.Text>No values found</Typography.Text>{' '}
+							<Typography.Text>未找到任何值</Typography.Text>{' '}
 						</section>
 					)}
 					{visibleItemsCount < attributeValues?.length && (
@@ -502,7 +502,7 @@ export default function CheckboxFilter(props: ICheckboxProps): JSX.Element {
 								className="show-more-text"
 								onClick={(): void => setVisibleItemsCount((prev) => prev + 10)}
 							>
-								Show More...
+								显示更多...
 							</Typography.Text>
 						</section>
 					)}

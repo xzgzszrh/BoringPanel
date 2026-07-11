@@ -26,7 +26,7 @@ function WidgetGraph({
 	if (selectedWidget === undefined) {
 		return (
 			<Card $panelType={selectedGraph} isDarkMode={isDarkMode}>
-				Invalid widget
+				无效的小部件
 			</Card>
 		);
 	}

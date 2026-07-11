@@ -68,10 +68,10 @@ function IntergrationsUninstallBar(
 	return (
 		<div className="uninstall-integration-bar">
 			<div className="unintall-integration-bar-text">
-				<Typography.Text className="heading">Remove Integration</Typography.Text>
+				<Typography.Text className="heading">删除集成</Typography.Text>
 				<Typography.Text className="subtitle">
-					Removing the {integrationTitle} integration would make your workspace stop
-					listening for data from {integrationTitle} instances.
+					删除 {integrationTitle} 集成将使您的工作区停止监听来自 {integrationTitle}{' '}
+					实例。
 				</Typography.Text>
 			</div>
 			<Button
@@ -79,12 +79,12 @@ function IntergrationsUninstallBar(
 				icon={<X size={14} />}
 				onClick={(): void => showModal()}
 			>
-				Remove from SigNoz
+				从 Scry 中删除
 			</Button>
 			<Modal
 				className="remove-integration-modal"
 				open={isModalOpen}
-				title="Remove integration"
+				title="删除集成"
 				onOk={handleOk}
 				onCancel={handleCancel}
 				okText="Remove Integration"
@@ -94,9 +94,8 @@ function IntergrationsUninstallBar(
 				}}
 			>
 				<Typography.Text className="remove-integration-text">
-					Removing this integration makes SigNoz stop listening for data from{' '}
-					{integrationTitle} instances. You would still have to manually remove the
-					configuration in your code to stop sending data.
+					删除此集成会使 Scry 停止侦听来自 {integrationTitle}{' '}
+					实例。您仍然需要手动删除代码中的配置才能停止发送数据。
 				</Typography.Text>
 			</Modal>
 		</div>

@@ -46,7 +46,7 @@ helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm
 
 
 
-Below is an example targeting the SigNoz backend with Azure Monitor receivers configured:
+Below is an example targeting the Scry backend with Azure Monitor receivers configured:
 
 ```yaml
 service:

@@ -125,7 +125,7 @@ function LogLiveTail({ getLogsAggregate }: Props): JSX.Element {
 					payload: false,
 				});
 				notifications.error({
-					message: 'Live tail stopped due to some error.',
+					message: '由于某些错误，活尾停止了。',
 				});
 			};
 		}
@@ -180,7 +180,7 @@ function LogLiveTail({ getLogsAggregate }: Props): JSX.Element {
 			>
 				{TIME_PICKER_OPTIONS.map((optionData) => (
 					<Select.Option key={optionData.label} value={optionData.value}>
-						Last {optionData.label}
+						最后的 {optionData.label}
 					</Select.Option>
 				))}
 			</TimePickerSelect>
@@ -214,25 +214,25 @@ function LogLiveTail({ getLogsAggregate }: Props): JSX.Element {
 					<Button
 						type="primary"
 						onClick={onLiveTailStop}
-						title="Pause live tail"
+						title="暂停直播尾部"
 						style={{ background: green[6] }}
 					>
-						<span>Pause</span>
+						<span>暂停</span>
 						<PauseOutlined />
 					</Button>
 				) : (
 					<Button
 						type="primary"
 						onClick={handleLiveTailStart}
-						title="Start live tail"
+						title="开始直播尾部"
 						disabled={isDisabled}
 					>
-						Go Live <PlayCircleOutlined />
+						上线 <PlayCircleOutlined />
 					</Button>
 				)}
 
 				{liveTail !== 'STOPPED' && (
-					<Button type="dashed" onClick={onLiveTailStop} title="Exit live tail">
+					<Button type="dashed" onClick={onLiveTailStop} title="退出直播尾部">
 						<StopContainer isDarkMode={isDarkMode} />
 					</Button>
 				)}
@@ -240,7 +240,7 @@ function LogLiveTail({ getLogsAggregate }: Props): JSX.Element {
 				<Popover
 					getPopupContainer={popupContainer}
 					placement="bottomRight"
-					title="Select Live Tail Timing"
+					title="选择实时尾部计时"
 					trigger="click"
 					content={OptionsPopOverContent}
 				>

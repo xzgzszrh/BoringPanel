@@ -143,7 +143,7 @@ export function TableViewActions(
 			</CopyClipboardHOC>
 			{!isListViewPanel && (
 				<span className="action-btn">
-					<Tooltip title="Filter for value">
+					<Tooltip title="过滤值">
 						<Button
 							className="filter-btn periscope-btn"
 							icon={
@@ -156,7 +156,7 @@ export function TableViewActions(
 							onClick={onClickHandler(OPERATORS['='], fieldFilterKey, fieldData.value)}
 						/>
 					</Tooltip>
-					<Tooltip title="Filter out value">
+					<Tooltip title="过滤掉值">
 						<Button
 							className="filter-btn periscope-btn"
 							icon={
@@ -188,7 +188,7 @@ export function TableViewActions(
 											onGroupByAttribute?.(fieldFilterKey)
 										}
 									>
-										Group By Attribute
+										按属性分组
 									</Button>
 								</div>
 							}

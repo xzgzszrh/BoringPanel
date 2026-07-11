@@ -19,7 +19,7 @@ function StartTime({
 		<>
 			<Space direction="horizontal" align="center">
 				<CustomSubTitle style={{ margin: 0 }} ellipsis>
-					Event Start Time
+					活动开始时间
 				</CustomSubTitle>
 				<Popover content="Relative to start of the full trace">
 					<InfoCircleOutlined />

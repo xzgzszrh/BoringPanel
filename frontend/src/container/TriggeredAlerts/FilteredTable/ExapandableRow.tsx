@@ -56,9 +56,9 @@ function ExapandableRow({ allAlerts }: ExapandableRowProps): JSX.Element {
 
 						{/* <TableCell>
 						<TableHeaderContainer>
-							<Button type="link">Edit</Button>
-							<Button type="link">Delete</Button>
-							<Button type="link">Pause</Button>
+							<Button type="link">编辑</Button>
+							<Button type="link">删除</Button>
+							<Button type="link">暂停</Button>
 						</TableHeaderContainer>
 					</TableCell> */}
 					</TableRow>

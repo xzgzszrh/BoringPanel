@@ -156,14 +156,12 @@ function AutoRefresh({
 						checked={isAutoRefreshEnabled}
 						disabled={isDisabled}
 					>
-						Auto Refresh
+						自动刷新
 					</Checkbox>
 
 					<Divider />
 
-					<Typography.Paragraph disabled={isDisabled}>
-						Refresh Interval
-					</Typography.Paragraph>
+					<Typography.Paragraph disabled={isDisabled}>刷新间隔</Typography.Paragraph>
 
 					<Radio.Group onChange={onChangeHandler} value={selectedOption}>
 						<Space direction="vertical">
@@ -180,7 +178,7 @@ function AutoRefresh({
 			}
 		>
 			<ButtonContainer
-				title="Set auto refresh"
+				title="设置自动刷新"
 				type={showAutoRefreshBtnPrimary ? 'primary' : 'default'}
 			>
 				<CaretDownFilled />

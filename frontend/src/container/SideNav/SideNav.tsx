@@ -4,19 +4,23 @@ import './SideNav.styles.scss';
 
 import { Color } from '@signozhq/design-tokens';
 import { Button } from 'antd';
+import getLocalStorageApi from 'api/browser/localstorage/get';
+import setLocalStorageApi from 'api/browser/localstorage/set';
 import logEvent from 'api/common/logEvent';
 import cx from 'classnames';
 import { FeatureKeys } from 'constants/features';
+import { LOCALSTORAGE } from 'constants/localStorage';
 import ROUTES from 'constants/routes';
 import { GlobalShortcuts } from 'constants/shortcuts/globalShortcuts';
 import { useKeyboardHotkeys } from 'hooks/hotkeys/useKeyboardHotkeys';
 import useComponentPermission from 'hooks/useComponentPermission';
-import { LICENSE_PLAN_KEY, LICENSE_PLAN_STATUS } from 'hooks/useLicense';
 import history from 'lib/history';
 import {
 	AlertTriangle,
 	CheckSquare,
 	PackagePlus,
+	PanelLeftClose,
+	PanelLeftOpen,
 	UserCircle,
 } from 'lucide-react';
 import { MouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
@@ -24,20 +28,14 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { AppState } from 'store/reducers';
-import { License } from 'types/api/licenses/def';
 import AppReducer from 'types/reducer/app';
-import { USER_ROLES } from 'types/roles';
-import { checkVersionState, isCloudUser, isEECloudUser } from 'utils/app';
+import { checkVersionState, isCloudUser } from 'utils/app';
 
 import { routeConfig } from './config';
 import { getQueryString } from './helper';
 import defaultMenuItems, {
-	helpSupportMenuItem,
 	inviteMemberMenuItem,
-	manageLicenseMenuItem,
 	shortcutMenuItem,
-	slackSupportMenuItem,
-	trySignozCloudMenuItem,
 } from './menuItems';
 import NavItem from './NavItem/NavItem';
 import { SecondaryMenuItemKey, SidebarItem } from './sideNav.types';
@@ -49,14 +47,11 @@ interface UserManagementMenuItems {
 	icon: JSX.Element;
 }
 
-function SideNav({
-	licenseData,
-	isFetching,
-}: {
-	licenseData: any;
-	isFetching: boolean;
-}): JSX.Element {
+function SideNav(): JSX.Element {
 	const [menuItems, setMenuItems] = useState(defaultMenuItems);
+	const [isPinned, setIsPinned] = useState(
+		() => getLocalStorageApi(LOCALSTORAGE.SIDE_NAV_PINNED) === 'true',
+	);
 
 	const { pathname, search } = useLocation();
 	const {
@@ -68,8 +63,6 @@ function SideNav({
 		isCurrentVersionError,
 	} = useSelector<AppState, AppReducer>((state) => state.app);
 
-	const [licenseTag, setLicenseTag] = useState('');
-
 	const userSettingsMenuItem = {
 		key: ROUTES.MY_SETTINGS,
 		label: user?.name || 'User',
@@ -78,11 +71,7 @@ function SideNav({
 
 	const [userManagementMenuItems, setUserManagementMenuItems] = useState<
 		UserManagementMenuItems[]
-	>([manageLicenseMenuItem]);
-
-	const onClickSlackHandler = (): void => {
-		window.open('https://signoz.io/slack', '_blank');
-	};
+	>([]);
 
 	const isLatestVersion = checkVersionState(currentVersion, latestVersion);
 
@@ -94,10 +83,7 @@ function SideNav({
 
 	useEffect(() => {
 		if (inviteMembers) {
-			const updatedUserManagementMenuItems = [
-				inviteMemberMenuItem,
-				manageLicenseMenuItem,
-			];
+			const updatedUserManagementMenuItems = [inviteMemberMenuItem];
 
 			setUserManagementMenuItems(updatedUserManagementMenuItems);
 		}
@@ -123,51 +109,7 @@ function SideNav({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [featureResponse.data]);
 
-	// using a separate useEffect as the license fetching call takes few milliseconds
-	useEffect(() => {
-		if (!isFetching) {
-			let items = [...menuItems];
-
-			const isOnBasicPlan =
-				licenseData?.payload?.licenses?.some(
-					(license: License) =>
-						license.isCurrent && license.planKey === LICENSE_PLAN_KEY.BASIC_PLAN,
-				) || licenseData?.payload?.licenses === null;
-
-			if (
-				role !== USER_ROLES.ADMIN ||
-				isOnBasicPlan ||
-				!(isCloudUserVal || isEECloudUser())
-			) {
-				items = items.filter((item) => item.key !== ROUTES.BILLING);
-			}
-
-			setMenuItems(items);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [licenseData?.payload?.licenses, isFetching, role]);
-
 	const { t } = useTranslation('');
-
-	const licenseStatus: string =
-		licenseData?.payload?.licenses?.find((e: License) => e.isCurrent)?.status ||
-		'';
-
-	const isLicenseActive =
-		licenseStatus?.toLocaleLowerCase() ===
-		LICENSE_PLAN_STATUS.VALID.toLocaleLowerCase();
-
-	const isEnterprise = licenseData?.payload?.licenses?.some(
-		(license: License) =>
-			license.isCurrent && license.planKey === LICENSE_PLAN_KEY.ENTERPRISE_PLAN,
-	);
-
-	const onClickSignozCloud = (): void => {
-		window.open(
-			'https://signoz.io/oss-to-cloud/?utm_source=product_navbar&utm_medium=frontend&utm_campaign=oss_users',
-			'_blank',
-		);
-	};
 
 	const isCtrlMetaKey = (e: MouseEvent): boolean => e.ctrlKey || e.metaKey;
 
@@ -232,12 +174,14 @@ function SideNav({
 		pathname,
 	]);
 
-	useEffect(() => {
-		if (isCloudUser() || isEECloudUser()) {
-			const updatedUserManagementMenuItems = [helpSupportMenuItem];
+	const togglePinned = (): void => {
+		const nextPinned = !isPinned;
+		setIsPinned(nextPinned);
+		setLocalStorageApi(LOCALSTORAGE.SIDE_NAV_PINNED, String(nextPinned));
+	};
 
-			setUserManagementMenuItems(updatedUserManagementMenuItems);
-		} else if (currentVersion && latestVersion) {
+	useEffect(() => {
+		if (currentVersion && latestVersion) {
 			const versionMenuItem = {
 				key: SecondaryMenuItemKey.Version,
 				label: !isCurrentVersionError ? currentVersion : t('n_a'),
@@ -249,11 +193,7 @@ function SideNav({
 				onClick: onClickVersionHandler,
 			};
 
-			const updatedUserManagementMenuItems = [
-				versionMenuItem,
-				slackSupportMenuItem,
-				manageLicenseMenuItem,
-			];
+			const updatedUserManagementMenuItems = [versionMenuItem];
 
 			setUserManagementMenuItems(updatedUserManagementMenuItems);
 		}
@@ -264,33 +204,15 @@ function SideNav({
 		key: string,
 		event: MouseEvent,
 	): void => {
-		switch (key) {
-			case SecondaryMenuItemKey.Slack:
-				onClickSlackHandler();
-				break;
-			case SecondaryMenuItemKey.Version:
-				onClickVersionHandler(event);
-				break;
-			default:
-				onClickHandler(key, event);
-				break;
+		if (key === SecondaryMenuItemKey.Version) {
+			onClickVersionHandler(event);
+		} else {
+			onClickHandler(key, event);
 		}
 	};
 
 	useEffect(() => {
-		if (!isFetching) {
-			if (isCloudUserVal) {
-				setLicenseTag('Cloud');
-			} else if (isEnterprise) {
-				setLicenseTag('Enterprise');
-			} else {
-				setLicenseTag('Free');
-			}
-		}
-	}, [isCloudUserVal, isEnterprise, isFetching]);
-
-	useEffect(() => {
-		if (!(isCloudUserVal || isEECloudUser())) {
+		if (!isCloudUserVal) {
 			let updatedMenuItems = [...menuItems];
 			updatedMenuItems = updatedMenuItems.filter(
 				(item) => item.key !== ROUTES.INTEGRATIONS,
@@ -364,27 +286,46 @@ function SideNav({
 	}, [deregisterShortcut, onClickHandler, registerShortcut]);
 
 	return (
-		<div className={cx('sidenav-container')}>
-			<div className={cx('sideNav')}>
+		<div className={cx('sidenav-container', { pinned: isPinned })}>
+			<div className={cx('sideNav', { pinned: isPinned })}>
 				<div className="brand">
-					<div className="brand-company-meta">
-						<div
-							className="brand-logo"
-							// eslint-disable-next-line react/no-unknown-property
-							onClick={(event: MouseEvent): void => {
-								// Current home page
-								onClickHandler(ROUTES.APPLICATION, event);
-							}}
+					{isPinned ? (
+						<>
+							<div className="brand-company-meta">
+								<div
+									className="brand-logo"
+									// eslint-disable-next-line react/no-unknown-property
+									onClick={(event: MouseEvent): void => {
+										onClickHandler(ROUTES.APPLICATION, event);
+									}}
+								>
+									<img src="/Logos/scry-brand-logo.svg" alt="Scry" />
+
+									<span className="brand-logo-name nav-item-label"> Scry </span>
+								</div>
+							</div>
+							<button
+								type="button"
+								className="dockBtn"
+								onClick={togglePinned}
+								title="收起侧边栏"
+								aria-label="收起侧边栏"
+							>
+								<PanelLeftClose size={16} />
+							</button>
+						</>
+					) : (
+						<button
+							type="button"
+							className="brand-toggle"
+							onClick={togglePinned}
+							title="展开并固定侧边栏"
+							aria-label="展开并固定侧边栏"
 						>
-							<img src="/Logos/signoz-brand-logo.svg" alt="SigNoz" />
-
-							<span className="brand-logo-name nav-item-label"> SigNoz </span>
-						</div>
-
-						{licenseTag && (
-							<div className="license tag nav-item-label">{licenseTag}</div>
-						)}
-					</div>
+							<img src="/Logos/scry-brand-logo.svg" alt="" aria-hidden="true" />
+							<PanelLeftOpen className="brand-toggle-icon" size={18} />
+						</button>
+					)}
 				</div>
 
 				{isCloudUserVal && (
@@ -397,7 +338,7 @@ function SideNav({
 						>
 							<PackagePlus size={16} />
 
-							<div className="license tag nav-item-label"> New source </div>
+							<div className="license tag nav-item-label"> 新增数据源 </div>
 						</Button>
 					</div>
 				)}
@@ -423,15 +364,6 @@ function SideNav({
 							isActive={false}
 							onClick={onClickShortcuts}
 						/>
-
-						{licenseData && !isLicenseActive && (
-							<NavItem
-								key="trySignozCloud"
-								item={trySignozCloudMenuItem}
-								isActive={false}
-								onClick={onClickSignozCloud}
-							/>
-						)}
 
 						{userManagementMenuItems.map(
 							(item, index): JSX.Element => (

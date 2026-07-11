@@ -15,7 +15,7 @@ function Timeline({
 }): JSX.Element {
 	return (
 		<div className="timeline">
-			<div className="timeline__title">Timeline</div>
+			<div className="timeline__title">时间轴</div>
 			<div className="timeline__tabs-and-filters">
 				<TabsAndFilters />
 			</div>

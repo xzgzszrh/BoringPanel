@@ -25,7 +25,7 @@ export default function QueryStatus(
 			return (
 				<img
 					src="/Icons/solid-x-circle.svg"
-					alt="header"
+					alt="标头"
 					className="error"
 					style={{ height: '14px', width: '14px' }}
 				/>

@@ -76,12 +76,11 @@ function AllTags({
 		return (
 			<ErrorContainer>
 				<Paragraph style={{ color: '#E89A3C' }}>
-					Unrecognized query format. Please reset your query by clicking `X` in the
-					search bar above.
+					无法识别的查询格式。请点击上面搜索栏中的“X”来重置您的查询。
 				</Paragraph>
 
 				<Paragraph style={{ color: '#E89A3C' }}>
-					Please click on the search bar to get a drop down to select relevant tags
+					请单击搜索栏以获取下拉菜单以选择相关标签
 				</Paragraph>
 			</ErrorContainer>
 		);
@@ -89,7 +88,7 @@ function AllTags({
 
 	return (
 		<Container>
-			<Typography>Tags</Typography>
+			<Typography>标签</Typography>
 
 			<CurrentTagsContainer>
 				{localSelectedTags.map((tags, index) => (
@@ -106,23 +105,21 @@ function AllTags({
 
 			<Space wrap direction="horizontal">
 				<Button type="primary" onClick={onTagAddHandler} icon={<PlusOutlined />}>
-					Add Tags Filter
+					添加标签过滤器
 				</Button>
 
-				<Text ellipsis>
-					Results will include spans with ALL the specified tags ( Rows are `ANDed` )
-				</Text>
+				<Text ellipsis>结果将包括具有所有指定标签的范围（行是“ANDed”）</Text>
 			</Space>
 
 			<ButtonContainer>
 				<Space align="start">
-					<Button onClick={onResetHandler}>Reset</Button>
+					<Button onClick={onResetHandler}>重置</Button>
 					<Button
 						type="primary"
 						onClick={onRunQueryHandler}
 						icon={<CaretRightFilled />}
 					>
-						Run Query
+						运行查询
 					</Button>
 				</Space>
 			</ButtonContainer>

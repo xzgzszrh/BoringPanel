@@ -106,16 +106,16 @@ export function AboutSigNozQuestions({
 	return (
 		<div className="questions-container">
 			<Typography.Title level={3} className="title">
-				Tell Us About Your Interest in SigNoz
+				告诉我们您对 Scry 的兴趣
 			</Typography.Title>
 			<Typography.Paragraph className="sub-title">
-				We&apos;d love to know a little bit about you and your interest in SigNoz
+				我们很想了解一些关于您以及您对 Scry 的兴趣
 			</Typography.Paragraph>
 
 			<div className="questions-form-container">
 				<div className="questions-form">
 					<div className="form-group">
-						<div className="question">Where did you hear about SigNoz?</div>
+						<div className="question">您从哪里听说 Scry 的？</div>
 						<div className="two-column-grid">
 							{Object.keys(hearAboutSignozOptions).map((option: string) => (
 								<Button
@@ -137,7 +137,7 @@ export function AboutSigNozQuestions({
 								<Input
 									type="text"
 									className="onboarding-questionaire-other-input"
-									placeholder="How you got to know about us"
+									placeholder="您是如何知道我们的"
 									value={otherAboutSignoz}
 									autoFocus
 									addonAfter={
@@ -157,14 +157,14 @@ export function AboutSigNozQuestions({
 									}`}
 									onClick={(): void => setHearAboutSignoz('Others')}
 								>
-									Others
+									其他的
 								</Button>
 							)}
 						</div>
 					</div>
 
 					<div className="form-group">
-						<div className="question">What got you interested in SigNoz?</div>
+						<div className="question">是什么让您对 Scry 感兴趣？</div>
 						<div className="two-column-grid">
 							{Object.keys(interestedInOptions).map((option: string) => (
 								<Button
@@ -186,7 +186,7 @@ export function AboutSigNozQuestions({
 								<Input
 									type="text"
 									className="onboarding-questionaire-other-input"
-									placeholder="Please specify your interest"
+									placeholder="请注明您的兴趣"
 									value={otherInterestInSignoz}
 									autoFocus
 									addonAfter={
@@ -206,7 +206,7 @@ export function AboutSigNozQuestions({
 									}`}
 									onClick={(): void => setInterestInSignoz('Others')}
 								>
-									Others
+									其他的
 								</Button>
 							)}
 						</div>
@@ -216,7 +216,7 @@ export function AboutSigNozQuestions({
 				<div className="next-prev-container">
 					<Button type="default" className="next-button" onClick={handleOnBack}>
 						<ArrowLeft size={14} />
-						Back
+						返回
 					</Button>
 
 					<Button
@@ -225,7 +225,7 @@ export function AboutSigNozQuestions({
 						onClick={handleOnNext}
 						disabled={isNextDisabled}
 					>
-						Next
+						下一步
 						<ArrowRight size={14} />
 					</Button>
 				</div>

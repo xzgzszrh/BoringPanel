@@ -209,7 +209,7 @@ function TableView({
 			},
 		},
 		{
-			title: 'Field',
+			title: '场地',
 			dataIndex: 'field',
 			key: 'field',
 			width: 50,
@@ -227,7 +227,7 @@ function TableView({
 							<Typography.Text>{renderedField}</Typography.Text>
 
 							{traceId && (
-								<Tooltip title="Inspect in Trace">
+								<Tooltip title="链路检查">
 									<Button
 										className="periscope-btn"
 										onClick={(
@@ -265,7 +265,7 @@ function TableView({
 			},
 		},
 		{
-			title: 'Value',
+			title: '价值',
 			key: 'value',
 			width: 70,
 			ellipsis: false,

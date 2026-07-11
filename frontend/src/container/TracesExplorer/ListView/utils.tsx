@@ -55,7 +55,7 @@ export const getListColumns = (
 		{
 			dataIndex: 'date',
 			key: 'date',
-			title: 'Timestamp',
+			title: '时间戳',
 			width: 145,
 			render: (value, item): JSX.Element => {
 				const date =
@@ -99,7 +99,7 @@ export const getListColumns = (
 				if (key === 'durationNano') {
 					return (
 						<BlockLink to={getTraceLink(item)} openInNewTab={false}>
-							<Typography data-testid={key}>{getMs(value)}ms</Typography>
+							<Typography data-testid={key}>{getMs(value)}多发性硬化症</Typography>
 						</BlockLink>
 					);
 				}

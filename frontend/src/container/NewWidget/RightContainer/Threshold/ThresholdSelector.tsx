@@ -84,7 +84,7 @@ function ThresholdSelector({
 				<div className="threshold-select" onClick={addThresholdHandler}>
 					<div className="left-section">
 						<Antenna size={14} className="icon" />
-						<Typography.Text className="text">Thresholds</Typography.Text>
+						<Typography.Text className="text">阈值</Typography.Text>
 					</div>
 					<Plus size={14} onClick={addThresholdHandler} className="icon" />
 				</div>

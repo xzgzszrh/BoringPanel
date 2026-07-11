@@ -16,10 +16,10 @@ export function SearchFieldsActionBar({
 				onClick={clearFilters}
 				style={{ marginRight: '1rem' }}
 			>
-				Clear Filter
+				清除过滤器
 			</Button>
 			<Button type="primary" onClick={applyUpdate}>
-				Apply
+				应用
 			</Button>
 		</Row>
 	);

@@ -59,9 +59,7 @@ const getHistogramSeries = ({
 	isMergedSeries,
 	isDarkMode,
 }: GetHistogramSeriesProps): uPlot.Options['series'] => {
-	const configurations: uPlot.Series[] = [
-		{ label: 'Timestamp', stroke: 'purple' },
-	];
+	const configurations: uPlot.Series[] = [{ label: '时间戳', stroke: 'purple' }];
 	const seriesList = apiResponse?.data.result || [];
 
 	const newGraphVisibilityStates = graphsVisibilityStates?.slice(1);

@@ -51,16 +51,16 @@ export type TimeUnit = 'm' | 'h' | 'd' | 'w';
 export type CustomTimeType = `${string}${TimeUnit}`;
 
 export const Options: Option[] = [
-	{ value: '5m', label: 'Last 5 minutes' },
-	{ value: '15m', label: 'Last 15 minutes' },
-	{ value: '30m', label: 'Last 30 minutes' },
-	{ value: '1h', label: 'Last 1 hour' },
-	{ value: '6h', label: 'Last 6 hours' },
-	{ value: '1d', label: 'Last 1 day' },
-	{ value: '3d', label: 'Last 3 days' },
-	{ value: '1w', label: 'Last 1 week' },
-	{ value: '1month', label: 'Last 1 month' },
-	{ value: 'custom', label: 'Custom' },
+	{ value: '5m', label: '最后 5 分钟' },
+	{ value: '15m', label: '最后 15 分钟' },
+	{ value: '30m', label: '最后 30 分钟' },
+	{ value: '1h', label: '最后 1 小时' },
+	{ value: '6h', label: '最后 6 小时' },
+	{ value: '1d', label: '最后 1 天' },
+	{ value: '3d', label: '过去 3 天' },
+	{ value: '1w', label: '过去 1 周' },
+	{ value: '1month', label: '过去 1 个月' },
+	{ value: 'custom', label: '自定义' },
 ];
 
 export interface Option {
@@ -90,34 +90,34 @@ export const OLD_RELATIVE_TIME_VALUES = [
 ];
 
 export const RelativeDurationOptions: Option[] = [
-	{ value: '5m', label: 'Last 5 minutes' },
-	{ value: '15m', label: 'Last 15 minutes' },
-	{ value: '30m', label: 'Last 30 minutes' },
-	{ value: '1h', label: 'Last 1 hour' },
-	{ value: '6h', label: 'Last 6 hour' },
-	{ value: '1d', label: 'Last 1 day' },
-	{ value: '3d', label: 'Last 3 days' },
-	{ value: '1w', label: 'Last 1 week' },
-	{ value: '1month', label: 'Last 1 month' },
+	{ value: '5m', label: '最后 5 分钟' },
+	{ value: '15m', label: '最后 15 分钟' },
+	{ value: '30m', label: '最后 30 分钟' },
+	{ value: '1h', label: '最后 1 小时' },
+	{ value: '6h', label: '最后 6 小时' },
+	{ value: '1d', label: '最后 1 天' },
+	{ value: '3d', label: '过去 3 天' },
+	{ value: '1w', label: '过去 1 周' },
+	{ value: '1month', label: '过去 1 个月' },
 ];
 
 export const RelativeDurationSuggestionOptions: Option[] = [
-	{ value: '3h', label: 'Last 3 hours' },
-	{ value: '4d', label: 'Last 4 days' },
-	{ value: '6w', label: 'Last 6 weeks' },
-	{ value: '12h', label: 'Last 12 hours' },
-	{ value: '10d', label: 'Last 10 days' },
-	{ value: '2w', label: 'Last 2 weeks' },
-	{ value: '2months', label: 'Last 2 months' },
-	{ value: '1d', label: 'today' },
+	{ value: '3h', label: '最后 3 小时' },
+	{ value: '4d', label: '过去 4 天' },
+	{ value: '6w', label: '过去 6 周' },
+	{ value: '12h', label: '过去 12 小时' },
+	{ value: '10d', label: '过去 10 天' },
+	{ value: '2w', label: '过去 2 周' },
+	{ value: '2months', label: '过去 2 个月' },
+	{ value: '1d', label: '今天' },
 ];
 export const FixedDurationSuggestionOptions: Option[] = [
-	{ value: '45m', label: 'Last 45 mins' },
-	{ value: '12h', label: 'Last 12 hours' },
-	{ value: '10d', label: 'Last 10 days' },
-	{ value: '2w', label: 'Last 2 weeks' },
-	{ value: '2months', label: 'Last 2 months' },
-	{ value: '1d', label: 'today' },
+	{ value: '45m', label: '最后 45 分钟' },
+	{ value: '12h', label: '过去 12 小时' },
+	{ value: '10d', label: '过去 10 天' },
+	{ value: '2w', label: '过去 2 周' },
+	{ value: '2months', label: '过去 2 个月' },
+	{ value: '1d', label: '今天' },
 ];
 
 export const convertOldTimeToNewValidCustomTimeFormat = (
@@ -172,7 +172,7 @@ export const getOptions = (routes: string): Option[] => {
 	return Options;
 };
 
-export const routesToHideBreadCrumbs = [ROUTES.SUPPORT, ROUTES.ALL_DASHBOARD];
+export const routesToHideBreadCrumbs = [ROUTES.ALL_DASHBOARD];
 
 export const routesToSkip = [
 	ROUTES.SETTINGS,
@@ -189,17 +189,13 @@ export const routesToSkip = [
 	ROUTES.VERSION,
 	ROUTES.ALL_DASHBOARD,
 	ROUTES.ORG_SETTINGS,
+	ROUTES.DEBUG_MODE,
 	ROUTES.INGESTION_SETTINGS,
 	ROUTES.API_KEYS,
 	ROUTES.ERROR_DETAIL,
 	ROUTES.LOGS_PIPELINES,
-	ROUTES.BILLING,
-	ROUTES.SUPPORT,
-	ROUTES.WORKSPACE_LOCKED,
-	ROUTES.WORKSPACE_SUSPENDED,
 	ROUTES.LOGS,
 	ROUTES.MY_SETTINGS,
-	ROUTES.LIST_LICENSES,
 	ROUTES.LOGS_SAVE_VIEWS,
 	ROUTES.LOGS_PIPELINES,
 	ROUTES.TRACES_EXPLORER,

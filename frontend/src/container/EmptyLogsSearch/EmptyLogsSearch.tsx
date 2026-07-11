@@ -34,12 +34,12 @@ export default function EmptyLogsSearch({
 			<div className="empty-logs-search-container-content">
 				<img
 					src="/Icons/emptyState.svg"
-					alt="thinking-emoji"
+					alt="思考表情符号"
 					className="empty-state-svg"
 				/>
 				<Typography.Text>
-					<span className="sub-text">This query had no results. </span>
-					Edit your query and try again!
+					<span className="sub-text">该查询没有结果。 </span>
+					编辑您的查询并重试！
 				</Typography.Text>
 			</div>
 		</div>

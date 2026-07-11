@@ -49,7 +49,7 @@ export function WidgetRowHeader(props: WidgetRowHeaderProps): JSX.Element {
 								setIsRowSettingsOpen(false);
 							}}
 						>
-							Rename
+							重命名
 						</Button>
 					</section>
 					{!rowWidgetProperties.collapsed && (
@@ -65,7 +65,7 @@ export function WidgetRowHeader(props: WidgetRowHeaderProps): JSX.Element {
 									setIsRowSettingsOpen(false);
 								}}
 							>
-								Remove Section
+								删除部分
 							</Button>
 						</section>
 					)}

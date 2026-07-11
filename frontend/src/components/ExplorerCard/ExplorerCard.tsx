@@ -53,7 +53,7 @@ function ExplorerCard({
 	const onCopyUrlHandler = (): void => {
 		setCopyUrl(window.location.href);
 		notifications.success({
-			message: 'Copied to clipboard',
+			message: '已复制到剪贴板',
 		});
 	};
 
@@ -126,7 +126,7 @@ function ExplorerCard({
 			{
 				onSuccess: () => {
 					notifications.success({
-						message: 'View Updated Successfully',
+						message: '查看更新成功',
 					});
 					refetchAllView();
 				},
@@ -141,7 +141,7 @@ function ExplorerCard({
 		items: [
 			{
 				key: 'delete',
-				label: <Typography.Text strong>Delete</Typography.Text>,
+				label: <Typography.Text strong>删除</Typography.Text>,
 				onClick: onDeleteHandler,
 				icon: <DeleteOutlined />,
 			},
@@ -160,7 +160,7 @@ function ExplorerCard({
 					<Row align="middle">
 						<Col span={6}>
 							<Space>
-								<Typography>Query Builder</Typography>
+								<Typography>查询构建器</Typography>
 								<TextToolTip
 									url={ExploreHeaderToolTip.url}
 									text={ExploreHeaderToolTip.text}
@@ -176,7 +176,7 @@ function ExplorerCard({
 											getPopupContainer={popupContainer}
 											loading={isLoading || isRefetching}
 											showSearch
-											placeholder="Select a view"
+											placeholder="选择一个视图"
 											dropdownStyle={DropDownOverlay}
 											dropdownMatchSelectWidth={false}
 											optionLabelProp="value"
@@ -204,7 +204,7 @@ function ExplorerCard({
 										icon={<SaveOutlined />}
 										onClick={onUpdateQueryHandler}
 									>
-										Save changes
+										保存更改
 									</Button>
 								)}
 								<Popover

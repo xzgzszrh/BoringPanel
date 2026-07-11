@@ -115,7 +115,7 @@ function LogDetail({
 	const handleJSONCopy = (): void => {
 		copyToClipboard(LogJsonData);
 		notifications.success({
-			message: 'Copied to clipboard',
+			message: '已复制到剪贴板',
 		});
 	};
 
@@ -133,7 +133,7 @@ function LogDetail({
 			title={
 				<>
 					<Divider type="vertical" className={cx('log-type-indicator', LogType)} />
-					<Typography.Text className="title">Log details</Typography.Text>
+					<Typography.Text className="title">日志详情</Typography.Text>
 				</>
 			}
 			placement="right"
@@ -172,7 +172,7 @@ function LogDetail({
 					>
 						<div className="view-title">
 							<Table size={14} />
-							Overview
+							概述
 						</div>
 					</Radio.Button>
 					<Radio.Button
@@ -192,7 +192,7 @@ function LogDetail({
 					>
 						<div className="view-title">
 							<TextSelect size={14} />
-							Context
+							语境
 						</div>
 					</Radio.Button>
 					<Radio.Button
@@ -203,7 +203,7 @@ function LogDetail({
 					>
 						<div className="view-title">
 							<BarChart2 size={14} />
-							Metrics
+							指标
 						</div>
 					</Radio.Button>
 				</Radio.Group>

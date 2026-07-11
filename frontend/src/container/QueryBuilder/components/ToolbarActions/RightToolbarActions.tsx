@@ -49,7 +49,7 @@ export default function RightToolbarActions({
 							}
 						}}
 					>
-						Cancel Run
+						取消运行
 					</Button>
 				</div>
 			) : (
@@ -60,7 +60,7 @@ export default function RightToolbarActions({
 					onClick={onStageRunQuery}
 					icon={<Play size={14} />}
 				>
-					Stage & Run Query
+					阶段和运行查询
 				</Button>
 			)}
 		</div>

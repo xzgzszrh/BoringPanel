@@ -25,8 +25,6 @@ const styleLoader = 'style-loader';
 const plugins = [
 	new HtmlWebpackPlugin({
 		template: 'src/index.html.ejs',
-		INTERCOM_APP_ID: process.env.INTERCOM_APP_ID,
-		SEGMENT_ID: process.env.SEGMENT_ID,
 		POSTHOG_KEY: process.env.POSTHOG_KEY,
 		SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
 		SENTRY_ORG: process.env.SENTRY_ORG,
@@ -48,8 +46,6 @@ const plugins = [
 		'process.env': JSON.stringify({
 			FRONTEND_API_ENDPOINT: process.env.FRONTEND_API_ENDPOINT,
 			WEBSOCKET_API_ENDPOINT: process.env.WEBSOCKET_API_ENDPOINT,
-			INTERCOM_APP_ID: process.env.INTERCOM_APP_ID,
-			SEGMENT_ID: process.env.SEGMENT_ID,
 			POSTHOG_KEY: process.env.POSTHOG_KEY,
 			SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
 			SENTRY_ORG: process.env.SENTRY_ORG,

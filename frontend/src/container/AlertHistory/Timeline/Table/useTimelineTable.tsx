@@ -85,7 +85,7 @@ export const timelineTableColumns = ({
 	) => string;
 }): ColumnsType<AlertRuleTimelineTableResponse> => [
 	{
-		title: 'STATE',
+		title: '状态',
 		dataIndex: 'state',
 		sorter: true,
 		width: 140,
@@ -107,7 +107,7 @@ export const timelineTableColumns = ({
 		),
 	},
 	{
-		title: 'CREATED AT',
+		title: '创建于',
 		dataIndex: 'unixMilli',
 		width: 200,
 		render: (value): JSX.Element => (
@@ -117,7 +117,7 @@ export const timelineTableColumns = ({
 		),
 	},
 	{
-		title: 'ACTIONS',
+		title: '行动',
 		width: 140,
 		align: 'right',
 		render: (record): JSX.Element => (

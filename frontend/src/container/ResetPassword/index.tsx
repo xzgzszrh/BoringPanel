@@ -126,14 +126,14 @@ function ResetPassword({ version }: ResetPasswordProps): JSX.Element {
 		<WelcomeLeftContainer version={version}>
 			<FormWrapper>
 				<FormContainer form={form} onFinish={handleSubmit}>
-					<Title level={4}>Reset Your Password</Title>
+					<Title level={4}>重置您的密码</Title>
 
 					<div>
-						<Label htmlFor="password">Password</Label>
+						<Label htmlFor="password">密码</Label>
 						<Form.Item
 							name="password"
 							validateTrigger="onBlur"
-							rules={[{ required: true, message: 'Please enter  password!' }]}
+							rules={[{ required: true, message: '请输入密码！' }]}
 						>
 							<Input.Password
 								tabIndex={0}
@@ -144,12 +144,12 @@ function ResetPassword({ version }: ResetPasswordProps): JSX.Element {
 						</Form.Item>
 					</div>
 					<div>
-						<Label htmlFor="confirmPassword">Confirm Password</Label>
+						<Label htmlFor="confirmPassword">确认密码</Label>
 						<Form.Item
 							name="confirmPassword"
 							// validateTrigger="onChange"
 							validateTrigger="onBlur"
-							rules={[{ required: true, message: 'Please enter confirm password!' }]}
+							rules={[{ required: true, message: '请输入确认密码！' }]}
 						>
 							<Input.Password
 								onChange={handleValuesChange}
@@ -166,8 +166,7 @@ function ResetPassword({ version }: ResetPasswordProps): JSX.Element {
 									marginTop: '0.50rem',
 								}}
 							>
-								The passwords entered do not match. Please double-check and re-enter
-								your passwords.
+								输入的密码不匹配。请仔细检查并重新输入您的密码。
 							</Typography.Paragraph>
 						)}
 					</div>
@@ -180,7 +179,7 @@ function ResetPassword({ version }: ResetPasswordProps): JSX.Element {
 							loading={loading}
 							disabled={!isValidPassword || loading}
 						>
-							Get Started
+							开始使用
 						</Button>
 					</ButtonContainer>
 				</FormContainer>

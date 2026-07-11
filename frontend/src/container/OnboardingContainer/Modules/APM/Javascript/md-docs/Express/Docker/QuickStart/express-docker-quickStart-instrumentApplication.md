@@ -58,11 +58,11 @@ process.on('SIGTERM', () => {
 
 ### Step 3: Dockerize your application
 
-Set the SigNoz ingestion key Environment variable and update your run command to include the `-r` flag and `./tracing.js` file in Dockerfile as:
+Set the Scry ingestion key Environment variable and update your run command to include the `-r` flag and `./tracing.js` file in Dockerfile as:
 
 ```bash
 ...
-# Use an environment variable for the Signoz Ingestion Key
+# Use an environment variable for the Scry Ingestion Key
 ENV OTEL_EXPORTER_OTLP_HEADERS="signoz-ingestion-key={{SIGNOZ_INGESTION_KEY}}"
 
 # Run the app with the required OpenTelemetry configuration. app.js is your application main file.

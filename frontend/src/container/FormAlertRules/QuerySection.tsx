@@ -74,7 +74,7 @@ function QuerySection({
 	const tabs = [
 		{
 			label: (
-				<Tooltip title="Query Builder">
+				<Tooltip title="查询构建器">
 					<Button className="nav-btns">
 						<Atom size={14} />
 					</Button>
@@ -98,7 +98,7 @@ function QuerySection({
 		() => [
 			{
 				label: (
-					<Tooltip title="Query Builder">
+					<Tooltip title="查询构建器">
 						<Button className="nav-btns" data-testid="query-builder-tab">
 							<Atom size={14} />
 						</Button>
@@ -172,7 +172,7 @@ function QuerySection({
 										className="stage-run-query"
 										icon={<Play size={14} />}
 									>
-										Stage & Run Query
+										阶段和运行查询
 									</Button>
 								</span>
 							}
@@ -198,7 +198,7 @@ function QuerySection({
 										className="stage-run-query"
 										icon={<Play size={14} />}
 									>
-										Stage & Run Query
+										阶段和运行查询
 									</Button>
 								</span>
 							}

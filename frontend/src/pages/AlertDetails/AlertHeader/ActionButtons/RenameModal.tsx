@@ -52,7 +52,7 @@ function RenameModal({
 	return (
 		<Modal
 			open={isOpen}
-			title="Rename Alert"
+			title="重命名告警"
 			onOk={onNameChangeHandler}
 			onCancel={handleClose}
 			rootClassName="rename-alert"
@@ -65,7 +65,7 @@ function RenameModal({
 						onClick={onNameChangeHandler}
 						disabled={isLoading}
 					>
-						Rename Alert
+						重命名告警
 					</Button>
 					<Button
 						type="text"
@@ -73,13 +73,13 @@ function RenameModal({
 						className="cancel-btn"
 						onClick={handleClose}
 					>
-						Cancel
+						取消
 					</Button>
 				</div>
 			}
 		>
 			<div className="alert-content">
-				<Typography.Text className="name-text">Enter a new name</Typography.Text>
+				<Typography.Text className="name-text">输入新名称</Typography.Text>
 				<Input
 					ref={inputRef}
 					data-testid="alert-name"

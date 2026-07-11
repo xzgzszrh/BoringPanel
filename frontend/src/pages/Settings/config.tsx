@@ -2,13 +2,26 @@ import { RouteTabProps } from 'components/RouteTab/types';
 import ROUTES from 'constants/routes';
 import AlertChannels from 'container/AllAlertChannels';
 import APIKeys from 'container/APIKeys/APIKeys';
+import DebugModeSettings from 'container/DebugModeSettings';
 import GeneralSettings from 'container/GeneralSettings';
-import GeneralSettingsCloud from 'container/GeneralSettingsCloud';
 import IngestionSettings from 'container/IngestionSettings/IngestionSettings';
 import MultiIngestionSettings from 'container/IngestionSettings/MultiIngestionSettings';
 import OrganizationSettings from 'container/OrganizationSettings';
 import { TFunction } from 'i18next';
-import { Backpack, BellDot, Building, Cpu, KeySquare } from 'lucide-react';
+import { Backpack, BellDot, Bug, Building, Cpu, KeySquare } from 'lucide-react';
+
+export const debugModeSettings = (): RouteTabProps['routes'] => [
+	{
+		Component: DebugModeSettings,
+		name: (
+			<div className="periscope-tab">
+				<Bug size={16} /> 调试模式
+			</div>
+		),
+		route: ROUTES.DEBUG_MODE,
+		key: ROUTES.DEBUG_MODE,
+	},
+];
 
 export const organizationSettings = (t: TFunction): RouteTabProps['routes'] => [
 	{
@@ -67,19 +80,6 @@ export const multiIngestionSettings = (
 export const generalSettings = (t: TFunction): RouteTabProps['routes'] => [
 	{
 		Component: GeneralSettings,
-		name: (
-			<div className="periscope-tab">
-				<Backpack size={16} /> {t('routes:general').toString()}
-			</div>
-		),
-		route: ROUTES.SETTINGS,
-		key: ROUTES.SETTINGS,
-	},
-];
-
-export const generalSettingsCloud = (t: TFunction): RouteTabProps['routes'] => [
-	{
-		Component: GeneralSettingsCloud,
 		name: (
 			<div className="periscope-tab">
 				<Backpack size={16} /> {t('routes:general').toString()}

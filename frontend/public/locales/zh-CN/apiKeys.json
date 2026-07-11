@@ -1,0 +1,3 @@
+{
+  "delete_confirm_message": "您确定要删除 {{keyName}} 代币吗？删除令牌是不可逆的且无法撤消。"
+}

@@ -1,6 +1,6 @@
 ## Payload Structure
 
-To send logs to SigNoz over HTTP, we have a payload structure which is an array of JSON logs which adheres to the [OTEL Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/).
+To send logs to Scry over HTTP, we have a payload structure which is an array of JSON logs which adheres to the [OTEL Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/).
 
 &nbsp;
 

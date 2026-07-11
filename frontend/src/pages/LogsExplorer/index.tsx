@@ -91,19 +91,19 @@ function LogsExplorer(): JSX.Element {
 		() => ({
 			search: {
 				name: 'search',
-				label: 'Search',
+				label: '搜索',
 				disabled: isMultipleQueries || isGroupByPresent,
 				show: true,
 			},
 			queryBuilder: {
 				name: 'query-builder',
-				label: 'Query Builder',
+				label: '查询构建器',
 				disabled: false,
 				show: true,
 			},
 			clickhouse: {
 				name: 'clickhouse',
-				label: 'Clickhouse',
+				label: '点击屋',
 				disabled: false,
 				show: false,
 			},

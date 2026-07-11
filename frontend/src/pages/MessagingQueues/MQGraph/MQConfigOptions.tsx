@@ -124,10 +124,10 @@ function MessagingQueuesConfigOptions(): JSX.Element {
 					notFoundContent={
 						isFetchingConsumerGrp ? (
 							<span>
-								<Spin size="small" /> Loading...
+								<Spin size="small" /> 加载中...
 							</span>
 						) : (
-							<span>No Consumer Groups found</span>
+							<span>未找到消费者组</span>
 						)
 					}
 					onChange={(value): void => {
@@ -156,10 +156,10 @@ function MessagingQueuesConfigOptions(): JSX.Element {
 					notFoundContent={
 						isFetchingTopic ? (
 							<span>
-								<Spin size="small" /> Loading...
+								<Spin size="small" /> 加载中...
 							</span>
 						) : (
-							<span>No Topics found</span>
+							<span>没有找到主题</span>
 						)
 					}
 					onChange={(value): void => {
@@ -190,10 +190,10 @@ function MessagingQueuesConfigOptions(): JSX.Element {
 					notFoundContent={
 						isFetchingPartition ? (
 							<span>
-								<Spin size="small" /> Loading...
+								<Spin size="small" /> 加载中...
 							</span>
 						) : (
-							<span>No Partitions found</span>
+							<span>未找到分区</span>
 						)
 					}
 					onChange={(value): void => {
@@ -209,7 +209,7 @@ function MessagingQueuesConfigOptions(): JSX.Element {
 					}}
 				/>
 			</div>
-			<Tooltip title="Share this" arrow={false}>
+			<Tooltip title="分享这个" arrow={false}>
 				<Button
 					className="periscope-btn copy-url-btn"
 					onClick={(): void => {

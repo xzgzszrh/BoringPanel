@@ -7,7 +7,7 @@ export const installedIntegrations: TabRoutes = {
 	Component: Integrations,
 	name: (
 		<div className="tab-item">
-			<Compass size={16} /> Integrations
+			<Compass size={16} /> 集成
 		</div>
 	),
 	route: ROUTES.INTEGRATIONS,

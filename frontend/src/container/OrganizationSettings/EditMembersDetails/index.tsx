@@ -100,7 +100,7 @@ function EditMembersDetails({
 	return (
 		<Space direction="vertical" size="large">
 			<Space direction="horizontal">
-				<Title>Email address</Title>
+				<Title>电子邮件</Title>
 				<Input
 					placeholder="john@signoz.io"
 					readOnly
@@ -112,16 +112,16 @@ function EditMembersDetails({
 				/>
 			</Space>
 			<Space direction="horizontal">
-				<Title>Name (optional)</Title>
+				<Title>姓名（可选）</Title>
 				<Input
-					placeholder="John"
+					placeholder="约翰"
 					onChange={(event): void => onChangeHandler(setName, event.target.value)}
 					value={name}
 					disabled={isLoading}
 				/>
 			</Space>
 			<Space direction="horizontal">
-				<Title>Role</Title>
+				<Title>角色</Title>
 				<SelectDrawer
 					value={role}
 					onSelect={(value: unknown): void => {
@@ -131,9 +131,9 @@ function EditMembersDetails({
 					}}
 					disabled={isLoading}
 				>
-					<Option value="ADMIN">ADMIN</Option>
-					<Option value="VIEWER">VIEWER</Option>
-					<Option value="EDITOR">EDITOR</Option>
+					<Option value="ADMIN">行政</Option>
+					<Option value="VIEWER">浏览器</Option>
+					<Option value="EDITOR">编辑</Option>
 				</SelectDrawer>
 			</Space>
 
@@ -143,7 +143,7 @@ function EditMembersDetails({
 				onClick={onGeneratePasswordHandler}
 				type="primary"
 			>
-				Generate Reset Password link
+				生成重置密码链接
 			</Button>
 			{passwordLink && (
 				<InputGroup>
@@ -154,7 +154,7 @@ function EditMembersDetails({
 						value={passwordLink}
 						disabled={isLoading}
 					/>
-					<Tooltip title="COPY LINK">
+					<Tooltip title="复制链接">
 						<Button
 							icon={<CopyOutlined />}
 							onClick={(): void => copyToClipboard(passwordLink)}

@@ -22,14 +22,14 @@ function FieldRenderer({ field }: FieldRendererProps): JSX.Element {
 					<div className="tags">
 						<TagContainer>
 							<TagLabel>
-								type
+								类型
 								<Divider type="vertical" />{' '}
 							</TagLabel>
 							<TagValue>{logType}</TagValue>
 						</TagContainer>
 						<TagContainer>
 							<TagLabel>
-								data type <Divider type="vertical" />{' '}
+								数据类型 <Divider type="vertical" />{' '}
 							</TagLabel>
 							<TagValue>{dataType}</TagValue>
 						</TagContainer>

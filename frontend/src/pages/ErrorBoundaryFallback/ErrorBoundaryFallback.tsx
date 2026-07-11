@@ -2,15 +2,10 @@ import './ErrorBoundaryFallback.styles.scss';
 
 import { BugOutlined, UndoOutlined } from '@ant-design/icons';
 import { Button, Card, Typography } from 'antd';
-import Slack from 'container/SideNav/Slack';
 import { useTranslation } from 'react-i18next';
 
 function ErrorBoundaryFallback(): JSX.Element {
 	const { t } = useTranslation(['errorDetails']);
-
-	const onClickSlackHandler = (): void => {
-		window.open('https://signoz.io/slack', '_blank');
-	};
 
 	const handleReload = (): void => {
 		window.location.reload();
@@ -34,16 +29,7 @@ function ErrorBoundaryFallback(): JSX.Element {
 						onClick={handleReload}
 						icon={<UndoOutlined />}
 					>
-						Reload
-					</Button>
-
-					<Button
-						className="actionBtn"
-						type="default"
-						onClick={onClickSlackHandler}
-						icon={<Slack />}
-					>
-						&nbsp; Support
+						重新加载
 					</Button>
 				</div>
 			</>

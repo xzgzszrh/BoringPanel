@@ -60,7 +60,7 @@ function ListViewPanel(): JSX.Element {
 					placement="right"
 					content={renderPopoverContent}
 				>
-					<Button>Format</Button>
+					<Button>格式</Button>
 				</Popover>
 			)}
 			{isConnectionLoading && (

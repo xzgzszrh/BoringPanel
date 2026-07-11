@@ -24,7 +24,7 @@ export const getColumns = (
 			key: ColumnKey.P99,
 			columnOption: {
 				title: `${ColumnTitle[ColumnKey.P99]}${
-					isMetricData ? ' (in ns)' : ' (in ms)'
+					isMetricData ? '（纳秒）' : '（毫秒）'
 				}`,
 				sorter: (a: ServicesList, b: ServicesList): number => a.p99 - b.p99,
 				render: (value: number): string => {

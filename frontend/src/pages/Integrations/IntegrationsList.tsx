@@ -2,14 +2,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import './Integrations.styles.scss';
 
-import { Color } from '@signozhq/design-tokens';
 import { Button, List, Typography } from 'antd';
 import { useGetAllIntegrations } from 'hooks/Integrations/useGetAllIntegrations';
-import { MoveUpRight, RotateCw } from 'lucide-react';
+import { RotateCw } from 'lucide-react';
 import { Dispatch, SetStateAction, useMemo } from 'react';
-import { isCloudUser } from 'utils/app';
-
-import { handleContactSupport } from './utils';
 
 interface IntegrationsListProps {
 	setSelectedIntegration: (id: string) => void;
@@ -47,12 +43,10 @@ function IntegrationsList(props: IntegrationsListProps): JSX.Element {
 					<div className="error-content">
 						<img
 							src="/Icons/awwSnap.svg"
-							alt="error-emoji"
+							alt="错误表情符号"
 							className="error-state-svg"
 						/>
-						<Typography.Text>
-							Something went wrong :/ Please retry or contact support.
-						</Typography.Text>
+						<Typography.Text>出了点问题：/请重试或联系支持人员。</Typography.Text>
 						<div className="error-btns">
 							<Button
 								type="primary"
@@ -60,16 +54,8 @@ function IntegrationsList(props: IntegrationsListProps): JSX.Element {
 								onClick={(): Promise<any> => refetch()}
 								icon={<RotateCw size={14} />}
 							>
-								Retry
+								重试
 							</Button>
-							<div
-								className="contact-support"
-								onClick={(): void => handleContactSupport(isCloudUser())}
-							>
-								<Typography.Link className="text">Contact Support </Typography.Link>
-
-								<MoveUpRight size={14} color={Color.BG_ROBIN_400} />
-							</div>
 						</div>
 					</div>
 				</div>
@@ -107,7 +93,7 @@ function IntegrationsList(props: IntegrationsListProps): JSX.Element {
 									setActiveDetailTab('configuration');
 								}}
 							>
-								Configure
+								配置
 							</Button>
 						</List.Item>
 					)}

@@ -114,14 +114,14 @@ function TopOperationsTable({
 
 	const columns: ColumnsType<TopOperationList> = [
 		{
-			title: 'Name',
+			title: '名称',
 			dataIndex: 'name',
 			key: 'name',
 			width: 100,
 			...getSearchOption(),
 		},
 		{
-			title: 'P50  (in ms)',
+			title: 'P50（以毫秒为单位）',
 			dataIndex: 'p50',
 			key: 'p50',
 			width: 50,
@@ -129,7 +129,7 @@ function TopOperationsTable({
 			render: (value: number): string => (value / 1000000).toFixed(2),
 		},
 		{
-			title: 'P95  (in ms)',
+			title: 'P95（以毫秒为单位）',
 			dataIndex: 'p95',
 			key: 'p95',
 			width: 50,
@@ -137,7 +137,7 @@ function TopOperationsTable({
 			render: (value: number): string => (value / 1000000).toFixed(2),
 		},
 		{
-			title: 'P99  (in ms)',
+			title: 'P99（以毫秒为单位）',
 			dataIndex: 'p99',
 			key: 'p99',
 			width: 50,
@@ -145,7 +145,7 @@ function TopOperationsTable({
 			render: (value: number): string => (value / 1000000).toFixed(2),
 		},
 		{
-			title: 'Number of Calls',
+			title: '通话次数',
 			dataIndex: 'numCalls',
 			key: 'numCalls',
 			width: 50,
@@ -153,7 +153,7 @@ function TopOperationsTable({
 				a.numCalls - b.numCalls,
 		},
 		{
-			title: 'Error Rate',
+			title: '错误率',
 			dataIndex: 'errorCount',
 			key: 'errorCount',
 			width: 50,

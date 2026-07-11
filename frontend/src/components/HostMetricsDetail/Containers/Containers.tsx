@@ -17,7 +17,7 @@ function Containers(): JSX.Element {
 					<div className="infra-container-card">
 						<img
 							src="/Icons/infraContainers.svg"
-							alt="infra-container"
+							alt="容器内"
 							width={32}
 							height={32}
 						/>
@@ -29,7 +29,7 @@ function Containers(): JSX.Element {
 
 					<div className="infra-container-working-msg">
 						<Space>
-							<img src="/Icons/broom.svg" alt="broom" width={24} height={24} />
+							<img src="/Icons/broom.svg" alt="扫帚" width={24} height={24} />
 							<Text className="infra-container-card-text">{t('working_message')}</Text>
 						</Space>
 					</div>

@@ -51,7 +51,7 @@ export const ResourceAttributesFilterMachine =
 				on: {
 					NEXT: {
 						actions: 'onSelectTagKey',
-						description: 'Select Category',
+						description: '选择类别',
 						target: 'TagKey',
 					},
 				},

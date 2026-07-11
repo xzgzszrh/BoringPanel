@@ -28,7 +28,7 @@ function AddColumnField({ config }: AddColumnFieldProps): JSX.Element | null {
 					loading={config.isFetching}
 					size="small"
 					mode="multiple"
-					placeholder="Search"
+					placeholder="搜索"
 					options={config.options}
 					value={[]}
 					onSelect={config.onSelect}

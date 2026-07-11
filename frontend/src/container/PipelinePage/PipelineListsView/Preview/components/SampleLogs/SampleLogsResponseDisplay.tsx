@@ -7,19 +7,15 @@ function SampleLogsResponseDisplay({
 	const { isLoading, isError, logs } = response;
 
 	if (isError) {
-		return (
-			<div className="sample-logs-notice-container">
-				An error occured while querying sample logs
-			</div>
-		);
+		return <div className="sample-logs-notice-container">查询示例日志时出错</div>;
 	}
 
 	if (isLoading) {
-		return <div className="sample-logs-notice-container">Loading...</div>;
+		return <div className="sample-logs-notice-container">加载中...</div>;
 	}
 
 	if (logs.length < 1) {
-		return <div className="sample-logs-notice-container">No logs found</div>;
+		return <div className="sample-logs-notice-container">没有找到日志</div>;
 	}
 
 	return <LogsList logs={logs} />;

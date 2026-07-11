@@ -45,7 +45,7 @@ function BackButton(): JSX.Element {
 
 	return (
 		<Button icon={<ArrowLeftOutlined />} onClick={handleBack}>
-			Exit live view
+			退出实时取景
 		</Button>
 	);
 }

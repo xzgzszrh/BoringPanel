@@ -86,7 +86,7 @@ function LiveLogsContainer(): JSX.Element {
 	);
 
 	const handleError = useCallback(() => {
-		notifications.error({ message: 'Sorry, something went wrong' });
+		notifications.error({ message: '抱歉，出了点问题' });
 	}, [notifications]);
 
 	useEventSourceEvent('message', handleGetLiveLogs);

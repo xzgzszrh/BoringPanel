@@ -1,13 +1,13 @@
-## Send Traces to SigNoz Cloud
+## Send Traces to Scry Cloud
 
 ### Application on VMs
 
-From VMs, there are two ways to send data to SigNoz Cloud.
+From VMs, there are two ways to send data to Scry Cloud.
 
-- Send traces directly to SigNoz Cloud (quick start)
+- Send traces directly to Scry Cloud (quick start)
 - Send traces via OTel Collector binary (recommended)
 
-#### **Send traces directly to SigNoz Cloud**
+#### **Send traces directly to Scry Cloud**
 
 1. **Install Dependencies**
    
@@ -131,7 +131,7 @@ From VMs, there are two ways to send data to SigNoz Cloud.
 
 6. **Set environment variables and run your Go Gin application**
    
-   The run command must have some environment variables to send data to SigNoz cloud. The run command:
+   The run command must have some environment variables to send data to Scry cloud. The run command:
     
     ```bash
     SERVICE_NAME={{MYAPP}} INSECURE_MODE=false OTEL_EXPORTER_OTLP_HEADERS=signoz-ingestion-key={{SIGNOZ_INGESTION_KEY}} OTEL_EXPORTER_OTLP_ENDPOINT=ingest.{{REGION}}.signoz.cloud:443 go run main.go
@@ -143,7 +143,7 @@ From VMs, there are two ways to send data to SigNoz Cloud.
 
 #### **Send traces via OTel Collector binary**
 
-OTel Collector binary helps to collect logs, hostmetrics, resource and infra attributes. It is recommended to install Otel Collector binary to collect and send traces to SigNoz cloud. You can correlate signals and have rich contextual data through this way.
+OTel Collector binary helps to collect logs, hostmetrics, resource and infra attributes. It is recommended to install Otel Collector binary to collect and send traces to Scry cloud. You can correlate signals and have rich contextual data through this way.
 
 You can find instructions to install OTel Collector binary [here](https://signoz.io/docs/tutorial/opentelemetry-binary-usage-in-virtual-machine/) in your VM. Once you are done setting up your OTel Collector binary, you can follow the below steps for instrumenting your Golang application.
 
@@ -268,7 +268,7 @@ You can find instructions to install OTel Collector binary [here](https://signoz
     
 6. **Set environment variables and run your Go Gin application**
    
-   The run command must have some environment variables to send data to SigNoz. The run command:
+   The run command must have some environment variables to send data to Scry. The run command:
     
     ```bash
     SERVICE_NAME={{MYAPP}} INSECURE_MODE=true OTEL_EXPORTER_OTLP_ENDPOINT=localhost:4317 go run main.go
@@ -280,7 +280,7 @@ You can find instructions to install OTel Collector binary [here](https://signoz
 
 ### Applications Deployed on Kubernetes
 
-For Golang application deployed on Kubernetes, you need to install OTel Collector agent in your k8s infra to collect and send traces to SigNoz Cloud. You can find the instructions to install OTel Collector agent [here](https://signoz.io/docs/tutorial/kubernetes-infra-metrics/).
+For Golang application deployed on Kubernetes, you need to install OTel Collector agent in your k8s infra to collect and send traces to Scry Cloud. You can find the instructions to install OTel Collector agent [here](https://signoz.io/docs/tutorial/kubernetes-infra-metrics/).
 
 Once you have set up OTel Collector agent, you can proceed with OpenTelemetry Golang instrumentation by following the below steps:
 
@@ -405,7 +405,7 @@ Once you have set up OTel Collector agent, you can proceed with OpenTelemetry Go
     
 6. **Set environment variables and run your Go Gin application**
 
-   The run command must have some environment variables to send data to SigNoz. The run command:
+   The run command must have some environment variables to send data to Scry. The run command:
     
     ```bash
     SERVICE_NAME={{MYAPP}} INSECURE_MODE=true OTEL_EXPORTER_OTLP_ENDPOINT=localhost:4317 go run main.go

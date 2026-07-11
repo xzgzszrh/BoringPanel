@@ -109,12 +109,12 @@ function MessagingQueueHealthCheck({
 				onClose={(): void => setCheckListOpen(false)}
 				onboardingStatusResponses={[
 					{
-						title: 'Consumers',
+						title: '消费者',
 						data: consumerData?.payload?.data || [],
 						errorMsg: (consumerError || consumerData?.error) as string,
 					},
 					{
-						title: 'Producers',
+						title: '制片人',
 						data: producerData?.payload?.data || [],
 						errorMsg: (producerError || producerData?.error) as string,
 					},

@@ -24,7 +24,7 @@ export function Tabs(): JSX.Element {
 			>
 				<div className="tab-title">
 					<Table size={14} />
-					Overview
+					概述
 				</div>
 			</Radio.Button>
 			<Radio.Button
@@ -33,7 +33,7 @@ export function Tabs(): JSX.Element {
 			>
 				<div className="tab-title">
 					<History size={14} />
-					History
+					历史
 				</div>
 			</Radio.Button>
 		</Radio.Group>

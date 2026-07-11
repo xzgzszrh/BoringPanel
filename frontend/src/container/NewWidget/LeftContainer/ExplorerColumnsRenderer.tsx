@@ -130,7 +130,7 @@ function ExplorerColumnsRenderer({
 			label: (
 				<Input
 					type="text"
-					placeholder="Search"
+					placeholder="搜索"
 					className="explorer-columns-search"
 					value={searchText}
 					onChange={handleSearchChange}
@@ -227,7 +227,7 @@ function ExplorerColumnsRenderer({
 	return (
 		<div className="explorer-columns-renderer">
 			<div className="title">
-				<Typography.Text>Columns</Typography.Text>
+				<Typography.Text>专栏</Typography.Text>
 				{isError && (
 					<Tooltip title={SOMETHING_WENT_WRONG}>
 						<AlertCircle size={16} />

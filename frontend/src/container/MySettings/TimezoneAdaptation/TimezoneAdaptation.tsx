@@ -32,7 +32,7 @@ function TimezoneAdaptation(): JSX.Element {
 	return (
 		<div className="timezone-adaption">
 			<div className="timezone-adaption__header">
-				<h2 className="timezone-adaption__title">Adapt to my timezone</h2>
+				<h2 className="timezone-adaption__title">适应我的时区</h2>
 				<Switch
 					checked={isAdaptationEnabled}
 					onChange={setIsAdaptationEnabled}
@@ -41,7 +41,7 @@ function TimezoneAdaptation(): JSX.Element {
 			</div>
 
 			<p className="timezone-adaption__description">
-				Adapt the timestamps shown in the SigNoz console to my active timezone.
+				将 Scry 控制台中显示的时间戳调整为我的活动时区。
 			</p>
 
 			<div className="timezone-adaption__note">
@@ -50,16 +50,13 @@ function TimezoneAdaptation(): JSX.Element {
 					<span className="timezone-adaption__note-text">
 						{isTimezoneOverridden ? (
 							<>
-								Your current timezone is overridden to
+								您当前的时区被覆盖为
 								<span className="timezone-adaption__note-text-overridden">
 									{timezone.offset}
 								</span>
 							</>
 						) : (
-							<>
-								You can override the timezone adaption for any view with the time
-								picker.
-							</>
+							<>您可以使用时间选择器覆盖任何视图的时区适应。</>
 						)}
 					</span>
 				</div>
@@ -71,7 +68,7 @@ function TimezoneAdaptation(): JSX.Element {
 						onClick={handleOverrideClear}
 					>
 						<Delete height={12} width={12} color={Color.BG_ROBIN_300} />
-						Clear override
+						清除覆盖
 					</button>
 				)}
 			</div>

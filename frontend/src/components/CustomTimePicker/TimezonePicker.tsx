@@ -65,7 +65,7 @@ function SearchBar({
 				<Input
 					type="text"
 					className="timezone-picker__input"
-					placeholder="Search timezones..."
+					placeholder="搜索时区..."
 					value={value}
 					onChange={(e): void => onChange(e.target.value)}
 					onKeyDown={handleKeyDown}
@@ -73,7 +73,7 @@ function SearchBar({
 					autoFocus
 				/>
 			</div>
-			<kbd className="timezone-picker__esc-key">esc</kbd>
+			<kbd className="timezone-picker__esc-key">Esc键</kbd>
 		</div>
 	);
 }

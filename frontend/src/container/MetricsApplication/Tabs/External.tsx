@@ -236,7 +236,7 @@ function External(): JSX.Element {
 							stepInterval,
 						})}
 					>
-						View Traces
+						查看链路
 					</Button>
 					<Card data-testid="external_call_error_percentage">
 						<GraphContainer>
@@ -272,7 +272,7 @@ function External(): JSX.Element {
 							stepInterval,
 						})}
 					>
-						View Traces
+						查看链路
 					</Button>
 
 					<Card data-testid="external_call_duration">
@@ -311,7 +311,7 @@ function External(): JSX.Element {
 							stepInterval,
 						})}
 					>
-						View Traces
+						查看链路
 					</Button>
 					<Card data-testid="external_call_rps_by_address">
 						<GraphContainer>
@@ -347,7 +347,7 @@ function External(): JSX.Element {
 							stepInterval,
 						})}
 					>
-						View Traces
+						查看链路
 					</Button>
 
 					<Card data-testid="external_call_duration_by_address">

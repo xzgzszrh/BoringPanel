@@ -40,7 +40,7 @@ export const DashboardSearchAndFilter = createMachine({
 			on: {
 				NEXT: {
 					actions: 'onSelectCategory',
-					description: 'Select Category',
+					description: '选择类别',
 					target: 'Category',
 				},
 			},

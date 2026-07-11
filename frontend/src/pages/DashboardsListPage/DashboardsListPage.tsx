@@ -19,7 +19,7 @@ function DashboardsListPage(): JSX.Element {
 			<ReleaseNote path={location.pathname} />
 			<div className="dashboard-header">
 				<LayoutGrid size={14} className="icon" />
-				<Typography.Text className="text">Dashboards</Typography.Text>
+				<Typography.Text className="text">仪表盘</Typography.Text>
 			</div>
 			<ListOfAllDashboard />
 		</Space>

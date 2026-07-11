@@ -11,11 +11,9 @@ import { ListMinus } from 'lucide-react';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { isCloudUser } from 'utils/app';
 
 import MessagingQueueHealthCheck from './MessagingQueueHealthCheck/MessagingQueueHealthCheck';
 import {
-	KAFKA_SETUP_DOC_LINK,
 	MessagingQueueHealthCheckService,
 	MessagingQueuesViewType,
 } from './MessagingQueuesUtils';
@@ -35,18 +33,12 @@ function MessagingQueues(): JSX.Element {
 		);
 	};
 
-	const isCloudUserVal = isCloudUser();
-
 	const getStartedRedirect = (link: string, sourceCard: string): void => {
 		logEvent('Messaging Queues: Get started clicked', {
 			source: sourceCard,
-			link: isCloudUserVal ? link : KAFKA_SETUP_DOC_LINK,
+			link,
 		});
-		if (isCloudUserVal) {
-			history.push(link);
-		} else {
-			window.open(KAFKA_SETUP_DOC_LINK, '_blank');
-		}
+		history.push(link);
 	};
 
 	useEffect(() => {

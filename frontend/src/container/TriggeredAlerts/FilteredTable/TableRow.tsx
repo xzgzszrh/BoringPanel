@@ -38,7 +38,7 @@ function TableRowComponent({
 				<TableCell />
 				<TableCell />
 				{/* <TableCell minWidth="200px">
-					<Button type="primary">Resume Group</Button>
+					<Button type="primary">恢复告警组</Button>
 				</TableCell> */}
 			</TableRow>
 			{isClicked && <ExapandableRow allAlerts={tagsAlert} />}

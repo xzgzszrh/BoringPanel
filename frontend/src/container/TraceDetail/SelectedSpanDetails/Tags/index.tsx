@@ -45,7 +45,7 @@ function Tags({
 		.filter((tag) => tag.key.includes(searchText))
 		.sort((a, b) => a.key.localeCompare(b.key));
 	if (tags.length === 0) {
-		return <Typography>No tags in selected span</Typography>;
+		return <Typography>所选范围内没有标签</Typography>;
 	}
 
 	return (
@@ -70,7 +70,7 @@ function Tags({
 			))}
 			{linkedSpans && linkedSpans.length > 0 && (
 				<List
-					header={<Typography.Title level={5}>Linked Spans</Typography.Title>}
+					header={<Typography.Title level={5}>链接跨度</Typography.Title>}
 					dataSource={linkedSpans}
 					renderItem={(item): JSX.Element => (
 						<List.Item>

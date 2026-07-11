@@ -211,24 +211,23 @@ function OrgQuestions({
 	return (
 		<div className="questions-container">
 			<Typography.Title level={3} className="title">
-				Welcome, {user?.name}!
+				欢迎， {user?.name}!
 			</Typography.Title>
 			<Typography.Paragraph className="sub-title">
-				We&apos;ll help you get the most out of SigNoz, whether you&apos;re new to
-				observability or a seasoned pro.
+				无论您是可观测性新手还是经验丰富的专业人士，我们都将帮助您充分利用 Scry。
 			</Typography.Paragraph>
 
 			<div className="questions-form-container">
 				<div className="questions-form">
 					<div className="form-group">
 						<label className="question" htmlFor="organisationName">
-							Your Organisation Name
+							您的组织名称
 						</label>
 						<input
 							type="text"
 							name="organisationName"
 							id="organisationName"
-							placeholder="For eg. Simpsonville..."
+							placeholder="例如。辛普森维尔..."
 							autoComplete="off"
 							value={organisationName}
 							onChange={(e): void => setOrganisationName(e.target.value)}
@@ -237,7 +236,7 @@ function OrgQuestions({
 
 					<div className="form-group">
 						<label className="question" htmlFor="usesObservability">
-							Do you currently use any observability/monitoring tool?
+							您目前使用任何可观察性/监控工具吗？
 						</label>
 
 						<div className="two-column-grid">
@@ -251,7 +250,7 @@ function OrgQuestions({
 									setUsesObservability(true);
 								}}
 							>
-								Yes{' '}
+								是{' '}
 								{usesObservability === true && (
 									<CheckCircle size={12} color={Color.BG_FOREST_500} />
 								)}
@@ -267,7 +266,7 @@ function OrgQuestions({
 									setOtherTool('');
 								}}
 							>
-								No{' '}
+								否{' '}
 								{usesObservability === false && (
 									<CheckCircle size={12} color={Color.BG_FOREST_500} />
 								)}
@@ -278,7 +277,7 @@ function OrgQuestions({
 					{usesObservability && (
 						<div className="form-group">
 							<label className="question" htmlFor="observabilityTool">
-								Which observability tool do you currently use?
+								您目前使用哪种可观察工具？
 							</label>
 							<div className="two-column-grid">
 								{Object.keys(observabilityTools).map((tool) => (
@@ -302,7 +301,7 @@ function OrgQuestions({
 									<Input
 										type="text"
 										className="onboarding-questionaire-other-input"
-										placeholder="Please specify the tool"
+										placeholder="请指定工具"
 										value={otherTool || ''}
 										autoFocus
 										addonAfter={
@@ -322,7 +321,7 @@ function OrgQuestions({
 										}`}
 										onClick={(): void => setObservabilityTool('Others')}
 									>
-										Others
+										其他的
 									</button>
 								)}
 							</div>
@@ -330,9 +329,7 @@ function OrgQuestions({
 					)}
 
 					<div className="form-group">
-						<div className="question">
-							Are you familiar with setting up observability (o11y)?
-						</div>
+						<div className="question">您熟悉设置可观察性（o11y）吗？</div>
 						<div className="two-column-grid">
 							{Object.keys(o11yFamiliarityOptions).map((option: string) => (
 								<Button
@@ -360,7 +357,7 @@ function OrgQuestions({
 						onClick={handleOnNext}
 						disabled={isNextDisabled}
 					>
-						Next
+						下一步
 						{isLoading ? (
 							<Loader2 className="animate-spin" />
 						) : (

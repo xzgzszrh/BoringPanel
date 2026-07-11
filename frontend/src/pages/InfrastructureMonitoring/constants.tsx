@@ -7,7 +7,7 @@ export const Hosts: TabRoutes = {
 	Component: InfraMonitoringHosts,
 	name: (
 		<div className="tab-item">
-			<Inbox size={16} /> Hosts
+			<Inbox size={16} /> 主机
 		</div>
 	),
 	route: ROUTES.INFRASTRUCTURE_MONITORING_HOSTS,

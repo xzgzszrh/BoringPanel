@@ -101,6 +101,7 @@ export default function ConnectionStatus(): JSX.Element {
 				const attributeData = getAttributeDataFromOnboardingStatus(
 					onbData?.payload,
 				);
+
 				if (attributeData.overallStatus === 'success') {
 					setLoading(false);
 					setIsReceivingData(true);
@@ -139,7 +140,7 @@ export default function ConnectionStatus(): JSX.Element {
 						entity="java"
 						heading="Java OpenTelemetry Instrumentation"
 						imgURL="/Logos/java.png"
-						docsURL="https://signoz.io/docs/instrumentation/java/"
+						docsURL
 						imgClassName="supported-language-img"
 					/>
 				);
@@ -150,7 +151,7 @@ export default function ConnectionStatus(): JSX.Element {
 						entity="python"
 						heading="Python OpenTelemetry Instrumentation"
 						imgURL="/Logos/python.png"
-						docsURL="https://signoz.io/docs/instrumentation/python/"
+						docsURL
 						imgClassName="supported-language-img"
 					/>
 				);
@@ -161,57 +162,62 @@ export default function ConnectionStatus(): JSX.Element {
 						entity="javascript"
 						heading="Javascript OpenTelemetry Instrumentation"
 						imgURL="/Logos/javascript.png"
-						docsURL="https://signoz.io/docs/instrumentation/javascript/"
+						docsURL
 						imgClassName="supported-language-img"
 					/>
 				);
+
 			case 'go':
 				return (
 					<Header
 						entity="go"
 						heading="Go OpenTelemetry Instrumentation"
 						imgURL="/Logos/go.png"
-						docsURL="https://signoz.io/docs/instrumentation/golang/"
+						docsURL
 						imgClassName="supported-language-img"
 					/>
 				);
+
 			case 'rails':
 				return (
 					<Header
 						entity="rails"
 						heading="Ruby on Rails OpenTelemetry Instrumentation"
 						imgURL="/Logos/rails.png"
-						docsURL="https://signoz.io/docs/instrumentation/ruby-on-rails/"
+						docsURL
 						imgClassName="supported-language-img"
 					/>
 				);
+
 			case 'rust':
 				return (
 					<Header
 						entity="rust"
 						heading="Rust OpenTelemetry Instrumentation"
 						imgURL="/Logos/rust.png"
-						docsURL="https://signoz.io/docs/instrumentation/rust/"
+						docsURL
 						imgClassName="supported-language-img"
 					/>
 				);
+
 			case 'elixir':
 				return (
 					<Header
 						entity="rust"
 						heading="Elixir OpenTelemetry Instrumentation"
 						imgURL="/Logos/elixir.png"
-						docsURL="https://signoz.io/docs/instrumentation/elixir/"
+						docsURL
 						imgClassName="supported-language-img"
 					/>
 				);
+
 			case 'swift':
 				return (
 					<Header
 						entity="swift"
 						heading="Swift OpenTelemetry Instrumentation"
 						imgURL="/Logos/swift.png"
-						docsURL="https://signoz.io/docs/instrumentation/swift/"
+						docsURL
 						imgClassName="supported-language-img"
 					/>
 				);
@@ -318,19 +324,19 @@ export default function ConnectionStatus(): JSX.Element {
 			<div className="full-docs-link">{renderDocsReference()}</div>
 			<div className="status-container">
 				<div className="service-info">
-					<div className="label"> Service Name </div>
+					<div className="label"> 服务名称 </div>
 					<div className="language">{serviceName}</div>
 				</div>
 
 				<div className="language-info">
-					<div className="label"> Language - Framework </div>
+					<div className="label"> 语言-框架 </div>
 					<div className="language">
 						{selectedDataSource?.name} - {selectedFramework}
 					</div>
 				</div>
 
 				<div className="status-info">
-					<div className="label"> Status </div>
+					<div className="label"> 状态 </div>
 
 					<div className="status">
 						{isQueryServiceLoading && <LoadingOutlined />}
@@ -339,19 +345,20 @@ export default function ConnectionStatus(): JSX.Element {
 							(getStartedSource !== 'kafka' ? (
 								<>
 									<CheckCircleTwoTone twoToneColor="#52c41a" />
-									<span> Success </span>
+									<span> 成功 </span>
 								</>
 							) : (
 								<MessagingQueueHealthCheck
 									serviceToInclude={[getStartedSourceService || '']}
 								/>
 							))}
+
 						{!isQueryServiceLoading &&
 							!isReceivingData &&
 							(getStartedSource !== 'kafka' ? (
 								<>
 									<CloseCircleTwoTone twoToneColor="#e84749" />
-									<span> Failed </span>
+									<span> 失败的 </span>
 								</>
 							) : (
 								<MessagingQueueHealthCheck
@@ -361,15 +368,16 @@ export default function ConnectionStatus(): JSX.Element {
 					</div>
 				</div>
 				<div className="details-info">
-					<div className="label"> Details </div>
+					<div className="label"> 细节 </div>
 
 					<div className="details">
-						{isQueryServiceLoading && <div> Waiting for Update </div>}
+						{isQueryServiceLoading && <div> 等待更新 </div>}
 						{!isQueryServiceLoading && isReceivingData && (
-							<div> Received data from the application successfully. </div>
+							<div> 成功接收来自应用程序的数据。 </div>
 						)}
+
 						{!isQueryServiceLoading && !isReceivingData && (
-							<div> Could not detect the install </div>
+							<div> 无法检测到安装 </div>
 						)}
 					</div>
 				</div>

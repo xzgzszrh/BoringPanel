@@ -19,15 +19,15 @@ export default function SelectMethod(): JSX.Element {
 			<Radio.Group onChange={onChange} value={value}>
 				<Space direction="vertical">
 					<Radio value={OnboardingMethods.QUICK_START}>
-						<Typography.Text> Quick Start </Typography.Text> <br />
-						<small>Send data to SigNoz directly from OpenTelemetry SDK.</small>
+						<Typography.Text> 快速入门 </Typography.Text> <br />
+						<small>直接从 OpenTelemetry SDK 发送数据到 Scry。</small>
 					</Radio>
 
 					<Radio value={OnboardingMethods.RECOMMENDED_STEPS}>
-						<Typography.Text> Use Recommended Steps </Typography.Text> <br />
+						<Typography.Text> 使用推荐步骤 </Typography.Text> <br />
 						<small>
-							Send data to SigNoz via OpenTelemetry Collector (better control on data
-							you send to SigNoz, collect host metrics & logs).
+							通过 OpenTelemetry Collector 将数据发送到 Scry（更好地控制发送到 Scry
+							的数据，收集主机指标和日志）。
 						</small>
 					</Radio>
 				</Space>

@@ -1,0 +1,205 @@
+name: ${COMPOSE_PROJECT_NAME:-signoz-dev}
+
+x-proxy-environment: &proxy-environment
+  HTTP_PROXY: ${DEV_HTTP_PROXY:-}
+  HTTPS_PROXY: ${DEV_HTTPS_PROXY:-}
+  NO_PROXY: ${DEV_NO_PROXY:-localhost,127.0.0.1,clickhouse,zookeeper-1,query-service,alertmanager,otel-collector}
+
+services:
+  zookeeper-1:
+    image: ${ZOOKEEPER_IMAGE:-bitnamilegacy/zookeeper:3.7.1}
+    hostname: zookeeper-1
+    environment:
+      ZOO_SERVER_ID: "1"
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+      ZOO_AUTOPURGE_INTERVAL: "1"
+    volumes:
+      - zookeeper_data:/bitnami/zookeeper
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/commands/ruok"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  clickhouse:
+    image: ${CLICKHOUSE_IMAGE:-clickhouse/clickhouse-server:24.1.2-alpine}
+    hostname: clickhouse
+    depends_on:
+      zookeeper-1:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${CLICKHOUSE_NATIVE_PORT:-9000}:9000"
+      - "127.0.0.1:${CLICKHOUSE_HTTP_PORT:-8123}:8123"
+    volumes:
+      - ./deploy/docker/clickhouse-setup/clickhouse-config.xml:/etc/clickhouse-server/config.xml:ro
+      - ./deploy/docker/clickhouse-setup/clickhouse-users.xml:/etc/clickhouse-server/users.xml:ro
+      - ./deploy/docker/clickhouse-setup/custom-function.xml:/etc/clickhouse-server/custom-function.xml:ro
+      - ./deploy/docker/clickhouse-setup/clickhouse-cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:ro
+      - ./deploy/docker/clickhouse-setup/user_scripts:/var/lib/clickhouse/user_scripts:ro
+      - clickhouse_data:/var/lib/clickhouse
+    restart: on-failure
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8123/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  schema-migrator-sync:
+    image: ${SCHEMA_MIGRATOR_IMAGE:-signoz/signoz-schema-migrator:0.111.16}
+    command: ["sync", "--dsn=tcp://clickhouse:9000", "--up="]
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    restart: "no"
+
+  schema-migrator-async:
+    image: ${SCHEMA_MIGRATOR_IMAGE:-signoz/signoz-schema-migrator:0.111.16}
+    command: ["async", "--dsn=tcp://clickhouse:9000", "--up="]
+    depends_on:
+      schema-migrator-sync:
+        condition: service_completed_successfully
+    restart: "no"
+
+  query-service:
+    image: ${GO_IMAGE:-golang:1.22.7-bookworm}
+    working_dir: /workspace
+    environment:
+      <<: *proxy-environment
+      ClickHouseUrl: tcp://clickhouse:9000
+      ALERTMANAGER_API_PREFIX: http://alertmanager:9093/api/
+      SIGNOZ_LOCAL_DB_PATH: /var/lib/signoz/signoz.db
+      DASHBOARDS_PATH: /workspace/deploy/docker/dashboards
+      INVITE_EMAIL_TEMPLATE: /workspace/pkg/query-service/templates/invitation_email_template.html
+      STORAGE: clickhouse
+      GODEBUG: netdns=go
+      TELEMETRY_ENABLED: "false"
+      OSS_TELEMETRY_ENABLED: "false"
+      DEPLOYMENT_TYPE: docker-source-dev
+      SCRY_DEBUG_MODE_AVAILABLE: ${SCRY_DEBUG_MODE_AVAILABLE:-true}
+      SCRY_DEBUG_OTLP_ENDPOINT: ${SCRY_DEBUG_OTLP_ENDPOINT:-http://otel-collector:4318}
+      CGO_ENABLED: "1"
+    command:
+      - bash
+      - -c
+      - >-
+        go run ./pkg/query-service
+        -config=/workspace/pkg/query-service/config/prometheus.yml
+        --use-logs-new-schema=true
+        --use-trace-new-schema=true
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8080}:8080"
+      - "127.0.0.1:${BACKEND_INTERNAL_PORT:-8085}:8085"
+    volumes:
+      - ./go.mod:/workspace/go.mod:ro
+      - ./go.sum:/workspace/go.sum:ro
+      - ./pkg:/workspace/pkg:ro
+      - ./deploy/docker/dashboards:/workspace/deploy/docker/dashboards:ro
+      - query_service_data:/var/lib/signoz
+      - go_build_cache:/root/.cache/go-build
+      - go_module_cache:/go/pkg/mod
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+      schema-migrator-sync:
+        condition: service_completed_successfully
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/127.0.0.1/8080'"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
+
+  alertmanager:
+    image: ${ALERTMANAGER_IMAGE:-signoz/alertmanager:0.23.7}
+    command:
+      - --queryService.url=http://query-service:8085
+      - --storage.path=/data
+    ports:
+      - "127.0.0.1:${ALERTMANAGER_PORT:-9093}:9093"
+    volumes:
+      - alertmanager_data:/data
+    depends_on:
+      query-service:
+        condition: service_healthy
+    restart: on-failure
+
+  otel-collector:
+    image: ${OTEL_COLLECTOR_IMAGE:-signoz/signoz-otel-collector:0.111.16}
+    command:
+      - --config=/etc/otel-collector-config.yaml
+      - --manager-config=/etc/manager-config.yaml
+      - --copy-path=/var/tmp/collector-config.yaml
+      - --feature-gates=-pkg.translator.prometheus.NormalizeName
+    environment:
+      LOW_CARDINAL_EXCEPTION_GROUPING: "false"
+      OTEL_RESOURCE_ATTRIBUTES: host.name=signoz-dev,os.type=linux
+    ports:
+      - "127.0.0.1:${OTLP_GRPC_PORT:-4317}:4317"
+      - "127.0.0.1:${OTLP_HTTP_PORT:-4318}:4318"
+    volumes:
+      - ./deploy/docker/clickhouse-setup/otel-collector-config.dev.yaml:/etc/otel-collector-config.yaml:ro
+      - ./deploy/docker/clickhouse-setup/otel-collector-opamp-config.yaml:/etc/manager-config.yaml:ro
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+      schema-migrator-sync:
+        condition: service_completed_successfully
+      query-service:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:13133/"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  frontend:
+    image: ${NODE_IMAGE:-node:20-bookworm}
+    working_dir: /workspace/frontend
+    environment:
+      <<: *proxy-environment
+      CI: "1"
+      FRONTEND_API_ENDPOINT: http://localhost:${BACKEND_PORT:-8080}
+      WEBSOCKET_API_ENDPOINT: ws://localhost:${BACKEND_PORT:-8080}
+      WATCHPACK_POLLING: "true"
+    command:
+      - bash
+      - -c
+      - corepack enable && yarn install --frozen-lockfile && yarn dev --host 0.0.0.0 --no-open
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-3301}:3301"
+    volumes:
+      - ./frontend:/workspace/frontend
+      - frontend_node_modules:/workspace/frontend/node_modules
+      - yarn_cache:/usr/local/share/.cache/yarn
+    depends_on:
+      query-service:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - http.get('http://127.0.0.1:3301',r=>process.exit(r.statusCode<500?0:1)).on('error',()=>process.exit(1))
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
+
+volumes:
+  zookeeper_data:
+  clickhouse_data:
+  query_service_data:
+  alertmanager_data:
+  go_build_cache:
+  go_module_cache:
+  frontend_node_modules:
+  yarn_cache:

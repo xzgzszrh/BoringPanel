@@ -79,7 +79,7 @@ export const useCopyLogLink = (logId?: string): UseCopyLogLink => {
 
 			setCopy(link);
 			notifications.success({
-				message: 'Copied to clipboard',
+				message: '已复制到剪贴板',
 			});
 		},
 		[logId, urlQuery, minTime, maxTime, pathname, setCopy, notifications],

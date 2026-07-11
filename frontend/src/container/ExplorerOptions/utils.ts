@@ -49,7 +49,7 @@ export const saveNewViewHandler = ({
 					[QueryParams.viewKey]: data.data.data,
 				});
 				notifications.success({
-					message: 'View Saved Successfully',
+					message: '查看保存成功',
 				});
 			},
 			onError: (err) => {

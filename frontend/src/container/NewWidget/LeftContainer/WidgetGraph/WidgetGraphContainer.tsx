@@ -23,7 +23,7 @@ function WidgetGraphContainer({
 	}
 
 	if (selectedWidget === undefined) {
-		return <Card>Invalid widget</Card>;
+		return <Card>无效的小部件</Card>;
 	}
 
 	if (queryResponse?.error) {
@@ -47,7 +47,7 @@ function WidgetGraphContainer({
 	) {
 		return (
 			<NotFoundContainer>
-				<Typography>No Data</Typography>
+				<Typography>无数据</Typography>
 			</NotFoundContainer>
 		);
 	}
@@ -57,7 +57,7 @@ function WidgetGraphContainer({
 	) {
 		return (
 			<NotFoundContainer>
-				<Typography>No Data</Typography>
+				<Typography>无数据</Typography>
 			</NotFoundContainer>
 		);
 	}
@@ -65,7 +65,7 @@ function WidgetGraphContainer({
 	if (queryResponse.isIdle) {
 		return (
 			<NotFoundContainer>
-				<Typography>No Data</Typography>
+				<Typography>无数据</Typography>
 			</NotFoundContainer>
 		);
 	}

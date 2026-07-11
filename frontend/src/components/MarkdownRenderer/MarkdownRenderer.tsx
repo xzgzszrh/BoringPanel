@@ -13,7 +13,7 @@ import rehypeRaw from 'rehype-raw';
 import CodeCopyBtn from './CodeCopyBtn/CodeCopyBtn';
 
 interface LinkProps {
-	href: string;
+	href?: string;
 	children: React.ReactElement;
 }
 
@@ -70,12 +70,8 @@ function Code({
 	);
 }
 
-function Link({ href, children }: LinkProps): JSX.Element {
-	return (
-		<a href={href} target="_blank" rel="noopener noreferrer">
-			{children}
-		</a>
-	);
+function Link({ children }: LinkProps): JSX.Element {
+	return <span>{children}</span>;
 }
 
 const interpolateMarkdown = (
@@ -97,7 +93,7 @@ const interpolateMarkdown = (
 };
 
 function CustomTag({ color }: { color: string }): JSX.Element {
-	return <h1 style={{ color }}>This is custom element</h1>;
+	return <h1 style={{ color }}>这是自定义元素</h1>;
 }
 
 function MarkdownRenderer({

@@ -31,7 +31,7 @@ function BuilderUnitsFilter({
 
 	return (
 		<Space>
-			<DefaultLabel>Y-axis unit</DefaultLabel>
+			<DefaultLabel>Y轴单位</DefaultLabel>
 			<Select
 				getPopupContainer={popupContainer}
 				style={selectStyles}
@@ -41,7 +41,7 @@ function BuilderUnitsFilter({
 				allowClear
 				showSearch
 				optionFilterProp="label"
-				placeholder="Select unit"
+				placeholder="选择单位"
 				filterOption={filterOption}
 			/>
 		</Space>

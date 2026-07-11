@@ -132,11 +132,11 @@ export function SectionBody(props: SectionBodyProps): JSX.Element {
 				<Input.Search
 					value={searchFilter}
 					onChange={handleSearch}
-					placeholder="Filter Values"
+					placeholder="过滤值"
 					className="search-input"
 				/>
 				{listData.length === 0 && isEmpty(searchFilter) ? (
-					<div style={{ padding: '8px 18px' }}>No data found</div>
+					<div style={{ padding: '8px 18px' }}>没有找到数据</div>
 				) : (
 					<>
 						{listData.map((item) => (
@@ -159,7 +159,7 @@ export function SectionBody(props: SectionBodyProps): JSX.Element {
 						))}
 						{visibleItemsCount < results.length && (
 							<Button onClick={handleShowMore} type="link">
-								Show More
+								显示更多
 							</Button>
 						)}
 					</>

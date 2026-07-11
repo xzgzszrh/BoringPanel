@@ -191,17 +191,17 @@ function VariableItem({
 						icon={<ArrowLeft size={14} />}
 						onClick={onCancel}
 					>
-						All variables
+						所有变量
 					</Button>
 				</div>
 				<div className="variable-item-content">
 					<VariableItemRow className="variable-name-section">
 						<LabelContainer>
-							<Typography className="typography-variables">Name</Typography>
+							<Typography className="typography-variables">名称</Typography>
 						</LabelContainer>
 						<div>
 							<Input
-								placeholder="Unique name of the variable"
+								placeholder="变量的唯一名称"
 								value={variableName}
 								className="name-input"
 								onChange={(e): void => {
@@ -220,12 +220,12 @@ function VariableItem({
 					</VariableItemRow>
 					<VariableItemRow className="variable-description-section">
 						<LabelContainer>
-							<Typography className="typography-variables">Description</Typography>
+							<Typography className="typography-variables">描述</Typography>
 						</LabelContainer>
 
 						<Input.TextArea
 							value={variableDescription}
-							placeholder="Enter a description for the variable"
+							placeholder="输入变量的描述"
 							className="description-input"
 							rows={3}
 							onChange={(e): void => setVariableDescription(e.target.value)}
@@ -233,7 +233,7 @@ function VariableItem({
 					</VariableItemRow>
 					<VariableItemRow className="variable-type-section">
 						<LabelContainer>
-							<Typography className="typography-variables">Variable Type</Typography>
+							<Typography className="typography-variables">变量类型</Typography>
 						</LabelContainer>
 
 						<div className="variable-type-btn-group">
@@ -250,7 +250,7 @@ function VariableItem({
 									setPreviewValues([]);
 								}}
 							>
-								Query
+								询问
 							</Button>
 							<Button
 								type="text"
@@ -264,7 +264,7 @@ function VariableItem({
 									setPreviewValues([]);
 								}}
 							>
-								Textbox
+								文本框
 							</Button>
 							<Button
 								type="text"
@@ -278,14 +278,14 @@ function VariableItem({
 									setPreviewValues([]);
 								}}
 							>
-								Custom
+								自定义
 							</Button>
 						</div>
 					</VariableItemRow>
 					{queryType === 'QUERY' && (
 						<div className="query-container">
 							<LabelContainer>
-								<Typography>Query</Typography>
+								<Typography>询问</Typography>
 							</LabelContainer>
 
 							<div style={{ flex: 1, position: 'relative' }}>
@@ -317,7 +317,7 @@ function VariableItem({
 									}}
 									loading={previewLoading}
 								>
-									Test Run Query
+									测试运行查询
 								</Button>
 							</div>
 						</div>
@@ -331,11 +331,11 @@ function VariableItem({
 								items={[
 									{
 										key: '1',
-										label: 'Options',
+										label: '选项',
 										children: (
 											<Input.TextArea
 												value={variableCustomValue}
-												placeholder="Enter options separated by commas."
+												placeholder="输入以逗号分隔的选项。"
 												rootClassName="comma-input"
 												onChange={(e): void => {
 													setVariableCustomValue(e.target.value);
@@ -356,7 +356,7 @@ function VariableItem({
 					{queryType === 'TEXTBOX' && (
 						<VariableItemRow className="variable-textbox-section">
 							<LabelContainer>
-								<Typography className="typography-variables">Default Value</Typography>
+								<Typography className="typography-variables">默认值</Typography>
 							</LabelContainer>
 							<Input
 								value={variableTextboxValue}
@@ -364,7 +364,7 @@ function VariableItem({
 								onChange={(e): void => {
 									setVariableTextboxValue(e.target.value);
 								}}
-								placeholder="Enter a default value (if any)..."
+								placeholder="输入默认值（如果有）..."
 								style={{ width: 400 }}
 							/>
 						</VariableItemRow>
@@ -373,9 +373,7 @@ function VariableItem({
 						<>
 							<VariableItemRow className="variables-preview-section">
 								<LabelContainer style={{ width: '100%' }}>
-									<Typography className="typography-variables">
-										Preview of Values
-									</Typography>
+									<Typography className="typography-variables">值预览</Typography>
 								</LabelContainer>
 								<div className="preview-values">
 									{errorPreview ? (
@@ -389,9 +387,9 @@ function VariableItem({
 							</VariableItemRow>
 							<VariableItemRow className="sort-values-section">
 								<LabelContainer>
-									<Typography className="typography-variables">Sort Values</Typography>
+									<Typography className="typography-variables">对值进行排序</Typography>
 									<Typography className="typography-sort">
-										Sort the query output values
+										对查询输出值进行排序
 									</Typography>
 								</LabelContainer>
 
@@ -404,15 +402,15 @@ function VariableItem({
 									}
 									className="sort-input"
 								>
-									<Option value={VariableSortTypeArr[0]}>Disabled</Option>
-									<Option value={VariableSortTypeArr[1]}>Ascending</Option>
-									<Option value={VariableSortTypeArr[2]}>Descending</Option>
+									<Option value={VariableSortTypeArr[0]}>残疾人</Option>
+									<Option value={VariableSortTypeArr[1]}>升序</Option>
+									<Option value={VariableSortTypeArr[2]}>降序</Option>
 								</Select>
 							</VariableItemRow>
 							<VariableItemRow className="multiple-values-section">
 								<LabelContainer>
 									<Typography className="typography-variables">
-										Enable multiple values to be checked
+										允许检查多个值
 									</Typography>
 								</LabelContainer>
 								<Switch
@@ -429,7 +427,7 @@ function VariableItem({
 								<VariableItemRow className="all-option-section">
 									<LabelContainer>
 										<Typography className="typography-variables">
-											Include an option for ALL values
+											包括所有值的选项
 										</Typography>
 									</LabelContainer>
 									<Switch
@@ -450,7 +448,7 @@ function VariableItem({
 						icon={<X size={14} />}
 						className="footer-btn-discard"
 					>
-						Discard
+						丢弃
 					</Button>
 					<Button
 						type="primary"
@@ -459,7 +457,7 @@ function VariableItem({
 						icon={<Check size={14} />}
 						className="footer-btn-save"
 					>
-						Save Variable
+						保存变量
 					</Button>
 				</VariableItemRow>
 			</div>

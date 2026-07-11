@@ -247,7 +247,7 @@ export function HavingFilter({
 				disabled={isMetricsDataSource && !query.aggregateAttribute.key}
 				style={{ width: '100%' }}
 				notFoundContent={currentFormValue.value.length === 0 ? undefined : null}
-				placeholder="GroupBy(operation) > 5"
+				placeholder="GroupBy（操作）> 5"
 				onDeselect={handleDeselect}
 				onChange={handleChange}
 				onSelect={handleSelect}
@@ -256,7 +256,7 @@ export function HavingFilter({
 				status={errorMessage ? 'error' : undefined}
 			>
 				{options.map((opt) => (
-					<Select.Option key={opt.value} value={opt.value} title="havingOption">
+					<Select.Option key={opt.value} value={opt.value} title="有选择权">
 						{opt.label}
 					</Select.Option>
 				))}

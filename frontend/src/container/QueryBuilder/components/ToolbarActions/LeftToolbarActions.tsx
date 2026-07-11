@@ -34,14 +34,14 @@ export default function LeftToolbarActions({
 	return (
 		<div className="left-toolbar">
 			{!showFilter && (
-				<Tooltip title="Show Filters">
+				<Tooltip title="显示过滤器">
 					<Button onClick={handleFilterVisibilityChange} className="filter-btn">
 						<FilterOutlined />
 					</Button>
 				</Tooltip>
 			)}
 			<div className="left-toolbar-query-actions">
-				<Tooltip title="Search">
+				<Tooltip title="搜索">
 					<Button
 						disabled={search.disabled}
 						className={cx(
@@ -54,7 +54,7 @@ export default function LeftToolbarActions({
 						<SquareMousePointer size={14} data-testid="search-view" />
 					</Button>
 				</Tooltip>
-				<Tooltip title="Query Builder">
+				<Tooltip title="查询构建器">
 					<Button
 						disabled={QB.disabled}
 						className={cx(
@@ -84,7 +84,7 @@ export default function LeftToolbarActions({
 			</div>
 
 			<div className="frequency-chart-view-controller">
-				<Typography>Frequency chart</Typography>
+				<Typography>频率图</Typography>
 				<Switch
 					size="small"
 					checked={showFrequencyChart}

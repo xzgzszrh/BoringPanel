@@ -23,7 +23,7 @@ export const ReduceToFilter = memo(function ReduceToFilter({
 
 	return (
 		<Select
-			placeholder="Reduce to"
+			placeholder="减少到"
 			style={{ width: '100%' }}
 			options={REDUCE_TO_VALUES}
 			value={currentValue}

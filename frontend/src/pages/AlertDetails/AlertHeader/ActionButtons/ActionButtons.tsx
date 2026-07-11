@@ -63,21 +63,21 @@ function AlertActionButtons({
 	const menuItems: MenuProps['items'] = [
 		{
 			key: 'rename-rule',
-			label: 'Rename',
+			label: '重命名',
 			icon: <PenLine size={16} color={Color.BG_VANILLA_400} />,
 			onClick: handleRename,
 			style: menuItemStyle,
 		},
 		{
 			key: 'duplicate-rule',
-			label: 'Duplicate',
+			label: '复制',
 			icon: <Copy size={16} color={Color.BG_VANILLA_400} />,
 			onClick: handleAlertDuplicate,
 			style: menuItemStyle,
 		},
 		{
 			key: 'delete-rule',
-			label: 'Delete',
+			label: '删除',
 			icon: <Trash2 size={16} color={Color.BG_CHERRY_400} />,
 			onClick: handleAlertDelete,
 			style: {
@@ -125,7 +125,7 @@ function AlertActionButtons({
 				<Divider type="vertical" />
 
 				<Dropdown trigger={['click']} menu={{ items: menuItems }}>
-					<Tooltip title="More options">
+					<Tooltip title="更多选择">
 						<Ellipsis
 							size={16}
 							color={isDarkMode ? Color.BG_VANILLA_400 : Color.BG_INK_400}

@@ -76,7 +76,7 @@ export const useTableView = (props: UseTableViewProps): UseTableViewResult => {
 
 		return [
 			{
-				title: 'timestamp',
+				title: '时间戳',
 				dataIndex: 'timestamp',
 				key: 'timestamp',
 				// https://github.com/ant-design/ant-design/discussions/36886
@@ -105,7 +105,7 @@ export const useTableView = (props: UseTableViewProps): UseTableViewResult => {
 			},
 			...(appendTo === 'center' ? fieldColumns : []),
 			{
-				title: 'body',
+				title: '身体',
 				dataIndex: 'body',
 				key: 'body',
 				render: (field): ColumnTypeRender<Record<string, unknown>> => ({

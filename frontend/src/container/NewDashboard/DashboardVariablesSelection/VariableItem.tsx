@@ -410,7 +410,7 @@ function VariableItem({
 			<div className="variable-value">
 				{variableData.type === 'TEXTBOX' ? (
 					<Input
-						placeholder="Enter value"
+						placeholder="输入值"
 						bordered={false}
 						key={variableData.selectedValue?.toString()}
 						defaultValue={variableData.selectedValue?.toString()}
@@ -434,7 +434,7 @@ function VariableItem({
 							defaultValue={selectValue}
 							onChange={handleChange}
 							bordered={false}
-							placeholder="Select value"
+							placeholder="选择值"
 							placement="bottomLeft"
 							mode={mode}
 							style={SelectItemStyle}
@@ -463,7 +463,7 @@ function VariableItem({
 								<Select.Option data-testid="option-ALL" value={ALL_SELECT_VALUE}>
 									<div className="all-label" onClick={(e): void => checkAll(e as any)}>
 										<Checkbox checked={variableData.allSelected} />
-										ALL
+										全部
 									</div>
 								</Select.Option>
 							)}

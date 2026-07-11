@@ -34,7 +34,7 @@ function IntegrationDetailContent(
 					className="integration-tab-btns"
 					icon={<CableCar size={14} />}
 				>
-					<Typography.Text className="typography">Overview</Typography.Text>
+					<Typography.Text className="typography">概述</Typography.Text>
 				</Button>
 			),
 			children: (
@@ -53,7 +53,7 @@ function IntegrationDetailContent(
 					className="integration-tab-btns"
 					icon={<ConfigureIcon />}
 				>
-					<Typography.Text className="typography">Configure</Typography.Text>
+					<Typography.Text className="typography">配置</Typography.Text>
 				</Button>
 			),
 			children: (
@@ -71,7 +71,7 @@ function IntegrationDetailContent(
 					className="integration-tab-btns"
 					icon={<Group size={14} />}
 				>
-					<Typography.Text className="typography">Data Collected</Typography.Text>
+					<Typography.Text className="typography">收集的数据</Typography.Text>
 				</Button>
 			),
 			children: (

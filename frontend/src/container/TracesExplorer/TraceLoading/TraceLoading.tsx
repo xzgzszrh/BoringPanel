@@ -12,7 +12,7 @@ export function TracesLoading(): JSX.Element {
 				<img
 					className="loading-gif"
 					src="/Icons/loading-plane.gif"
-					alt="wait-icon"
+					alt="等待图标"
 				/>
 
 				<Typography>

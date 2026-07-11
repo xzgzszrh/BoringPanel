@@ -1,0 +1,13 @@
+{
+  "column_license_key": "许可证密钥",
+  "column_valid_from": "有效期自",
+  "column_valid_until": "有效期至",
+  "column_license_status": "状态",
+  "button_apply": "应用",
+  "placeholder_license_key": "输入许可证密钥",
+  "tab_current_license": "当前许可证",
+  "tab_license_history": "历史",
+  "loading_licenses": "正在加载许可证...",
+  "enter_license_key": "请输入许可证密钥",
+  "license_applied": "许可证申请成功"
+}

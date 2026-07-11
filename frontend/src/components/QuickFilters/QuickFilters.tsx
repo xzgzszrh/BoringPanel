@@ -88,17 +88,17 @@ export default function QuickFilters(props: IQuickFiltersProps): JSX.Element {
 			<section className="header">
 				<section className="left-actions">
 					<FilterOutlined />
-					<Typography.Text className="text">Filters for</Typography.Text>
+					<Typography.Text className="text">过滤器</Typography.Text>
 					<Tooltip title={`Filter currently in sync with query ${lastQueryName}`}>
 						<Typography.Text className="sync-tag">{lastQueryName}</Typography.Text>
 					</Tooltip>
 				</section>
 				<section className="right-actions">
-					<Tooltip title="Reset All">
+					<Tooltip title="全部重置">
 						<SyncOutlined className="sync-icon" onClick={handleReset} />
 					</Tooltip>
 					<div className="divider-filter" />
-					<Tooltip title="Collapse Filters">
+					<Tooltip title="折叠过滤器">
 						<VerticalAlignTopOutlined
 							rotate={270}
 							onClick={handleFilterVisibilityChange}

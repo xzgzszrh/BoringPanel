@@ -67,9 +67,9 @@ export function AlertsEmptyState(): JSX.Element {
 		<div className="alert-list-container">
 			<div className="alert-list-view-content">
 				<div className="alert-list-title-container">
-					<Typography.Title className="title">Alert Rules</Typography.Title>
+					<Typography.Title className="title">告警规则</Typography.Title>
 					<Typography.Text className="subtitle">
-						Create and manage alert rules for your resources.
+						为您的资源创建和管理告警规则。
 					</Typography.Text>
 				</div>
 				<section className="empty-alert-info-container">
@@ -77,15 +77,15 @@ export function AlertsEmptyState(): JSX.Element {
 						<section className="heading">
 							<img
 								src="/Icons/alert_emoji.svg"
-								alt="alert-header"
+								alt="告警标头"
 								style={{ height: '32px', width: '32px' }}
 							/>
 							<div>
 								<Typography.Text className="empty-info">
-									No Alert rules yet.{' '}
+									尚无告警规则。{' '}
 								</Typography.Text>
 								<Typography.Text className="empty-alert-action">
-									Create an Alert Rule to get started
+									创建告警规则以开始
 								</Typography.Text>
 							</div>
 						</section>
@@ -99,7 +99,7 @@ export function AlertsEmptyState(): JSX.Element {
 								type="primary"
 								data-testid="add-alert"
 							>
-								New Alert Rule
+								新告警规则
 							</Button>
 							<InfoLinkText
 								infoText="Watch a tutorial on creating a sample alert"
@@ -138,7 +138,7 @@ export function AlertsEmptyState(): JSX.Element {
 				<div className="get-started-text">
 					<Divider>
 						<Typography.Text className="get-started-text">
-							Or get started with these sample alerts
+							或者开始使用这些示例告警
 						</Typography.Text>
 					</Divider>
 				</div>

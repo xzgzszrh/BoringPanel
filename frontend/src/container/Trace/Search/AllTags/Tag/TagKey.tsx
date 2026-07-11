@@ -81,7 +81,7 @@ function TagsKey(props: TagsKeysProps): JSX.Element {
 			onChange={(e): void => setSelectedKey(e)}
 			onSelect={onSelectHandler}
 		>
-			<Input placeholder="Please select" />
+			<Input placeholder="请选择" />
 		</AutoComplete>
 	);
 }

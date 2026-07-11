@@ -96,7 +96,7 @@ function PiePanelWrapper({
 
 	return (
 		<>
-			{!pieChartData.length && <div className="piechart-no-data">No data</div>}
+			{!pieChartData.length && <div className="piechart-no-data">无数据</div>}
 			{pieChartData.length > 0 && (
 				<>
 					<div className="piechart-container" ref={chartRef}>

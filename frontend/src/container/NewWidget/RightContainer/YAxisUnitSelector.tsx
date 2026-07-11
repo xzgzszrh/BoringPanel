@@ -51,7 +51,7 @@ function YAxisUnitSelector({
 					return false;
 				}}
 			>
-				<Input placeholder="Unit" rootClassName="input" />
+				<Input placeholder="单元" rootClassName="input" />
 			</AutoComplete>
 		</div>
 	);

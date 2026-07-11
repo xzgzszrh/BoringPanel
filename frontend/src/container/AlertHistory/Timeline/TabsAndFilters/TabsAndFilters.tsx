@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 function ComingSoon(): JSX.Element {
 	return (
 		<div className="coming-soon">
-			<div className="coming-soon__text">Coming Soon</div>
+			<div className="coming-soon__text">即将推出</div>
 			<div className="coming-soon__icon">
 				<Info size={10} color={Color.BG_SIENNA_400} />
 			</div>
@@ -22,13 +22,13 @@ function TimelineTabs(): JSX.Element {
 	const tabs = [
 		{
 			value: TimelineTab.OVERALL_STATUS,
-			label: 'Overall Status',
+			label: '整体状况',
 		},
 		{
 			value: TimelineTab.TOP_5_CONTRIBUTORS,
 			label: (
 				<div className="top-5-contributors">
-					Top 5 Contributors
+					前 5 名贡献者
 					<ComingSoon />
 				</div>
 			),
@@ -56,15 +56,15 @@ function TimelineFilters(): JSX.Element {
 	const tabs = [
 		{
 			value: TimelineFilter.ALL,
-			label: 'All',
+			label: '全部',
 		},
 		{
 			value: TimelineFilter.FIRED,
-			label: 'Fired',
+			label: '被解雇',
 		},
 		{
 			value: TimelineFilter.RESOLVED,
-			label: 'Resolved',
+			label: '已解决',
 		},
 	];
 

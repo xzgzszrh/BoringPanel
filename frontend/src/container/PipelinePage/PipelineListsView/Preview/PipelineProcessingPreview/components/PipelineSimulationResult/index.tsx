@@ -22,18 +22,18 @@ function PipelineSimulationResult({
 	if (isError) {
 		return (
 			<div className="pipeline-simulation-error">
-				<div>There was an error</div>
+				<div>出现错误</div>
 				<div>{errorMsg}</div>
 			</div>
 		);
 	}
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <div>加载中...</div>;
 	}
 
 	if (outputLogs.length < 1) {
-		return <div>No logs found</div>;
+		return <div>没有找到日志</div>;
 	}
 
 	return <LogsList logs={outputLogs} />;

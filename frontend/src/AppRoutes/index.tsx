@@ -1,4 +1,5 @@
 import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 import getLocalStorageApi from 'api/browser/localstorage/get';
 import setLocalStorageApi from 'api/browser/localstorage/set';
 import logEvent from 'api/common/logEvent';
@@ -9,20 +10,15 @@ import { FeatureKeys } from 'constants/features';
 import { LOCALSTORAGE } from 'constants/localStorage';
 import ROUTES from 'constants/routes';
 import AppLayout from 'container/AppLayout';
-import useAnalytics from 'hooks/analytics/useAnalytics';
 import { KeyboardHotkeysProvider } from 'hooks/hotkeys/useKeyboardHotkeys';
 import { useIsDarkMode, useThemeConfig } from 'hooks/useDarkMode';
 import { THEME_MODE } from 'hooks/useDarkMode/constant';
-import useFeatureFlags from 'hooks/useFeatureFlag';
 import useGetFeatureFlag from 'hooks/useGetFeatureFlag';
-import useLicense, { LICENSE_PLAN_KEY } from 'hooks/useLicense';
 import { NotificationProvider } from 'hooks/useNotifications';
 import { ResourceProvider } from 'hooks/useResourceAttribute';
 import history from 'lib/history';
-import { identity, pick, pickBy } from 'lodash-es';
-import posthog from 'posthog-js';
+import { pick } from 'lodash-es';
 import AlertRuleProvider from 'providers/Alert';
-import { AppProvider } from 'providers/App/App';
 import { DashboardProvider } from 'providers/Dashboard/Dashboard';
 import { QueryBuilderProvider } from 'providers/QueryBuilder';
 import { Suspense, useEffect, useState } from 'react';
@@ -38,20 +34,15 @@ import {
 	UPDATE_IS_FETCHING_ORG_PREFERENCES,
 	UPDATE_ORG_PREFERENCES,
 } from 'types/actions/app';
-import AppReducer, { User } from 'types/reducer/app';
+import AppReducer from 'types/reducer/app';
 import { USER_ROLES } from 'types/roles';
-import { extractDomain, isCloudUser, isEECloudUser } from 'utils/app';
+import { isCloudUser } from 'utils/app';
 
 import PrivateRoute from './Private';
-import defaultRoutes, {
-	AppRoutes,
-	LIST_LICENSES,
-	SUPPORT_ROUTE,
-} from './routes';
+import defaultRoutes, { AppRoutes } from './routes';
 
 function App(): JSX.Element {
 	const themeConfig = useThemeConfig();
-	const { data: licenseData } = useLicense();
 	const [routes, setRoutes] = useState<AppRoutes[]>(defaultRoutes);
 	const { role, isLoggedIn: isLoggedInState, user, org } = useSelector<
 		AppState,
@@ -60,19 +51,9 @@ function App(): JSX.Element {
 
 	const dispatch = useDispatch<Dispatch<AppActions>>();
 
-	const { trackPageView } = useAnalytics();
-
-	const { hostname, pathname } = window.location;
-
 	const isCloudUserVal = isCloudUser();
 
 	const isDarkMode = useIsDarkMode();
-
-	const isChatSupportEnabled =
-		useFeatureFlags(FeatureKeys.CHAT_SUPPORT)?.active || false;
-
-	const isPremiumSupportEnabled =
-		useFeatureFlags(FeatureKeys.PREMIUM_SUPPORT)?.active || false;
 
 	const { data: orgPreferences, isLoading: isLoadingOrgPreferences } = useQuery({
 		queryFn: () => getAllOrgPreferences(),
@@ -131,65 +112,6 @@ function App(): JSX.Element {
 		}
 	});
 
-	const isOnBasicPlan =
-		licenseData?.payload?.licenses?.some(
-			(license) =>
-				license.isCurrent && license.planKey === LICENSE_PLAN_KEY.BASIC_PLAN,
-		) || licenseData?.payload?.licenses === null;
-
-	const enableAnalytics = (user: User): void => {
-		const orgName =
-			org && Array.isArray(org) && org.length > 0 ? org[0].name : '';
-
-		const { name, email } = user;
-
-		const identifyPayload = {
-			email,
-			name,
-			company_name: orgName,
-			role,
-			source: 'signoz-ui',
-		};
-
-		const sanitizedIdentifyPayload = pickBy(identifyPayload, identity);
-		const domain = extractDomain(email);
-		const hostNameParts = hostname.split('.');
-
-		const groupTraits = {
-			name: orgName,
-			tenant_id: hostNameParts[0],
-			data_region: hostNameParts[1],
-			tenant_url: hostname,
-			company_domain: domain,
-			source: 'signoz-ui',
-		};
-
-		window.analytics.identify(email, sanitizedIdentifyPayload);
-		window.analytics.group(domain, groupTraits);
-
-		posthog?.identify(email, {
-			email,
-			name,
-			orgName,
-			tenant_id: hostNameParts[0],
-			data_region: hostNameParts[1],
-			tenant_url: hostname,
-			company_domain: domain,
-			source: 'signoz-ui',
-			isPaidUser: !!licenseData?.payload?.trialConvertedToSubscription,
-		});
-
-		posthog?.group('company', domain, {
-			name: orgName,
-			tenant_id: hostNameParts[0],
-			data_region: hostNameParts[1],
-			tenant_url: hostname,
-			company_domain: domain,
-			source: 'signoz-ui',
-			isPaidUser: !!licenseData?.payload?.trialConvertedToSubscription,
-		});
-	};
-
 	useEffect(() => {
 		const isIdentifiedUser = getLocalStorageApi(LOCALSTORAGE.IS_IDENTIFIED_USER);
 
@@ -203,63 +125,8 @@ function App(): JSX.Element {
 			setLocalStorageApi(LOCALSTORAGE.IS_IDENTIFIED_USER, 'true');
 		}
 
-		if (
-			isOnBasicPlan ||
-			(isLoggedInState && role && role !== 'ADMIN') ||
-			!(isCloudUserVal || isEECloudUser())
-		) {
-			const newRoutes = routes.filter((route) => route?.path !== ROUTES.BILLING);
-			setRoutes(newRoutes);
-		}
-
-		if (isCloudUserVal || isEECloudUser()) {
-			const newRoutes = [...routes, SUPPORT_ROUTE];
-
-			setRoutes(newRoutes);
-		} else {
-			const newRoutes = [...routes, LIST_LICENSES];
-
-			setRoutes(newRoutes);
-		}
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isLoggedInState, isOnBasicPlan, user]);
-
-	useEffect(() => {
-		if (pathname === ROUTES.ONBOARDING) {
-			window.Intercom('update', {
-				hide_default_launcher: true,
-			});
-		} else {
-			window.Intercom('update', {
-				hide_default_launcher: false,
-			});
-		}
-
-		trackPageView(pathname);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pathname]);
-
-	useEffect(() => {
-		const showAddCreditCardModal =
-			!isPremiumSupportEnabled &&
-			!licenseData?.payload?.trialConvertedToSubscription;
-
-		if (isLoggedInState && isChatSupportEnabled && !showAddCreditCardModal) {
-			window.Intercom('boot', {
-				app_id: process.env.INTERCOM_APP_ID,
-				email: user?.email || '',
-				name: user?.name || '',
-			});
-		}
-	}, [
-		isLoggedInState,
-		isChatSupportEnabled,
-		user,
-		licenseData,
-		isPremiumSupportEnabled,
-		pathname,
-	]);
+	}, [isLoggedInState, user]);
 
 	useEffect(() => {
 		if (user && user?.email && user?.userId && user?.name) {
@@ -279,11 +146,6 @@ function App(): JSX.Element {
 				console.error('Failed to parse local storage theme analytics event');
 			}
 		}
-
-		if (isCloudUserVal && user && user.email) {
-			enableAnalytics(user);
-		}
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 
@@ -292,44 +154,42 @@ function App(): JSX.Element {
 	}, []);
 
 	return (
-		<AppProvider>
-			<ConfigProvider theme={themeConfig}>
-				<Router history={history}>
-					<CompatRouter>
-						<NotificationProvider>
-							<PrivateRoute>
-								<ResourceProvider>
-									<QueryBuilderProvider>
-										<DashboardProvider>
-											<KeyboardHotkeysProvider>
-												<AlertRuleProvider>
-													<AppLayout>
-														<Suspense fallback={<Spinner size="large" tip="Loading..." />}>
-															<Switch>
-																{routes.map(({ path, component, exact }) => (
-																	<Route
-																		key={`${path}`}
-																		exact={exact}
-																		path={path}
-																		component={component}
-																	/>
-																))}
+		<ConfigProvider locale={zhCN} theme={themeConfig}>
+			<Router history={history}>
+				<CompatRouter>
+					<NotificationProvider>
+						<PrivateRoute>
+							<ResourceProvider>
+								<QueryBuilderProvider>
+									<DashboardProvider>
+										<KeyboardHotkeysProvider>
+											<AlertRuleProvider>
+												<AppLayout>
+													<Suspense fallback={<Spinner size="large" tip="加载中..." />}>
+														<Switch>
+															{routes.map(({ path, component, exact }) => (
+																<Route
+																	key={`${path}`}
+																	exact={exact}
+																	path={path}
+																	component={component}
+																/>
+															))}
 
-																<Route path="*" component={NotFound} />
-															</Switch>
-														</Suspense>
-													</AppLayout>
-												</AlertRuleProvider>
-											</KeyboardHotkeysProvider>
-										</DashboardProvider>
-									</QueryBuilderProvider>
-								</ResourceProvider>
-							</PrivateRoute>
-						</NotificationProvider>
-					</CompatRouter>
-				</Router>
-			</ConfigProvider>
-		</AppProvider>
+															<Route path="*" component={NotFound} />
+														</Switch>
+													</Suspense>
+												</AppLayout>
+											</AlertRuleProvider>
+										</KeyboardHotkeysProvider>
+									</DashboardProvider>
+								</QueryBuilderProvider>
+							</ResourceProvider>
+						</PrivateRoute>
+					</NotificationProvider>
+				</CompatRouter>
+			</Router>
+		</ConfigProvider>
 	);
 }
 

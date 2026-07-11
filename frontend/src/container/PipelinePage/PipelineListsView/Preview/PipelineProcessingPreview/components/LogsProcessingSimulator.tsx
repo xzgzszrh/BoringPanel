@@ -20,7 +20,7 @@ function LogsProcessingSimulator({
 					type="primary"
 					onClick={simulate}
 				>
-					Simulate Processing
+					模拟处理
 				</Button>
 			</div>
 		);

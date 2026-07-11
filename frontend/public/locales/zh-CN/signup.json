@@ -1,0 +1,18 @@
+{
+  "label_email": "邮箱",
+  "placeholder_email": "name@yourcompany.com",
+  "label_password": "密码",
+  "label_confirm_password": "确认密码",
+  "label_firstname": "姓名",
+  "placeholder_firstname": "请输入姓名",
+  "label_orgname": "组织名称",
+  "placeholder_orgname": "请输入组织名称",
+  "prompt_keepme_posted": "接收 Scry 新功能动态",
+  "prompt_anonymise": "匿名发送使用数据，帮助我们改进产品",
+  "failed_confirm_password": "两次输入的密码不一致，请重试",
+  "unexpected_error": "出现错误",
+  "failed_to_initiate_login": "注册已完成但无法启动登录",
+  "token_required": "注册需要邀请令牌，请向您的管理员索取一个",
+  "button_get_started": "开始使用",
+  "prompt_admin_warning": "这将创建管理员账户。如果你不是管理员，请向管理员索取邀请链接。"
+}

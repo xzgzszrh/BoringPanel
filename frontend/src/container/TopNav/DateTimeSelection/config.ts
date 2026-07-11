@@ -32,15 +32,15 @@ export type Time =
 	| ThreeDay;
 
 export const Options: Option[] = [
-	{ value: '5m', label: 'Last 5 min' },
-	{ value: '15m', label: 'Last 15 min' },
-	{ value: '30m', label: 'Last 30 min' },
-	{ value: '1h', label: 'Last 1 hour' },
-	{ value: '6h', label: 'Last 6 hour' },
-	{ value: '1d', label: 'Last 1 day' },
-	{ value: '3d', label: 'Last 3 days' },
-	{ value: '1w', label: 'Last 1 week' },
-	{ value: 'custom', label: 'Custom' },
+	{ value: '5m', label: '最后 5 分钟' },
+	{ value: '15m', label: '最后 15 分钟' },
+	{ value: '30m', label: '最后 30 分钟' },
+	{ value: '1h', label: '最后 1 小时' },
+	{ value: '6h', label: '最后 6 小时' },
+	{ value: '1d', label: '最后 1 天' },
+	{ value: '3d', label: '过去 3 天' },
+	{ value: '1w', label: '过去 1 周' },
+	{ value: 'custom', label: '自定义' },
 ];
 
 type TimeFrame = {
@@ -72,14 +72,14 @@ export interface Option {
 }
 
 export const RelativeDurationOptions: Option[] = [
-	{ value: '5m', label: 'Last 5 min' },
-	{ value: '15m', label: 'Last 15 min' },
-	{ value: '30m', label: 'Last 30 min' },
-	{ value: '1h', label: 'Last 1 hour' },
-	{ value: '6h', label: 'Last 6 hour' },
-	{ value: '1d', label: 'Last 1 day' },
-	{ value: '3d', label: 'Last 3 days' },
-	{ value: '1w', label: 'Last 1 week' },
+	{ value: '5m', label: '最后 5 分钟' },
+	{ value: '15m', label: '最后 15 分钟' },
+	{ value: '30m', label: '最后 30 分钟' },
+	{ value: '1h', label: '最后 1 小时' },
+	{ value: '6h', label: '最后 6 小时' },
+	{ value: '1d', label: '最后 1 天' },
+	{ value: '3d', label: '过去 3 天' },
+	{ value: '1w', label: '过去 1 周' },
 ];
 
 export const getDefaultOption = (route: string): Time => {
@@ -99,7 +99,7 @@ export const getOptions = (routes: string): Option[] => {
 	return Options;
 };
 
-export const routesToHideBreadCrumbs = [ROUTES.SUPPORT, ROUTES.ALL_DASHBOARD];
+export const routesToHideBreadCrumbs = [ROUTES.ALL_DASHBOARD];
 
 export const routesToSkip = [
 	ROUTES.SETTINGS,
@@ -119,13 +119,8 @@ export const routesToSkip = [
 	ROUTES.INGESTION_SETTINGS,
 	ROUTES.ERROR_DETAIL,
 	ROUTES.LOGS_PIPELINES,
-	ROUTES.BILLING,
-	ROUTES.SUPPORT,
-	ROUTES.WORKSPACE_LOCKED,
-	ROUTES.WORKSPACE_SUSPENDED,
 	ROUTES.LOGS,
 	ROUTES.MY_SETTINGS,
-	ROUTES.LIST_LICENSES,
 ];
 
 export const routesToDisable = [ROUTES.LOGS_EXPLORER, ROUTES.LIVE_LOGS];

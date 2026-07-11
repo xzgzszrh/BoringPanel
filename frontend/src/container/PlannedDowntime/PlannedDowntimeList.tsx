@@ -309,7 +309,7 @@ export function PlannedDowntimeList({
 }): JSX.Element {
 	const columns: TableProps<DowntimeSchedulesTableData>['columns'] = [
 		{
-			title: 'Downtime',
+			title: '停机时间',
 			key: 'downtime',
 			render: (data: DowntimeSchedulesTableData): JSX.Element =>
 				CustomCollapseList({

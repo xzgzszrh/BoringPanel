@@ -188,7 +188,7 @@ function AnomalyAlertEvaluationView({
 		},
 		series: [
 			{
-				label: 'Time',
+				label: '时间',
 			},
 			...(selectedSeries
 				? [
@@ -302,7 +302,7 @@ function AnomalyAlertEvaluationView({
 					<div className="anomaly-alert-evaluation-view-no-data-container">
 						<LineChart size={48} strokeWidth={0.5} />
 
-						<Typography>No Data</Typography>
+						<Typography>无数据</Typography>
 					</div>
 				)}
 			</div>
@@ -313,7 +313,7 @@ function AnomalyAlertEvaluationView({
 						<div className="anomaly-alert-evaluation-view-series-list">
 							<Search
 								className="anomaly-alert-evaluation-view-series-list-search"
-								placeholder="Search a series"
+								placeholder="搜索系列"
 								allowClear
 								onChange={handleSearchValueChange}
 							/>
@@ -328,7 +328,7 @@ function AnomalyAlertEvaluationView({
 										checked={selectedSeries === null}
 										onChange={(): void => handleSeriesChange(null)}
 									>
-										Show All
+										显示全部
 									</Checkbox>
 								)}
 
@@ -354,7 +354,7 @@ function AnomalyAlertEvaluationView({
 								))}
 
 								{filteredSeriesKeys.length === 0 && (
-									<Typography>No series found</Typography>
+									<Typography>没有找到系列</Typography>
 								)}
 							</div>
 						</div>

@@ -49,9 +49,9 @@ export function DeleteButton({
 		const { destroy } = modal.confirm({
 			title: (
 				<Typography.Title level={5}>
-					Are you sure you want to delete the
+					您确定要删除
 					<span style={{ color: '#e42b35', fontWeight: 500 }}> {name} </span>
-					dashboard?
+					仪表盘？
 				</Typography.Title>
 			),
 			icon: <ExclamationCircleOutlined style={{ color: '#e42b35' }} />,
@@ -117,7 +117,7 @@ export function DeleteButton({
 					className="delete-btn"
 					disabled={isLocked || (role === USER_ROLES.VIEWER && !isAuthor)}
 				>
-					<DeleteOutlined /> Delete dashboard
+					<DeleteOutlined /> 删除仪表盘
 				</TableLinkText>
 			</Tooltip>
 

@@ -174,7 +174,7 @@ function WidgetGraphComponent({
 						setSelectedDashboard(updatedDashboard.payload);
 					}
 					notifications.success({
-						message: 'Panel cloned successfully, redirecting to new copy.',
+						message: '面板克隆成功，重定向到新副本。',
 					});
 					const queryParams = {
 						graphType: widget?.panelTypes,
@@ -275,12 +275,12 @@ function WidgetGraphComponent({
 				onCancel={onDeleteModelHandler}
 				open={deleteModal}
 				confirmLoading={updateDashboardMutation.isLoading}
-				title="Delete"
+				title="删除"
 				height="10vh"
 				onOk={onDeleteHandler}
 				centered
 			>
-				<Typography>Are you sure you want to delete this widget</Typography>
+				<Typography>您确定要删除此小部件吗</Typography>
 			</Modal>
 
 			<Modal

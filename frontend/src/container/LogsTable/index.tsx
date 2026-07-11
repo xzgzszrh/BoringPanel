@@ -144,13 +144,13 @@ function LogsTable(props: LogsTableProps): JSX.Element {
 		<Container>
 			{viewMode !== 'table' && (
 				<Heading>
-					<Typography.Text>Event</Typography.Text>
+					<Typography.Text>事件</Typography.Text>
 				</Heading>
 			)}
 
-			{isLiveTail && <Typography>Getting live logs...</Typography>}
+			{isLiveTail && <Typography>获取实时日志...</Typography>}
 
-			{isNoLogs && <Typography>No logs lines found</Typography>}
+			{isNoLogs && <Typography>未找到日志行</Typography>}
 
 			{renderContent}
 			<LogDetail

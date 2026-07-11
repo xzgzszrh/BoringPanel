@@ -26,7 +26,7 @@ export enum SELECTED_VIEWS {
 export const LogsQuickFiltersConfig: IQuickFiltersConfig[] = [
 	{
 		type: FiltersType.CHECKBOX,
-		title: 'Severity Text',
+		title: '严重性文本',
 		attributeKey: {
 			key: 'severity_text',
 			dataType: DataTypes.String,
@@ -39,7 +39,7 @@ export const LogsQuickFiltersConfig: IQuickFiltersConfig[] = [
 	},
 	{
 		type: FiltersType.CHECKBOX,
-		title: 'Environment',
+		title: '环境',
 		attributeKey: {
 			key: 'deployment.environment',
 			dataType: DataTypes.String,
@@ -51,7 +51,7 @@ export const LogsQuickFiltersConfig: IQuickFiltersConfig[] = [
 	},
 	{
 		type: FiltersType.CHECKBOX,
-		title: 'Service Name',
+		title: '服务名称',
 		attributeKey: {
 			key: 'service.name',
 			dataType: DataTypes.String,
@@ -64,7 +64,7 @@ export const LogsQuickFiltersConfig: IQuickFiltersConfig[] = [
 	},
 	{
 		type: FiltersType.CHECKBOX,
-		title: 'Hostname',
+		title: '主机名',
 		attributeKey: {
 			key: 'host.name',
 			dataType: DataTypes.String,
@@ -76,7 +76,7 @@ export const LogsQuickFiltersConfig: IQuickFiltersConfig[] = [
 	},
 	{
 		type: FiltersType.CHECKBOX,
-		title: 'K8s Cluster Name',
+		title: 'K8s集群名称',
 		attributeKey: {
 			key: 'k8s.cluster.name',
 			dataType: DataTypes.String,
@@ -88,7 +88,7 @@ export const LogsQuickFiltersConfig: IQuickFiltersConfig[] = [
 	},
 	{
 		type: FiltersType.CHECKBOX,
-		title: 'K8s Deployment Name',
+		title: 'K8s部署名称',
 		attributeKey: {
 			key: 'k8s.deployment.name',
 			dataType: DataTypes.String,
@@ -100,7 +100,7 @@ export const LogsQuickFiltersConfig: IQuickFiltersConfig[] = [
 	},
 	{
 		type: FiltersType.CHECKBOX,
-		title: 'K8s Namespace Name',
+		title: 'K8s命名空间名称',
 		attributeKey: {
 			key: 'k8s.namespace.name',
 			dataType: DataTypes.String,

@@ -4,18 +4,18 @@ Supported Versions
 
 ^4.0.0
 
-## Send traces to SigNoz Cloud
+## Send traces to Scry Cloud
 
-Based on your application environment, you can choose the setup below to send traces to SigNoz Cloud.
+Based on your application environment, you can choose the setup below to send traces to Scry Cloud.
 
 ### Application on VMs
 
-From VMs, there are two ways to send data to SigNoz Cloud.
+From VMs, there are two ways to send data to Scry Cloud.
 
-- Send traces directly to SigNoz Cloud (quick start)
+- Send traces directly to Scry Cloud (quick start)
 - Send traces via OTel Collector binary(recommended)
 
-#### **Send traces directly to SigNoz Cloud**
+#### **Send traces directly to Scry Cloud**
 
 Step 1. Install OpenTelemetry packages
 
@@ -28,7 +28,7 @@ npm install --save @opentelemetry/exporter-trace-otlp-http@^0.45.0
 
 Step 2. Create tracing.js file
 
-This file will have your SigNoz cloud endpoint and service name configued as values of `url` and `SERVICE_NAME` respectively.
+This file will have your Scry cloud endpoint and service name configued as values of `url` and `SERVICE_NAME` respectively.
 
 ```js
 // tracing.js
@@ -79,7 +79,7 @@ OTEL_EXPORTER_OTLP_HEADERS="signoz-ingestion-key={{SIGNOZ_INGESTION_KEY}}" node 
 
 #### **Send traces via OTel Collector binary**
 
-OTel Collector binary helps to collect logs, hostmetrics, resource and infra attributes. It is recommended to install Otel Collector binary to collect and send traces to SigNoz cloud. You can correlate signals and have rich contextual data through this way.
+OTel Collector binary helps to collect logs, hostmetrics, resource and infra attributes. It is recommended to install Otel Collector binary to collect and send traces to Scry cloud. You can correlate signals and have rich contextual data through this way.
 
 You can find instructions to install OTel Collector binary [here](https://signoz.io/docs/tutorial/opentelemetry-binary-usage-in-virtual-machine/) in your VM. Once you are done setting up your OTel Collector binary, you can follow the below steps for instrumenting your Javascript application.
 
@@ -141,7 +141,7 @@ node -r ./tracing.js app.js
 
 ### Applications Deployed on Kubernetes
 
-For Javascript application deployed on Kubernetes, you need to install OTel Collector agent in your k8s infra to collect and send traces to SigNoz Cloud. You can find the instructions to install OTel Collector agent [here](https://signoz.io/docs/tutorial/kubernetes-infra-metrics/).
+For Javascript application deployed on Kubernetes, you need to install OTel Collector agent in your k8s infra to collect and send traces to Scry Cloud. You can find the instructions to install OTel Collector agent [here](https://signoz.io/docs/tutorial/kubernetes-infra-metrics/).
 
 Once you have set up OTel Collector agent, you can proceed with OpenTelemetry Javascript instrumentation by following the below steps:
 

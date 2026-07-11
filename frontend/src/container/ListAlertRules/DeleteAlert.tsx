@@ -46,7 +46,7 @@ function DeleteAlert({
 					payload: response.payload,
 				}));
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 				});
 			} else {
 				setDeleteAlertState((state) => ({
@@ -102,7 +102,7 @@ function DeleteAlert({
 			onClick={onClickHandler}
 			type="link"
 		>
-			Delete
+			删除
 		</ColumnButton>
 	);
 }

@@ -32,11 +32,11 @@ function NotFound({ text = defaultText }: Props): JSX.Element {
 
 			<TextContainer>
 				<Text>{text}</Text>
-				<Text>Page Not Found</Text>
+				<Text>找不到页面</Text>
 			</TextContainer>
 
 			<Button onClick={onClickHandler} to={ROUTES.APPLICATION} tabIndex={0}>
-				Return To Services Page
+				返回服务页面
 			</Button>
 		</Container>
 	);

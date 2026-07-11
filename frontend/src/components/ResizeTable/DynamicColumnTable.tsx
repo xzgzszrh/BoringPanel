@@ -5,7 +5,6 @@ import { Button, Dropdown, Flex, MenuProps, Switch } from 'antd';
 import { ColumnGroupType, ColumnType } from 'antd/es/table';
 import { ColumnsType } from 'antd/lib/table';
 import logEvent from 'api/common/logEvent';
-import LaunchChatSupport from 'components/LaunchChatSupport/LaunchChatSupport';
 import { SlidersHorizontal } from 'lucide-react';
 import { memo, useEffect, useState } from 'react';
 import { popupContainer } from 'utils/selectPopupContainer';
@@ -23,7 +22,6 @@ function DynamicColumnTable({
 	columns,
 	dynamicColumns,
 	onDragColumn,
-	facingIssueBtn,
 	shouldSendAlertsLogEvent,
 	...restProps
 }: DynamicColumnTableProps): JSX.Element {
@@ -96,7 +94,6 @@ function DynamicColumnTable({
 	return (
 		<div className="DynamicColumnTable">
 			<Flex justify="flex-end" align="center" gap={8}>
-				{facingIssueBtn && <LaunchChatSupport {...facingIssueBtn} />}
 				{dynamicColumns && (
 					<Dropdown
 						getPopupContainer={popupContainer}

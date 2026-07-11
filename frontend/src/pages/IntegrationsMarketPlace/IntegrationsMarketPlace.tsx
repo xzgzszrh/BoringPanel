@@ -1,7 +1,7 @@
 function IntegrationsMarketPlace(): JSX.Element {
 	return (
 		<div>
-			<h1>IntegrationsMarketPlace</h1>
+			<h1>集成市场</h1>
 		</div>
 	);
 }

@@ -12,17 +12,17 @@ function DataCollected(props: DataCollectedProps): JSX.Element {
 	const { logsData, metricsData } = props;
 	const logsColumns = [
 		{
-			title: 'Name',
+			title: '名称',
 			dataIndex: 'name',
 			key: 'name',
 		},
 		{
-			title: 'Path',
+			title: '小路',
 			dataIndex: 'path',
 			key: 'path',
 		},
 		{
-			title: 'Type',
+			title: '类型',
 			dataIndex: 'type',
 			key: 'type',
 		},
@@ -30,17 +30,17 @@ function DataCollected(props: DataCollectedProps): JSX.Element {
 
 	const metricsColumns = [
 		{
-			title: 'Name',
+			title: '名称',
 			dataIndex: 'name',
 			key: 'name',
 		},
 		{
-			title: 'Type',
+			title: '类型',
 			dataIndex: 'type',
 			key: 'type',
 		},
 		{
-			title: 'Unit',
+			title: '单元',
 			dataIndex: 'unit',
 			key: 'unit',
 		},
@@ -53,7 +53,7 @@ function DataCollected(props: DataCollectedProps): JSX.Element {
 			<div className="logs-section">
 				<div className="logs-heading">
 					<ScrollText size={14} />
-					<Typography.Text>Logs</Typography.Text>
+					<Typography.Text>日志</Typography.Text>
 				</div>
 				<Table
 					columns={logsColumns}
@@ -68,7 +68,7 @@ function DataCollected(props: DataCollectedProps): JSX.Element {
 			<div className="metrics-section">
 				<div className="metrics-heading">
 					<BarChart2 size={14} />
-					<Typography.Text>Metrics</Typography.Text>
+					<Typography.Text>指标</Typography.Text>
 				</div>
 				<Table
 					columns={metricsColumns}

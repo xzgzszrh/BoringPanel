@@ -35,28 +35,28 @@ interface UsageExplorerProps {
 	totalCount: number;
 }
 const timeDaysOptions = [
-	{ value: 30, label: 'Last 30 Days' },
-	{ value: 7, label: 'Last week' },
-	{ value: 1, label: 'Last day' },
+	{ value: 30, label: '过去 30 天' },
+	{ value: 7, label: '上星期' },
+	{ value: 1, label: '最后一天' },
 ];
 
 const interval = [
 	{
 		value: 604800,
 		chartDivideMultiplier: 1,
-		label: 'Weekly',
+		label: '每周',
 		applicableOn: [timeDaysOptions[0]],
 	},
 	{
 		value: 86400,
 		chartDivideMultiplier: 30,
-		label: 'Daily',
+		label: '日常的',
 		applicableOn: [timeDaysOptions[0], timeDaysOptions[1]],
 	},
 	{
 		value: 3600,
 		chartDivideMultiplier: 10,
-		label: 'Hours',
+		label: '时间',
 		applicableOn: [timeDaysOptions[2], timeDaysOptions[1]],
 	},
 ];
@@ -99,7 +99,7 @@ function _UsageExplorer(props: UsageExplorerProps): JSX.Element {
 		labels: usageData.map((s) => new Date(s.timestamp / 1000000)),
 		datasets: [
 			{
-				label: 'Span Count',
+				label: '跨度计数',
 				data: usageData.map((s) => s.count),
 				backgroundColor: 'rgba(255, 99, 132, 0.2)',
 				borderColor: 'rgba(255, 99, 132, 1)',
@@ -153,7 +153,7 @@ function _UsageExplorer(props: UsageExplorerProps): JSX.Element {
 						}}
 						value={selectedService || 'All Services'}
 					>
-						<Option value="">All Services</Option>
+						<Option value="">所有服务</Option>
 						{services?.map((service) => (
 							<Option key={service.serviceName} value={service.serviceName}>
 								{service.serviceName}
@@ -171,18 +171,7 @@ function _UsageExplorer(props: UsageExplorerProps): JSX.Element {
 							justifyContent: 'center',
 						}}
 					>
-						<Typography>
-							No spans found. Please add instrumentation (follow this
-							<a
-								href="https://signoz.io/docs/instrumentation/overview"
-								target="_blank"
-								style={{ marginLeft: 3 }}
-								rel="noreferrer"
-							>
-								guide
-							</a>
-							)
-						</Typography>
+						<Typography>未找到跨度。请添加仪器（按照此 )</Typography>
 					</Space>
 				) : (
 					<Space style={{ display: 'block', marginLeft: 20, width: 200 }}>

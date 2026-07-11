@@ -19,9 +19,7 @@ export const isCloudUser = (): boolean => {
 };
 
 export const isEECloudUser = (): boolean => {
-	const { hostname } = window.location;
-
-	return hostname?.endsWith('signoz.io');
+	return false;
 };
 
 export const checkVersionState = (

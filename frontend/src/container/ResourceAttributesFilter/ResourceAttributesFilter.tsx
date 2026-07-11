@@ -85,7 +85,7 @@ function ResourceAttributesFilter({
 					showSearch
 					mode="multiple"
 					value={selectedEnvironments}
-					placeholder="Select Environment/s"
+					placeholder="选择环境"
 					data-testId="resource-environment-filter"
 					style={{ minWidth: 200, height: 34 }}
 					onChange={handleEnvironmentChange}
@@ -113,9 +113,7 @@ function ResourceAttributesFilter({
 					</div>
 					<Select
 						getPopupContainer={popupContainer}
-						placeholder={
-							!isEmpty && 'Search and Filter based on resource attributes.'
-						}
+						placeholder={!isEmpty && '按资源属性搜索和筛选'}
 						onChange={handleChange}
 						bordered={false}
 						value={selectedQuery as never}
@@ -131,13 +129,10 @@ function ResourceAttributesFilter({
 						notFoundContent={
 							loading ? (
 								<span>
-									<Spin size="small" /> Loading...
+									<Spin size="small" /> 加载中...
 								</span>
 							) : (
-								<span>
-									No resource attributes available to filter. Please refer docs to send
-									attributes.
-								</span>
+								<span>没有可用于过滤的资源属性。请参考文档发送属性。</span>
 							)
 						}
 					/>

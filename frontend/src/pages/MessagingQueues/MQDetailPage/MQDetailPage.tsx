@@ -73,12 +73,12 @@ function MQDetailPage(): JSX.Element {
 					onClick={(): void => history.push(ROUTES.MESSAGING_QUEUES)}
 					className="message-queue-text"
 				>
-					Messaging Queues
+					消息队列
 				</Typography.Text>
 			</div>
 			<div className="messaging-header">
 				<div className="header-config">
-					Kafka / views /
+					Kafka / 浏览次数 /
 					<Select
 						className="messaging-queue-options"
 						defaultValue={MessagingQueuesViewType.consumerLag.value}

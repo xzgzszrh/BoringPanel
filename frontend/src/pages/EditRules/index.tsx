@@ -53,7 +53,7 @@ function EditRules(): JSX.Element {
 	useEffect(() => {
 		if (!isValidRuleId) {
 			notifications.error({
-				message: 'Rule Id is required',
+				message: '规则 ID 为必填项',
 			});
 			history.replace(ROUTES.LIST_ALL_ALERT);
 		}

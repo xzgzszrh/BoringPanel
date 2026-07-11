@@ -64,7 +64,7 @@ function Download({ data, isLoading, fileName }: DownloadProps): JSX.Element {
 				type="link"
 			>
 				<CloudDownloadOutlined />
-				Download
+				下载
 			</Button>
 		</Dropdown>
 	);

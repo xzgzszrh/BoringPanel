@@ -61,7 +61,7 @@ function ToggleAlertState({
 					payload: response.payload,
 				}));
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 				});
 			} else {
 				setAPIStatus((state) => ({

@@ -18,7 +18,7 @@ function LogsFilterPreview({ filter }: LogsFilterPreviewProps): JSX.Element {
 	return (
 		<div>
 			<div className="logs-filter-preview-header">
-				<div>Filtered Logs Preview</div>
+				<div>过滤后的日志预览</div>
 				<PreviewIntervalSelector
 					previewFilter={filter}
 					value={previewTimeInterval}
@@ -27,7 +27,7 @@ function LogsFilterPreview({ filter }: LogsFilterPreviewProps): JSX.Element {
 			</div>
 			<div className="logs-filter-preview-content">
 				{isEmptyFilter ? (
-					<div>Please select a filter</div>
+					<div>请选择一个过滤器</div>
 				) : (
 					<SampleLogs filter={filter} timeInterval={previewTimeInterval} count={5} />
 				)}

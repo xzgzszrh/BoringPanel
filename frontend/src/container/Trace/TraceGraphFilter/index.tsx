@@ -61,7 +61,7 @@ function TraceGraphFilter(): JSX.Element {
 
 	return (
 		<Space>
-			<label htmlFor="selectedFunction">Function</label>
+			<label htmlFor="selectedFunction">功能</label>
 
 			<SelectComponent
 				getPopupContainer={popupContainer}
@@ -78,7 +78,7 @@ function TraceGraphFilter(): JSX.Element {
 				))}
 			</SelectComponent>
 
-			<label htmlFor="selectedGroupBy">Group By</label>
+			<label htmlFor="selectedGroupBy">分组依据</label>
 			<AutoComplete
 				getPopupContainer={popupContainer}
 				dropdownMatchSelectWidth
@@ -92,7 +92,7 @@ function TraceGraphFilter(): JSX.Element {
 					filterGroupBy(inputValue, option)
 				}
 			>
-				<Input disabled={isLoading} placeholder="Please select" />
+				<Input disabled={isLoading} placeholder="请选择" />
 			</AutoComplete>
 		</Space>
 	);

@@ -184,33 +184,9 @@ export const SomethingWentWrong = Loadable(
 		),
 );
 
-export const LicensePage = Loadable(
-	() => import(/* webpackChunkName: "All Channels" */ 'pages/License'),
-);
-
 export const LogsIndexToFields = Loadable(
 	() =>
 		import(/* webpackChunkName: "LogsIndexToFields Page" */ 'pages/LogsSettings'),
-);
-
-export const BillingPage = Loadable(
-	() => import(/* webpackChunkName: "BillingPage" */ 'pages/Billing'),
-);
-
-export const SupportPage = Loadable(
-	() => import(/* webpackChunkName: "SupportPage" */ 'pages/Support'),
-);
-
-export const WorkspaceBlocked = Loadable(
-	() =>
-		import(/* webpackChunkName: "WorkspaceLocked" */ 'pages/WorkspaceLocked'),
-);
-
-export const WorkspaceSuspended = Loadable(
-	() =>
-		import(
-			/* webpackChunkName: "WorkspaceSuspended" */ 'pages/WorkspaceSuspended/WorkspaceSuspended'
-		),
 );
 
 export const ShortcutsPage = Loadable(

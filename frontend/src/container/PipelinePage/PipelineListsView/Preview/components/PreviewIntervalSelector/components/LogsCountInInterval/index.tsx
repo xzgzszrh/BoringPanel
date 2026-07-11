@@ -45,9 +45,7 @@ function LogsCountInInterval({
 		result?.data?.payload?.data?.newResult?.data?.result?.[0]?.series?.[0]
 			?.values?.[0]?.value;
 	return (
-		<div className="logs-filter-preview-matched-logs-count">
-			{count} matches in
-		</div>
+		<div className="logs-filter-preview-matched-logs-count">{count} 匹配于</div>
 	);
 }
 

@@ -338,25 +338,25 @@ function HostMetricsDetails({
 									type="secondary"
 									className="host-details-metadata-label"
 								>
-									STATUS
+									地位
 								</Typography.Text>
 								<Typography.Text
 									type="secondary"
 									className="host-details-metadata-label"
 								>
-									OPERATING SYSTEM
+									操作系统
 								</Typography.Text>
 								<Typography.Text
 									type="secondary"
 									className="host-details-metadata-label"
 								>
-									CPU USAGE
+									中央处理器使用率
 								</Typography.Text>
 								<Typography.Text
 									type="secondary"
 									className="host-details-metadata-label"
 								>
-									MEMORY USAGE
+									内存使用情况
 								</Typography.Text>
 							</div>
 
@@ -417,7 +417,7 @@ function HostMetricsDetails({
 							>
 								<div className="view-title">
 									<BarChart2 size={14} />
-									Metrics
+									指标
 								</div>
 							</Radio.Button>
 							<Radio.Button
@@ -428,7 +428,7 @@ function HostMetricsDetails({
 							>
 								<div className="view-title">
 									<ScrollText size={14} />
-									Logs
+									日志
 								</div>
 							</Radio.Button>
 							<Radio.Button
@@ -439,7 +439,7 @@ function HostMetricsDetails({
 							>
 								<div className="view-title">
 									<DraftingCompass size={14} />
-									Traces
+									链路
 								</div>
 							</Radio.Button>
 							<Radio.Button
@@ -450,7 +450,7 @@ function HostMetricsDetails({
 							>
 								<div className="view-title">
 									<Package2 size={14} />
-									Containers
+									集装箱
 								</div>
 							</Radio.Button>
 							<Radio.Button
@@ -461,7 +461,7 @@ function HostMetricsDetails({
 							>
 								<div className="view-title">
 									<ChevronsLeftRight size={14} />
-									Processes
+									流程
 								</div>
 							</Radio.Button>
 						</Radio.Group>

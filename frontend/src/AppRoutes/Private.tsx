@@ -6,11 +6,9 @@ import { Logout } from 'api/utils';
 import Spinner from 'components/Spinner';
 import { LOCALSTORAGE } from 'constants/localStorage';
 import ROUTES from 'constants/routes';
-import useLicense from 'hooks/useLicense';
 import { useNotifications } from 'hooks/useNotifications';
 import history from 'lib/history';
 import { isEmpty, isNull } from 'lodash-es';
-import { useAppContext } from 'providers/App/App';
 import { ReactChild, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
@@ -21,17 +19,12 @@ import { AppState } from 'store/reducers';
 import { getInitialUserTokenRefreshToken } from 'store/utils';
 import AppActions from 'types/actions';
 import { UPDATE_USER_IS_FETCH } from 'types/actions/app';
-import { LicenseState, LicenseStatus } from 'types/api/licensesV3/getActive';
 import { Organization } from 'types/api/user/getOrganization';
 import AppReducer from 'types/reducer/app';
 import { isCloudUser } from 'utils/app';
 import { routePermission } from 'utils/permission';
 
-import routes, {
-	LIST_LICENSES,
-	oldNewRoutesMapping,
-	oldRoutes,
-} from './routes';
+import routes, { oldNewRoutesMapping, oldRoutes } from './routes';
 import afterLogin from './utils';
 
 function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
@@ -51,12 +44,10 @@ function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
 		isFetchingOrgPreferences,
 	} = useSelector<AppState, AppReducer>((state) => state.app);
 
-	const { activeLicenseV3, isFetchingActiveLicenseV3 } = useAppContext();
-
 	const mapRoutes = useMemo(
 		() =>
 			new Map(
-				[...routes, LIST_LICENSES].map((e) => {
+				routes.map((e) => {
 					const currentPath = matchPath(pathname, {
 						path: e.path,
 					});
@@ -73,11 +64,6 @@ function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
 			)?.value,
 		[orgPreferences],
 	);
-
-	const {
-		data: licensesData,
-		isFetching: isFetchingLicensesData,
-	} = useLicense();
 
 	const { t } = useTranslation(['common']);
 
@@ -228,58 +214,6 @@ function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
 		}
 	};
 
-	const navigateToWorkSpaceBlocked = (route: any): void => {
-		const { path } = route;
-
-		if (path && path !== ROUTES.WORKSPACE_LOCKED) {
-			history.push(ROUTES.WORKSPACE_LOCKED);
-
-			dispatch({
-				type: UPDATE_USER_IS_FETCH,
-				payload: {
-					isUserFetching: false,
-				},
-			});
-		}
-	};
-
-	useEffect(() => {
-		if (!isFetchingLicensesData) {
-			const shouldBlockWorkspace = licensesData?.payload?.workSpaceBlock;
-
-			if (shouldBlockWorkspace) {
-				navigateToWorkSpaceBlocked(currentRoute);
-			}
-		}
-	}, [isFetchingLicensesData]);
-
-	const navigateToWorkSpaceSuspended = (route: any): void => {
-		const { path } = route;
-
-		if (path && path !== ROUTES.WORKSPACE_SUSPENDED) {
-			history.push(ROUTES.WORKSPACE_SUSPENDED);
-
-			dispatch({
-				type: UPDATE_USER_IS_FETCH,
-				payload: {
-					isUserFetching: false,
-				},
-			});
-		}
-	};
-
-	useEffect(() => {
-		if (!isFetchingActiveLicenseV3 && activeLicenseV3) {
-			const shouldSuspendWorkspace =
-				activeLicenseV3.status === LicenseStatus.SUSPENDED &&
-				activeLicenseV3.state === LicenseState.PAYMENT_FAILED;
-
-			if (shouldSuspendWorkspace) {
-				navigateToWorkSpaceSuspended(currentRoute);
-			}
-		}
-	}, [isFetchingActiveLicenseV3, activeLicenseV3]);
-
 	useEffect(() => {
 		if (org && org.length > 0 && org[0].id !== undefined) {
 			setOrgData(org[0]);
@@ -336,7 +270,7 @@ function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
 				if (currentRoute) {
 					const { isPrivate, key } = currentRoute;
 
-					if (isPrivate && key !== String(ROUTES.WORKSPACE_LOCKED)) {
+					if (isPrivate) {
 						handlePrivateRoutes(key);
 					} else {
 						// no need to fetch the user and make user fetching false
@@ -366,14 +300,7 @@ function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
 				history.push(ROUTES.SOMETHING_WENT_WRONG);
 			}
 		})();
-	}, [
-		dispatch,
-		isLoggedInState,
-		currentRoute,
-		licensesData,
-		orgUsers,
-		orgPreferences,
-	]);
+	}, [dispatch, isLoggedInState, currentRoute, orgUsers, orgPreferences]);
 
 	if (isUserFetchingError) {
 		return <Redirect to={ROUTES.SOMETHING_WENT_WRONG} />;

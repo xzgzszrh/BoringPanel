@@ -214,20 +214,6 @@ function ImportJSON({
 									{t('upload_json_file')}
 								</Button>
 							</Upload>
-							<a
-								href="https://github.com/SigNoz/dashboards"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<Button
-									type="default"
-									className="periscope-btn"
-									icon={<Github size={14} />}
-								>
-									{t('view_template')}&nbsp;
-									<ExternalLink size={14} />
-								</Button>
-							</a>
 						</Flex>
 
 						<Button

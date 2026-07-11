@@ -43,7 +43,7 @@ function ExplorerOptionsHideArea({
 				<>
 					{viewName && (
 						<div className="explorer-actions-btn">
-							<Tooltip title="Clear this view">
+							<Tooltip title="清除此视图">
 								<Button
 									onClick={handleClearSelect}
 									className="action-btn"
@@ -52,7 +52,7 @@ function ExplorerOptionsHideArea({
 								/>
 							</Tooltip>
 							{isEditDeleteSupported && isQueryUpdated && (
-								<Tooltip title="Update this View">
+								<Tooltip title="更新此视图">
 									<Button
 										onClick={onUpdateQueryHandler}
 										className="action-btn"

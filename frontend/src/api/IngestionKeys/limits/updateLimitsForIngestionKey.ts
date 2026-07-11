@@ -53,7 +53,7 @@ const updateLimitForIngestionKey = async (
 			const errResponse: ErrorResponse = {
 				statusCode: 500,
 				error: 'Unknown error',
-				message: 'An unknown error occurred',
+				message: '发生未知错误',
 				payload: null,
 			};
 

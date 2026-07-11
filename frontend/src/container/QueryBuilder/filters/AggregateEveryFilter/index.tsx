@@ -26,7 +26,7 @@ function AggregateEveryFilter({
 
 	return (
 		<InputNumber
-			placeholder="Enter in seconds"
+			placeholder="以秒为单位输入"
 			disabled={isDisabled}
 			style={selectStyle}
 			value={query.stepInterval}

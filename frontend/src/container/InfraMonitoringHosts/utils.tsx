@@ -36,7 +36,7 @@ export const getTabsItems = (): TabsProps['items'] => [
 
 export const getHostsListColumns = (): ColumnType<HostRowData>[] => [
 	{
-		title: <div className="hostname-column-header">Hostname</div>,
+		title: <div className="hostname-column-header">主机名</div>,
 		dataIndex: 'hostName',
 		key: 'hostName',
 		width: 250,
@@ -45,13 +45,13 @@ export const getHostsListColumns = (): ColumnType<HostRowData>[] => [
 		),
 	},
 	{
-		title: 'Status',
+		title: '状态',
 		dataIndex: 'active',
 		key: 'active',
 		width: 100,
 	},
 	{
-		title: <div className="column-header-right">CPU Usage</div>,
+		title: <div className="column-header-right">中央处理器使用率</div>,
 		dataIndex: 'cpu',
 		key: 'cpu',
 		width: 100,
@@ -59,7 +59,7 @@ export const getHostsListColumns = (): ColumnType<HostRowData>[] => [
 		align: 'right',
 	},
 	{
-		title: <div className="column-header-right">Memory Usage</div>,
+		title: <div className="column-header-right">内存使用情况</div>,
 		dataIndex: 'memory',
 		key: 'memory',
 		width: 100,
@@ -67,7 +67,7 @@ export const getHostsListColumns = (): ColumnType<HostRowData>[] => [
 		align: 'right',
 	},
 	{
-		title: <div className="column-header-right">IOWait</div>,
+		title: <div className="column-header-right">IO等待</div>,
 		dataIndex: 'wait',
 		key: 'wait',
 		width: 100,
@@ -75,7 +75,7 @@ export const getHostsListColumns = (): ColumnType<HostRowData>[] => [
 		align: 'right',
 	},
 	{
-		title: <div className="column-header-right">Load Avg</div>,
+		title: <div className="column-header-right">平均负载</div>,
 		dataIndex: 'load15',
 		key: 'load15',
 		width: 100,

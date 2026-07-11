@@ -100,7 +100,7 @@ function Tags({ tags, setTags }: AddTagsProps): JSX.Element {
 					icon={<PlusOutlined />}
 					onClick={showInput}
 				>
-					New Tag
+					新标签
 				</Button>
 			)}
 		</div>

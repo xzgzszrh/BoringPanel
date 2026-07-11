@@ -29,7 +29,7 @@ function CopyToClipboard({ textToCopy }: { textToCopy: string }): JSX.Element {
 				icon={<CircleCheck size={16} color={Color.BG_FOREST_400} />}
 				className="copy-to-clipboard copy-to-clipboard--success"
 			>
-				Copied
+				已复制
 			</Button>
 		);
 	}
@@ -46,7 +46,7 @@ function CopyToClipboard({ textToCopy }: { textToCopy: string }): JSX.Element {
 			onClick={(): void => copyToClipboard(textToCopy)}
 			className="copy-to-clipboard"
 		>
-			Copy link
+			复制链接
 		</Button>
 	);
 }

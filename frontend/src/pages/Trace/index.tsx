@@ -151,7 +151,7 @@ function Trace({
 			<Container>
 				<div>
 					<ClearAllFilter onClick={onClickHandler} type="primary">
-						Clear all filters
+						清除所有过滤器
 					</ClearAllFilter>
 					<LeftContainer>
 						<Filters />

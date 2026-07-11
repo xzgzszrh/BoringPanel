@@ -58,11 +58,11 @@ function SaveViewWithName({
 					rules={[
 						{
 							required: true,
-							message: 'Please enter view name',
+							message: '请输入视图名称',
 						},
 					]}
 				>
-					<Input placeholder="Enter Name" />
+					<Input placeholder="输入姓名" />
 				</Form.Item>
 				<SaveButton
 					htmlType="submit"
@@ -70,7 +70,7 @@ function SaveViewWithName({
 					loading={isLoading}
 					data-testid="save-view-name-action-button"
 				>
-					Save
+					保存
 				</SaveButton>
 			</Form>
 		</Card>

@@ -31,7 +31,7 @@ function SettingsDrawer({ drawerTitle }: { drawerTitle: string }): JSX.Element {
 				data-testid="show-drawer"
 				onClick={showDrawer}
 			>
-				Configure
+				配置
 			</Button>
 
 			<DrawerContainer

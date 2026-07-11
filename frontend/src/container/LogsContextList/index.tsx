@@ -187,7 +187,7 @@ function LogsContextList({
 
 			<ListContainer $isDarkMode={isDarkMode}>
 				{((!logs.length && !isFetching) || isError) && (
-					<EmptyText>No Data</EmptyText>
+					<EmptyText>无数据</EmptyText>
 				)}
 				{isFetching && <Spinner size="large" height="10rem" />}
 				<OverlayScrollbar isVirtuoso>

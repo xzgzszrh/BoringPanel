@@ -87,11 +87,11 @@ async function bootstrap() {
 
 ### Step 5: Dockerize your application
 
-Set the SigNoz ingestion key Environment variable and expose port 3001 in Dockerfile as:
+Set the Scry ingestion key Environment variable and expose port 3001 in Dockerfile as:
 
 ```bash
 ...
-# Use an environment variable for the Signoz Ingestion Key
+# Use an environment variable for the Scry Ingestion Key
 ENV OTEL_EXPORTER_OTLP_HEADERS="signoz-ingestion-key={{SIGNOZ_INGESTION_KEY}}"
 
 # In step 4 above, you are configuring your NestJS application to listen on port 3001

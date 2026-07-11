@@ -1,0 +1,22 @@
+{
+  "label_email": "邮箱",
+  "placeholder_email": "name@yourcompany.com",
+  "label_password": "密码",
+  "button_initiate_login": "下一步",
+  "button_login": "登录",
+  "login_page_title": "登录 Scry",
+  "login_with_sso": "使用 SSO 登录",
+  "login_with_pwd": "使用密码登录",
+  "forgot_password": "忘记密码？",
+  "create_an_account": "创建账户",
+  "prompt_if_admin": "如果您是管理员，",
+  "prompt_create_account": "如果您是第一次设置 Scry，",
+  "prompt_no_account": "没有账户？请联系您的管理员向您发送邀请链接。",
+  "prompt_forgot_password": "请您的管理员重置您的密码并向您发送新的邀请链接",
+  "prompt_on_sso_error": "您是否正在尝试解决 SSO 配置问题？",
+  "unexpected_error": "抱歉，出了点问题",
+  "failed_to_login": "抱歉，登录失败",
+  "invalid_email": "请输入有效的邮箱地址",
+  "invalid_account": "该账户不存在。要创建新账户，请联系您的管理员以获取邀请链接",
+  "invalid_config": "检测到无效配置，请联系您的管理员"
+}

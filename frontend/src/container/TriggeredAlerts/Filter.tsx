@@ -100,7 +100,7 @@ function Filter({
 				onChange={onChangeSelectedFilterHandler}
 				mode="tags"
 				value={selectedFilter.map((e) => e.value)}
-				placeholder="Filter by Tags - e.g. severity:warning, alertname:Sample Alert"
+				placeholder="按标签过滤 - 例如严重性：警告，告警名称：示例告警"
 				tagRender={(props): JSX.Element => getTags(props)}
 				options={[]}
 			/>
@@ -110,7 +110,7 @@ function Filter({
 				mode="tags"
 				defaultValue={selectedGroup.map((e) => e.value)}
 				showArrow
-				placeholder="Group by any tag"
+				placeholder="按任意标签分组"
 				tagRender={(props): JSX.Element => getTags(props)}
 				options={options}
 				optionRender={(option): JSX.Element => (

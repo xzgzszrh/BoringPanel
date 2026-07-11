@@ -28,7 +28,7 @@ export function PlannedDowntimeDeleteModal(
 	return (
 		<Modal
 			className="delete-schedule-modal"
-			title={<span className="title">Delete Schedule</span>}
+			title={<span className="title">删除日程</span>}
 			open={isDeleteModalOpen}
 			closable={false}
 			onCancel={hideDeleteScheduleModal}
@@ -39,7 +39,7 @@ export function PlannedDowntimeDeleteModal(
 					className="cancel-btn"
 					icon={<X size={16} />}
 				>
-					Cancel
+					取消
 				</Button>,
 				<Button
 					key="submit"
@@ -48,7 +48,7 @@ export function PlannedDowntimeDeleteModal(
 					className="delete-btn"
 					disabled={isDeleteLoading}
 				>
-					Delete Schedule
+					删除日程
 				</Button>,
 			]}
 		>

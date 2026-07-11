@@ -66,7 +66,9 @@ export const getListColumns = (
 
 					return (
 						<BlockLink to={getTraceLink(item)} openInNewTab>
-							<Typography data-testid={key}>{getMs(durationNano)}ms</Typography>
+							<Typography data-testid={key}>
+								{getMs(durationNano)}多发性硬化症
+							</Typography>
 						</BlockLink>
 					);
 				}

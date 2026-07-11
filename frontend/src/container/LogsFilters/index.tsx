@@ -60,14 +60,14 @@ function LogsFilters(): JSX.Element {
 	return (
 		<Col flex="250px">
 			<Input
-				placeholder="Filter Values"
+				placeholder="过滤值"
 				onInput={handleSearch}
 				value={filterValuesInput}
 				onChange={handleSearch}
 			/>
 
 			<CategoryContainer>
-				<CategoryHeading>SELECTED FIELDS</CategoryHeading>
+				<CategoryHeading>选定的领域</CategoryHeading>
 				<FieldContainer>
 					{selected
 						.filter((field) => fieldSearchFilter(field.name, filterValuesInput))
@@ -90,7 +90,7 @@ function LogsFilters(): JSX.Element {
 				</FieldContainer>
 			</CategoryContainer>
 			<CategoryContainer>
-				<CategoryHeading>INTERESTING FIELDS</CategoryHeading>
+				<CategoryHeading>有趣的领域</CategoryHeading>
 				<FieldContainer>
 					{interesting
 						.filter((field) => fieldSearchFilter(field.name, filterValuesInput))

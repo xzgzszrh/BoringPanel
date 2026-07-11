@@ -20,7 +20,7 @@ function NoFilterTable({
 	// need to add the filter
 	const columns: ColumnsType<Alerts> = [
 		{
-			title: 'Status',
+			title: '状态',
 			dataIndex: 'status',
 			width: 80,
 			key: 'status',
@@ -29,7 +29,7 @@ function NoFilterTable({
 			render: (value): JSX.Element => <AlertStatus severity={value.state} />,
 		},
 		{
-			title: 'Alert Name',
+			title: '告警名称',
 			dataIndex: 'labels',
 			key: 'alertName',
 			width: 100,
@@ -42,7 +42,7 @@ function NoFilterTable({
 			},
 		},
 		{
-			title: 'Tags',
+			title: '标签',
 			dataIndex: 'labels',
 			key: 'tags',
 			width: 100,
@@ -60,7 +60,7 @@ function NoFilterTable({
 			},
 		},
 		{
-			title: 'Severity',
+			title: '严重性',
 			dataIndex: 'labels',
 			key: 'severity',
 			width: 100,
@@ -78,7 +78,7 @@ function NoFilterTable({
 			},
 		},
 		{
-			title: 'Firing Since',
+			title: '开除以来',
 			dataIndex: 'startsAt',
 			width: 100,
 			sorter: (a, b): number =>

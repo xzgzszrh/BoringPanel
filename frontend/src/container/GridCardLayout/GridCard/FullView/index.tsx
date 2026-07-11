@@ -228,7 +228,7 @@ function FullView({
 						<Input
 							addonBefore={<SearchOutlined size={14} />}
 							className="global-search"
-							placeholder="Search..."
+							placeholder="搜索..."
 							allowClear
 							key={widget.id}
 							onChange={(e): void => {

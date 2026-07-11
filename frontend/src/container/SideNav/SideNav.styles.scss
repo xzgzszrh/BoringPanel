@@ -1,8 +1,15 @@
 .sidenav-container {
 	width: 64px;
+	flex: 0 0 64px;
 	height: 100%;
 	position: relative;
 	z-index: 1;
+	transition: width 0.2s, flex-basis 0.2s;
+
+	&.pinned {
+		width: 240px;
+		flex-basis: 240px;
+	}
 }
 
 .sideNav {
@@ -21,12 +28,56 @@
 	}
 
 	.brand {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 12px;
 		padding: var(--padding-4);
 		height: 64px;
+
+		.brand-toggle {
+			position: relative;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 32px;
+			height: 32px;
+			flex: 0 0 32px;
+			padding: 6px;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			background: transparent;
+			color: var(--text-vanilla-400);
+			cursor: pointer;
+
+			img,
+			.brand-toggle-icon {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				transition: opacity 0.15s ease;
+			}
+
+			.brand-toggle-icon {
+				opacity: 0;
+			}
+
+			&:hover,
+			&:focus-visible {
+				border-color: var(--bg-slate-400);
+				background: var(--bg-slate-500);
+				color: var(--text-robin-400);
+
+				img {
+					opacity: 0;
+				}
+
+				.brand-toggle-icon {
+					opacity: 1;
+				}
+			}
+		}
 
 		.brand-logo {
 			display: flex;
@@ -72,12 +123,22 @@
 		}
 
 		.dockBtn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
 			cursor: pointer;
-			background: none;
-			border: none;
-			padding: 0;
-			height: 16px;
-			width: 16px;
+			background: var(--bg-slate-500);
+			border: 1px solid var(--bg-slate-400);
+			border-radius: 4px;
+			color: var(--text-vanilla-400);
+			padding: 7px;
+			height: 32px;
+			width: 32px;
+			flex: 0 0 32px;
+
+			&:hover {
+				color: var(--text-robin-400);
+			}
 		}
 	}
 
@@ -194,7 +255,8 @@
 		color: var(--text-forest-500);
 	}
 
-	&:hover {
+	&:hover,
+	&.pinned {
 		flex: 0 0 240px;
 		max-width: 240px;
 		min-width: 240px;
@@ -232,6 +294,11 @@
 			display: block;
 		}
 	}
+
+	&.pinned {
+		position: relative;
+		z-index: 1;
+	}
 }
 
 .lightMode {
@@ -246,6 +313,22 @@
 		}
 
 		.brand {
+			.brand-toggle {
+				color: var(--text-slate-400);
+
+				&:hover,
+				&:focus-visible {
+					background: var(--bg-vanilla-100);
+					border-color: var(--bg-vanilla-300);
+				}
+			}
+
+			.dockBtn {
+				background: var(--bg-vanilla-100);
+				border-color: var(--bg-vanilla-300);
+				color: var(--text-slate-400);
+			}
+
 			.brand-logo {
 				.brand-logo-name {
 					color: var(--bg-slate-400);
@@ -266,7 +349,8 @@
 			}
 		}
 
-		&:hover {
+		&:hover,
+		&.pinned {
 			background: var(--bg-vanilla-100);
 		}
 	}

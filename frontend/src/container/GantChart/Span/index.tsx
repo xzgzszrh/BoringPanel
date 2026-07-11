@@ -49,11 +49,11 @@ function Span(props: SpanLengthProps): JSX.Element {
 			<div>
 				<Typography.Text style={{ marginBottom: '8px' }}>
 					{' '}
-					Duration : {inMsCount}
+					期间 ： {inMsCount}
 				</Typography.Text>
 				<br />
 				<Typography.Text style={{ marginBottom: '8px' }}>
-					Start Time: {startTimeInMs}ms [{timeStamp}]{' '}
+					开始时间： {startTimeInMs}多发性硬化症 [{timeStamp}]{' '}
 				</Typography.Text>
 			</div>
 		);

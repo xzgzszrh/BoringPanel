@@ -168,17 +168,17 @@ export const QueryTableProps: any = {
 	columns: [
 		{
 			dataIndex: 'resource_host_name',
-			title: 'resource_host_name',
+			title: '资源主机名',
 			width: 145,
 		},
 		{
 			dataIndex: 'service_name',
-			title: 'service_name',
+			title: '服务名称',
 			width: 145,
 		},
 		{
 			dataIndex: 'operation',
-			title: 'operation',
+			title: '手术',
 			width: 145,
 		},
 		{
@@ -236,7 +236,7 @@ export const QueryTableProps: any = {
 };
 
 export const WidgetHeaderProps: any = {
-	title: 'Table - Panel',
+	title: '桌子 - 面板',
 	widget: {
 		bucketCount: 30,
 		bucketWidth: 0,
@@ -387,7 +387,7 @@ export const WidgetHeaderProps: any = {
 		stackedBarChart: false,
 		thresholds: [],
 		timePreferance: 'GLOBAL_TIME',
-		title: 'Table - Panel',
+		title: '桌子 - 面板',
 		yAxisUnit: 'none',
 	},
 	parentHover: false,
@@ -400,7 +400,7 @@ export const WidgetHeaderProps: any = {
 		data: {
 			statusCode: 200,
 			error: null,
-			message: 'success',
+			message: '成功',
 			payload: {
 				status: 'success',
 				data: {

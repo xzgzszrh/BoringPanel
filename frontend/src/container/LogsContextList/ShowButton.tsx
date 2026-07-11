@@ -46,7 +46,7 @@ function ShowButton({
 				isDisabled && 'disabled',
 			)}
 		>
-			Load more
+			加载更多
 		</Button>
 	);
 }

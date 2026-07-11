@@ -3,19 +3,19 @@ import { Tag } from 'antd';
 function Severity({ severity }: SeverityProps): JSX.Element {
 	switch (severity) {
 		case 'unprocessed': {
-			return <Tag color="green">UnProcessed</Tag>;
+			return <Tag color="green">未处理</Tag>;
 		}
 
 		case 'active': {
-			return <Tag color="red">Firing</Tag>;
+			return <Tag color="red">射击</Tag>;
 		}
 
 		case 'suppressed': {
-			return <Tag color="red">Suppressed</Tag>;
+			return <Tag color="red">压抑</Tag>;
 		}
 
 		default: {
-			return <Tag color="default">Unknown Status</Tag>;
+			return <Tag color="default">未知状态</Tag>;
 		}
 	}
 }

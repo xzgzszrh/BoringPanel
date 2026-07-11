@@ -97,13 +97,13 @@ export function PlannedDowntime(): JSX.Element {
 	return (
 		<div className="planned-downtime-container">
 			<div className="planned-downtime-content">
-				<Typography.Title className="title">Planned Downtime</Typography.Title>
+				<Typography.Title className="title">计划停机时间</Typography.Title>
 				<Typography.Text className="subtitle">
-					Create and manage planned downtimes.
+					创建和管理计划停机时间。
 				</Typography.Text>
 				<Flex className="toolbar">
 					<Input
-						placeholder="Search for a planned downtime..."
+						placeholder="搜索计划停机时间..."
 						prefix={<Search size={12} color={Color.BG_VANILLA_400} />}
 						value={searchValue}
 						onChange={handleSearch}
@@ -118,7 +118,7 @@ export function PlannedDowntime(): JSX.Element {
 							form.resetFields();
 						}}
 					>
-						New downtime
+						新的停机时间
 					</Button>
 				</Flex>
 				<br />

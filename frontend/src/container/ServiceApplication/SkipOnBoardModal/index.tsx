@@ -4,12 +4,12 @@ import Modal from 'components/Modal';
 function SkipOnBoardingModal({ onContinueClick }: Props): JSX.Element {
 	return (
 		<Modal
-			title="Setup instrumentation"
+			title="设置仪器"
 			isModalVisible
 			closable={false}
 			footer={[
 				<Button key="submit" type="primary" onClick={onContinueClick}>
-					Continue without instrumentation
+					无需仪器即可继续
 				</Button>,
 			]}
 		>
@@ -21,20 +21,12 @@ function SkipOnBoardingModal({ onContinueClick }: Props): JSX.Element {
 					frameBorder="0"
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 					allowFullScreen
-					title="youtube_video"
+					title="Youtube 视频"
 				/>
+
 				<div>
-					<Typography>No instrumentation data.</Typography>
-					<Typography>
-						Please instrument your application as mentioned&nbsp;
-						<a
-							href="https://signoz.io/docs/instrumentation/overview"
-							target="_blank"
-							rel="noreferrer"
-						>
-							here
-						</a>
-					</Typography>
+					<Typography>无仪器数据。</Typography>
+					<Typography>请按上述方式检测您的应用程序</Typography>
 				</div>
 			</>
 		</Modal>

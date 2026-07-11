@@ -16,29 +16,29 @@ export const frameworksMap = {
 		java: [
 			{
 				value: 'springBoot',
-				label: 'Spring Boot',
+				label: '春季启动',
 			},
 			{
 				value: 'tomcat',
-				label: 'Tomcat',
+				label: '雄猫',
 			},
 			{
 				value: 'jboss',
-				label: 'JBoss',
+				label: '老板',
 			},
 			{
 				value: 'other',
-				label: 'Others',
+				label: '其他的',
 			},
 		],
 		javascript: [
 			{
 				value: 'express',
-				label: 'Express',
+				label: '表达',
 			},
 			{
 				value: 'nestjs',
-				label: 'Nest JS',
+				label: '巢JS',
 			},
 			{
 				value: 'nodejs',
@@ -46,37 +46,37 @@ export const frameworksMap = {
 			},
 			{
 				value: 'reactjs',
-				label: 'React JS',
+				label: '反应JS',
 			},
 			{
 				value: 'angular',
-				label: 'Angular',
+				label: '角',
 			},
 			{
 				value: 'others',
-				label: 'Other Web Instrumentation',
+				label: '其他网络仪表',
 			},
 		],
 		python: [
 			{
 				value: 'django',
-				label: 'Django',
+				label: '姜戈',
 			},
 			{
 				value: 'fastAPI',
-				label: 'Fast API',
+				label: '快API',
 			},
 			{
 				value: 'flask',
-				label: 'Flask',
+				label: '烧瓶',
 			},
 			{
 				value: 'falcon',
-				label: 'Falcon',
+				label: '鹘',
 			},
 			{
 				value: 'other',
-				label: 'Others',
+				label: '其他的',
 			},
 		],
 	},

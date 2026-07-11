@@ -60,7 +60,7 @@ export default function TableRow({
 	return (
 		<>
 			{tableColumns.map((column) => {
-				if (!column.render) return <td>Empty</td>;
+				if (!column.render) return <td>空的</td>;
 
 				const element: ColumnTypeRender<Record<string, unknown>> = column.render(
 					log[column.key as keyof Record<string, unknown>],

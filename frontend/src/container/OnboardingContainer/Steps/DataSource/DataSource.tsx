@@ -113,7 +113,7 @@ export default function DataSource(): JSX.Element {
 
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Data Source Request Submitted',
+					message: '已提交数据源请求',
 				});
 
 				form.setFieldValue('requestedDataSourceName', '');
@@ -153,7 +153,7 @@ export default function DataSource(): JSX.Element {
 	return (
 		<div className="module-container">
 			<Typography.Text className="data-source-title">
-				<span className="required-symbol">*</span> Select Data Source
+				<span className="required-symbol">*</span> 选择数据源
 			</Typography.Text>
 			<div className="supported-languages-container">
 				{supportedDataSources?.map((dataSource) => (
@@ -216,7 +216,7 @@ export default function DataSource(): JSX.Element {
 									name="serviceName"
 									label="Service Name"
 									style={{ width: 300 }}
-									rules={[{ required: true, message: 'Please enter service name' }]}
+									rules={[{ required: true, message: '请输入服务名称' }]}
 									validateTrigger="onBlur"
 								>
 									<Input autoFocus />
@@ -227,13 +227,13 @@ export default function DataSource(): JSX.Element {
 										<Form.Item
 											label="Select Framework"
 											name="selectFramework"
-											rules={[{ required: true, message: 'Please select framework' }]}
+											rules={[{ required: true, message: '请选择框架' }]}
 										>
 											<Select
 												value={selectedFramework}
 												getPopupContainer={popupContainer}
 												style={{ width: 300 }}
-												placeholder="Select Framework"
+												placeholder="选择框架"
 												onChange={(value): void => updateSelectedFramework(value)}
 												options={supportedframeworks}
 											/>
@@ -245,22 +245,19 @@ export default function DataSource(): JSX.Element {
 
 						<div className="request-entity-container intgeration-page-container">
 							<Typography.Text className="intgeration-page-container-text">
-								Not able to find datasources you are looking for, check our Integrations
-								page which allows more sources of sending data
+								无法找到您正在寻找的数据源，请检查我们的集成页面，该页面允许更多发送数据的来源
 							</Typography.Text>
 							<Button
 								onClick={goToIntegrationsPage}
 								icon={<Blocks size={14} />}
 								className="navigate-integrations-page-btn"
 							>
-								Go to integrations
+								转到集成
 							</Button>
 						</div>
 
 						<div className="request-entity-container">
-							<Typography.Text>
-								Cannot find what you’re looking for? Request a data source
-							</Typography.Text>
+							<Typography.Text>找不到您要找的东西？请求数据源</Typography.Text>
 
 							<div className="form-section">
 								<Space.Compact style={{ width: '100%' }}>
@@ -268,7 +265,7 @@ export default function DataSource(): JSX.Element {
 										name="requestedDataSourceName"
 										style={{ width: 300, marginBottom: 0 }}
 									>
-										<Input placeholder="Enter data source name..." />
+										<Input placeholder="输入数据源名称..." />
 									</Form.Item>
 									<Button
 										className="periscope-btn primary"
@@ -287,7 +284,7 @@ export default function DataSource(): JSX.Element {
 											requestedDataSourceName?.trim().length === 0
 										}
 									>
-										Submit
+										提交
 									</Button>
 								</Space.Compact>
 							</div>

@@ -6,10 +6,10 @@ export enum ColumnKey {
 }
 
 export const ColumnTitle: Record<ColumnKey, string> = {
-	[ColumnKey.Application]: 'Application',
-	[ColumnKey.P99]: 'P99 latency',
-	[ColumnKey.ErrorRate]: 'Error Rate (% of total)',
-	[ColumnKey.Operations]: 'Operations Per Second',
+	[ColumnKey.Application]: '应用',
+	[ColumnKey.P99]: 'P99 延迟',
+	[ColumnKey.ErrorRate]: '错误率（占总量百分比）',
+	[ColumnKey.Operations]: '每秒操作数',
 };
 
 export enum ColumnWidth {
@@ -21,4 +21,4 @@ export enum ColumnWidth {
 
 export const SORTING_ORDER = 'descend';
 
-export const SEARCH_PLACEHOLDER = 'Search by service';
+export const SEARCH_PLACEHOLDER = '搜索服务';

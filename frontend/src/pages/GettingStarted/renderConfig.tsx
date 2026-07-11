@@ -18,76 +18,85 @@ export const GetStartedContent = (): TGetStartedContentSection[] => {
 	} = store.getState();
 	return [
 		{
-			heading: 'Send data from your applications to SigNoz',
+			heading: 'Send data from your applications to Scry',
 			items: [
 				{
-					title: 'Instrument your Java Application',
+					title: '检测您的 Java 应用程序',
 					icon: (
 						<img src={`/Logos/java.png?currentVersion=${currentVersion}`} alt="" />
 					),
-					url: 'https://signoz.io/docs/instrumentation/java/',
+
+					url: '',
 				},
 				{
-					title: 'Instrument your Python Application',
+					title: '检测您的 Python 应用程序',
 					icon: (
 						<img src={`/Logos/python.png?currentVersion=${currentVersion}`} alt="" />
 					),
-					url: 'https://signoz.io/docs/instrumentation/python/',
+
+					url: '',
 				},
 				{
-					title: 'Instrument your JS Application',
+					title: '检测您的 JS 应用程序',
 					icon: (
 						<img
 							src={`/Logos/javascript.png?currentVersion=${currentVersion}`}
 							alt=""
 						/>
 					),
-					url: 'https://signoz.io/docs/instrumentation/javascript/',
+
+					url: '',
 				},
 				{
-					title: 'Instrument your Go Application',
+					title: '检测您的 Go 应用程序',
 					icon: (
 						<img src={`/Logos/go.png?currentVersion=${currentVersion}`} alt="" />
 					),
-					url: 'https://signoz.io/docs/instrumentation/golang/',
+
+					url: '',
 				},
 				{
-					title: 'Instrument your .NET Application',
+					title: '检测您的 .NET 应用程序',
 					icon: (
 						<img
 							src={`/Logos/ms-net-framework.png?currentVersion=${currentVersion}`}
 							alt=""
 						/>
 					),
-					url: 'https://signoz.io/docs/instrumentation/dotnet/',
+
+					url: '',
 				},
 				{
-					title: 'Instrument your PHP Application',
+					title: '检测您的 PHP 应用程序',
 					icon: (
 						<img src={`/Logos/php.png?currentVersion=${currentVersion}`} alt="" />
 					),
-					url: 'https://signoz.io/docs/instrumentation/php/',
+
+					url: '',
 				},
 				{
-					title: 'Instrument your Rails Application',
+					title: '检测您的 Rails 应用程序',
 					icon: (
 						<img src={`/Logos/rails.png?currentVersion=${currentVersion}`} alt="" />
 					),
-					url: 'https://signoz.io/docs/instrumentation/ruby-on-rails/',
+
+					url: '',
 				},
 				{
-					title: 'Instrument your Rust Application',
+					title: '检测您的 Rust 应用程序',
 					icon: (
 						<img src={`/Logos/rust.png?currentVersion=${currentVersion}`} alt="" />
 					),
-					url: 'https://signoz.io/docs/instrumentation/rust/',
+
+					url: '',
 				},
 				{
-					title: 'Instrument your Elixir Application',
+					title: '检测您的 Elixir 应用程序',
 					icon: (
 						<img src={`/Logos/elixir.png?currentVersion=${currentVersion}`} alt="" />
 					),
-					url: 'https://signoz.io/docs/instrumentation/elixir/',
+
+					url: '',
 				},
 			],
 		},
@@ -95,29 +104,29 @@ export const GetStartedContent = (): TGetStartedContentSection[] => {
 			heading: 'Send Metrics from your Infrastructure & create Dashboards',
 			items: [
 				{
-					title: 'Send metrics to SigNoz',
+					title: '将指标发送到 Scry',
 					icon: <BarChartOutlined style={{ fontSize: '3.5rem' }} />,
-					url: 'https://signoz.io/docs/userguide/send-metrics/',
+					url: '',
 				},
 				{
-					title: 'Create and Manage Dashboards',
+					title: '创建和管理仪表盘',
 					icon: <DashboardFilled style={{ fontSize: '3.5rem' }} />,
-					url: 'https://signoz.io/docs/userguide/manage-dashboards-and-panels/',
+					url: '',
 				},
 			],
 		},
 		{
-			heading: 'Send your logs to SigNoz',
+			heading: 'Send your logs to Scry',
 			items: [
 				{
-					title: 'Send your logs to SigNoz',
+					title: '将您的日志发送到 Scry',
 					icon: <AlignLeftOutlined style={{ fontSize: '3.5rem' }} />,
-					url: 'https://signoz.io/docs/userguide/logs/',
+					url: '',
 				},
 				{
-					title: 'Existing log collectors to SigNoz',
+					title: '现有日志收集器为 Scry',
 					icon: <ApiFilled style={{ fontSize: '3.5rem' }} />,
-					url: 'https://signoz.io/docs/userguide/fluentbit_to_signoz/',
+					url: '',
 				},
 			],
 		},
@@ -125,48 +134,31 @@ export const GetStartedContent = (): TGetStartedContentSection[] => {
 			heading: 'Create alerts on Metrics',
 			items: [
 				{
-					title: 'Create alert rules on metrics',
+					title: '针对指标创建告警规则',
 					icon: <AlertFilled style={{ fontSize: '3.5rem' }} />,
-					url: 'https://signoz.io/docs/userguide/alerts-management/',
+					url: '',
 				},
 				{
-					title: 'Configure alert notification channels',
+					title: '配置告警通知渠道',
 					icon: <SoundFilled style={{ fontSize: '3.5rem' }} />,
-					url:
-						'https://signoz.io/docs/userguide/alerts-management/#setting-up-a-notification-channel',
+					url: '',
 				},
 			],
 		},
 		{
 			heading: 'Need help?',
-			description: (
-				<>
-					{'Join our slack community and ask any question you may have on '}
-					<Typography.Link
-						href="https://signoz-community.slack.com/archives/C01HWUTP4HH"
-						target="_blank"
-					>
-						#support
-					</Typography.Link>
-					{' or '}
-					<Typography.Link
-						href="https://signoz-community.slack.com/archives/C01HWQ1R0BC"
-						target="_blank"
-					>
-						#dummy_channel
-					</Typography.Link>
-				</>
-			),
+			description: <>加入我们的 Slack 社区并提出您可能有的任何问题 或者</>,
 
 			items: [
 				{
-					title: 'Join SigNoz slack community ',
+					title: '加入 Scry 松弛社区',
 					icon: (
 						<div style={{ padding: '0.7rem' }}>
 							<Slack width={30} height={30} />
 						</div>
 					),
-					url: 'https://signoz.io/slack',
+
+					url: '/slack',
 				},
 			],
 		},

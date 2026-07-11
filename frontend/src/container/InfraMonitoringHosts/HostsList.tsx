@@ -187,12 +187,12 @@ function HostsList(): JSX.Element {
 					<div className="no-filtered-hosts-message-content">
 						<img
 							src="/Icons/emptyState.svg"
-							alt="thinking-emoji"
+							alt="思考表情符号"
 							className="empty-state-svg"
 						/>
 
 						<Typography.Text className="no-filtered-hosts-message">
-							This query had no results. Edit your query and try again!
+							该查询没有结果。编辑您的查询并重试！
 						</Typography.Text>
 					</div>
 				</div>

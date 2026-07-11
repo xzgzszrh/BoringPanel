@@ -625,12 +625,12 @@ function DateTimeSelection({
 						/>
 					</div>
 
-					<Typography.Text>Enable Absolute Time</Typography.Text>
+					<Typography.Text>启用绝对时间</Typography.Text>
 				</div>
 
 				{(selectedTime === 'custom' || !isValidteRelativeTime) && (
 					<div className="absolute-relative-time-error">
-						Please select / enter valid relative time to toggle.
+						请选择/输入要切换的有效相对时间。
 					</div>
 				)}
 
@@ -674,7 +674,7 @@ function DateTimeSelection({
 						title={`Reset to ${defaultRelativeTime}`}
 						icon={<Undo size={14} />}
 					>
-						Reset
+						重置
 					</Button>
 				</FormItem>
 			)}
@@ -761,7 +761,7 @@ function DateTimeSelection({
 								className="share-link-btn periscope-btn"
 								icon={<Send size={14} />}
 							>
-								Share
+								分享
 							</Button>
 						</Popover>
 					)}

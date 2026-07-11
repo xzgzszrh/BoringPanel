@@ -45,195 +45,195 @@ export const stepsMap = {
 
 export const DataSourceStep: SelectedModuleStepProps = {
 	id: stepsMap.dataSource,
-	title: 'Data Source',
+	title: '数据来源',
 	component: <DataSource />,
 };
 
 export const EnvDetailsStep: SelectedModuleStepProps = {
 	id: stepsMap.environmentDetails,
-	title: 'Environment Details',
+	title: '环境详情',
 	component: <EnvironmentDetails />,
 };
 
 export const SelectMethodStep: SelectedModuleStepProps = {
 	id: stepsMap.selectMethod,
-	title: 'Select Method',
+	title: '选择方法',
 	component: <SelectMethod />,
 };
 
 export const SetupOtelCollectorStep: SelectedModuleStepProps = {
 	id: stepsMap.setupOtelCollector,
-	title: 'Setup Otel Collector',
+	title: '设置 Otel Collector',
 	component: <MarkdownStep />,
 };
 
 export const InstallOpenTelemetryStep: SelectedModuleStepProps = {
 	id: stepsMap.instrumentApplication,
-	title: 'Instrument Application',
+	title: '仪器应用',
 	component: <MarkdownStep />,
 };
 
 export const CloneRepo: SelectedModuleStepProps = {
 	id: stepsMap.cloneRepository,
-	title: 'Clone Repository',
+	title: '克隆存储库',
 	component: <MarkdownStep />,
 };
 
 export const StartContainer: SelectedModuleStepProps = {
 	id: stepsMap.startContainer,
-	title: 'Start Container',
+	title: '启动容器',
 	component: <MarkdownStep />,
 };
 
 export const RunApplicationStep: SelectedModuleStepProps = {
 	id: stepsMap.runApplication,
-	title: 'Run Application',
+	title: '运行应用程序',
 	component: <MarkdownStep />,
 };
 
 export const TestConnectionStep: SelectedModuleStepProps = {
 	id: stepsMap.testConnection,
-	title: 'Test Connection',
+	title: '测试连接',
 	component: <ConnectionStatus />,
 };
 
 export const LogsTestConnectionStep: SelectedModuleStepProps = {
 	id: stepsMap.testConnection,
-	title: 'Test Connection',
+	title: '测试连接',
 	component: <LogsConnectionStatus />,
 };
 
 export const ConfigureReceiver: SelectedModuleStepProps = {
 	id: stepsMap.configureReceiver,
-	title: 'Configure Receiver',
+	title: '配置接收器',
 	component: <MarkdownStep />,
 };
 
 export const CheckServiceStatus: SelectedModuleStepProps = {
 	id: stepsMap.checkServiceStatus,
-	title: 'Check Service Status',
+	title: '检查服务状态',
 	component: <MarkdownStep />,
 };
 
 export const RestartOtelCollector: SelectedModuleStepProps = {
 	id: stepsMap.restartOtelCollector,
-	title: 'Restart Otel Collector',
+	title: '重新启动 Otel Collector',
 	component: <MarkdownStep />,
 };
 
 export const PlotMetrics: SelectedModuleStepProps = {
 	id: stepsMap.plotMetrics,
-	title: 'Plot Metrics',
+	title: '绘制指标',
 	component: <MarkdownStep />,
 };
 
 export const ConfigureHostmetricsJSON: SelectedModuleStepProps = {
 	id: stepsMap.configureHostmetricsJson,
-	title: 'Configure Hostmetrics JSON',
+	title: '配置主机指标 JSON',
 	component: <MarkdownStep />,
 };
 
 export const ConfigureMetricsReceiver: SelectedModuleStepProps = {
 	id: stepsMap.configureMetricsReceiver,
-	title: 'Configure Metrics Receiver',
+	title: '配置指标接收器',
 	component: <MarkdownStep />,
 };
 
 export const AddHttpDrain: SelectedModuleStepProps = {
 	id: stepsMap.addHttpDrain,
-	title: 'Add HTTP Drain',
+	title: '添加 HTTP 排水',
 	component: <MarkdownStep />,
 };
 
 export const SetupLogDrains: SelectedModuleStepProps = {
 	id: stepsMap.setupLogDrains,
-	title: 'Setup Log Drains',
+	title: '设置日志排水管',
 	component: <MarkdownStep />,
 };
 
 export const CreateHttpPayload: SelectedModuleStepProps = {
 	id: stepsMap.createHttpPayload,
-	title: 'Create Json Payload',
+	title: '创建 Json 负载',
 	component: <MarkdownStep />,
 };
 
 export const ConfigureAws: SelectedModuleStepProps = {
 	id: stepsMap.configureAws,
-	title: 'Configure AWS',
+	title: '配置AWS',
 	component: <MarkdownStep />,
 };
 export const SendLogsCloudwatch: SelectedModuleStepProps = {
 	id: stepsMap.sendLogsCloudwatch,
-	title: 'Send Logs',
+	title: '发送日志',
 	component: <MarkdownStep />,
 };
 export const SetupDaemonService: SelectedModuleStepProps = {
 	id: stepsMap.setupDaemonService,
-	title: 'Setup Daemon Service',
+	title: '设置守护进程服务',
 	component: <MarkdownStep />,
 };
 export const CreateOtelConfig: SelectedModuleStepProps = {
 	id: stepsMap.createOtelConfig,
-	title: 'Create OTel Config',
+	title: '创建 OTel 配置',
 	component: <MarkdownStep />,
 };
 export const CreateDaemonService: SelectedModuleStepProps = {
 	id: stepsMap.createDaemonService,
-	title: 'Create Daemon Service',
+	title: '创建守护进程服务',
 	component: <MarkdownStep />,
 };
 export const EcsSendData: SelectedModuleStepProps = {
 	id: stepsMap.ecsSendData,
-	title: 'Send Traces Data',
+	title: '发送迹线数据',
 	component: <MarkdownStep />,
 };
 export const CreateSidecarCollectorContainer: SelectedModuleStepProps = {
 	id: stepsMap.createSidecarCollectorContainer,
-	title: 'Create Sidecar Collector',
+	title: '创建 Sidecar 收集器',
 	component: <MarkdownStep />,
 };
 export const DeployTaskDefinition: SelectedModuleStepProps = {
 	id: stepsMap.deployTaskDefinition,
-	title: 'Deploy Task Definition',
+	title: '部署任务定义',
 	component: <MarkdownStep />,
 };
 export const EcsSendLogsData: SelectedModuleStepProps = {
 	id: stepsMap.ecsSendLogsData,
-	title: 'Send Logs Data',
+	title: '发送日志数据',
 	component: <MarkdownStep />,
 };
 export const MonitorDashboard: SelectedModuleStepProps = {
 	id: stepsMap.monitorDashboard,
-	title: 'Monitor using Dashboard ',
+	title: '使用仪表盘进行监控',
 	component: <MarkdownStep />,
 };
 export const SetupCentralCollectorStep: SelectedModuleStepProps = {
 	id: stepsMap.setupCentralCollector,
-	title: 'Setup Central Collector ',
+	title: '设置中央收集器',
 	component: <MarkdownStep />,
 };
 export const SetupAzureEventsHub: SelectedModuleStepProps = {
 	id: stepsMap.setupAzureEventsHub,
-	title: 'Setup EventsHub',
+	title: '设置事件中心',
 	component: <MarkdownStep />,
 };
 export const SendTraces: SelectedModuleStepProps = {
 	id: stepsMap.sendTraces,
-	title: 'Send Traces',
+	title: '发送链路',
 	component: <MarkdownStep />,
 };
 export const SendLogs: SelectedModuleStepProps = {
 	id: stepsMap.sendLogs,
-	title: 'Send Logs',
+	title: '发送日志',
 	component: <MarkdownStep />,
 };
 export const SendMetrics: SelectedModuleStepProps = {
 	id: stepsMap.sendMetrics,
-	title: 'Send Metrics',
+	title: '发送指标',
 	component: <MarkdownStep />,
 };
 export const SendHostmetricsLogs: SelectedModuleStepProps = {
 	id: stepsMap.sendHostmetricsLogs,
-	title: 'HostMetrics and Logging',
+	title: '主机指标和日志记录',
 	component: <MarkdownStep />,
 };

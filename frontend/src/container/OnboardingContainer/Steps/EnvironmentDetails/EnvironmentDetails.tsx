@@ -83,7 +83,7 @@ export default function EnvironmentDetails(): JSX.Element {
 
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Environment Request Submitted',
+					message: '已提交环境请求',
 				});
 
 				form.setFieldValue('requestedEnvironmentName', '');
@@ -119,7 +119,7 @@ export default function EnvironmentDetails(): JSX.Element {
 			layout="vertical"
 		>
 			<Typography.Text className="environment-title">
-				<span className="required-symbol">*</span> Select Environment
+				<span className="required-symbol">*</span> 选择环境
 			</Typography.Text>
 
 			<div className="supported-environments-container">
@@ -168,9 +168,7 @@ export default function EnvironmentDetails(): JSX.Element {
 			</div>
 
 			<div className="request-entity-container">
-				<Typography.Text>
-					Cannot find what you’re looking for? Request an environment
-				</Typography.Text>
+				<Typography.Text>找不到您要找的东西？请求环境</Typography.Text>
 
 				<div className="form-section">
 					<Space.Compact style={{ width: '100%' }}>
@@ -178,7 +176,7 @@ export default function EnvironmentDetails(): JSX.Element {
 							name="requestedEnvironmentName"
 							style={{ width: 300, marginBottom: 0 }}
 						>
-							<Input placeholder="Enter environment name..." />
+							<Input placeholder="输入环境名称..." />
 						</Form.Item>
 						<Button
 							className="periscope-btn primary"
@@ -197,7 +195,7 @@ export default function EnvironmentDetails(): JSX.Element {
 								requestedEnvironmentName?.trim().length === 0
 							}
 						>
-							Submit
+							提交
 						</Button>
 					</Space.Compact>
 				</div>

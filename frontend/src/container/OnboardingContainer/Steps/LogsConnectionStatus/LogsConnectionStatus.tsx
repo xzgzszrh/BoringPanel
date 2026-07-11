@@ -67,6 +67,7 @@ export default function LogsConnectionStatus(): JSX.Element {
 							order: 'desc',
 						},
 					],
+
 					groupBy: [],
 					legend: '',
 					reduceTo: 'sum',
@@ -77,6 +78,7 @@ export default function LogsConnectionStatus(): JSX.Element {
 					functions: [],
 				},
 			],
+
 			queryFormulas: [],
 		},
 		clickhouse_sql: [],
@@ -166,7 +168,7 @@ export default function LogsConnectionStatus(): JSX.Element {
 						entity="kubernetes"
 						heading="Collecting Kubernetes Pod logs"
 						imgURL="/Logos/kubernetes.svg"
-						docsURL="https://signoz.io/docs/userguide/collect_kubernetes_pod_logs/#collect-kubernetes-pod-logs-in-signoz-cloud"
+						docsURL
 						imgClassName="supported-logs-type-img"
 					/>
 				);
@@ -177,7 +179,7 @@ export default function LogsConnectionStatus(): JSX.Element {
 						entity="docker"
 						heading="Collecting Docker container logs"
 						imgURL="/Logos/docker.svg"
-						docsURL="https://signoz.io/docs/userguide/collect_docker_logs/"
+						docsURL
 						imgClassName="supported-logs-type-img"
 					/>
 				);
@@ -188,17 +190,18 @@ export default function LogsConnectionStatus(): JSX.Element {
 						entity="syslog"
 						heading="Collecting Syslogs"
 						imgURL="/Logos/syslogs.svg"
-						docsURL="https://signoz.io/docs/userguide/collecting_syslogs/"
+						docsURL
 						imgClassName="supported-logs-type-img"
 					/>
 				);
+
 			case 'nodejs':
 				return (
 					<Header
 						entity="nodejs"
 						heading="Collecting NodeJS winston logs"
 						imgURL="/Logos/node-js.svg"
-						docsURL="https://signoz.io/docs/userguide/collecting_nodejs_winston_logs/"
+						docsURL
 						imgClassName="supported-logs-type-img"
 					/>
 				);
@@ -217,11 +220,7 @@ export default function LogsConnectionStatus(): JSX.Element {
 								? 'software-window'
 								: 'cmd-terminal'
 						}.svg`}
-						docsURL={
-							logType === ApplicationLogsType.FROM_LOG_FILE
-								? 'https://signoz.io/docs/userguide/collect_logs_from_file/'
-								: 'https://signoz.io/docs/userguide/collecting_application_logs_otel_sdk_java/'
-						}
+						docsURL={logType === ApplicationLogsType.FROM_LOG_FILE ? '' : ''}
 						imgClassName="supported-logs-type-img"
 					/>
 				);
@@ -233,39 +232,41 @@ export default function LogsConnectionStatus(): JSX.Element {
 			<div className="full-docs-link">{renderDocsReference()}</div>
 			<div className="status-container">
 				<div className="service-info">
-					<div className="label"> Logs Type </div>
+					<div className="label"> 日志类型 </div>
 					<div className="language text-capitalize"> {logType} </div>
 				</div>
 
 				<div className="status-info">
-					<div className="label"> Status </div>
+					<div className="label"> 状态 </div>
 
 					<div className="status">
 						{(loading || isFetching) && <LoadingOutlined />}
 						{!(loading || isFetching) && isReceivingData && (
 							<>
 								<CheckCircleTwoTone twoToneColor="#52c41a" />
-								<span> Success </span>
+								<span> 成功 </span>
 							</>
 						)}
+
 						{!(loading || isFetching) && !isReceivingData && (
 							<>
 								<CloseCircleTwoTone twoToneColor="#e84749" />
-								<span> Failed </span>
+								<span> 失败的 </span>
 							</>
 						)}
 					</div>
 				</div>
 				<div className="details-info">
-					<div className="label"> Details </div>
+					<div className="label"> 细节 </div>
 
 					<div className="details">
-						{(loading || isFetching) && <div> Waiting for Update </div>}
+						{(loading || isFetching) && <div> 等待更新 </div>}
 						{!(loading || isFetching) && isReceivingData && (
-							<div> Received logs successfully. </div>
+							<div> 成功接收日志。 </div>
 						)}
+
 						{!(loading || isFetching) && !isReceivingData && (
-							<div> Could not detect the logs </div>
+							<div> 无法检测到日志 </div>
 						)}
 					</div>
 				</div>

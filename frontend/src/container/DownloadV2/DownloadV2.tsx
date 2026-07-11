@@ -48,7 +48,7 @@ function Download({ data, isLoading, fileName }: DownloadProps): JSX.Element {
 			arrow={false}
 			content={
 				<div className="download-logs-content">
-					<Typography.Text className="export-heading">Export As</Typography.Text>
+					<Typography.Text className="export-heading">导出为</Typography.Text>
 					<Button
 						icon={<Sheet size={14} />}
 						type="text"

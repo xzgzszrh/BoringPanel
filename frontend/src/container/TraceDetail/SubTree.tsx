@@ -6,15 +6,7 @@ function SubTreeMessage(): JSX.Element {
 	return (
 		<Typography>
 			<WarningOutlined style={{ color: volcano[6], marginRight: '0.3rem' }} />
-			Only part of trace is shown, for more info{' '}
-			<a
-				href="https://www.loom.com/share/3a26d398278f49919dd185d9c4344b05​"
-				target="_blank"
-				style={{ textDecoration: 'underline' }}
-				rel="noreferrer"
-			>
-				watch this
-			</a>
+			仅显示部分链路。
 		</Typography>
 	);
 }

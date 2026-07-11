@@ -358,14 +358,14 @@ function QueryBuilderSearch({
 				dropdownRender={(menu): ReactElement => (
 					<div>
 						{!searchKey && isLogsExplorerPage && (
-							<div className="ant-select-item-group ">Suggested Filters</div>
+							<div className="ant-select-item-group ">建议的过滤器</div>
 						)}
 						{menu}
 						{isLogsExplorerPage && (
 							<div>
 								{!searchKey && tags.length === 0 && (
 									<div className="example-queries">
-										<div className="heading"> Example Queries </div>
+										<div className="heading"> 查询示例 </div>
 										<div className="query-container">
 											{convertExampleQueriesToOptions(exampleQueries).map((query) => (
 												<ExampleQueriesRendererForLogs
@@ -392,7 +392,7 @@ function QueryBuilderSearch({
 											<section className="left-section">
 												<Filter size={14} />
 												<Typography.Text className="text">
-													Show all filters properties
+													显示所有过滤器属性
 												</Typography.Text>
 											</section>
 											<section className="right-section">
@@ -411,11 +411,11 @@ function QueryBuilderSearch({
 									<section className="navigate">
 										<ArrowDown size={10} className="icons" />
 										<ArrowUp size={10} className="icons" />
-										<span className="keyboard-text">to navigate</span>
+										<span className="keyboard-text">导航</span>
 									</section>
 									<section className="update-query">
 										<CornerDownLeft size={10} className="icons" />
-										<span className="keyboard-text">to update query</span>
+										<span className="keyboard-text">更新查询</span>
 									</section>
 								</div>
 							</div>

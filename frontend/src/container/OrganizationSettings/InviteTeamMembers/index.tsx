@@ -51,9 +51,9 @@ function InviteTeamMembers({ form, onFinish }: Props): JSX.Element {
 									</Form.Item>
 									<Form.Item name={[name, 'role']} initialValue="VIEWER">
 										<SelectDrawer data-testid="role-select">
-											<Select.Option value="ADMIN">ADMIN</Select.Option>
-											<Select.Option value="VIEWER">VIEWER</Select.Option>
-											<Select.Option value="EDITOR">EDITOR</Select.Option>
+											<Select.Option value="ADMIN">行政</Select.Option>
+											<Select.Option value="VIEWER">浏览器</Select.Option>
+											<Select.Option value="EDITOR">编辑</Select.Option>
 										</SelectDrawer>
 									</Form.Item>
 								</Space>

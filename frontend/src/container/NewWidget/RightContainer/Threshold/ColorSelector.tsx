@@ -56,7 +56,7 @@ function ColorSelector({
 					onChange={handleColorChange}
 					placement="bottomLeft"
 				>
-					Custom Color
+					定制颜色
 				</ColorPicker>
 			),
 		},

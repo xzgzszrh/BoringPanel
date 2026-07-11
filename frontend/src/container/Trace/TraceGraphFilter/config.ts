@@ -8,15 +8,15 @@ interface Dropdown {
 
 export const groupBy: DefaultOptionType[] = [
 	{
-		label: 'None',
+		label: '没有任何',
 		value: 'none',
 	},
 	{
-		label: 'Service Name',
+		label: '服务名称',
 		value: 'serviceName',
 	},
 	{
-		label: 'Operation',
+		label: '手术',
 		value: 'name',
 	},
 	{
@@ -24,43 +24,43 @@ export const groupBy: DefaultOptionType[] = [
 		value: 'httpUrl',
 	},
 	{
-		label: 'HTTP Method',
+		label: 'HTTP方法',
 		value: 'httpMethod',
 	},
 	{
-		label: 'HTTP Host',
+		label: 'HTTP 主机',
 		value: 'httpHost',
 	},
 	{
-		label: 'HTTP Route',
+		label: 'HTTP 路由',
 		value: 'httpRoute',
 	},
 	{
-		label: 'RPC Method',
+		label: '远程过程调用方法',
 		value: 'rpcMethod',
 	},
 	{
-		label: 'Status Code',
+		label: '状态码',
 		value: 'responseStatusCode',
 	},
 	{
-		label: 'Database Name',
+		label: '数据库名称',
 		value: 'dbName',
 	},
 	{
-		label: 'Database System',
+		label: '数据库系统',
 		value: 'dbSystem',
 	},
 	{
-		label: 'Database Operation',
+		label: '数据库操作',
 		value: 'dbOperation',
 	},
 	{
-		label: 'Messaging System',
+		label: '消息系统',
 		value: 'msgSystem',
 	},
 	{
-		label: 'Messaging Operation',
+		label: '消息操作',
 		value: 'msgOperation',
 	},
 ];

@@ -17,7 +17,7 @@ function PlotTag({ queryType, panelType }: IPlotTagProps): JSX.Element | null {
 	return (
 		<div className="plot-tag">
 			<Spline size={14} />
-			Plotted with <QueryTypeTag queryType={queryType} />
+			绘制为 <QueryTypeTag queryType={queryType} />
 		</div>
 	);
 }

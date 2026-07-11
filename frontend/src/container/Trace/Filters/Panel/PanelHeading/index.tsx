@@ -339,7 +339,7 @@ function PanelHeading(props: PanelHeadingProps): JSX.Element {
 								onClick={onClearAllHandler}
 								type="link"
 							>
-								Clear All
+								全部清除
 							</ButtonComponent>
 						</ButtonContainer>
 					)}

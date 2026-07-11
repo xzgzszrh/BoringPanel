@@ -1,8 +1,9 @@
 import ROUTES from 'constants/routes';
+import { matchPath } from 'react-router-dom';
 
 export function getRouteKey(pathname: string): string {
-	const [routeKey] = Object.entries(ROUTES).find(
-		([, value]) => value === pathname,
+	const [routeKey] = Object.entries(ROUTES).find(([, route]) =>
+		matchPath(pathname, { path: route, exact: true }),
 	) || ['DEFAULT'];
 
 	return routeKey;

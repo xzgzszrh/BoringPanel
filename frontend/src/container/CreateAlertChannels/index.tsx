@@ -140,14 +140,14 @@ function CreateAlertChannels({
 
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 					description: t('channel_creation_done'),
 				});
 				history.replace(ROUTES.ALL_CHANNELS);
 				return { status: 'success', statusMessage: t('channel_creation_done') };
 			}
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: response.error || t('channel_creation_failed'),
 			});
 			return {
@@ -156,7 +156,7 @@ function CreateAlertChannels({
 			};
 		} catch (error) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('channel_creation_failed'),
 			});
 			return { status: 'failed', statusMessage: t('channel_creation_failed') };
@@ -184,7 +184,7 @@ function CreateAlertChannels({
 					};
 				} else {
 					notifications.error({
-						message: 'Error',
+						message: '错误',
 						description: t('username_no_password'),
 					});
 				}
@@ -207,14 +207,14 @@ function CreateAlertChannels({
 			const response = await createWebhookApi(request);
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 					description: t('channel_creation_done'),
 				});
 				history.replace(ROUTES.ALL_CHANNELS);
 				return { status: 'success', statusMessage: t('channel_creation_done') };
 			}
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: response.error || t('channel_creation_failed'),
 			});
 			return {
@@ -223,7 +223,7 @@ function CreateAlertChannels({
 			};
 		} catch (error) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('channel_creation_failed'),
 			});
 			return { status: 'failed', statusMessage: t('channel_creation_failed') };
@@ -236,7 +236,7 @@ function CreateAlertChannels({
 		const validationError = ValidatePagerChannel(selectedConfig as PagerChannel);
 		if (validationError !== '') {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: validationError,
 			});
 			return null;
@@ -268,14 +268,14 @@ function CreateAlertChannels({
 
 				if (response.statusCode === 200) {
 					notifications.success({
-						message: 'Success',
+						message: '成功',
 						description: t('channel_creation_done'),
 					});
 					history.replace(ROUTES.ALL_CHANNELS);
 					return { status: 'success', statusMessage: t('channel_creation_done') };
 				}
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: response.error || t('channel_creation_failed'),
 				});
 				return {
@@ -284,13 +284,13 @@ function CreateAlertChannels({
 				};
 			}
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('channel_creation_failed'),
 			});
 			return { status: 'failed', statusMessage: t('channel_creation_failed') };
 		} catch (error) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('channel_creation_failed'),
 			});
 			return { status: 'failed', statusMessage: t('channel_creation_failed') };
@@ -319,14 +319,14 @@ function CreateAlertChannels({
 
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 					description: t('channel_creation_done'),
 				});
 				history.replace(ROUTES.ALL_CHANNELS);
 				return { status: 'success', statusMessage: t('channel_creation_done') };
 			}
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: response.error || t('channel_creation_failed'),
 			});
 			return {
@@ -335,7 +335,7 @@ function CreateAlertChannels({
 			};
 		} catch (error) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('channel_creation_failed'),
 			});
 			return { status: 'failed', statusMessage: t('channel_creation_failed') };
@@ -362,14 +362,14 @@ function CreateAlertChannels({
 			const response = await createEmail(request);
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 					description: t('channel_creation_done'),
 				});
 				history.replace(ROUTES.ALL_CHANNELS);
 				return { status: 'success', statusMessage: t('channel_creation_done') };
 			}
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: response.error || t('channel_creation_failed'),
 			});
 			return {
@@ -378,7 +378,7 @@ function CreateAlertChannels({
 			};
 		} catch (error) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('channel_creation_failed'),
 			});
 			return { status: 'failed', statusMessage: t('channel_creation_failed') };
@@ -406,14 +406,14 @@ function CreateAlertChannels({
 
 			if (response.statusCode === 200) {
 				notifications.success({
-					message: 'Success',
+					message: '成功',
 					description: t('channel_creation_done'),
 				});
 				history.replace(ROUTES.ALL_CHANNELS);
 				return { status: 'success', statusMessage: t('channel_creation_done') };
 			}
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: response.error || t('channel_creation_failed'),
 			});
 			return {
@@ -422,7 +422,7 @@ function CreateAlertChannels({
 			};
 		} catch (error) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('channel_creation_failed'),
 			});
 			return { status: 'failed', statusMessage: t('channel_creation_failed') };
@@ -457,7 +457,7 @@ function CreateAlertChannels({
 					});
 				} else {
 					notifications.error({
-						message: 'Error',
+						message: '错误',
 						description: t('selected_channel_invalid'),
 					});
 				}
@@ -509,7 +509,7 @@ function CreateAlertChannels({
 						break;
 					default:
 						notifications.error({
-							message: 'Error',
+							message: '错误',
 							description: t('test_unsupported'),
 						});
 						setTestingState(false);
@@ -518,12 +518,12 @@ function CreateAlertChannels({
 
 				if (response && response.statusCode === 200) {
 					notifications.success({
-						message: 'Success',
+						message: '成功',
 						description: t('channel_test_done'),
 					});
 				} else {
 					notifications.error({
-						message: 'Error',
+						message: '错误',
 						description: t('channel_test_failed'),
 					});
 				}
@@ -538,7 +538,7 @@ function CreateAlertChannels({
 				});
 			} catch (error) {
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: t('channel_test_unexpected'),
 				});
 			}

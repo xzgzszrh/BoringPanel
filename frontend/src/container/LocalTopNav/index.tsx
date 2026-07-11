@@ -24,7 +24,7 @@ function LocalTopNav({
 						<FileText color="#fff" size={16} />
 
 						<Typography.Title level={4} style={{ marginTop: 0, marginBottom: 0 }}>
-							Live Logs
+							实时日志
 						</Typography.Title>
 					</Space>
 				</Col>

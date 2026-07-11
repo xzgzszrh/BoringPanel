@@ -182,7 +182,7 @@ function Duration(): JSX.Element {
 		<div>
 			<Container>
 				<InputContainer>
-					<Text>Min</Text>
+					<Text>最小</Text>
 				</InputContainer>
 				<InputComponent
 					addonAfter="ms"
@@ -192,7 +192,7 @@ function Duration(): JSX.Element {
 				/>
 
 				<InputContainer>
-					<Text>Max</Text>
+					<Text>最大限度</Text>
 				</InputContainer>
 				<InputComponent
 					addonAfter="ms"

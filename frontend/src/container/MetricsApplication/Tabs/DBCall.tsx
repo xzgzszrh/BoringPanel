@@ -173,7 +173,7 @@ function DBCall(): JSX.Element {
 						stepInterval,
 					})}
 				>
-					View Traces
+					查看链路
 				</Button>
 				<Card data-testid="database_call_rps">
 					<GraphContainer>
@@ -208,7 +208,7 @@ function DBCall(): JSX.Element {
 						stepInterval,
 					})}
 				>
-					View Traces
+					查看链路
 				</Button>
 
 				<Card data-testid="database_call_avg_duration">

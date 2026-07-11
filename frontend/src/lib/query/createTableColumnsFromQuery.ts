@@ -609,7 +609,7 @@ export const createTableColumnsFromQuery: CreateTableDataFromQuery = ({
 	const actionsCell: ColumnType<RowData> | null = renderActionCell
 		? {
 				key: 'actions',
-				title: 'Actions',
+				title: '行动',
 				render: (_, record): ReactNode => renderActionCell(record),
 		  }
 		: null;

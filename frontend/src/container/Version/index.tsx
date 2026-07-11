@@ -1,13 +1,11 @@
 import { WarningFilled } from '@ant-design/icons';
-import { Button, Card, Form, Space, Typography } from 'antd';
-import { useMemo } from 'react';
+import { Card, Form, Space, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { AppState } from 'store/reducers';
 import AppReducer from 'types/reducer/app';
 import { checkVersionState } from 'utils/app';
 
-import { githubReleaseURL } from './constant';
 import { InputComponent } from './styles';
 
 function Version(): JSX.Element {
@@ -24,14 +22,6 @@ function Version(): JSX.Element {
 	const isLatestVersion = checkVersionState(currentVersion, latestVersion);
 
 	const isError = isCurrentVersionError || isLatestVersionError;
-
-	const latestVersionUrl = useMemo(
-		() =>
-			isLatestVersionError
-				? githubReleaseURL
-				: `${githubReleaseURL}/tag/${latestVersion}`,
-		[isLatestVersionError, latestVersion],
-	);
 
 	return (
 		<Card style={{ margin: '16px 0' }}>
@@ -64,9 +54,6 @@ function Version(): JSX.Element {
 						value={isLatestVersionError ? t('n_a').toString() : latestVersion}
 						placeholder={t('latest_version')}
 					/>
-					<Button href={latestVersionUrl} target="_blank" type="link">
-						{t('release_notes')}
-					</Button>
 				</Form.Item>
 			</Form>
 
@@ -92,14 +79,7 @@ function Version(): JSX.Element {
 				</div>
 			)}
 
-			{!isError && !isLatestVersion && (
-				<Button
-					href="https://signoz.io/docs/operate/docker-standalone/#upgrade"
-					target="_blank"
-				>
-					{t('read_how_to_upgrade')}
-				</Button>
-			)}
+			{!isError && !isLatestVersion}
 		</Card>
 	);
 }

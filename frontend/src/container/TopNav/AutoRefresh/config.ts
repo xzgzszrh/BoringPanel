@@ -5,7 +5,7 @@ import { CustomTimeType, Time as TimeV2 } from '../DateTimeSelectionV2/config';
 
 export const options: IOptions[] = [
 	{
-		label: 'off',
+		label: '关闭',
 		key: 'off',
 		value: 0,
 	},

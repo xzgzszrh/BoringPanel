@@ -5,78 +5,78 @@ import { SelectOption } from 'types/common/select';
 export const metricQueryFunctionOptions: SelectOption<string, string>[] = [
 	{
 		value: QueryFunctionsTypes.CUTOFF_MIN,
-		label: 'Cut Off Min',
+		label: '截止最小值',
 	},
 	{
 		value: QueryFunctionsTypes.CUTOFF_MAX,
-		label: 'Cut Off Max',
+		label: '最大切断',
 	},
 	{
 		value: QueryFunctionsTypes.CLAMP_MIN,
-		label: 'Clamp Min',
+		label: '最小钳位',
 	},
 	{
 		value: QueryFunctionsTypes.CLAMP_MAX,
-		label: 'Clamp Max',
+		label: '最大钳位',
 	},
 	{
 		value: QueryFunctionsTypes.ABSOLUTE,
-		label: 'Absolute',
+		label: '绝对',
 	},
 	{
 		value: QueryFunctionsTypes.RUNNING_DIFF,
-		label: 'Running Diff',
+		label: '运行差异',
 	},
 	{
 		value: QueryFunctionsTypes.LOG_2,
-		label: 'Log2',
+		label: '对数2',
 	},
 	{
 		value: QueryFunctionsTypes.LOG_10,
-		label: 'Log10',
+		label: '对数10',
 	},
 	{
 		value: QueryFunctionsTypes.CUMULATIVE_SUM,
-		label: 'Cumulative Sum',
+		label: '累计金额',
 	},
 	{
 		value: QueryFunctionsTypes.EWMA_3,
-		label: 'EWMA 3',
+		label: '欧洲气象局3',
 	},
 	{
 		value: QueryFunctionsTypes.EWMA_5,
-		label: 'EWMA 5',
+		label: '欧洲气象局5',
 	},
 	{
 		value: QueryFunctionsTypes.EWMA_7,
-		label: 'EWMA 7',
+		label: '欧洲气象局7',
 	},
 	{
 		value: QueryFunctionsTypes.MEDIAN_3,
-		label: 'Median 3',
+		label: '中位数 3',
 	},
 	{
 		value: QueryFunctionsTypes.MEDIAN_5,
-		label: 'Median 5',
+		label: '中位数 5',
 	},
 	{
 		value: QueryFunctionsTypes.MEDIAN_7,
-		label: 'Median 7',
+		label: '中位数 7',
 	},
 	{
 		value: QueryFunctionsTypes.TIME_SHIFT,
-		label: 'Time Shift',
+		label: '时移',
 	},
 	{
 		value: QueryFunctionsTypes.TIME_SHIFT,
-		label: 'Time Shift',
+		label: '时移',
 	},
 ];
 
 export const logsQueryFunctionOptions: SelectOption<string, string>[] = [
 	{
 		value: QueryFunctionsTypes.TIME_SHIFT,
-		label: 'Time Shift',
+		label: '时移',
 	},
 ];
 interface QueryFunctionConfigType {
@@ -96,22 +96,22 @@ export const queryFunctionsTypesConfig: QueryFunctionConfigType = {
 	cutOffMin: {
 		showInput: true,
 		inputType: 'text',
-		placeholder: 'Threshold',
+		placeholder: '临界点',
 	},
 	cutOffMax: {
 		showInput: true,
 		inputType: 'text',
-		placeholder: 'Threshold',
+		placeholder: '临界点',
 	},
 	clampMin: {
 		showInput: true,
 		inputType: 'text',
-		placeholder: 'Threshold',
+		placeholder: '临界点',
 	},
 	clampMax: {
 		showInput: true,
 		inputType: 'text',
-		placeholder: 'Threshold',
+		placeholder: '临界点',
 	},
 	absolute: {
 		showInput: false,
@@ -131,17 +131,17 @@ export const queryFunctionsTypesConfig: QueryFunctionConfigType = {
 	ewma3: {
 		showInput: true,
 		inputType: 'text',
-		placeholder: 'Alpha',
+		placeholder: '阿尔法',
 	},
 	ewma5: {
 		showInput: true,
 		inputType: 'text',
-		placeholder: 'Alpha',
+		placeholder: '阿尔法',
 	},
 	ewma7: {
 		showInput: true,
 		inputType: 'text',
-		placeholder: 'Alpha',
+		placeholder: '阿尔法',
 	},
 	median3: {
 		showInput: false,

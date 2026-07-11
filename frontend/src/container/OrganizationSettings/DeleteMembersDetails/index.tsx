@@ -15,10 +15,8 @@ function DeleteMembersDetails({
 					}}
 				/>
 				<Space direction="vertical">
-					<Typography>Are you sure you want to delete {name}</Typography>
-					<Typography>
-						This will remove all access from dashboards and other features in SigNoz
-					</Typography>
+					<Typography>您确定要删除吗 {name}</Typography>
+					<Typography>这将删除 Scry 中仪表盘和其他功能的所有访问权限</Typography>
 				</Space>
 			</Space>
 		</div>

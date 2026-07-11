@@ -226,9 +226,7 @@ function IntegrationDetailHeader(
 					connectionState === ConnectionStates.NoDataSinceLong ? (
 						<>
 							<div className="data-info">
-								<Typography.Text className="last-data">
-									Last recieved from
-								</Typography.Text>
+								<Typography.Text className="last-data">最后收到来自</Typography.Text>
 								<div className="connection-line" />
 								<Tooltip
 									title={latestData.last_received_from}
@@ -241,9 +239,7 @@ function IntegrationDetailHeader(
 								</Tooltip>
 							</div>
 							<div className="data-info">
-								<Typography.Text className="last-data">
-									Last recieved at
-								</Typography.Text>
+								<Typography.Text className="last-data">最后收到于</Typography.Text>
 								<div className="connection-line" />
 								<Tooltip
 									title={
@@ -270,26 +266,20 @@ function IntegrationDetailHeader(
 					) : connectionState === ConnectionStates.TestingConnection ? (
 						<div className="data-test-connection">
 							<div className="last-data">
-								We have not received data from your {title} Instance yet. You need to
-								manually configure your {title} instance to start sending data to
-								SigNoz.
+								我们尚未收到您的数据 {title} 实例还没有。您需要手动配置您的 {title}{' '}
+								实例开始向Scry发送数据。
 							</div>
 							<div className="last-data">
-								If you have already configured your resources to send data, sit tight
-								and wait for the data to flow in, Or else, see the steps to configure
-								your resources to start sending data.
+								如果您已将资源配置为发送数据，请耐心等待数据流入，否则，请参阅配置资源以开始发送数据的步骤。
 							</div>
 						</div>
 					) : isConnectionStateNotInstalled ? (
 						<div className="data-test-connection">
 							<div className="last-data">
-								You would need to manually configure your {title} instance to start
-								sending data to SigNoz.
+								您需要手动配置您的 {title} 实例开始向Scry发送数据。
 							</div>
 							<div className="last-data">
-								If you have already configured your resources to send data, sit tight
-								and wait for the data to flow in, Or else, see the steps to configure
-								your resources to start sending data.
+								如果您已将资源配置为发送数据，请耐心等待数据流入，否则，请参阅配置资源以开始发送数据的步骤。
 							</div>
 						</div>
 					) : null}

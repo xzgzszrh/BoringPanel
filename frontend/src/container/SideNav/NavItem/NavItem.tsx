@@ -32,7 +32,7 @@ export default function NavItem({
 				{isBeta && (
 					<div className="nav-item-beta">
 						<Tag bordered={false} color="geekblue">
-							Beta
+							测试版
 						</Tag>
 					</div>
 				)}
@@ -40,7 +40,7 @@ export default function NavItem({
 				{isNew && (
 					<div className="nav-item-new">
 						<Tag bordered={false} className="sidenav-new-tag">
-							New
+							新功能
 						</Tag>
 					</div>
 				)}

@@ -112,7 +112,7 @@ function LogControls(): JSX.Element | null {
 				disabled={order === OrderPreferenceItems.ASC}
 				onClick={handleGoToLatest}
 			>
-				<FastBackwardOutlined /> Go to latest
+				<FastBackwardOutlined /> 转到最新的
 			</Button>
 			<Divider type="vertical" />
 			<Controls

@@ -18,7 +18,7 @@ function MySettings(): JSX.Element {
 		{
 			label: (
 				<div className="theme-option">
-					<Moon data-testid="dark-theme-icon" size={12} /> Dark{' '}
+					<Moon data-testid="dark-theme-icon" size={12} /> 黑暗的{' '}
 				</div>
 			),
 			value: 'dark',
@@ -26,9 +26,9 @@ function MySettings(): JSX.Element {
 		{
 			label: (
 				<div className="theme-option">
-					<Sun size={12} data-testid="light-theme-icon" /> Light{' '}
+					<Sun size={12} data-testid="light-theme-icon" /> 光{' '}
 					<Tag bordered={false} color="geekblue">
-						Beta
+						测试版
 					</Tag>
 				</div>
 			),
@@ -59,7 +59,7 @@ function MySettings(): JSX.Element {
 					}}
 				>
 					{' '}
-					Theme{' '}
+					主题{' '}
 				</Typography.Title>
 				<Radio.Group
 					options={themeOptions}
@@ -87,7 +87,7 @@ function MySettings(): JSX.Element {
 				type="primary"
 				data-testid="logout-button"
 			>
-				<LogOut size={12} /> Logout
+				<LogOut size={12} /> 退出登录
 			</Button>
 		</Space>
 	);

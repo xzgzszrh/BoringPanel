@@ -12,7 +12,7 @@ wget https://github.com/open-telemetry/opentelemetry-java-instrumentation/releas
     
 **Step 3.** Update `JAVA_OPTS` environment variable
 
-Update `JAVA_OPTS` environment variable with configurations required to send data to SigNoz cloud in your configuration file.
+Update `JAVA_OPTS` environment variable with configurations required to send data to Scry cloud in your configuration file.
 
 ```bash
 set JAVA_OPTS=-javaagent:C:\path\to\opentelemetry-javaagent.jar

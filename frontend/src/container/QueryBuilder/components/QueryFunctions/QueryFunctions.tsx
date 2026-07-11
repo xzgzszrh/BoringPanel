@@ -56,6 +56,7 @@ function FunctionIcon({
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
+
 			<path
 				d="M3 10.2583H10.7359"
 				stroke={fillColor}
@@ -63,6 +64,7 @@ function FunctionIcon({
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
+
 			<path
 				d="M22.0005 11.344L15.2146 18.1299"
 				stroke={fillColor}
@@ -70,6 +72,7 @@ function FunctionIcon({
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
+
 			<path
 				d="M15.2146 11.344L22.0005 18.1299"
 				stroke={fillColor}
@@ -166,6 +169,7 @@ export default function QueryFunctions({
 					? toFloat64(value)
 					: value,
 			];
+
 			setFunctions(updateFunctions);
 			onChange(updateFunctions);
 		}
@@ -207,18 +211,7 @@ export default function QueryFunctions({
 							hasAnomalyFunction ? 2 : 3
 						} function as of now.`
 					) : (
-						<div style={{ textAlign: 'center' }}>
-							Add new function
-							<Typography.Link
-								style={{ textDecoration: 'underline' }}
-								href="https://signoz.io/docs/userguide/query-builder/?utm_source=product&utm_medium=query-builder#functions-for-extended-data-analysis"
-								target="_blank"
-							>
-								{' '}
-								<br />
-								Learn more
-							</Typography.Link>
-						</div>
+						<div style={{ textAlign: 'center' }}>添加新功能</div>
 					)
 				}
 				placement="right"

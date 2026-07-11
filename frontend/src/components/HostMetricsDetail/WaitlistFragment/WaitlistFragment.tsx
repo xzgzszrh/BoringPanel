@@ -68,7 +68,7 @@ export default function WaitlistFragment({
 				}
 				onClick={handleJoinWaitlist}
 			>
-				Get early access
+				抢先体验
 			</Button>
 		</div>
 	);

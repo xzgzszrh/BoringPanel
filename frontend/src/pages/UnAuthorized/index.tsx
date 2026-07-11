@@ -8,11 +8,9 @@ function UnAuthorizePage(): JSX.Element {
 		<Container>
 			<Space align="center" direction="vertical">
 				<UnAuthorized />
-				<Typography.Title level={3}>
-					Oops.. you don&apos;t have permission to view this page
-				</Typography.Title>
+				<Typography.Title level={3}>糟糕..您没有权限查看此页面</Typography.Title>
 				<Button to={ROUTES.APPLICATION} tabIndex={0}>
-					Return To Services Page
+					返回服务页面
 				</Button>
 			</Space>
 		</Container>

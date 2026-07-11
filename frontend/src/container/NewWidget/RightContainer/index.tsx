@@ -134,19 +134,19 @@ function RightContainer({
 		<div className="right-container">
 			<section className="header">
 				<div className="purple-dot" />
-				<Typography.Text className="header-text">Panel details</Typography.Text>
+				<Typography.Text className="header-text">面板细节</Typography.Text>
 			</section>
 			<section className="name-description">
-				<Typography.Text className="typography">Name</Typography.Text>
+				<Typography.Text className="typography">名称</Typography.Text>
 				<Input
-					placeholder="Enter the panel name here..."
+					placeholder="在此输入面板名称..."
 					onChange={(event): void => onChangeHandler(setTitle, event.target.value)}
 					value={title}
 					rootClassName="name-input"
 				/>
-				<Typography.Text className="typography">Description</Typography.Text>
+				<Typography.Text className="typography">描述</Typography.Text>
 				<TextArea
-					placeholder="Enter the panel description here..."
+					placeholder="在此输入面板描述..."
 					bordered
 					allowClear
 					value={description}
@@ -157,7 +157,7 @@ function RightContainer({
 				/>
 			</section>
 			<section className="panel-config">
-				<Typography.Text className="typography">Panel Type</Typography.Text>
+				<Typography.Text className="typography">面板类型</Typography.Text>
 				<Select
 					onChange={setGraphHandler}
 					value={selectedGraph}
@@ -177,7 +177,7 @@ function RightContainer({
 
 				{allowFillSpans && (
 					<Space className="fill-gaps">
-						<Typography className="fill-gaps-text">Fill gaps</Typography>
+						<Typography className="fill-gaps-text">填补空白</Typography>
 						<Switch
 							checked={isFillSpans}
 							size="small"
@@ -189,7 +189,7 @@ function RightContainer({
 				{allowPanelTimePreference && (
 					<>
 						<Typography.Text className="panel-time-text">
-							Panel Time Preference
+							面板时间偏好
 						</Typography.Text>
 						<TimePreference
 							{...{
@@ -221,7 +221,7 @@ function RightContainer({
 				{allowSoftMinMax && (
 					<section className="soft-min-max">
 						<section className="container">
-							<Typography.Text className="text">Soft Min</Typography.Text>
+							<Typography.Text className="text">软敏</Typography.Text>
 							<InputNumber
 								type="number"
 								value={softMin}
@@ -230,7 +230,7 @@ function RightContainer({
 							/>
 						</section>
 						<section className="container">
-							<Typography.Text className="text">Soft Max</Typography.Text>
+							<Typography.Text className="text">软最大</Typography.Text>
 							<InputNumber
 								value={softMax}
 								type="number"
@@ -243,7 +243,7 @@ function RightContainer({
 
 				{allowStackingBarChart && (
 					<section className="stack-chart">
-						<Typography.Text className="label">Stack series</Typography.Text>
+						<Typography.Text className="label">堆栈系列</Typography.Text>
 						<Switch
 							checked={stackedBarChart}
 							size="small"
@@ -254,25 +254,25 @@ function RightContainer({
 
 				{allowBucketConfig && (
 					<section className="bucket-config">
-						<Typography.Text className="label">Number of buckets</Typography.Text>
+						<Typography.Text className="label">桶数</Typography.Text>
 						<InputNumber
 							value={bucketCount || null}
 							type="number"
 							min={0}
 							rootClassName="bucket-input"
-							placeholder="Default: 30"
+							placeholder="默认值：30"
 							onChange={(val): void => {
 								setBucketCount(val || 0);
 							}}
 						/>
 						<Typography.Text className="label bucket-size-label">
-							Bucket width
+							铲斗宽度
 						</Typography.Text>
 						<InputNumber
 							value={bucketWidth || null}
 							type="number"
 							precision={2}
-							placeholder="Default: Auto"
+							placeholder="默认值：自动"
 							step={0.1}
 							min={0.0}
 							rootClassName="bucket-input"
@@ -281,9 +281,7 @@ function RightContainer({
 							}}
 						/>
 						<section className="combine-hist">
-							<Typography.Text className="label">
-								Merge all series into one
-							</Typography.Text>
+							<Typography.Text className="label">将所有系列合并为一个</Typography.Text>
 							<Switch
 								checked={combineHistogram}
 								size="small"
@@ -298,7 +296,7 @@ function RightContainer({
 				<section className="alerts" onClick={onCreateAlertsHandler}>
 					<div className="left-section">
 						<ConciergeBell size={14} className="bell-icon" />
-						<Typography.Text className="alerts-text">Alerts</Typography.Text>
+						<Typography.Text className="alerts-text">告警</Typography.Text>
 					</div>
 					<Plus size={14} className="plus-icon" />
 				</section>

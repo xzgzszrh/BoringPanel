@@ -51,7 +51,7 @@ export const getTabsItems = ({
 		),
 	},
 	{
-		label: 'Table View',
+		label: '表格视图',
 		key: PANEL_TYPES.TABLE,
 		children: <TableView />,
 	},

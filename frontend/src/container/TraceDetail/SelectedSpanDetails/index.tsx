@@ -55,7 +55,7 @@ function SelectedSpanDetails(props: SelectedSpanDetailsProps): JSX.Element {
 
 	const items = [
 		{
-			label: 'Tags',
+			label: '标签',
 			key: '1',
 			children: (
 				<Tags
@@ -67,7 +67,7 @@ function SelectedSpanDetails(props: SelectedSpanDetailsProps): JSX.Element {
 			),
 		},
 		{
-			label: 'Events',
+			label: '活动',
 			key: '2',
 			children: (
 				<Events
@@ -101,7 +101,7 @@ function SelectedSpanDetails(props: SelectedSpanDetailsProps): JSX.Element {
 				direction="vertical"
 			>
 				<Row align="middle" justify="space-between">
-					<Typography.Text strong>Details for selected Span</Typography.Text>
+					<Typography.Text strong>所选跨度的详细信息</Typography.Text>
 					<Button
 						className="periscope-btn nav-item-label expand-collapse-btn"
 						icon={<PanelRight size={16} />}
@@ -109,21 +109,19 @@ function SelectedSpanDetails(props: SelectedSpanDetailsProps): JSX.Element {
 					/>
 				</Row>
 
-				<Typography.Text style={{ fontWeight: 700 }}>Service</Typography.Text>
+				<Typography.Text style={{ fontWeight: 700 }}>服务</Typography.Text>
 
 				<Typography>{tree.serviceName}</Typography>
 
-				<Typography.Text style={{ fontWeight: 700 }}>Operation</Typography.Text>
+				<Typography.Text style={{ fontWeight: 700 }}>手术</Typography.Text>
 
 				<Typography>{tree.name}</Typography>
 
-				<Typography.Text style={{ fontWeight: 700 }}>SpanKind</Typography.Text>
+				<Typography.Text style={{ fontWeight: 700 }}>斯潘金德</Typography.Text>
 
 				<Typography>{tree.spanKind}</Typography>
 
-				<Typography.Text style={{ fontWeight: 700 }}>
-					StatusCodeString
-				</Typography.Text>
+				<Typography.Text style={{ fontWeight: 700 }}>状态码字符串</Typography.Text>
 
 				<Tooltip placement="left" title={tree.statusCodeString}>
 					<Typography>{tree.statusCodeString}</Typography>
@@ -131,9 +129,7 @@ function SelectedSpanDetails(props: SelectedSpanDetailsProps): JSX.Element {
 
 				{tree.statusMessage && (
 					<>
-						<Typography.Text style={{ fontWeight: 700 }}>
-							StatusMessage
-						</Typography.Text>
+						<Typography.Text style={{ fontWeight: 700 }}>状态消息</Typography.Text>
 
 						<Tooltip placement="left" title={tree.statusMessage}>
 							<Typography>{tree.statusMessage}</Typography>
@@ -142,7 +138,7 @@ function SelectedSpanDetails(props: SelectedSpanDetailsProps): JSX.Element {
 				)}
 
 				<Button size="small" style={{ marginTop: '8px' }} onClick={onLogsHandler}>
-					Go to Related logs
+					转到相关日志
 				</Button>
 			</StyledSpace>
 

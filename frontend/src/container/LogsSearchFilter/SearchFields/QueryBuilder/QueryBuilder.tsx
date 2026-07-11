@@ -112,7 +112,7 @@ function QueryField({
 			</div>
 			<Select
 				defaultActiveFirstOption={false}
-				placeholder="Select Operator"
+				placeholder="选择运营商"
 				defaultValue={
 					query[1] && query[1].value
 						? (query[1].value as string).toUpperCase()
@@ -240,7 +240,7 @@ function QueryBuilder({
 	return (
 		<>
 			<Container isMargin={fieldsQuery.length === 0}>
-				<CategoryHeading>LOG QUERY BUILDER</CategoryHeading>
+				<CategoryHeading>日志查询构建器</CategoryHeading>
 				<CloseSquareOutlined onClick={onDropDownToggleHandler(false)} />
 			</Container>
 

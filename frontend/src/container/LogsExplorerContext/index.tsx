@@ -68,7 +68,7 @@ function LogsExplorerContext({
 			footer={null}
 			title={
 				<TitleWrapper block>
-					<Typography>Logs Context</Typography>
+					<Typography>日志上下文</Typography>
 
 					<EditButton
 						$isDarkMode={isDarkMode}

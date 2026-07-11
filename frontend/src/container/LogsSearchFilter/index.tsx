@@ -195,7 +195,7 @@ function SearchFilter({
 			>
 				<Input.Search
 					ref={searchRef}
-					placeholder="Search Filter"
+					placeholder="搜索过滤器"
 					value={searchText}
 					onChange={(e): void => {
 						const { value } = e.target;

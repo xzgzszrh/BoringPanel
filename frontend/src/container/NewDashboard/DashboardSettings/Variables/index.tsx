@@ -260,13 +260,13 @@ function VariablesSetting({
 
 	const columns = [
 		{
-			title: 'Variable',
+			title: '多变的',
 			dataIndex: 'name',
 			width: '50%',
 			key: 'name',
 		},
 		{
-			title: 'Description',
+			title: '描述',
 			width: '50%',
 			key: 'description',
 			render: (variable: IDashboardVariable): JSX.Element => (
@@ -375,7 +375,7 @@ function VariablesSetting({
 								onVariableViewModeEnter('ADD', {} as IDashboardVariable)
 							}
 						>
-							<PlusOutlined /> Add Variable
+							<PlusOutlined /> 添加变量
 						</Button>
 					</Row>
 
@@ -405,14 +405,14 @@ function VariablesSetting({
 				</>
 			)}
 			<Modal
-				title="Delete variable"
+				title="删除变量"
 				centered
 				open={deleteVariableModal}
 				onOk={handleDeleteConfirm}
 				onCancel={handleDeleteCancel}
 			>
 				<Typography.Text>
-					Are you sure you want to delete variable{' '}
+					您确定要删除变量吗{' '}
 					<span className="delete-variable-name">
 						{variableToDelete?.current?.name}
 					</span>

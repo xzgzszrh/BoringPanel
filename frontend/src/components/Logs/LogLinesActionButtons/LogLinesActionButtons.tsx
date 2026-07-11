@@ -17,7 +17,7 @@ export default function LogLinesActionButtons({
 }: LogLinesActionButtonsProps): JSX.Element {
 	return (
 		<div className={`log-line-action-buttons ${customClassName}`}>
-			<Tooltip title="Show in Context">
+			<Tooltip title="在上下文中显示">
 				<Button
 					size="small"
 					icon={<TextSelect size={14} />}
@@ -25,7 +25,7 @@ export default function LogLinesActionButtons({
 					onClick={handleShowContext}
 				/>
 			</Tooltip>
-			<Tooltip title="Copy Link">
+			<Tooltip title="复制链接">
 				<Button
 					size="small"
 					icon={<LinkOutlined size={14} />}

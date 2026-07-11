@@ -25,7 +25,7 @@ export default function AlertState({
 					color={Color.BG_SIENNA_400}
 				/>
 			);
-			label = <span style={{ color: Color.BG_SIENNA_400 }}>No Data</span>;
+			label = <span style={{ color: Color.BG_SIENNA_400 }}>无数据</span>;
 			break;
 
 		case 'disabled':
@@ -36,13 +36,13 @@ export default function AlertState({
 					color={Color.BG_VANILLA_400}
 				/>
 			);
-			label = <span style={{ color: Color.BG_VANILLA_400 }}>Muted</span>;
+			label = <span style={{ color: Color.BG_VANILLA_400 }}>静音</span>;
 			break;
 		case 'firing':
 			icon = (
 				<Flame size={18} fill={Color.BG_CHERRY_500} color={Color.BG_CHERRY_500} />
 			);
-			label = <span style={{ color: Color.BG_CHERRY_500 }}>Firing</span>;
+			label = <span style={{ color: Color.BG_CHERRY_500 }}>射击</span>;
 			break;
 
 		case 'normal':
@@ -54,7 +54,7 @@ export default function AlertState({
 					color={isDarkMode ? Color.BG_INK_400 : Color.BG_VANILLA_100}
 				/>
 			);
-			label = <span style={{ color: Color.BG_FOREST_500 }}>Resolved</span>;
+			label = <span style={{ color: Color.BG_FOREST_500 }}>已解决</span>;
 			break;
 
 		default:

@@ -1,7 +1,6 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable sonarjs/no-identical-functions */
 
-import { SIGNOZ_UPGRADE_PLAN_URL } from 'constants/app';
 import CreateAlertChannels from 'container/CreateAlertChannels';
 import { ChannelType } from 'container/CreateAlertChannels/config';
 import {
@@ -308,22 +307,6 @@ describe('Create Alert Channel (Normal User)', () => {
 				render(<CreateAlertChannels preType={ChannelType.MsTeams} />);
 			});
 
-			it('Should check if the selected item in the type dropdown has text "Microsoft Teams (Supported in Paid Plans Only)"', () => {
-				expect(
-					screen.getByText('Microsoft Teams (Supported in Paid Plans Only)'),
-				).toBeInTheDocument();
-			});
-
-			it('Should check if the upgrade plan message is shown', () => {
-				expect(screen.getByText('Upgrade to a Paid Plan')).toBeInTheDocument();
-				expect(
-					screen.getByText(/This feature is available for paid plans only./),
-				).toBeInTheDocument();
-				const link = screen.getByRole('link', { name: 'Click here' });
-				expect(link).toBeInTheDocument();
-				expect(link).toHaveAttribute('href', SIGNOZ_UPGRADE_PLAN_URL);
-				expect(screen.getByText(/to Upgrade/)).toBeInTheDocument();
-			});
 			it('Should check if the form buttons are displayed properly (Save, Test, Back)', () => {
 				expect(
 					screen.getByRole('button', { name: 'button_save_channel' }),

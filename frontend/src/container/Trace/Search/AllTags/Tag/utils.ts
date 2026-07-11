@@ -171,7 +171,7 @@ export function getTagKeyOptions(
 		return [
 			{
 				value: '',
-				label: 'No tags available',
+				label: '没有可用的标签',
 			},
 		];
 	}

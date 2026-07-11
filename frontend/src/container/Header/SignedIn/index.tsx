@@ -24,7 +24,7 @@ function SignedIn({ onToggle }: SignedInProps): JSX.Element {
 
 	return (
 		<div>
-			<Typography>SIGNED IN AS</Typography>
+			<Typography>登录身份</Typography>
 			<Wrapper>
 				<AvatarContainer>
 					<Avatar shape="circle" size="large">
@@ -36,7 +36,7 @@ function SignedIn({ onToggle }: SignedInProps): JSX.Element {
 					</div>
 				</AvatarContainer>
 				<ManageAccountLink onClick={onManageAccountClick}>
-					Manage Account
+					管理账户
 				</ManageAccountLink>
 			</Wrapper>
 		</div>

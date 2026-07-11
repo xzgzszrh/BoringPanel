@@ -24,7 +24,7 @@ function SelectDropdownRender({
 		<>
 			{menu}
 			<Input
-				placeholder="Enter custom time (ms)"
+				placeholder="输入自定义时间（毫秒）"
 				value={inputValue}
 				onChange={handleInputChange}
 				onKeyDown={handleKeyDown}
@@ -86,23 +86,21 @@ function EvaluationTimeSelector({
 
 	return (
 		<div className="evaluation-time-selector">
-			<Typography.Text className="eval-title">
-				Evaluation Interval:
-			</Typography.Text>
+			<Typography.Text className="eval-title">评估间隔：</Typography.Text>
 			<Select
 				style={{ width: 220 }}
-				placeholder="Select time interval (ms)"
+				placeholder="选择时间间隔（毫秒）"
 				value={selectedInterval}
 				onChange={handleSelectChange}
 				open={dropdownOpen}
 				onDropdownVisibleChange={setDropdownOpen}
 				dropdownRender={renderDropdown}
 			>
-				<Option value="1ms">1ms</Option>
-				<Option value="2ms">2ms</Option>
-				<Option value="5ms">5ms</Option>
-				<Option value="10ms">10ms</Option>
-				<Option value="15ms">15ms</Option>
+				<Option value="1ms">1毫秒</Option>
+				<Option value="2ms">2毫秒</Option>
+				<Option value="5ms">5毫秒</Option>
+				<Option value="10ms">10毫秒</Option>
+				<Option value="15ms">15毫秒</Option>
 			</Select>
 		</div>
 	);

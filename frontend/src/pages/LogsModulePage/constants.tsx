@@ -9,7 +9,7 @@ export const logsExplorer: TabRoutes = {
 	Component: LogsExplorer,
 	name: (
 		<div className="tab-item">
-			<Compass size={16} /> Explorer
+			<Compass size={16} /> 探险家
 		</div>
 	),
 	route: ROUTES.LOGS,
@@ -20,7 +20,7 @@ export const logsPipelines: TabRoutes = {
 	Component: Pipelines,
 	name: (
 		<div className="tab-item">
-			<Workflow size={16} /> Pipelines
+			<Workflow size={16} /> 管道
 		</div>
 	),
 	route: ROUTES.LOGS_PIPELINES,
@@ -31,7 +31,7 @@ export const logSaveView: TabRoutes = {
 	Component: SaveView,
 	name: (
 		<div className="tab-item">
-			<TowerControl size={16} /> Views
+			<TowerControl size={16} /> 意见
 		</div>
 	),
 	route: ROUTES.LOGS_SAVE_VIEWS,

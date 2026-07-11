@@ -33,7 +33,7 @@ function PopoverContent({
 					<div className="icon">
 						<LogsIcon />
 					</div>
-					<div className="text">View Logs</div>
+					<div className="text">查看日志</div>
 				</Link>
 			)}
 			{!!relatedTracesLink && (
@@ -47,7 +47,7 @@ function PopoverContent({
 							color={isDarkMode ? Color.BG_VANILLA_400 : Color.TEXT_INK_400}
 						/>
 					</div>
-					<div className="text">View Traces</div>
+					<div className="text">查看链路</div>
 				</Link>
 			)}
 		</div>

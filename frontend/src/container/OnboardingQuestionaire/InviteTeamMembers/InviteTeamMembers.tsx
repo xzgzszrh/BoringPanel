@@ -272,21 +272,18 @@ function InviteTeamMembers({
 	return (
 		<div className="questions-container">
 			<Typography.Title level={3} className="title">
-				Invite your team members
+				邀请您的团队成员
 			</Typography.Title>
 			<Typography.Paragraph className="sub-title">
-				The more your team uses SigNoz, the stronger your observability. Share
-				dashboards, collaborate on alerts, and troubleshoot faster together.
+				你的团队使用Scry越多，你的可观察性就越强。共享仪表盘、协作处理告警并更快地排除故障。
 			</Typography.Paragraph>
 
 			<div className="questions-form-container">
 				<div className="questions-form invite-team-members-form">
 					<div className="form-group">
 						<div className="question-label">
-							Collaborate with your team
-							<div className="question-sub-label">
-								Invite your team to the SigNoz workspace
-							</div>
+							与您的团队合作
+							<div className="question-sub-label">邀请您的团队来到 Scry 工作区</div>
 						</div>
 
 						<div className="invite-team-members-container">
@@ -319,9 +316,9 @@ function InviteTeamMembers({
 										onChange={(value): void => handleRoleChange(value, member)}
 										className="team-member-role-select"
 									>
-										<Select.Option value="VIEWER">Viewer</Select.Option>
-										<Select.Option value="EDITOR">Editor</Select.Option>
-										<Select.Option value="ADMIN">Admin</Select.Option>
+										<Select.Option value="VIEWER">观众</Select.Option>
+										<Select.Option value="EDITOR">编辑</Select.Option>
+										<Select.Option value="ADMIN">行政</Select.Option>
 									</Select>
 
 									{teamMembersToInvite?.length > 1 && (
@@ -343,7 +340,7 @@ function InviteTeamMembers({
 								icon={<Plus size={14} />}
 								onClick={handleAddTeamMember}
 							>
-								Member
+								成员
 							</Button>
 						</div>
 					</div>
@@ -351,8 +348,7 @@ function InviteTeamMembers({
 					{hasInvalidEmails && (
 						<div className="error-message-container">
 							<Typography.Text className="error-message" type="danger">
-								<TriangleAlert size={14} /> Please enter valid emails for all team
-								members
+								<TriangleAlert size={14} /> 请输入所有团队成员的有效电子邮件
 							</Typography.Text>
 						</div>
 					)}
@@ -403,12 +399,11 @@ function InviteTeamMembers({
 					<div className="partially-sent-invites-container">
 						<Typography.Text className="partially-sent-invites-message">
 							<TriangleAlert size={14} />
-							Some invites were sent successfully. Please fix the errors above and
-							resend invites.
+							部分邀请已成功发送。请修复上述错误并重新发送邀请。
 						</Typography.Text>
 
 						<Typography.Text className="partially-sent-invites-message">
-							You can click on I&apos;ll do this later to go to next step.
+							您可以单击我稍后再执行此操作以转到下一步。
 						</Typography.Text>
 					</div>
 				)}
@@ -416,7 +411,7 @@ function InviteTeamMembers({
 				<div className="next-prev-container">
 					<Button type="default" className="next-button" onClick={onBack}>
 						<ArrowLeft size={14} />
-						Back
+						返回
 					</Button>
 
 					<Button
@@ -425,7 +420,7 @@ function InviteTeamMembers({
 						onClick={handleNext}
 						loading={isSendingInvites || isLoading || disableNextButton}
 					>
-						Send Invites
+						发送邀请
 						<ArrowRight size={14} />
 					</Button>
 				</div>
@@ -439,7 +434,7 @@ function InviteTeamMembers({
 					>
 						{isLoading && <Loader2 className="animate-spin" size={16} />}
 
-						<span>I&apos;ll do this later</span>
+						<span>我稍后会做这个</span>
 					</Button>
 				</div>
 			</div>

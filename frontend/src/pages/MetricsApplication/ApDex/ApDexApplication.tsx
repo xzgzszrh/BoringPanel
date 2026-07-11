@@ -49,7 +49,7 @@ function ApDexApplication(): JSX.Element {
 			}
 		>
 			<Button size="middle" icon={<SettingOutlined />}>
-				Settings
+				设置
 			</Button>
 		</Popover>
 	);

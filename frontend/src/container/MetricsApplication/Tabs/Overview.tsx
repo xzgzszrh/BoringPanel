@@ -317,7 +317,7 @@ function Application(): JSX.Element {
 							stepInterval,
 						})}
 					>
-						View Traces
+						查看链路
 					</Button>
 					<TopLevelOperation
 						handleGraphClick={handleGraphClick}
@@ -346,7 +346,7 @@ function Application(): JSX.Element {
 								stepInterval,
 							})}
 						>
-							View Traces
+							查看链路
 						</Button>
 						<ApDex
 							handleGraphClick={handleGraphClick}

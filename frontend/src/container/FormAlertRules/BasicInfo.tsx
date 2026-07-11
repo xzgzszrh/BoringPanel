@@ -249,7 +249,7 @@ function BasicInfo({
 							className="create-notification-btn"
 							disabled={!addNewChannelPermission}
 						>
-							Create a notification channel
+							创建通知通道
 						</Button>
 					</Tooltip>
 				)}

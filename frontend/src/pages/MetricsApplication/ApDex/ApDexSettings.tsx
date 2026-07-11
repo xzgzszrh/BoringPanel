@@ -2,11 +2,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import { Card, InputNumber } from 'antd';
 import Spinner from 'components/Spinner';
 import TextToolTip from 'components/TextToolTip';
-import {
-	apDexToolTipText,
-	apDexToolTipUrl,
-	apDexToolTipUrlText,
-} from 'constants/apDex';
+import { apDexToolTipText } from 'constants/apDex';
 import { themeColors } from 'constants/theme';
 import { useSetApDexSettings } from 'hooks/apDex/useSetApDexSettings';
 import { useNotifications } from 'hooks/useNotifications';
@@ -64,7 +60,7 @@ function ApDexSettings({
 			extra={<CloseOutlined width={10} height={10} onClick={handlePopOverClose} />}
 			actions={[
 				<SaveAndCancelContainer key="SaveAndCancelContainer">
-					<Button onClick={handlePopOverClose}>Cancel</Button>
+					<Button onClick={handlePopOverClose}>取消</Button>
 					<SaveButton
 						onClick={onSaveApDexSettings({
 							handlePopOverClose,
@@ -77,20 +73,15 @@ function ApDexSettings({
 						type="primary"
 						loading={isApDexLoading}
 					>
-						Save
+						保存
 					</SaveButton>
 				</SaveAndCancelContainer>,
 			]}
 		>
 			<AppDexThresholdContainer>
 				<Typography>
-					Apdex threshold (in seconds){' '}
-					<TextToolTip
-						text={apDexToolTipText}
-						url={apDexToolTipUrl}
-						useFilledIcon={false}
-						urlText={apDexToolTipUrlText}
-					/>
+					Apdex 阈值（以秒为单位）{' '}
+					<TextToolTip text={apDexToolTipText} useFilledIcon={false} />
 				</Typography>
 				<InputNumber
 					value={thresholdValue}

@@ -30,7 +30,7 @@ function PromQLQueryContainer(): JSX.Element | null {
 				icon={<PlusOutlined />}
 				style={{ margin: '0.4rem 1rem' }}
 			>
-				Query
+				询问
 			</QueryButton>
 		</>
 	);

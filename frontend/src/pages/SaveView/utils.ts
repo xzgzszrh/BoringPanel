@@ -26,7 +26,7 @@ export const deleteViewHandler = ({
 			hideDeleteViewModal();
 			clearSearch();
 			notifications.success({
-				message: 'View Deleted Successfully',
+				message: '查看删除成功',
 			});
 			refetchAllView();
 		},

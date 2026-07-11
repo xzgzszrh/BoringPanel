@@ -3,7 +3,6 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Divider, Modal, Row, Spin, Typography } from 'antd';
 import setRetentionApi from 'api/settings/setRetention';
 import TextToolTip from 'components/TextToolTip';
-import GeneralSettingsCloud from 'container/GeneralSettingsCloud';
 import useComponentPermission from 'hooks/useComponentPermission';
 import { useNotifications } from 'hooks/useNotifications';
 import find from 'lodash-es/find';
@@ -50,9 +49,11 @@ function GeneralSettings({
 	const [postApiLoadingMetrics, setPostApiLoadingMetrics] = useState<boolean>(
 		false,
 	);
+
 	const [postApiLoadingTraces, setPostApiLoadingTraces] = useState<boolean>(
 		false,
 	);
+
 	const [postApiLoadingLogs, setPostApiLoadingLogs] = useState<boolean>(false);
 
 	const [availableDisks] = useState<IDiskType[]>(getAvailableDiskPayload);
@@ -60,6 +61,7 @@ function GeneralSettings({
 	const [metricsCurrentTTLValues, setMetricsCurrentTTLValues] = useState(
 		metricsTtlValuesPayload,
 	);
+
 	const [tracesCurrentTTLValues, setTracesCurrentTTLValues] = useState(
 		tracesTtlValuesPayload,
 	);
@@ -106,6 +108,7 @@ function GeneralSettings({
 			setMetricsTotalRetentionPeriod(
 				metricsCurrentTTLValues.metrics_ttl_duration_hrs,
 			);
+
 			setMetricsS3RetentionPeriod(
 				metricsCurrentTTLValues.metrics_move_ttl_duration_hrs
 					? metricsCurrentTTLValues.metrics_move_ttl_duration_hrs
@@ -119,6 +122,7 @@ function GeneralSettings({
 			setTracesTotalRetentionPeriod(
 				tracesCurrentTTLValues.traces_ttl_duration_hrs,
 			);
+
 			setTracesS3RetentionPeriod(
 				tracesCurrentTTLValues.traces_move_ttl_duration_hrs
 					? tracesCurrentTTLValues.traces_move_ttl_duration_hrs
@@ -201,100 +205,96 @@ function GeneralSettings({
 		isTracesSaveDisabled,
 		isLogsSaveDisabled,
 		errorText,
-	] = useMemo((): [
-		boolean,
-		boolean,
-		boolean,
-		string,
+	] = useMemo((): [boolean, boolean, boolean, string] =>
 		// eslint-disable-next-line sonarjs/cognitive-complexity
-	] => {
-		// Various methods to return dynamic error message text.
-		const messages = {
-			compareError: (name: string | number): string =>
-				t('retention_comparison_error', { name }),
-			nullValueError: (name: string | number): string =>
-				t('retention_null_value_error', { name }),
-		};
+		{
+			// Various methods to return dynamic error message text.
+			const messages = {
+				compareError: (name: string | number): string =>
+					t('retention_comparison_error', { name }),
+				nullValueError: (name: string | number): string =>
+					t('retention_null_value_error', { name }),
+			};
 
-		// Defaults to button not disabled and empty error message text.
-		let isMetricsSaveDisabled = false;
-		let isTracesSaveDisabled = false;
-		let isLogsSaveDisabled = false;
-		let errorText = '';
+			// Defaults to button not disabled and empty error message text.
+			let isMetricsSaveDisabled = false;
+			let isTracesSaveDisabled = false;
+			let isLogsSaveDisabled = false;
+			let errorText = '';
 
-		if (s3Enabled) {
-			if (
-				(metricsTotalRetentionPeriod || metricsS3RetentionPeriod) &&
-				Number(metricsTotalRetentionPeriod) <= Number(metricsS3RetentionPeriod)
-			) {
-				isMetricsSaveDisabled = true;
-				errorText = messages.compareError('metrics');
-			} else if (
-				(tracesTotalRetentionPeriod || tracesS3RetentionPeriod) &&
-				Number(tracesTotalRetentionPeriod) <= Number(tracesS3RetentionPeriod)
-			) {
-				isTracesSaveDisabled = true;
-				errorText = messages.compareError('traces');
-			} else if (
-				(logsTotalRetentionPeriod || logsS3RetentionPeriod) &&
-				Number(logsTotalRetentionPeriod) <= Number(logsS3RetentionPeriod)
-			) {
-				isLogsSaveDisabled = true;
-				errorText = messages.compareError('logs');
+			if (s3Enabled) {
+				if (
+					(metricsTotalRetentionPeriod || metricsS3RetentionPeriod) &&
+					Number(metricsTotalRetentionPeriod) <= Number(metricsS3RetentionPeriod)
+				) {
+					isMetricsSaveDisabled = true;
+					errorText = messages.compareError('metrics');
+				} else if (
+					(tracesTotalRetentionPeriod || tracesS3RetentionPeriod) &&
+					Number(tracesTotalRetentionPeriod) <= Number(tracesS3RetentionPeriod)
+				) {
+					isTracesSaveDisabled = true;
+					errorText = messages.compareError('traces');
+				} else if (
+					(logsTotalRetentionPeriod || logsS3RetentionPeriod) &&
+					Number(logsTotalRetentionPeriod) <= Number(logsS3RetentionPeriod)
+				) {
+					isLogsSaveDisabled = true;
+					errorText = messages.compareError('logs');
+				}
 			}
-		}
 
-		if (
-			!metricsTotalRetentionPeriod ||
-			!tracesTotalRetentionPeriod ||
-			!logsTotalRetentionPeriod
-		) {
-			isMetricsSaveDisabled = true;
-			isTracesSaveDisabled = true;
-			isLogsSaveDisabled = true;
 			if (
-				!metricsTotalRetentionPeriod &&
-				!tracesTotalRetentionPeriod &&
+				!metricsTotalRetentionPeriod ||
+				!tracesTotalRetentionPeriod ||
 				!logsTotalRetentionPeriod
 			) {
-				errorText = messages.nullValueError('metrics, traces and logs');
-			} else if (!metricsTotalRetentionPeriod) {
-				errorText = messages.nullValueError('metrics');
-			} else if (!tracesTotalRetentionPeriod) {
-				errorText = messages.nullValueError('traces');
-			} else if (!logsTotalRetentionPeriod) {
-				errorText = messages.nullValueError('logs');
+				isMetricsSaveDisabled = true;
+				isTracesSaveDisabled = true;
+				isLogsSaveDisabled = true;
+				if (
+					!metricsTotalRetentionPeriod &&
+					!tracesTotalRetentionPeriod &&
+					!logsTotalRetentionPeriod
+				) {
+					errorText = messages.nullValueError('metrics, traces and logs');
+				} else if (!metricsTotalRetentionPeriod) {
+					errorText = messages.nullValueError('metrics');
+				} else if (!tracesTotalRetentionPeriod) {
+					errorText = messages.nullValueError('traces');
+				} else if (!logsTotalRetentionPeriod) {
+					errorText = messages.nullValueError('logs');
+				}
 			}
-		}
-		if (
-			metricsCurrentTTLValues?.metrics_ttl_duration_hrs ===
-				metricsTotalRetentionPeriod &&
-			metricsCurrentTTLValues.metrics_move_ttl_duration_hrs ===
-				metricsS3RetentionPeriod
-		)
-			isMetricsSaveDisabled = true;
+			if (
+				metricsCurrentTTLValues?.metrics_ttl_duration_hrs ===
+					metricsTotalRetentionPeriod &&
+				metricsCurrentTTLValues.metrics_move_ttl_duration_hrs ===
+					metricsS3RetentionPeriod
+			)
+				isMetricsSaveDisabled = true;
 
-		if (
-			tracesCurrentTTLValues.traces_ttl_duration_hrs ===
-				tracesTotalRetentionPeriod &&
-			tracesCurrentTTLValues.traces_move_ttl_duration_hrs ===
-				tracesS3RetentionPeriod
-		)
-			isTracesSaveDisabled = true;
+			if (
+				tracesCurrentTTLValues.traces_ttl_duration_hrs ===
+					tracesTotalRetentionPeriod &&
+				tracesCurrentTTLValues.traces_move_ttl_duration_hrs ===
+					tracesS3RetentionPeriod
+			)
+				isTracesSaveDisabled = true;
 
-		if (
-			logsCurrentTTLValues.logs_ttl_duration_hrs === logsTotalRetentionPeriod &&
-			logsCurrentTTLValues.logs_move_ttl_duration_hrs === logsS3RetentionPeriod
-		)
-			isLogsSaveDisabled = true;
+			if (
+				logsCurrentTTLValues.logs_ttl_duration_hrs === logsTotalRetentionPeriod &&
+				logsCurrentTTLValues.logs_move_ttl_duration_hrs === logsS3RetentionPeriod
+			)
+				isLogsSaveDisabled = true;
 
-		return [
-			isMetricsSaveDisabled,
-			isTracesSaveDisabled,
-			isLogsSaveDisabled,
-			errorText,
-		];
-	}, [
+			return [
+				isMetricsSaveDisabled,
+				isTracesSaveDisabled,
+				isLogsSaveDisabled,
+				errorText,
+			];
+		}, [
 		logsCurrentTTLValues.logs_move_ttl_duration_hrs,
 		logsCurrentTTLValues.logs_ttl_duration_hrs,
 		logsS3RetentionPeriod,
@@ -336,6 +336,7 @@ function GeneralSettings({
 				break;
 			}
 		}
+
 		try {
 			onPostApiLoadingHandler(type);
 			const setTTLResponse = await setRetentionApi({
@@ -348,7 +349,7 @@ function GeneralSettings({
 			if (setTTLResponse.statusCode === 409) {
 				hasSetTTLFailed = true;
 				notifications.error({
-					message: 'Error',
+					message: '错误',
 					description: t('retention_request_race_condition'),
 					placement: 'topRight',
 				});
@@ -386,7 +387,7 @@ function GeneralSettings({
 			}
 		} catch (error) {
 			notifications.error({
-				message: 'Error',
+				message: '错误',
 				description: t('retention_failed_message'),
 				placement: 'topRight',
 			});
@@ -414,6 +415,7 @@ function GeneralSettings({
 					hide: !s3Enabled,
 				},
 			],
+
 			save: {
 				modal: modalMetrics,
 				modalOpen: (): void => onClickSaveHandler('metrics'),
@@ -427,6 +429,7 @@ function GeneralSettings({
 					) : (
 						<span>{t('retention_save_button.success')}</span>
 					),
+
 				isDisabled:
 					metricsTtlValuesPayload.status === 'pending' || isMetricsSaveDisabled,
 			},
@@ -455,6 +458,7 @@ function GeneralSettings({
 					hide: !s3Enabled,
 				},
 			],
+
 			save: {
 				modal: modalTraces,
 				modalOpen: (): void => onClickSaveHandler('traces'),
@@ -468,6 +472,7 @@ function GeneralSettings({
 					) : (
 						<span>{t('retention_save_button.success')}</span>
 					),
+
 				isDisabled:
 					tracesTtlValuesPayload.status === 'pending' || isTracesSaveDisabled,
 			},
@@ -494,6 +499,7 @@ function GeneralSettings({
 					hide: !s3Enabled,
 				},
 			],
+
 			save: {
 				modal: modalLogs,
 				modalOpen: (): void => onClickSaveHandler('logs'),
@@ -507,6 +513,7 @@ function GeneralSettings({
 					) : (
 						<span>{t('retention_save_button.success')}</span>
 					),
+
 				isDisabled: logsTtlValuesPayload.status === 'pending' || isLogsSaveDisabled,
 			},
 			statusComponent: (
@@ -537,6 +544,7 @@ function GeneralSettings({
 									marginBottom: '1rem',
 								}}
 							/>
+
 							{category.retentionFields.map((retentionField) => (
 								<Retention
 									key={retentionField.name}
@@ -600,16 +608,15 @@ function GeneralSettings({
 						<TextToolTip
 							{...{
 								text: `More details on how to set retention period`,
-								url: 'https://signoz.io/docs/userguide/retention-period/',
+								url: '',
 							}}
 						/>
 					)}
+
 					{errorText && <ErrorText>{errorText}</ErrorText>}
 				</ErrorTextContainer>
 
 				<Row justify="start">{renderConfig}</Row>
-
-				{isCloudUserVal && <GeneralSettingsCloud />}
 			</Col>
 		</>
 	);

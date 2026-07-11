@@ -1,8 +1,8 @@
 These steps will help you to collect **metrics, logs and traces** from your ECS infrastructure. 
 
-## Create SigNoz OTel Collector Configuration file 
+## Create Scry OTel Collector Configuration file
 
-To setup the SigNoz OTel Collector config, follow these two steps:
+To setup the Scry OTel Collector config, follow these two steps:
 
 ### Step 1: 
 Navigate to the AWS Parameter store and create a new parameter named **/ecs/signoz/otelcol-sidecar.yaml**
@@ -10,11 +10,11 @@ Navigate to the AWS Parameter store and create a new parameter named **/ecs/sign
 ### Step 2:
 Download the otelcol-sidecar YAML configuration file:
 ```bash
-wget https://github.com/SigNoz/benchmark/raw/main/ecs/otelcol-sidecar.yaml
+wget https://github.com/Scry/benchmark/raw/main/ecs/otelcol-sidecar.yaml
 ```
 &nbsp;
 
-Update `{region}` and `SIGNOZ_INGESTION_KEY` values in your YAML configuration file with your SigNoz cloud values mentioned below:
+Update `{region}` and `SIGNOZ_INGESTION_KEY` values in your YAML configuration file with your Scry cloud values mentioned below:
 
 {region} : `{{REGION}}`
 

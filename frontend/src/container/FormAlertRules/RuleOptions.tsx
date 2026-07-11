@@ -208,7 +208,7 @@ function RuleOptions({
 			value={alertDef.condition.algorithm}
 			onChange={onChangeAlgorithm}
 		>
-			<Select.Option value="standard">Standard</Select.Option>
+			<Select.Option value="standard">标准</Select.Option>
 		</InlineSelect>
 	);
 
@@ -242,9 +242,9 @@ function RuleOptions({
 			value={alertDef.condition.seasonality}
 			onChange={onChangeSeasonality}
 		>
-			<Select.Option value="hourly">Hourly</Select.Option>
-			<Select.Option value="daily">Daily</Select.Option>
-			<Select.Option value="weekly">Weekly</Select.Option>
+			<Select.Option value="hourly">每小时</Select.Option>
+			<Select.Option value="daily">日常的</Select.Option>
+			<Select.Option value="weekly">每周</Select.Option>
 		</InlineSelect>
 	);
 
@@ -261,7 +261,7 @@ function RuleOptions({
 					value={alertDef.condition.selectedQueryName}
 					onChange={onChangeSelectedQueryName}
 				/>
-				<Typography.Text>is</Typography.Text>
+				<Typography.Text>是</Typography.Text>
 				{renderCompareOps()} {t('text_condition2')} {renderMatchOpts()}{' '}
 				{t('text_condition3')} {renderEvalWindows()}
 			</Typography.Text>
@@ -281,7 +281,7 @@ function RuleOptions({
 					value={alertDef.condition.selectedQueryName}
 					onChange={onChangeSelectedQueryName}
 				/>
-				<Typography.Text>is</Typography.Text>
+				<Typography.Text>是</Typography.Text>
 				{renderCompareOps()} {t('text_condition2')} {renderMatchOpts()}
 				{t('text_condition3')} {renderPromEvalWindows()}
 			</Typography.Text>
@@ -332,14 +332,13 @@ function RuleOptions({
 					onChange={onChangeSelectedQueryName}
 				/>
 				{t('text_condition3')} {renderEvalWindows()}
-				<Typography.Text>is</Typography.Text>
+				<Typography.Text>是</Typography.Text>
 				{renderDeviationOpts()}
-				<Typography.Text>deviations</Typography.Text>
+				<Typography.Text>偏差</Typography.Text>
 				{renderCompareOps()}
-				<Typography.Text>the predicted data</Typography.Text>
+				<Typography.Text>预测数据</Typography.Text>
 				{renderMatchOpts()}
-				using the {renderAlgorithms()} algorithm with {renderSeasonality()}{' '}
-				seasonality
+				使用 {renderAlgorithms()} 算法与 {renderSeasonality()} 季节性
 			</Typography.Text>
 		</Form.Item>
 	);

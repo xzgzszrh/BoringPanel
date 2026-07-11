@@ -215,7 +215,7 @@ function WidgetHeader({
 			{showGlobalSearch ? (
 				<Input
 					addonBefore={<SearchOutlined size={14} />}
-					placeholder="Search..."
+					placeholder="搜索..."
 					bordered={false}
 					data-testid="widget-header-search-input"
 					autoFocus

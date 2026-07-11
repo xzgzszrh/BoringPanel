@@ -1,7 +1,15 @@
 /*eslint-disable*/
 //@ts-nocheck
 
-import { cloneDeep, find, maxBy, uniq, uniqBy, groupBy, sumBy } from 'lodash-es';
+import {
+	cloneDeep,
+	find,
+	maxBy,
+	uniq,
+	uniqBy,
+	groupBy,
+	sumBy,
+} from 'lodash-es';
 import { graphDataType } from './ServiceMap';
 
 const MIN_WIDTH = 10;
@@ -25,7 +33,7 @@ export const getGraphData = (serviceMap, isDarkMode): graphDataType => {
 			serviceName: e[0].child,
 			errorRate: sumBy(e, 'errorRate'),
 			callRate: sumBy(e, 'callRate'),
-		}
+		};
 	});
 	const highestCallCount = maxBy(items, (e) => e?.callCount)?.callCount;
 	const highestCallRate = maxBy(services, (e) => e?.callRate)?.callRate;
@@ -101,7 +109,7 @@ const getRound2DigitsAfterDecimal = (num: number) => {
 		return 0;
 	}
 	return num.toFixed(20).match(/^-?\d*\.?0*\d{0,2}/)[0];
-}
+};
 
 export const getTooltip = (link: {
 	p99: number;
@@ -111,15 +119,15 @@ export const getTooltip = (link: {
 }) => {
 	return `<div style="color:#333333;padding:12px;background: white;border-radius: 2px;">
 								<div class="keyval">
-									<div class="key">P99 latency:</div>
-									<div class="val">${getRound2DigitsAfterDecimal(link.p99/ 1000000)}ms</div>
+									<div class="key">P99 延迟：</div>
+									<div class="val">${getRound2DigitsAfterDecimal(link.p99 / 1000000)}ms</div>
 								</div>
 								<div class="keyval">
-									<div class="key">Request:</div>
+									<div class="key">请求：</div>
 									<div class="val">${getRound2DigitsAfterDecimal(link.callRate)}/sec</div>
 								</div>
 								<div class="keyval">
-									<div class="key">Error Rate:</div>
+									<div class="key">错误率：</div>
 									<div class="val">${getRound2DigitsAfterDecimal(link.errorRate)}%</div>
 								</div>
 							</div>`;

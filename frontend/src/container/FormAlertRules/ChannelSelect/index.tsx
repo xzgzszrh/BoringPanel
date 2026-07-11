@@ -44,7 +44,7 @@ function ChannelSelect({
 
 	if (channels.error && channels.errorMessage !== '') {
 		notifications.error({
-			message: 'Error',
+			message: '错误',
 			description: channels.errorMessage,
 		});
 	}
@@ -63,7 +63,7 @@ function ChannelSelect({
 				<Select.Option key="add-new-channel" value="add-new-channel">
 					<StyledCreateChannelOption>
 						<PlusOutlined />
-						Create a new channel
+						创建新频道
 					</StyledCreateChannelOption>
 				</Select.Option>,
 			);

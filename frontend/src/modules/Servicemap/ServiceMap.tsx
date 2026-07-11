@@ -71,10 +71,7 @@ function ServiceMap(props: ServiceMapProps): JSX.Element {
 	const { queries } = useResourceAttribute();
 
 	useEffect(() => {
-		/*
-			Call the apis only when the route is loaded.
-			Check this issue: https://github.com/SigNoz/signoz/issues/110
-		 */
+		// Call the APIs only when the route is loaded.
 		getDetailedServiceMapItems(globalTime, queries);
 	}, [globalTime, getDetailedServiceMapItems, queries]);
 
@@ -90,7 +87,7 @@ function ServiceMap(props: ServiceMapProps): JSX.Element {
 		return (
 			<Container>
 				<ResourceAttributesFilter />
-				<Card>No Service Found</Card>
+				<Card>未找到服务</Card>
 			</Container>
 		);
 	}

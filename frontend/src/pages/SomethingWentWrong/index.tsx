@@ -8,14 +8,14 @@ function SomethingWentWrong(): JSX.Element {
 	return (
 		<Container>
 			<SomethingWentWrongAsset />
-			<Typography.Title level={3}>Oops! Something went wrong</Typography.Title>
+			<Typography.Title level={3}>哎呀！出了点问题</Typography.Title>
 			<Button
 				type="primary"
 				onClick={(): void => {
 					history.push(ROUTES.APPLICATION);
 				}}
 			>
-				Return to Services page
+				返回服务页面
 			</Button>
 		</Container>
 	);

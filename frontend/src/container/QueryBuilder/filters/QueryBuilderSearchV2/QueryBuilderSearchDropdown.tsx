@@ -44,21 +44,17 @@ export default function QueryBuilderSearchDropdown(
 		<>
 			<div className="content">
 				{!currentFilterItem?.key ? (
-					<div className="suggested-filters">Suggested Filters</div>
+					<div className="suggested-filters">建议的过滤器</div>
 				) : !currentFilterItem?.op ? (
 					<div className="operator-for">
-						<Typography.Text className="operator-for-text">
-							Operator for{' '}
-						</Typography.Text>
+						<Typography.Text className="operator-for-text">运算符为 </Typography.Text>
 						<Typography.Text className="operator-for-value">
 							{currentFilterItem?.key?.key}
 						</Typography.Text>
 					</div>
 				) : (
 					<div className="value-for">
-						<Typography.Text className="value-for-text">
-							Value(s) for{' '}
-						</Typography.Text>
+						<Typography.Text className="value-for-text">值用于 </Typography.Text>
 						<Typography.Text className="value-for-value">
 							{currentFilterItem?.key?.key} {currentFilterItem?.op}
 						</Typography.Text>
@@ -67,7 +63,7 @@ export default function QueryBuilderSearchDropdown(
 				{menu}
 				{!searchValue && tags.length === 0 && (
 					<div className="example-queries">
-						<div className="heading"> Example Queries </div>
+						<div className="heading"> 查询示例 </div>
 						<div className="query-container">
 							{convertExampleQueriesToOptions(exampleQueries).map((query) => (
 								<ExampleQueriesRendererForLogs
@@ -86,11 +82,11 @@ export default function QueryBuilderSearchDropdown(
 				<section className="navigate">
 					<ArrowDown size={10} className="icons" />
 					<ArrowUp size={10} className="icons" />
-					<span className="keyboard-text">to navigate</span>
+					<span className="keyboard-text">导航</span>
 				</section>
 				<section className="update-query">
 					<CornerDownLeft size={10} className="icons" />
-					<span className="keyboard-text">to update query</span>
+					<span className="keyboard-text">更新查询</span>
 				</section>
 				{!currentFilterItem?.key && options.length > 3 && (
 					<section className="show-all-filter-items">
@@ -101,7 +97,7 @@ export default function QueryBuilderSearchDropdown(
 						)}
 						+
 						<Slash size={14} className="icons" />
-						<span className="keyboard-text">Show all filter items</span>
+						<span className="keyboard-text">显示所有过滤项目</span>
 					</section>
 				)}
 			</div>

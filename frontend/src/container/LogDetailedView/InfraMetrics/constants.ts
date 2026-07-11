@@ -2960,35 +2960,35 @@ export const getHostQueryPayload = (
 
 export const podWidgetInfo = [
 	{
-		title: 'CPU usage',
+		title: 'CPU使用率',
 		yAxisUnit: '',
 	},
 	{
-		title: 'Memory Usage',
+		title: '内存使用情况',
 		yAxisUnit: 'bytes',
 	},
 	{
-		title: 'Pod CPU usage [% of Request]',
+		title: 'Pod CPU 使用率 [请求的百分比]',
 		yAxisUnit: 'percent',
 	},
 	{
-		title: 'Pod CPU usage [% of Limit]',
+		title: 'Pod CPU 使用率 [限制的%]',
 		yAxisUnit: 'percent',
 	},
 	{
-		title: 'Pod memory usage [% of Request]',
+		title: 'Pod 内存使用量 [请求的%]',
 		yAxisUnit: 'percent',
 	},
 	{
-		title: 'Pod memory usage [% of Limit]',
+		title: 'Pod 内存使用量 [限制的%]',
 		yAxisUnit: 'percent',
 	},
 	{
-		title: 'Pod filesystem usage [%]',
+		title: 'Pod 文件系统使用率 [%]',
 		yAxisUnit: 'percentunit',
 	},
 	{
-		title: 'Pod network IO',
+		title: 'Pod 网络 IO',
 		yAxisUnit: 'binBps',
 	},
 ];
@@ -3000,34 +3000,34 @@ export const VIEW_TYPES = {
 
 export const nodeWidgetInfo = [
 	{
-		title: 'Node CPU usage',
+		title: '节点CPU使用率',
 		yAxisUnit: 'percentunit',
 	},
 	{
-		title: 'Node memory usage (WSS)',
+		title: '节点内存使用（WSS）',
 		yAxisUnit: 'percentunit',
 	},
 	{
-		title: 'Node network IO',
+		title: '节点网络IO',
 		yAxisUnit: 'binBps',
 	},
 	{
-		title: 'Node filesystem usage',
+		title: '节点文件系统使用情况',
 		yAxisUnit: 'percentunit',
 	},
 ];
 
 export const hostWidgetInfo = [
-	{ title: 'CPU Usage', yAxisUnit: 'percentunit' },
-	{ title: 'Memory Usage', yAxisUnit: 'bytes' },
-	{ title: 'System Load Average', yAxisUnit: '' },
-	{ title: 'Network usage (bytes)', yAxisUnit: 'bytes' },
-	{ title: 'Network usage (packet/s)', yAxisUnit: 'pps' },
-	{ title: 'Network errors', yAxisUnit: 'short' },
-	{ title: 'Network drops', yAxisUnit: 'short' },
-	{ title: 'Network connections', yAxisUnit: 'short' },
-	{ title: 'System disk io (bytes transferred)', yAxisUnit: 'bytes' },
-	{ title: 'System disk operations/s', yAxisUnit: 'short' },
-	{ title: 'Queue size', yAxisUnit: 'short' },
-	{ title: 'Disk operations time', yAxisUnit: 's' },
+	{ title: '中央处理器使用率', yAxisUnit: 'percentunit' },
+	{ title: '内存使用情况', yAxisUnit: 'bytes' },
+	{ title: '系统平均负载', yAxisUnit: '' },
+	{ title: '网络使用量（字节）', yAxisUnit: 'bytes' },
+	{ title: '网络使用情况（数据包/秒）', yAxisUnit: 'pps' },
+	{ title: '网络错误', yAxisUnit: 'short' },
+	{ title: '网络掉线', yAxisUnit: 'short' },
+	{ title: '网络连接', yAxisUnit: 'short' },
+	{ title: '系统磁盘io（传输的字节数）', yAxisUnit: 'bytes' },
+	{ title: '系统盘操作数/秒', yAxisUnit: 'short' },
+	{ title: '队列大小', yAxisUnit: 'short' },
+	{ title: '磁盘操作时间', yAxisUnit: 's' },
 ];

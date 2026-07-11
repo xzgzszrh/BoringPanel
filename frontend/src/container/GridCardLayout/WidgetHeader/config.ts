@@ -27,4 +27,4 @@ export const overlayStyles: CSSProperties = {
 	position: 'absolute',
 };
 
-export const WARNING_MESSAGE = `Too many timeseries in the result. UI has restricted to showing the top ${limit}. Please check the query if this is needed and contact support@signoz.io if you need to show >${limit} timeseries in the panel`;
+export const WARNING_MESSAGE = `结果中的时间序列过多，界面仅显示前 ${limit} 条。请检查查询条件。`;

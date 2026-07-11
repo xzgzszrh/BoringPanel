@@ -3,7 +3,7 @@
 Clone this GitHub repository as a first step to collect logs
 
 ```bash
-git clone https://github.com/SigNoz/docker-container-logs.git
+git clone https://github.com/Scry/docker-container-logs.git
 ```
 
 &nbsp;

@@ -18,7 +18,7 @@ export const editAlertChannelInitialValue = {
 	text:
 		'{{ range .Alerts -}}\n     *Alert:* {{ .Labels.alertname }}{{ if .Labels.severity }} - {{ .Labels.severity }}{{ end }} dummy_summary\n\n     *Summary:* {{ .Annotations.summary }}\n     *Description:* {{ .Annotations.description }}\n\n     *Details:*\n       {{ range .Labels.SortedPairs }} • *{{ .Name }}:* {{ .Value }}\n       {{ end }}\n     {{ end }}',
 	title:
-		'[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}\n     {{- if gt (len .CommonLabels) (len .GroupLabels) -}}\n       {{" "}}(\n       {{- with .CommonLabels.Remove .GroupLabels.Names }}\n         {{- range $index, $label := .SortedPairs -}}\n           {{ if $index }}, {{ end }}\n           {{- $label.Name }}="{{ $label.Value -}}"\n         {{- end }}\n       {{- end -}}\n       )\n     {{- end }}',
+		'[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} 适用于 {{ .CommonLabels.job }} {{- if gt (len .CommonLabels) (len .GroupLabels) -}} {{" "}}( {{- with .CommonLabels.Remove .GroupLabels.Names }} {{- range $index, $label := .SortedPairs -}} {{ if $index }}、{{ end }} {{- $label.Name }}="{{ $label.Value -}}" {{- end }} {{- end -}} ) {{- end }}',
 	type: 'slack',
 	name: 'Dummy-Channel',
 };

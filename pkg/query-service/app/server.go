@@ -25,6 +25,7 @@ import (
 	"go.signoz.io/signoz/pkg/query-service/agentConf"
 	"go.signoz.io/signoz/pkg/query-service/app/clickhouseReader"
 	"go.signoz.io/signoz/pkg/query-service/app/dashboards"
+	"go.signoz.io/signoz/pkg/query-service/app/debugmode"
 	"go.signoz.io/signoz/pkg/query-service/app/integrations"
 	"go.signoz.io/signoz/pkg/query-service/app/logparsingpipeline"
 	"go.signoz.io/signoz/pkg/query-service/app/opamp"
@@ -84,6 +85,7 @@ type Server struct {
 	privateHTTP *http.Server
 
 	opampServer *opamp.Server
+	debugMode   *debugmode.Manager
 
 	unavailableChannel chan healthcheck.Status
 }
@@ -188,6 +190,20 @@ func NewServer(serverOptions *ServerOptions) (*Server, error) {
 		return nil, err
 	}
 
+	debugModeEndpoint := os.Getenv("SCRY_DEBUG_OTLP_ENDPOINT")
+	if debugModeEndpoint == "" {
+		debugModeEndpoint = "http://otel-collector:4318"
+	}
+	debugModeManager, err := debugmode.NewManager(
+		localDB,
+		reader.GetConn(),
+		debugModeEndpoint,
+		strings.EqualFold(os.Getenv("SCRY_DEBUG_MODE_AVAILABLE"), "true"),
+	)
+	if err != nil {
+		return nil, fmt.Errorf("couldn't create debug mode manager: %w", err)
+	}
+
 	telemetry.GetInstance().SetReader(reader)
 	apiHandler, err := NewAPIHandler(APIHandlerOpts{
 		Reader:                        reader,
@@ -205,6 +221,7 @@ func NewServer(serverOptions *ServerOptions) (*Server, error) {
 		FluxInterval:                  fluxInterval,
 		UseLogsNewSchema:              serverOptions.UseLogsNewSchema,
 		UseTraceNewSchema:             serverOptions.UseTraceNewSchema,
+		DebugModeManager:              debugModeManager,
 	})
 	if err != nil {
 		return nil, err
@@ -214,6 +231,7 @@ func NewServer(serverOptions *ServerOptions) (*Server, error) {
 		// logger: logger,
 		// tracer: tracer,
 		ruleManager:        rm,
+		debugMode:          debugModeManager,
 		serverOptions:      serverOptions,
 		unavailableChannel: make(chan healthcheck.Status),
 	}
@@ -697,6 +715,9 @@ func (s *Server) Start() error {
 }
 
 func (s *Server) Stop() error {
+	if s.debugMode != nil {
+		s.debugMode.Close()
+	}
 	if s.httpServer != nil {
 		if err := s.httpServer.Shutdown(context.Background()); err != nil {
 			return err

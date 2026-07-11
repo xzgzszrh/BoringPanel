@@ -85,7 +85,7 @@ const tooltipPlugin = (
 			tooltipContent += `
           <div class="uplot-tooltip-series">
             ${marker}
-            <span class="uplot-tooltip-series-name">Main Series:</span>
+            <span class="uplot-tooltip-series-name">主序列：</span>
             <span class="uplot-tooltip-series-value">${mainValue}</span>
           </div>`;
 		}
@@ -94,7 +94,7 @@ const tooltipPlugin = (
 			tooltipContent += `
           <div class="uplot-tooltip-series">
             ${marker}
-            <span class="uplot-tooltip-series-name">Upper Band:</span>
+            <span class="uplot-tooltip-series-name">上界：</span>
             <span class="uplot-tooltip-series-value">${upperBand}</span>
           </div>`;
 		}
@@ -103,7 +103,7 @@ const tooltipPlugin = (
 			tooltipContent += `
           <div class="uplot-tooltip-series">
             ${marker}
-            <span class="uplot-tooltip-series-name">Lower Band:</span>
+            <span class="uplot-tooltip-series-name">下界：</span>
             <span class="uplot-tooltip-series-value">${lowerBand}</span>
           </div>`;
 		}

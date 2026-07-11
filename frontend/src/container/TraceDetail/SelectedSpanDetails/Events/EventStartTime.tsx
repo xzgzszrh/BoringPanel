@@ -13,7 +13,7 @@ function EventStartTime({ timeUnixNano }: EventStartTimeProps): JSX.Element {
 
 	return (
 		<>
-			<CustomSubTitle style={{ margin: 0 }}>Event Time</CustomSubTitle>
+			<CustomSubTitle style={{ margin: 0 }}>活动时间</CustomSubTitle>
 			<CustomSubText ellipsis isDarkMode={isDarkMode}>
 				<Popover content={humanReadableTimeInDayJs}>
 					{humanReadableTimeInDayJs}

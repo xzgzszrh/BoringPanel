@@ -170,9 +170,9 @@ function HostMetricsLogs({
 			// eslint-disable-next-line react/jsx-no-useless-fragment
 			<>
 				{isFetching ? (
-					<div className="logs-loading-skeleton"> Loading more logs ... </div>
+					<div className="logs-loading-skeleton"> 正在加载更多日志... </div>
 				) : hasReachedEndOfLogs ? (
-					<div className="logs-loading-skeleton"> *** End *** </div>
+					<div className="logs-loading-skeleton"> *** 结尾 *** </div>
 				) : null}
 			</>
 		),

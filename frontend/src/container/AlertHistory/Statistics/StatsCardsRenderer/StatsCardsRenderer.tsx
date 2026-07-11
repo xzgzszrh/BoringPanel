@@ -69,11 +69,7 @@ function StatsCardsRenderer({
 								timeSeries={currentTriggersSeries?.values}
 							/>
 						) : (
-							<StatsCard
-								title="Total Triggered"
-								isEmpty
-								emptyMessage="None Triggered."
-							/>
+							<StatsCard title="总触发次数" isEmpty emptyMessage="None Triggered." />
 						)}
 
 						{hasAvgResolutionTimeStats(
@@ -87,7 +83,7 @@ function StatsCardsRenderer({
 							/>
 						) : (
 							<StatsCard
-								title="Avg. Resolution Time"
+								title="平均。解决时间"
 								isEmpty
 								emptyMessage="No Resolutions."
 							/>

@@ -114,7 +114,7 @@ function TraceID(): JSX.Element {
 	return (
 		<div>
 			<Search
-				placeholder="Filter by Trace ID"
+				placeholder="按链路 ID 过滤"
 				onSearch={onSearch}
 				style={{
 					marginBottom: '5rem',

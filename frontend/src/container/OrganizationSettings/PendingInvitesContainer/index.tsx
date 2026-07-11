@@ -141,32 +141,32 @@ function PendingInvitesContainer(): JSX.Element {
 
 	const columns: ColumnsType<DataProps> = [
 		{
-			title: 'Name',
+			title: '名称',
 			dataIndex: 'name',
 			key: 'name',
 			width: 100,
 		},
 		{
-			title: 'Emails',
+			title: '电子邮件',
 			dataIndex: 'email',
 			key: 'email',
 			width: 80,
 		},
 		{
-			title: 'Access Level',
+			title: '访问级别',
 			dataIndex: 'accessLevel',
 			key: 'accessLevel',
 			width: 50,
 		},
 		{
-			title: 'Invite Link',
+			title: '邀请链接',
 			dataIndex: 'inviteLink',
 			key: 'Invite Link',
 			ellipsis: true,
 			width: 100,
 		},
 		{
-			title: 'Action',
+			title: '操作',
 			dataIndex: 'action',
 			width: 80,
 			key: 'Action',
@@ -175,14 +175,14 @@ function PendingInvitesContainer(): JSX.Element {
 					<Typography.Link
 						onClick={(): Promise<void> => onRevokeHandler(record.email)}
 					>
-						Revoke
+						撤销
 					</Typography.Link>
 					<Typography.Link
 						onClick={(): void => {
 							setText(record.inviteLink);
 						}}
 					>
-						Copy Invite Link
+						复制邀请链接
 					</Typography.Link>
 				</Space>
 			),

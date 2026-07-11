@@ -1,4 +1,4 @@
-### Send traces directly to SigNoz Cloud
+### Send traces directly to Scry Cloud
 
 **Step 1. Install dependencies**
 

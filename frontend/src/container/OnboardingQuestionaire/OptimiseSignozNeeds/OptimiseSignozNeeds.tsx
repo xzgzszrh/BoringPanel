@@ -190,21 +190,21 @@ function OptimiseSignozNeeds({
 	return (
 		<div className="questions-container">
 			<Typography.Title level={3} className="title">
-				Optimize SigNoz for Your Needs
+				根据您的需求优化 Scry
 			</Typography.Title>
 			<Typography.Paragraph className="sub-title">
-				Give us a quick sense of your scale so SigNoz can keep up!
+				让我们快速了解您的规模，以便 Scry 能够跟上！
 			</Typography.Paragraph>
 
 			<div className="questions-form-container">
 				<div className="questions-form">
 					<Typography.Paragraph className="question">
-						What does your scale approximately look like?
+						您的体重秤大约是什么样的？
 					</Typography.Paragraph>
 
 					<div className="form-group">
 						<label className="question" htmlFor="organisationName">
-							Logs / Day
+							日志/天
 						</label>
 						<div className="slider-container">
 							<div>
@@ -231,7 +231,7 @@ function OptimiseSignozNeeds({
 
 					<div className="form-group">
 						<label className="question" htmlFor="organisationName">
-							Metrics <Minus size={14} /> Number of Hosts
+							指标 <Minus size={14} /> 主机数量
 						</label>
 						<div className="slider-container">
 							<div>
@@ -258,7 +258,7 @@ function OptimiseSignozNeeds({
 
 					<div className="form-group">
 						<label className="question" htmlFor="organisationName">
-							Number of services
+							服务数量
 						</label>
 						<div className="slider-container">
 							<div>
@@ -292,7 +292,7 @@ function OptimiseSignozNeeds({
 						disabled={isUpdatingProfile}
 					>
 						<ArrowLeft size={14} />
-						Back
+						返回
 					</Button>
 
 					<Button
@@ -301,7 +301,7 @@ function OptimiseSignozNeeds({
 						onClick={handleOnNext}
 						disabled={isUpdatingProfile || isNextDisabled}
 					>
-						Next{' '}
+						下一步{' '}
 						{isUpdatingProfile ? (
 							<Loader2 className="animate-spin" />
 						) : (
@@ -312,7 +312,7 @@ function OptimiseSignozNeeds({
 
 				<div className="do-later-container">
 					<Button type="link" onClick={handleWillDoLater}>
-						I&apos;ll do this later
+						我稍后会做这个
 					</Button>
 				</div>
 			</div>

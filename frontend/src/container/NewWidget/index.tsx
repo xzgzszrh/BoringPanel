@@ -603,9 +603,7 @@ function NewWidget({ selectedGraph }: NewWidgetProps): JSX.Element {
 						data-testid="discard-button"
 					/>
 					<Flex align="center" gap={24}>
-						<Typography.Text className="configure-panel">
-							Configure panel
-						</Typography.Text>
+						<Typography.Text className="configure-panel">配置面板</Typography.Text>
 					</Flex>
 				</div>
 				{isSaveDisabled && (
@@ -618,7 +616,7 @@ function NewWidget({ selectedGraph }: NewWidgetProps): JSX.Element {
 							onClick={onSaveDashboard}
 							className="save-btn"
 						>
-							Save Changes
+							保存更改
 						</Button>
 					</Tooltip>
 				)}
@@ -632,7 +630,7 @@ function NewWidget({ selectedGraph }: NewWidgetProps): JSX.Element {
 						icon={<Check size={14} />}
 						className="save-btn"
 					>
-						Save Changes
+						保存更改
 					</Button>
 				)}
 			</div>
@@ -704,7 +702,7 @@ function NewWidget({ selectedGraph }: NewWidgetProps): JSX.Element {
 					isQueryModified ? (
 						<Space>
 							<WarningOutlined style={{ fontSize: '16px', color: '#fdd600' }} />
-							Unsaved Changes
+							未保存的更改
 						</Space>
 					) : (
 						'Save Widget'
@@ -735,7 +733,7 @@ function NewWidget({ selectedGraph }: NewWidgetProps): JSX.Element {
 				title={
 					<Space>
 						<WarningOutlined style={{ fontSize: '16px', color: '#fdd600' }} />
-						Unsaved Changes
+						未保存的更改
 					</Space>
 				}
 				focusTriggerAfterClose

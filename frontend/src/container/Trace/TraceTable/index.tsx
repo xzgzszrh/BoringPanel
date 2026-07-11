@@ -71,7 +71,7 @@ function TraceTable(): JSX.Element {
 
 	const columns: ColumnsType<TableType> = [
 		{
-			title: 'Date',
+			title: '日期',
 			dataIndex: 'timestamp',
 			key: 'timestamp',
 			width: 120,
@@ -82,21 +82,21 @@ function TraceTable(): JSX.Element {
 			},
 		},
 		{
-			title: 'Service',
+			title: '服务',
 			dataIndex: 'serviceName',
 			key: 'serviceName',
 			width: 50,
 			render: getValue,
 		},
 		{
-			title: 'Operation',
+			title: '手术',
 			dataIndex: 'operation',
 			key: 'operation',
 			width: 110,
 			render: getValue,
 		},
 		{
-			title: 'Duration',
+			title: '期间',
 			dataIndex: 'durationNano',
 			key: 'durationNano',
 			width: 50,
@@ -111,14 +111,14 @@ function TraceTable(): JSX.Element {
 			),
 		},
 		{
-			title: 'Method',
+			title: '方法',
 			dataIndex: 'method',
 			key: 'method',
 			width: 50,
 			render: getHttpMethodOrStatus,
 		},
 		{
-			title: 'Status Code',
+			title: '状态码',
 			dataIndex: 'statusCode',
 			key: 'statusCode',
 			width: 50,

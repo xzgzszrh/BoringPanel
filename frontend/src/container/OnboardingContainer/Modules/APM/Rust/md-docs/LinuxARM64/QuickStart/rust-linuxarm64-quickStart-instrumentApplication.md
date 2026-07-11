@@ -32,7 +32,7 @@ use tonic::metadata::{MetadataMap, MetadataValue};
 &nbsp;
 
 ### Step 2: Initialize tracer and create env file
-Add `init_tracer` function to your `main.rs` file. It initializes an OpenTelemetry tracer with the OpenTelemetry OTLP exporter which is sending data to SigNoz Cloud.
+Add `init_tracer` function to your `main.rs` file. It initializes an OpenTelemetry tracer with the OpenTelemetry OTLP exporter which is sending data to Scry Cloud.
 
 ```rust
 fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
@@ -110,7 +110,7 @@ async fn main() {
 }
 ```
 
-Add the below code block within a function or a section of your code where you're setting up and using the tracer for distributed tracing. After adding the below code block you can send traces to SigNoz Cloud
+Add the below code block within a function or a section of your code where you're setting up and using the tracer for distributed tracing. After adding the below code block you can send traces to Scry Cloud
 
 ```rust
   let tracer = global::tracer("global_tracer");
@@ -123,11 +123,11 @@ Add the below code block within a function or a section of your code where you'r
         span.add_event(
             format!("Operations"),
             vec![
-                Key::new("SigNoz is").string("working!"),
+                Key::new("Scry is").string("working!"),
             ],
         );
     });
     shutdown_tracer_provider()
 ```
 
-The above code block will create a span named operation which sets an attribute and an event to it saying "SigNoz is working!".
+The above code block will create a span named operation which sets an attribute and an event to it saying "Scry is working!".

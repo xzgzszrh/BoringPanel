@@ -15,7 +15,6 @@ import { useSelector } from 'react-redux';
 import { AppState } from 'store/reducers';
 import { DataSource } from 'types/common/queryBuilder';
 import { GlobalReducer } from 'types/reducer/globalTime';
-import DOCLINKS from 'utils/docLinks';
 
 import TraceExplorerControls from '../Controls';
 import { TracesLoading } from '../TraceLoading/TraceLoading';
@@ -76,13 +75,7 @@ function TracesView({ isFilterApplied }: TracesViewProps): JSX.Element {
 		<Container>
 			{(tableData || []).length !== 0 && (
 				<ActionsContainer>
-					<Typography>
-						This tab only shows Root Spans. More details
-						<Typography.Link href={DOCLINKS.TRACES_DETAILS_LINK} target="_blank">
-							{' '}
-							here
-						</Typography.Link>
-					</Typography>
+					<Typography>此选项卡仅显示根跨度。</Typography>
 					<TraceExplorerControls
 						isLoading={isLoading}
 						totalCount={responseData?.length || 0}

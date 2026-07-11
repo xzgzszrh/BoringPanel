@@ -54,9 +54,7 @@ export const AdditionalFiltersToggler = memo(function AdditionalFiltersToggler({
 						</span>
 					)}
 
-					{!isOpenedFilters && (
-						<Typography>Add conditions for {filtersTexts}</Typography>
-					)}
+					{!isOpenedFilters && <Typography>添加条件 {filtersTexts}</Typography>}
 				</StyledInner>
 			</Col>
 			{isOpenedFilters && <Col span={24}>{children}</Col>}
