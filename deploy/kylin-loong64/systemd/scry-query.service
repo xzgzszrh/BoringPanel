@@ -1,0 +1,22 @@
+[Unit]
+Description=Scry Query Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=scry
+Group=scry
+EnvironmentFile=/etc/scry.env
+WorkingDirectory=/opt/scry
+ExecStart=/opt/scry/bin/scry-query-service -config=/opt/scry/config/prometheus.yml --use-logs-new-schema=true --use-trace-new-schema=true
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/scry/query
+
+[Install]
+WantedBy=multi-user.target

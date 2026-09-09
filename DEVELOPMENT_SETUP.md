@@ -1,91 +1,68 @@
-# SigNoz Source Development Environment
+# Scry 源码开发环境
 
-This setup is pinned to the official SigNoz repository's `develop` branch at
-commit `fa90fad37347aeccba34141749e9f99bfcafa2bc` (2024-12-19).
+## 架构
 
-## Verified Host
+开发环境由 PostgreSQL、ZooKeeper、ClickHouse、模式迁移、Alertmanager、OpenTelemetry
+Collector、Query Service、Agent Service 和 Frontend 组成。Query Service 与 Frontend 从源码
+运行；Agent Service 使用 Node.js 22、Mastra、PostgreSQL 和 WASM SQLite。
 
-- macOS 26.5.1 on arm64, 10 CPUs, 16 GiB host memory
-- Docker Engine 29.4.0 and Docker Compose v5.1.2
-- Docker VM allocation: about 8 GiB
-- About 66 GiB was free before setup
-- Git 2.39.5, Make 3.81, Node.js 24.18.0, pnpm 10.20.0
-- Host Go was absent; the pinned Go container supplies Go 1.22.7
-- Ports 3301, 8080, 8085, 4317, 4318, 9000, 9001, 8123, 9090, and
-  9093 were free before startup
+所有宿主机端口默认绑定 `127.0.0.1`。Agent 容器以 `node` 用户运行，根文件系统只读，移除
+全部 Linux capabilities，启用 `no-new-privileges`，不挂载 Docker Socket 或宿主机根目录。
 
-## Architecture
+## 启动
 
-- Docker infrastructure: ZooKeeper, ClickHouse, schema migrators, Alertmanager,
-  and the SigNoz OpenTelemetry Collector.
-- Source services in Docker: the community Go query service runs from the
-  bind-mounted `pkg/` tree; Webpack runs from the bind-mounted `frontend/`
-  tree.
-- Important state uses Compose named volumes. `make -f Makefile.dev dev-down`
-  preserves those volumes.
-- Host-facing ports bind to `127.0.0.1` by default.
-- No service mounts the Docker socket or the host root filesystem.
-- `ee/` and `cmd/enterprise/` are not mounted, built, modified, or enabled.
-
-The develop manifest's `bitnami/zookeeper:3.7.1` tag is no longer present in
-the active Bitnami namespace. This setup uses the exact same version from
-Bitnami's `bitnamilegacy` namespace, which provides native amd64 and arm64
-manifests.
-
-The repository's `CONTRIBUTING.md` recommends Docker dependencies with the
-frontend and query service run from source. The containers here supply the
-required Go 1.22.7 and Node/Yarn runtimes so the host does not need Go installed.
-
-## Commands
-
-```sh
-make -f Makefile.dev dev                   # start everything
-make -f Makefile.dev dev-infra             # start dependency services
-make -f Makefile.dev dev-backend           # start/recreate query-service
-make -f Makefile.dev dev-frontend          # start/recreate frontend
-make -f Makefile.dev dev-backend-restart   # recompile changed Go source
-make -f Makefile.dev dev-frontend-restart  # reset Webpack if needed
-make -f Makefile.dev dev-ps
-make -f Makefile.dev dev-logs
-make -f Makefile.dev dev-down              # stop; preserve data volumes
+```bash
+cp .env.example .env
+# 设置 SCRY_AGENT_MASTER_KEY 和 SCRY_POSTGRES_PASSWORD
+make -f Makefile.dev dev
 ```
 
-Frontend changes are watched by Webpack. Go changes require
-`dev-backend-restart`; cached modules and build objects make subsequent
-compilation substantially shorter.
+常用命令：
 
-The backend rebuild loop was verified with a temporary Debug log-level change:
-it returned healthy in 7 seconds, and returned healthy in 6 seconds after the
-change was reverted. No test source change remains.
+```bash
+make -f Makefile.dev dev-infra
+make -f Makefile.dev dev-backend
+make -f Makefile.dev dev-agent
+make -f Makefile.dev dev-frontend
+make -f Makefile.dev dev-backend-restart
+make -f Makefile.dev dev-agent-restart
+make -f Makefile.dev dev-frontend-restart
+make -f Makefile.dev dev-ps
+make -f Makefile.dev dev-logs
+make -f Makefile.dev dev-down
+```
 
-## Endpoints
+`dev-down` 保留命名卷。Frontend 由 Webpack 监听源码变化；Agent 由 `tsx watch` 监听；Go
+源码修改后重启 Query Service 触发重新编译。
 
-- UI: http://localhost:3301
-- Query API health: http://localhost:8080/api/v1/health
-- Query internal API: http://localhost:8085
-- ClickHouse HTTP/native: 127.0.0.1:8123 / 127.0.0.1:9000
-- Alertmanager: http://localhost:9093
-- OTLP gRPC: 127.0.0.1:4317 (plaintext)
-- OTLP HTTP: http://127.0.0.1:4318 (plaintext)
+## 端点
 
-Validation completed on 2026-07-11:
+- Web Console: `http://localhost:3301`
+- Query API: `http://localhost:8080`
+- Query Internal API: `http://localhost:8085`
+- Agent API: `http://localhost:4111`
+- MCP: `http://localhost:4111/mcp`
+- Alertmanager: `http://localhost:9093`
+- OTLP gRPC/HTTP: `127.0.0.1:4317`、`http://127.0.0.1:4318`
+- ClickHouse Native/HTTP: `127.0.0.1:9000`、`http://127.0.0.1:8123`
 
-- UI returned HTTP 200 and the query health API returned `{"status":"ok"}`.
-- Browser-origin API requests returned `Access-Control-Allow-Origin: *`.
-- The Collector listened on both OTLP ports and reported ready.
-- An OTLP/HTTP test trace for service `signoz-dev-smoke` returned HTTP 200
-  and appeared in `signoz_traces.signoz_index_v3`.
-- ClickHouse was restarted and the test trace remained present.
+## 验证
 
-Edit `.env` to avoid port conflicts. `.env.example` documents every setting;
-the local `.env` is ignored by Git. For a remote server, replace loopback
-bindings deliberately and apply host firewall/TLS policy outside this Compose
-file rather than disabling either control.
+```bash
+cd agent-service
+npm run typecheck
+npm test
+npm run build
 
-## Source And License Notes
+cd ../frontend
+npx tsc --noEmit
 
-`LICENSE` states that content under `ee/` has its separate license and
-content outside the listed restrictions is MIT Expat. This development setup
-uses `pkg/query-service` and `frontend` only. The official root Makefile has
-enterprise build targets and linker variables, so this setup intentionally
-uses the community Go entry point directly instead of those targets.
+cd ..
+bash -n deploy/scry-ops/install.sh deploy/scry-ops/bin/*
+bash -n deploy/kylin-loong64/*.sh
+docker compose --env-file .env.example -f compose.dev.yaml config --quiet
+```
+
+故障模拟入口位于 `设置 > 调试模式`，支持正常、慢调用、错误突增、磁盘爆满、僵尸进程、
+磁盘 I/O、配置漂移、服务不可用、网络暴露面和综合故障。Agent 设置页提供模型、MCP 插件、
+`scry-ops` 主机、工具策略和统一安全审计。

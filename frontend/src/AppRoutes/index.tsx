@@ -149,10 +149,6 @@ function App(): JSX.Element {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 
-	useEffect(() => {
-		console.info('We are hiring! https://jobs.gem.com/signoz');
-	}, []);
-
 	return (
 		<ConfigProvider locale={zhCN} theme={themeConfig}>
 			<Router history={history}>

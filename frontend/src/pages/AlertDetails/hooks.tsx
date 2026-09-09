@@ -27,7 +27,6 @@ import history from 'lib/history';
 import { History, Table } from 'lucide-react';
 import EditRules from 'pages/EditRules';
 import { OrderPreferenceItems } from 'pages/Logs/config';
-import BetaTag from 'periscope/components/BetaTag/BetaTag';
 import PaginationInfoText from 'periscope/components/PaginationInfoText/PaginationInfoText';
 import { useAlertRule } from 'providers/Alert';
 import { useCallback, useMemo } from 'react';
@@ -127,7 +126,6 @@ export const useRouteTabUtils = (): { routes: TabRoutes[] } => {
 				<div className="tab-item">
 					<History size={14} />
 					历史
-					<BetaTag />
 				</div>
 			),
 			route: getRouteUrl(AlertDetailsTab.HISTORY),

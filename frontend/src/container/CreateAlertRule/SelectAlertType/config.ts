@@ -35,7 +35,6 @@ export const getOptionList = (
 			title: t('anomaly_based_alert'),
 			selection: AlertTypes.ANOMALY_BASED_ALERT,
 			description: t('anomaly_based_alert_desc'),
-			isBeta: true,
 		});
 	}
 

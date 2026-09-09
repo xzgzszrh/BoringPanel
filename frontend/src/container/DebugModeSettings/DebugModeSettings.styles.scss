@@ -45,6 +45,10 @@
 		}
 	}
 
+	.debug-mode-simulation-row {
+		margin-top: 14px;
+	}
+
 	.debug-mode-setting-label {
 		display: block;
 		font-weight: 500;
@@ -65,6 +69,48 @@
 
 	.debug-mode-select {
 		width: 220px;
+	}
+
+	.debug-mode-scenario-select {
+		width: min(420px, 55%);
+	}
+
+	.debug-mode-scenario-detail {
+		margin: 8px 0 16px;
+		padding: 16px 0 4px;
+		border-top: 1px dashed var(--bg-slate-400);
+	}
+
+	.debug-mode-scenario-heading,
+	.debug-mode-scenario-meta-row {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.debug-mode-scenario-heading {
+		margin-bottom: 14px;
+	}
+
+	.debug-mode-scenario-name {
+		display: block;
+		margin-bottom: 2px;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	.debug-mode-scenario-meta-row {
+		justify-content: flex-start;
+		margin-top: 8px;
+		font-size: 12px;
+		line-height: 22px;
+	}
+
+	.debug-mode-scenario-meta-label {
+		width: 64px;
+		flex: 0 0 64px;
+		color: var(--text-vanilla-400);
 	}
 
 	.debug-mode-number {
@@ -104,8 +150,13 @@
 		}
 
 		.debug-mode-select,
+		.debug-mode-scenario-select,
 		.debug-mode-number {
 			width: 100%;
+		}
+
+		.debug-mode-scenario-heading {
+			flex-direction: column;
 		}
 	}
 }

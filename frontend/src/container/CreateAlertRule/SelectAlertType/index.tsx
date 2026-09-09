@@ -1,4 +1,4 @@
-import { Row, Tag, Typography } from 'antd';
+import { Row, Typography } from 'antd';
 import { FeatureKeys } from 'constants/features';
 import useFeatureFlags from 'hooks/useFeatureFlag';
 import { useMemo } from 'react';
@@ -24,13 +24,6 @@ function SelectAlertType({ onSelect }: SelectAlertTypeProps): JSX.Element {
 					<AlertTypeCard
 						key={option.selection}
 						title={option.title}
-						extra={
-							option.isBeta ? (
-								<Tag bordered={false} color="geekblue">
-									测试版
-								</Tag>
-							) : undefined
-						}
 						onClick={(): void => {
 							onSelect(option.selection);
 						}}

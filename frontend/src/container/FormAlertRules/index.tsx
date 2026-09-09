@@ -1,14 +1,7 @@
 import './FormAlertRules.styles.scss';
 
 import { ExclamationCircleOutlined, SaveOutlined } from '@ant-design/icons';
-import {
-	Button,
-	FormInstance,
-	Modal,
-	SelectProps,
-	Tooltip,
-	Typography,
-} from 'antd';
+import { FormInstance, Modal, SelectProps, Tooltip, Typography } from 'antd';
 import saveAlertApi from 'api/alerts/save';
 import testAlertApi from 'api/alerts/testAlert';
 import logEvent from 'api/common/logEvent';
@@ -33,7 +26,7 @@ import history from 'lib/history';
 import { mapQueryDataFromApi } from 'lib/newQueryBuilder/queryBuilderMappers/mapQueryDataFromApi';
 import { mapQueryDataToApi } from 'lib/newQueryBuilder/queryBuilderMappers/mapQueryDataToApi';
 import { isEqual } from 'lodash-es';
-import { BellDot, ExternalLink } from 'lucide-react';
+import { BellDot } from 'lucide-react';
 import Tabs2 from 'periscope/components/Tabs2';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -73,14 +66,6 @@ export enum AlertDetectionTypes {
 	THRESHOLD_ALERT = 'threshold_rule',
 	ANOMALY_DETECTION_ALERT = 'anomaly_rule',
 }
-
-const ALERT_SETUP_GUIDE_URLS: Record<AlertTypes, string> = {
-	[AlertTypes.METRICS_BASED_ALERT]: '',
-	[AlertTypes.LOGS_BASED_ALERT]: '',
-	[AlertTypes.TRACES_BASED_ALERT]: '',
-	[AlertTypes.EXCEPTIONS_BASED_ALERT]: '',
-	[AlertTypes.ANOMALY_BASED_ALERT]: '',
-};
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 function FormAlertRules({
@@ -735,7 +720,6 @@ function FormAlertRules({
 		{
 			value: AlertDetectionTypes.ANOMALY_DETECTION_ALERT,
 			label: '异常检测告警',
-			isBeta: true,
 		},
 	];
 

@@ -13,13 +13,15 @@
 }
 
 .sideNav {
+	display: flex;
+	flex-direction: column;
 	flex: 0 0 64px;
 	height: 100%;
 	max-width: 64px;
 	min-width: 64px;
 	width: 64px;
 	border-right: 1px solid var(--bg-slate-400);
-	padding-bottom: 48px;
+	padding-bottom: 0;
 	transition: all 0.2s, background 0s, border 0s;
 
 	.brand-company-meta {
@@ -164,10 +166,14 @@
 		}
 	}
 	.nav-wrapper {
-		height: calc(100% - 52px);
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-height: 0;
 
 		.primary-nav-items {
-			max-height: 65%;
+			flex: 1;
+			min-height: 0;
 			overflow-y: auto;
 			overflow-x: hidden;
 
@@ -176,15 +182,12 @@
 			}
 		}
 		.secondary-nav-items {
-			max-height: 35%;
-			overflow-y: auto;
+			flex: 0 0 auto;
+			overflow-y: visible;
 			overflow-x: hidden;
 			border-top: 1px solid var(--bg-slate-400);
 			padding: 8px 0;
 			max-width: 100%;
-			position: fixed;
-			bottom: 0;
-			left: 0;
 			width: 64px;
 
 			transition: all 0.2s, background 0s, border 0s;
@@ -213,15 +216,7 @@
 	}
 
 	.nav-wrapper-cloud {
-		height: calc(100% - 88px);
-
-		.secondary-nav-items {
-			max-height: 30%;
-		}
-
-		.primary-nav-items {
-			max-height: 70%;
-		}
+		min-height: 0;
 	}
 
 	&.collapsed {
@@ -243,16 +238,6 @@
 
 	.nav-item-label {
 		display: none;
-	}
-
-	.nav-item-beta,
-	.nav-item-new {
-		display: none;
-	}
-
-	.sidenav-new-tag {
-		background-color: rgba(37, 225, 146, 0.1);
-		color: var(--text-forest-500);
 	}
 
 	&:hover,
@@ -286,11 +271,6 @@
 		}
 
 		.nav-item-label {
-			display: block;
-		}
-
-		.nav-item-beta,
-		.nav-item-new {
 			display: block;
 		}
 	}

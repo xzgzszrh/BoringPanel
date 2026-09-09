@@ -92,8 +92,11 @@ func main() {
 		UseTraceNewSchema: useTraceNewSchema,
 	}
 
-	// Read the jwt secret key
-	auth.JwtSecret = os.Getenv("SIGNOZ_JWT_SECRET")
+	// Read the Scry JWT secret. The legacy variable remains a compatibility fallback.
+	auth.JwtSecret = os.Getenv("SCRY_JWT_SECRET")
+	if auth.JwtSecret == "" {
+		auth.JwtSecret = os.Getenv("SIGNOZ_JWT_SECRET")
+	}
 
 	if len(auth.JwtSecret) == 0 {
 		zap.L().Warn("No JWT secret key is specified.")

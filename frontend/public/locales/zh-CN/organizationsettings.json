@@ -4,7 +4,7 @@
   "email_address": "电子邮件",
   "name_optional": "姓名（可选）",
   "role": "角色",
-  "email_placeholder": "john@signoz.io",
+  "email_placeholder": "user@example.com",
   "name_placeholder": "约翰",
   "add_another_team_member": "添加另一名团队成员",
   "invite_team_members": "邀请团队成员",

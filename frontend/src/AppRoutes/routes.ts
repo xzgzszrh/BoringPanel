@@ -2,10 +2,8 @@ import ROUTES from 'constants/routes';
 import { RouteProps } from 'react-router-dom';
 
 import {
-	AlertHistory,
-	AlertOverview,
+	AgentWorkspacePage,
 	AllAlertChannels,
-	AllErrors,
 	APIKeys,
 	CreateAlertChannelAlerts,
 	CreateNewAlerts,
@@ -17,14 +15,14 @@ import {
 	InfrastructureMonitoring,
 	IngestionSettings,
 	InstalledIntegrations,
-	ListAllALertsPage,
 	LiveLogs,
 	Login,
 	Logs,
 	LogsExplorer,
 	LogsIndexToFields,
 	LogsSaveViews,
-	MessagingQueues,
+	MemoryManagerPage,
+	MessagesAndAlertsPage,
 	MQDetailPage,
 	MySettings,
 	NewDashboardPage,
@@ -49,9 +47,45 @@ import {
 	TracesSaveViews,
 	UnAuthorized,
 	UsageExplorerPage,
+	WorkflowManagerPage,
 } from './pageComponents';
 
 const routes: AppRoutes[] = [
+	{
+		component: MemoryManagerPage,
+		path: ROUTES.AI_MEMORY,
+		exact: true,
+		isPrivate: true,
+		key: 'AI_MEMORY',
+	},
+	{
+		component: WorkflowManagerPage,
+		path: `${ROUTES.AI_LOOPS}/:workflowId`,
+		exact: true,
+		isPrivate: true,
+		key: 'AI_LOOPS',
+	},
+	{
+		component: WorkflowManagerPage,
+		path: ROUTES.AI_LOOPS,
+		exact: true,
+		isPrivate: true,
+		key: 'AI_LOOPS',
+	},
+	{
+		component: WorkflowManagerPage,
+		path: ROUTES.AI_WORKFLOWS,
+		exact: true,
+		isPrivate: true,
+		key: 'AI_WORKFLOWS',
+	},
+	{
+		component: AgentWorkspacePage,
+		path: ROUTES.AI_ASSISTANT,
+		exact: true,
+		isPrivate: true,
+		key: 'AI_ASSISTANT',
+	},
 	{
 		component: SignupPage,
 		path: ROUTES.SIGN_UP,
@@ -167,7 +201,7 @@ const routes: AppRoutes[] = [
 	{
 		path: ROUTES.LIST_ALL_ALERT,
 		exact: true,
-		component: ListAllALertsPage,
+		component: MessagesAndAlertsPage,
 		isPrivate: true,
 		key: 'LIST_ALL_ALERT',
 	},
@@ -181,14 +215,14 @@ const routes: AppRoutes[] = [
 	{
 		path: ROUTES.ALERT_HISTORY,
 		exact: true,
-		component: AlertHistory,
+		component: MessagesAndAlertsPage,
 		isPrivate: true,
 		key: 'ALERT_HISTORY',
 	},
 	{
 		path: ROUTES.ALERT_OVERVIEW,
 		exact: true,
-		component: AlertOverview,
+		component: MessagesAndAlertsPage,
 		isPrivate: true,
 		key: 'ALERT_OVERVIEW',
 	},
@@ -238,7 +272,7 @@ const routes: AppRoutes[] = [
 		path: ROUTES.ALL_ERROR,
 		exact: true,
 		isPrivate: true,
-		component: AllErrors,
+		component: MessagesAndAlertsPage,
 		key: 'ALL_ERROR',
 	},
 	{
@@ -268,6 +302,13 @@ const routes: AppRoutes[] = [
 		component: SettingsPage,
 		isPrivate: true,
 		key: 'DEBUG_MODE',
+	},
+	{
+		path: ROUTES.AGENT_SETTINGS,
+		exact: true,
+		component: SettingsPage,
+		isPrivate: true,
+		key: 'AGENT_SETTINGS',
 	},
 	{
 		path: ROUTES.INGESTION_SETTINGS,
@@ -370,7 +411,7 @@ const routes: AppRoutes[] = [
 	{
 		path: ROUTES.MESSAGING_QUEUES,
 		exact: true,
-		component: MessagingQueues,
+		component: MessagesAndAlertsPage,
 		key: 'MESSAGING_QUEUES',
 		isPrivate: true,
 	},

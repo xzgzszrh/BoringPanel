@@ -30,20 +30,22 @@ func TestManagerPersistsOrganizationConfig(t *testing.T) {
 
 	config := DefaultConfig()
 	config.Profile = ProfileLight
-	config.Scenario = ScenarioSlow
+	config.Scenario = "slow"
 	config.IntervalSeconds = 15
 	config.BackfillMinutes = 0
 	config.Signals.Messaging = false
 
 	status, err := manager.Update("org-1", config)
 	require.NoError(t, err)
-	require.Equal(t, config, status.Config)
+	require.Equal(t, ScenarioDiskIO, status.Config.Scenario)
+	require.Equal(t, config.Profile, status.Config.Profile)
+	require.Equal(t, config.Signals, status.Config.Signals)
 	require.False(t, status.Running)
 
 	stored, err := manager.GetStatus("org-1")
 	require.NoError(t, err)
 	require.Equal(t, ProfileLight, stored.Config.Profile)
-	require.Equal(t, ScenarioSlow, stored.Config.Scenario)
+	require.Equal(t, ScenarioDiskIO, stored.Config.Scenario)
 	require.False(t, stored.Config.Signals.Messaging)
 }
 
@@ -54,6 +56,10 @@ func TestValidateConfigRejectsUnsafeRates(t *testing.T) {
 
 	config = DefaultConfig()
 	config.Signals = Signals{}
+	require.Error(t, validateConfig(config))
+
+	config = DefaultConfig()
+	config.Scenario = "unsupported"
 	require.Error(t, validateConfig(config))
 }
 

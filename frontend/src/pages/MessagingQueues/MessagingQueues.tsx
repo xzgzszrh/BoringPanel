@@ -33,14 +33,6 @@ function MessagingQueues(): JSX.Element {
 		);
 	};
 
-	const getStartedRedirect = (link: string, sourceCard: string): void => {
-		logEvent('Messaging Queues: Get started clicked', {
-			source: sourceCard,
-			link,
-		});
-		history.push(link);
-	};
-
 	useEffect(() => {
 		logEvent('Messaging Queues: Overview page visited', {});
 	}, []);
@@ -65,68 +57,6 @@ function MessagingQueues(): JSX.Element {
 				<DateTimeSelectionV2 showAutoRefresh={false} hideShareModal />
 			</div>
 			<div className="messaging-overview">
-				<p className="overview-text">{t('overview.title')}</p>
-				<p className="overview-subtext">{t('overview.subtitle')}</p>
-				<div className="overview-doc-area">
-					<div className="overview-info-card">
-						<div>
-							<p className="card-title">{t('configureConsumer.title')}</p>
-							<p className="card-info-text">{t('configureConsumer.description')}</p>
-						</div>
-						<div className="button-grp">
-							<Button
-								type="default"
-								onClick={(): void =>
-									getStartedRedirect(
-										`${ROUTES.GET_STARTED_APPLICATION_MONITORING}?${QueryParams.getStartedSource}=kafka&${QueryParams.getStartedSourceService}=${MessagingQueueHealthCheckService.Consumers}`,
-										'Configure Consumer',
-									)
-								}
-							>
-								{t('configureConsumer.button')}
-							</Button>
-						</div>
-					</div>
-					<div className="overview-info-card middle-card">
-						<div>
-							<p className="card-title">{t('configureProducer.title')}</p>
-							<p className="card-info-text">{t('configureProducer.description')}</p>
-						</div>
-						<div className="button-grp">
-							<Button
-								type="default"
-								onClick={(): void =>
-									getStartedRedirect(
-										`${ROUTES.GET_STARTED_APPLICATION_MONITORING}?${QueryParams.getStartedSource}=kafka&${QueryParams.getStartedSourceService}=${MessagingQueueHealthCheckService.Producers}`,
-										'Configure Producer',
-									)
-								}
-							>
-								{t('configureProducer.button')}
-							</Button>
-						</div>
-					</div>
-					<div className="overview-info-card">
-						<div>
-							<p className="card-title">{t('monitorKafka.title')}</p>
-							<p className="card-info-text">{t('monitorKafka.description')}</p>
-						</div>
-						<div className="button-grp">
-							<Button
-								type="default"
-								onClick={(): void =>
-									getStartedRedirect(
-										`${ROUTES.GET_STARTED_INFRASTRUCTURE_MONITORING}?${QueryParams.getStartedSource}=kafka&${QueryParams.getStartedSourceService}=${MessagingQueueHealthCheckService.Kafka}`,
-										'Monitor kafka',
-									)
-								}
-							>
-								{t('monitorKafka.button')}
-							</Button>
-						</div>
-					</div>
-				</div>
-
 				<p className="overview-text">{t('overviewSummarySection.title')}</p>
 				<p className="overview-subtext">{t('overviewSummarySection.subtitle')}</p>
 				<div className={cx('overview-doc-area', 'summary-section')}>

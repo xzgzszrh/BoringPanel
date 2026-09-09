@@ -29,18 +29,14 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
 	gap: 12px 24px;
-	min-height: 64px;
-	padding: 12px 0;
-
-	&--full-bleed {
-		padding-right: 16px;
-		padding-left: 16px;
-	}
+	min-height: 56px;
+	padding: 10px 16px;
+	border-bottom: 1px solid var(--bg-slate-500);
 
 	h4.ant-typography {
 		margin: 0;
-		font-size: 20px;
-		line-height: 28px;
+		font-size: 18px;
+		line-height: 24px;
 		letter-spacing: 0;
 	}
 
@@ -49,6 +45,27 @@
 		align-items: center;
 		margin-left: auto;
 	}
+}
+
+.global-page-body {
+	min-width: 0;
+	min-height: 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 0 16px 24px;
+}
+
+.global-page-body--full-bleed {
+	padding: 0;
+}
+
+.global-page-body--trace-detail {
+	padding-right: 0;
+}
+
+.lightMode .global-page-header {
+	border-bottom-color: var(--bg-vanilla-300);
 }
 
 .chat-support-gateway {

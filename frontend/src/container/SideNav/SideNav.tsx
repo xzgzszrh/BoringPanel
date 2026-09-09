@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import './SideNav.styles.scss';
 
-import { Color } from '@signozhq/design-tokens';
 import { Button } from 'antd';
 import getLocalStorageApi from 'api/browser/localstorage/get';
 import setLocalStorageApi from 'api/browser/localstorage/set';
@@ -16,36 +15,27 @@ import { useKeyboardHotkeys } from 'hooks/hotkeys/useKeyboardHotkeys';
 import useComponentPermission from 'hooks/useComponentPermission';
 import history from 'lib/history';
 import {
-	AlertTriangle,
-	CheckSquare,
 	PackagePlus,
 	PanelLeftClose,
 	PanelLeftOpen,
 	UserCircle,
 } from 'lucide-react';
 import { MouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { AppState } from 'store/reducers';
 import AppReducer from 'types/reducer/app';
-import { checkVersionState, isCloudUser } from 'utils/app';
+import { isCloudUser } from 'utils/app';
 
 import { routeConfig } from './config';
 import { getQueryString } from './helper';
 import defaultMenuItems, {
-	inviteMemberMenuItem,
+	settingsMenuItem,
 	shortcutMenuItem,
 } from './menuItems';
 import NavItem from './NavItem/NavItem';
-import { SecondaryMenuItemKey, SidebarItem } from './sideNav.types';
+import { SidebarItem } from './sideNav.types';
 import { getActiveMenuKeyFromPath } from './sideNav.utils';
-
-interface UserManagementMenuItems {
-	key: string;
-	label: string;
-	icon: JSX.Element;
-}
 
 function SideNav(): JSX.Element {
 	const [menuItems, setMenuItems] = useState(defaultMenuItems);
@@ -54,14 +44,9 @@ function SideNav(): JSX.Element {
 	);
 
 	const { pathname, search } = useLocation();
-	const {
-		user,
-		role,
-		featureResponse,
-		currentVersion,
-		latestVersion,
-		isCurrentVersionError,
-	} = useSelector<AppState, AppReducer>((state) => state.app);
+	const { user, role, featureResponse } = useSelector<AppState, AppReducer>(
+		(state) => state.app,
+	);
 
 	const userSettingsMenuItem = {
 		key: ROUTES.MY_SETTINGS,
@@ -69,26 +54,9 @@ function SideNav(): JSX.Element {
 		icon: <UserCircle size={16} />,
 	};
 
-	const [userManagementMenuItems, setUserManagementMenuItems] = useState<
-		UserManagementMenuItems[]
-	>([]);
-
-	const isLatestVersion = checkVersionState(currentVersion, latestVersion);
-
-	const [inviteMembers] = useComponentPermission(['invite_members'], role);
-
 	const { registerShortcut, deregisterShortcut } = useKeyboardHotkeys();
 
 	const isCloudUserVal = isCloudUser();
-
-	useEffect(() => {
-		if (inviteMembers) {
-			const updatedUserManagementMenuItems = [inviteMemberMenuItem];
-
-			setUserManagementMenuItems(updatedUserManagementMenuItems);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [inviteMembers]);
 
 	useEffect((): void => {
 		const isOnboardingEnabled =
@@ -108,8 +76,6 @@ function SideNav(): JSX.Element {
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [featureResponse.data]);
-
-	const { t } = useTranslation('');
 
 	const isCtrlMetaKey = (e: MouseEvent): boolean => e.ctrlKey || e.metaKey;
 
@@ -142,14 +108,6 @@ function SideNav(): JSX.Element {
 		}
 	};
 
-	const onClickVersionHandler = (event: MouseEvent): void => {
-		if (isCtrlMetaKey(event)) {
-			openInNewTab(ROUTES.VERSION);
-		} else {
-			history.push(ROUTES.VERSION);
-		}
-	};
-
 	const onClickHandler = useCallback(
 		(key: string, event: MouseEvent | null) => {
 			const params = new URLSearchParams(search);
@@ -178,37 +136,6 @@ function SideNav(): JSX.Element {
 		const nextPinned = !isPinned;
 		setIsPinned(nextPinned);
 		setLocalStorageApi(LOCALSTORAGE.SIDE_NAV_PINNED, String(nextPinned));
-	};
-
-	useEffect(() => {
-		if (currentVersion && latestVersion) {
-			const versionMenuItem = {
-				key: SecondaryMenuItemKey.Version,
-				label: !isCurrentVersionError ? currentVersion : t('n_a'),
-				icon: !isLatestVersion ? (
-					<AlertTriangle color={Color.BG_CHERRY_600} size={16} />
-				) : (
-					<CheckSquare color={Color.BG_FOREST_500} size={16} />
-				),
-				onClick: onClickVersionHandler,
-			};
-
-			const updatedUserManagementMenuItems = [versionMenuItem];
-
-			setUserManagementMenuItems(updatedUserManagementMenuItems);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentVersion, latestVersion]);
-
-	const handleUserManagentMenuItemClick = (
-		key: string,
-		event: MouseEvent,
-	): void => {
-		if (key === SecondaryMenuItemKey.Version) {
-			onClickVersionHandler(event);
-		} else {
-			onClickHandler(key, event);
-		}
 	};
 
 	useEffect(() => {
@@ -359,47 +286,20 @@ function SideNav(): JSX.Element {
 
 					<div className="secondary-nav-items">
 						<NavItem
+							key={ROUTES.SETTINGS}
+							item={settingsMenuItem}
+							isActive={activeMenuKey === ROUTES.SETTINGS}
+							onClick={(event): void => {
+								handleMenuItemClick(event, settingsMenuItem);
+							}}
+						/>
+
+						<NavItem
 							key="keyboardShortcuts"
 							item={shortcutMenuItem}
 							isActive={false}
 							onClick={onClickShortcuts}
 						/>
-
-						{userManagementMenuItems.map(
-							(item, index): JSX.Element => (
-								<NavItem
-									key={item?.key || index}
-									item={item}
-									isActive={activeMenuKey === item?.key}
-									onClick={(event: MouseEvent): void => {
-										handleUserManagentMenuItemClick(item?.key as string, event);
-										logEvent('Sidebar: Menu clicked', {
-											menuRoute: item?.key,
-											menuLabel: item?.label,
-										});
-									}}
-								/>
-							),
-						)}
-
-						{inviteMembers && (
-							<NavItem
-								key={inviteMemberMenuItem.key}
-								item={inviteMemberMenuItem}
-								isActive={activeMenuKey === inviteMemberMenuItem?.key}
-								onClick={(event: React.MouseEvent): void => {
-									if (isCtrlMetaKey(event)) {
-										openInNewTab(`${inviteMemberMenuItem.key}`);
-									} else {
-										history.push(`${inviteMemberMenuItem.key}`);
-									}
-									logEvent('Sidebar: Menu clicked', {
-										menuRoute: inviteMemberMenuItem?.key,
-										menuLabel: inviteMemberMenuItem?.label,
-									});
-								}}
-							/>
-						)}
 
 						{user && (
 							<NavItem
@@ -407,10 +307,7 @@ function SideNav(): JSX.Element {
 								item={userSettingsMenuItem}
 								isActive={activeMenuKey === userSettingsMenuItem?.key}
 								onClick={(event: MouseEvent): void => {
-									handleUserManagentMenuItemClick(
-										userSettingsMenuItem?.key as string,
-										event,
-									);
+									onClickHandler(userSettingsMenuItem.key, event);
 									logEvent('Sidebar: Menu clicked', {
 										menuRoute: userSettingsMenuItem?.key,
 										menuLabel: 'User',

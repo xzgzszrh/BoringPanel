@@ -102,7 +102,7 @@ function EditMembersDetails({
 			<Space direction="horizontal">
 				<Title>电子邮件</Title>
 				<Input
-					placeholder="john@signoz.io"
+					placeholder="user@example.com"
 					readOnly
 					onChange={(event): void =>
 						onChangeHandler(setEmailAddress, event.target.value)

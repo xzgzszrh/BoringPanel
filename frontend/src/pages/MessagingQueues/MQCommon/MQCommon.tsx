@@ -9,7 +9,7 @@ import { Info } from 'lucide-react';
 export function ComingSoon(): JSX.Element {
 	return (
 		<Tooltip
-			title={<div>加入我们的 Slack 社区了解更多详情： </div>}
+			title={<div>该能力已纳入产品计划，当前版本暂未开放。</div>}
 			placement="top"
 			overlayClassName="tooltip-overlay"
 		>

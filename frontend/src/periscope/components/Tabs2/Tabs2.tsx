@@ -1,7 +1,7 @@
 import './Tabs2.styles.scss';
 
 import { Color } from '@signozhq/design-tokens';
-import { Button, Tag } from 'antd';
+import { Button } from 'antd';
 import { TimelineFilter } from 'container/AlertHistory/types';
 import { Undo } from 'lucide-react';
 import { useState } from 'react';
@@ -11,7 +11,6 @@ interface Tab {
 	label: string | JSX.Element;
 	disabled?: boolean;
 	icon?: string | JSX.Element;
-	isBeta?: boolean;
 }
 
 interface TimelineTabsProps {
@@ -64,12 +63,6 @@ function Tabs2({
 						style={{ minWidth: buttonMinWidth }}
 					>
 						{tab.label}
-
-						{tab.isBeta && (
-							<Tag bordered={false} color="geekblue">
-								测试版
-							</Tag>
-						)}
 					</Button>
 				))}
 			</Button.Group>

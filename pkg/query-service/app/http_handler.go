@@ -484,6 +484,8 @@ func (aH *APIHandler) RegisterPrivateRoutes(router *mux.Router) {
 func (aH *APIHandler) RegisterRoutes(router *mux.Router, am *AuthMiddleware) {
 	router.HandleFunc("/api/v1/debug-mode", am.AdminAccess(aH.getDebugMode)).Methods(http.MethodGet)
 	router.HandleFunc("/api/v1/debug-mode", am.AdminAccess(aH.updateDebugMode)).Methods(http.MethodPut)
+	router.HandleFunc("/api/v1/debug-mode/scenarios", am.AdminAccess(aH.getDebugScenarios)).Methods(http.MethodGet)
+	router.HandleFunc("/api/v1/debug-mode/scenarios/{scenarioId}/ground-truth", am.AdminAccess(aH.getDebugScenarioTruth)).Methods(http.MethodGet)
 	router.HandleFunc("/api/v1/debug-mode/generate", am.AdminAccess(aH.generateDebugData)).Methods(http.MethodPost)
 	router.HandleFunc("/api/v1/debug-mode/cleanup", am.AdminAccess(aH.cleanupDebugData)).Methods(http.MethodPost)
 

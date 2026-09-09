@@ -12,12 +12,4 @@ export interface SidebarItem {
 	text?: ReactNode;
 	key: string | number;
 	label?: ReactNode;
-	isBeta?: boolean;
-	isNew?: boolean;
-}
-
-export enum SecondaryMenuItemKey {
-	Slack = 'slack',
-	Version = 'version',
-	Support = 'support',
 }

@@ -1,5 +1,20 @@
 import Loadable from 'components/Loadable';
 
+export const AgentWorkspacePage = Loadable(
+	() =>
+		import(/* webpackChunkName: "AgentWorkspacePage" */ 'pages/AgentWorkspace'),
+);
+
+export const WorkflowManagerPage = Loadable(
+	() =>
+		import(/* webpackChunkName: "WorkflowManagerPage" */ 'pages/WorkflowManager'),
+);
+
+export const MemoryManagerPage = Loadable(
+	() =>
+		import(/* webpackChunkName: "MemoryManagerPage" */ 'pages/MemoryManager'),
+);
+
 export const ServicesTablePage = Loadable(
 	() => import(/* webpackChunkName: "ServicesTablePage" */ 'pages/Services'),
 );
@@ -203,6 +218,13 @@ export const InstalledIntegrations = Loadable(
 export const MessagingQueues = Loadable(
 	() =>
 		import(/* webpackChunkName: "MessagingQueues" */ 'pages/MessagingQueues'),
+);
+
+export const MessagesAndAlertsPage = Loadable(
+	() =>
+		import(
+			/* webpackChunkName: "MessagesAndAlertsPage" */ 'pages/MessagesAndAlerts'
+		),
 );
 
 export const MQDetailPage = Loadable(

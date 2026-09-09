@@ -1,5 +1,27 @@
 export type DebugProfile = 'light' | 'standard' | 'high';
-export type DebugScenario = 'normal' | 'slow' | 'errors';
+export type DebugScenario = string;
+
+export interface DebugScenarioCatalogItem {
+	id: string;
+	name: string;
+	category: string;
+	difficulty: string;
+	symptom: string;
+	topology: string[];
+	signals: string[];
+	faultRatio: number;
+}
+
+export interface DebugScenarioGroundTruth {
+	scenarioId: string;
+	rootServices: string[];
+	rootCause: string;
+	expectedDiagnosis: string;
+	keyEvidence: string[];
+	remediation: string[];
+	verification: string[];
+	unsafeActions: string[];
+}
 
 export interface DebugSignals {
 	traces: boolean;

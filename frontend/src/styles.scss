@@ -312,7 +312,7 @@ notifications	-  2050
 .animate-spin {
 	animation: spin 1s linear infinite;
 }
-/* The Scry product does not expose upstream community, documentation, or sales links. */
+/* Keep external vendor and documentation links out of the product shell. */
 a[href*='signoz.io'],
 a[href*='signoz-community.slack.com'],
 a[href*='github.com/SigNoz'],

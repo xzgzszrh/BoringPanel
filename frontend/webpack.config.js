@@ -35,6 +35,7 @@ const plugins = [
 		'process.env': JSON.stringify({
 			NODE_ENV: process.env.NODE_ENV,
 			FRONTEND_API_ENDPOINT: process.env.FRONTEND_API_ENDPOINT,
+			AGENT_API_ENDPOINT: process.env.AGENT_API_ENDPOINT,
 			WEBSOCKET_API_ENDPOINT: process.env.WEBSOCKET_API_ENDPOINT,
 			POSTHOG_KEY: process.env.POSTHOG_KEY,
 			SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,

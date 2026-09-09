@@ -9,6 +9,8 @@ import (
 	"fmt"
 	"math"
 	"net/http"
+	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -20,7 +22,8 @@ type Generator struct {
 
 type generatedTrace struct {
 	traceID string
-	spanID  string
+	spanIDs map[string]string
+	fault   bool
 }
 
 func NewGenerator(endpoint string) *Generator {
@@ -31,76 +34,100 @@ func NewGenerator(endpoint string) *Generator {
 }
 
 func (g *Generator) Generate(ctx context.Context, orgID string, config Config, generatedAt time.Time) error {
-	tracesPerBatch := map[string]int{ProfileLight: 1, ProfileStandard: 3, ProfileHigh: 10}[config.Profile]
-	var trace generatedTrace
+	scenario, ok := scenarioByID(config.Scenario)
+	if !ok {
+		return fmt.Errorf("unknown debug scenario: %s", config.Scenario)
+	}
+	tracesPerBatch := map[string]int{ProfileLight: 2, ProfileStandard: 6, ProfileHigh: 18}[config.Profile]
 	for i := 0; i < tracesPerBatch; i++ {
-		currentTime := generatedAt.Add(time.Duration(i) * time.Millisecond)
+		currentTime := generatedAt.Add(time.Duration(i) * 25 * time.Millisecond)
+		trace := generatedTrace{spanIDs: map[string]string{}, fault: isFaultRequest(scenario, currentTime, i)}
 		if config.Signals.Traces || config.Signals.Messaging {
 			var err error
-			trace, err = g.sendTraces(ctx, orgID, config, currentTime, i)
+			trace, err = g.sendTraces(ctx, orgID, scenario, config, currentTime, i, trace.fault)
 			if err != nil {
 				return err
 			}
 		}
 		if config.Signals.Logs {
-			if err := g.sendLogs(ctx, orgID, config, currentTime, trace, i); err != nil {
+			if err := g.sendLogs(ctx, orgID, scenario, currentTime, trace, i); err != nil {
 				return err
 			}
 		}
 	}
 
 	if config.Signals.Metrics || config.Signals.Infrastructure || config.Signals.Messaging {
-		if err := g.sendMetrics(ctx, orgID, config, generatedAt); err != nil {
+		if err := g.sendMetrics(ctx, orgID, scenario, config, generatedAt); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (g *Generator) sendTraces(ctx context.Context, orgID string, config Config, at time.Time, sequence int) (generatedTrace, error) {
-	traceID := randomHex(16)
-	services := []struct {
-		name      string
-		operation string
-		duration  time.Duration
-	}{
-		{"调试-网关", "GET /api/orders", 180 * time.Millisecond},
-		{"调试-订单服务", "POST /orders", 130 * time.Millisecond},
-		{"调试-库存服务", "SELECT inventory", 65 * time.Millisecond},
-		{"调试-支付服务", "POST /payments", 90 * time.Millisecond},
+func isFaultRequest(scenario scenarioDefinition, at time.Time, sequence int) bool {
+	if scenario.Catalog.FaultRatio <= 0 {
+		return false
 	}
-	if config.Scenario == ScenarioSlow {
-		services[2].duration = 2 * time.Second
+	// Every fault scenario contains at least one failing request even in the light profile.
+	if sequence == 0 {
+		return true
+	}
+	bucket := int((at.UnixMilli()/250+int64(sequence*37))%100 + 100)
+	return bucket%100 < scenario.Catalog.FaultRatio
+}
+
+func (g *Generator) sendTraces(
+	ctx context.Context,
+	orgID string,
+	scenario scenarioDefinition,
+	config Config,
+	at time.Time,
+	sequence int,
+	fault bool,
+) (generatedTrace, error) {
+	traceID := randomHex(16)
+	durations := make([]time.Duration, len(scenario.Services))
+	for index, service := range scenario.Services {
+		latencyMS := service.BaselineLatencyMS
+		if fault && service.FaultLatencyMS > 0 && (scenario.RootIndex < 0 || index <= scenario.RootIndex) {
+			latencyMS = service.FaultLatencyMS
+		}
+		latencyMS += sequence % 3
+		durations[index] = time.Duration(latencyMS) * time.Millisecond
+	}
+	// Parent spans must include the full downstream duration.
+	for index := len(durations) - 2; index >= 0; index-- {
+		childEnd := time.Duration(index+1)*5*time.Millisecond + durations[index+1]
+		minimum := childEnd - time.Duration(index)*5*time.Millisecond + 3*time.Millisecond
+		if durations[index] < minimum {
+			durations[index] = minimum
+		}
 	}
 
 	parentID := ""
-	resourceSpans := make([]any, 0, len(services)+1)
-	rootSpanID := ""
-	for index, service := range services {
+	resourceSpans := make([]any, 0, len(scenario.Services)+2)
+	spanIDs := make(map[string]string, len(scenario.Services))
+	for index, service := range scenario.Services {
 		spanID := randomHex(8)
-		if index == 0 {
-			rootSpanID = spanID
+		spanIDs[service.Name] = spanID
+		start := at.Add(time.Duration(index) * 5 * time.Millisecond)
+		isRootError := fault && index == scenario.RootIndex
+		isUpstreamError := fault && scenario.RootIndex >= 0 && index < scenario.RootIndex
+		isError := isRootError || isUpstreamError
+		statusCode := 200
+		if isRootError && scenario.RootStatusCode != 0 {
+			statusCode = scenario.RootStatusCode
+		} else if isUpstreamError && scenario.UpstreamStatusCode != 0 {
+			statusCode = scenario.UpstreamStatusCode
 		}
-		start := at.Add(time.Duration(index) * 10 * time.Millisecond)
-		isError := config.Scenario == ScenarioErrors && (sequence+index)%3 == 0
-		if config.Scenario == ScenarioNormal && (at.Unix()/60+int64(index))%10 == 0 {
-			isError = true
-		}
-		attributes := []any{
-			attribute("scry.debug", true),
-			attribute("scry.dataset", "default"),
-			attribute("deployment.environment", "debug"),
-			attribute("http.request.method", map[bool]string{true: "POST", false: "GET"}[index > 0]),
-			attribute("http.response.status_code", map[bool]int{true: 500, false: 200}[isError]),
-			attribute("server.address", "scry-debug.internal"),
-		}
+		attributes := traceAttributes(scenario.Catalog.ID, service, statusCode, isRootError)
 		span := map[string]any{
 			"traceId":           traceID,
 			"spanId":            spanID,
-			"name":              service.operation,
-			"kind":              "SPAN_KIND_SERVER",
+			"name":              service.Operation,
+			"kind":              spanKind(service.Protocol),
 			"startTimeUnixNano": nanoString(start),
-			"endTimeUnixNano":   nanoString(start.Add(service.duration)),
+			"endTimeUnixNano":   nanoString(start.Add(durations[index])),
 			"attributes":        attributes,
 			"status": map[string]any{
 				"code": map[bool]string{true: "STATUS_CODE_ERROR", false: "STATUS_CODE_OK"}[isError],
@@ -109,131 +136,306 @@ func (g *Generator) sendTraces(ctx context.Context, orgID string, config Config,
 		if parentID != "" {
 			span["parentSpanId"] = parentID
 		}
-		if isError {
+		if isRootError && scenario.ExceptionMessage != "" {
 			span["events"] = []any{map[string]any{
-				"timeUnixNano": nanoString(start.Add(service.duration / 2)),
+				"timeUnixNano": nanoString(start.Add(durations[index] / 2)),
 				"name":         "exception",
 				"attributes": []any{
-					attribute("exception.type", "DebugPaymentError"),
-					attribute("exception.message", "调试场景生成的支付失败"),
-					attribute("exception.stacktrace", "payment.Process\norders.Submit\napi.Handle"),
+					attribute("exception.type", scenario.ExceptionType),
+					attribute("exception.message", scenario.ExceptionMessage),
+					attribute("exception.stacktrace", scenario.ExceptionStacktrace),
+					attribute("exception.escaped", false),
 				},
 			}}
 		}
-
-		resourceSpans = append(resourceSpans, resourceWithScope("scopeSpans", service.name, orgID, "spans", []any{span}))
+		resourceSpans = append(resourceSpans, resourceWithScope(
+			"scopeSpans", service.Name, orgID, scenario.Catalog.ID, "spans", []any{span},
+		))
 		parentID = spanID
 	}
 
-	if config.Signals.Messaging {
-		producerSpanID := randomHex(8)
-		producerSpan := map[string]any{
-			"traceId":           traceID,
-			"spanId":            producerSpanID,
-			"parentSpanId":      parentID,
-			"name":              "orders publish",
-			"kind":              "SPAN_KIND_PRODUCER",
-			"startTimeUnixNano": nanoString(at.Add(190 * time.Millisecond)),
-			"endTimeUnixNano":   nanoString(at.Add(215 * time.Millisecond)),
-			"attributes":        messagingAttributes(false),
-			"status":            map[string]any{"code": "STATUS_CODE_OK"},
-		}
-		resourceSpans = append(resourceSpans, resourceWithScope("scopeSpans", "调试-订单服务", orgID, "spans", []any{producerSpan}))
-
-		consumerSpanID := randomHex(8)
-		consumerSpan := map[string]any{
-			"traceId":           traceID,
-			"spanId":            consumerSpanID,
-			"parentSpanId":      producerSpanID,
-			"name":              "orders process",
-			"kind":              "SPAN_KIND_CONSUMER",
-			"startTimeUnixNano": nanoString(at.Add(220 * time.Millisecond)),
-			"endTimeUnixNano":   nanoString(at.Add(280 * time.Millisecond)),
-			"attributes":        messagingAttributes(true),
-			"status":            map[string]any{"code": "STATUS_CODE_OK"},
-		}
-		resourceSpans = append(resourceSpans, resourceWithScope("scopeSpans", "调试-消息消费者", orgID, "spans", []any{consumerSpan}))
+	if config.Signals.Messaging && !topologyContainsMessaging(scenario) {
+		messagingSpans, producerID := makeHealthyMessagingSpans(traceID, parentID, at, orgID, scenario.Catalog.ID)
+		resourceSpans = append(resourceSpans, messagingSpans...)
+		spanIDs["调试-事件总线"] = producerID
 	}
 
 	err := g.post(ctx, "/v1/traces", map[string]any{"resourceSpans": resourceSpans})
-	return generatedTrace{traceID: traceID, spanID: rootSpanID}, err
+	return generatedTrace{traceID: traceID, spanIDs: spanIDs, fault: fault}, err
 }
 
-func (g *Generator) sendLogs(ctx context.Context, orgID string, config Config, at time.Time, trace generatedTrace, sequence int) error {
-	isError := config.Scenario == ScenarioErrors && sequence%3 == 0
-	severity := "INFO"
-	severityNumber := 9
-	body := "订单请求处理完成"
-	if isError {
-		severity = "ERROR"
-		severityNumber = 17
-		body = "调试场景：支付服务返回错误"
+func traceAttributes(caseID string, service scenarioService, statusCode int, rootError bool) []any {
+	values := map[string]any{
+		"scry.debug":             true,
+		"scry.dataset":           "diagnostic-evaluation",
+		"scry.debug.case_id":     caseID,
+		"deployment.environment": "debug",
 	}
-	record := map[string]any{
-		"timeUnixNano":         nanoString(at),
-		"observedTimeUnixNano": nanoString(time.Now()),
-		"severityText":         severity,
-		"severityNumber":       severityNumber,
-		"body":                 map[string]any{"stringValue": body},
-		"attributes": []any{
-			attribute("scry.debug", true),
-			attribute("scry.dataset", "default"),
-			attribute("http.route", "/api/orders"),
-			attribute("order.id", fmt.Sprintf("debug-%06d", sequence)),
-		},
+	for key, value := range service.Attributes {
+		values[key] = value
 	}
-	if trace.traceID != "" {
-		record["traceId"] = trace.traceID
-		record["spanId"] = trace.spanID
+	operationParts := strings.Fields(service.Operation)
+	switch service.Protocol {
+	case "http":
+		method := "GET"
+		route := service.Operation
+		if len(operationParts) > 1 {
+			method = operationParts[0]
+			route = strings.Join(operationParts[1:], " ")
+		}
+		values["http.request.method"] = method
+		values["http.route"] = route
+		values["http.response.status_code"] = statusCode
+		values["server.address"] = "scry-debug.internal"
+	case "db":
+		if _, exists := values["db.system"]; !exists {
+			values["db.system"] = "postgresql"
+		}
+		values["db.operation.name"] = firstField(service.Operation)
+	case "redis":
+		values["db.system"] = "redis"
+		values["db.operation.name"] = firstField(service.Operation)
+	case "grpc":
+		values["rpc.system"] = "grpc"
+		if rootError {
+			values["rpc.grpc.status_code"] = 4
+		} else {
+			values["rpc.grpc.status_code"] = 0
+		}
+	case "messaging":
+		values["messaging.operation.type"] = map[bool]string{true: "process", false: "publish"}[strings.Contains(strings.ToLower(service.Operation), "process")]
+	case "tls":
+		values["network.transport"] = "tcp"
+		values["tls.protocol.version"] = "1.3"
+	case "dns":
+		values["network.transport"] = "udp"
 	}
-	payload := map[string]any{
-		"resourceLogs": []any{resourceWithScope("scopeLogs", "调试-订单服务", orgID, "logRecords", []any{record})},
+	if rootError {
+		values["error.type"] = "dependency_failure"
 	}
-	return g.post(ctx, "/v1/logs", payload)
+	return attributesFromMap(values)
 }
 
-func (g *Generator) sendMetrics(ctx context.Context, orgID string, config Config, at time.Time) error {
-	wave := (math.Sin(float64(at.Unix())/30) + 1) / 2
-	metrics := []any{}
+func firstField(value string) string {
+	parts := strings.Fields(value)
+	if len(parts) == 0 {
+		return value
+	}
+	return parts[0]
+}
+
+func spanKind(protocol string) string {
+	switch protocol {
+	case "db", "redis", "dns", "tls", "filesystem", "network", "process":
+		return "SPAN_KIND_CLIENT"
+	case "messaging":
+		return "SPAN_KIND_CONSUMER"
+	default:
+		return "SPAN_KIND_SERVER"
+	}
+}
+
+func topologyContainsMessaging(scenario scenarioDefinition) bool {
+	for _, service := range scenario.Services {
+		if service.Protocol == "messaging" {
+			return true
+		}
+	}
+	return false
+}
+
+func makeHealthyMessagingSpans(traceID, parentID string, at time.Time, orgID, caseID string) ([]any, string) {
+	producerID := randomHex(8)
+	consumerID := randomHex(8)
+	producer := map[string]any{
+		"traceId": traceID, "spanId": producerID, "parentSpanId": parentID,
+		"name": "audit.events publish", "kind": "SPAN_KIND_PRODUCER",
+		"startTimeUnixNano": nanoString(at.Add(80 * time.Millisecond)),
+		"endTimeUnixNano":   nanoString(at.Add(88 * time.Millisecond)),
+		"attributes":        messagingAttributes(caseID, "audit.events", "publish", "audit-indexer"),
+		"status":            map[string]any{"code": "STATUS_CODE_OK"},
+	}
+	consumer := map[string]any{
+		"traceId": traceID, "spanId": consumerID, "parentSpanId": producerID,
+		"name": "audit.events process", "kind": "SPAN_KIND_CONSUMER",
+		"startTimeUnixNano": nanoString(at.Add(94 * time.Millisecond)),
+		"endTimeUnixNano":   nanoString(at.Add(128 * time.Millisecond)),
+		"attributes":        messagingAttributes(caseID, "audit.events", "process", "audit-indexer"),
+		"status":            map[string]any{"code": "STATUS_CODE_OK"},
+	}
+	return []any{
+		resourceWithScope("scopeSpans", "调试-订单服务", orgID, caseID, "spans", []any{producer}),
+		resourceWithScope("scopeSpans", "调试-审计消费者", orgID, caseID, "spans", []any{consumer}),
+	}, producerID
+}
+
+func (g *Generator) sendLogs(
+	ctx context.Context,
+	orgID string,
+	scenario scenarioDefinition,
+	at time.Time,
+	trace generatedTrace,
+	sequence int,
+) error {
+	logs := make([]scenarioLog, 0, len(scenario.RootLogs)+len(scenario.DistractorLogs)+2)
+	if trace.fault {
+		logs = append(logs, scenario.RootLogs...)
+		if scenario.UpstreamLog != "" && len(scenario.Services) > 0 {
+			logs = append(logs, logLine(scenario.Services[0].Name, "ERROR", scenario.UpstreamLog, map[string]any{
+				"http.request.id": fmt.Sprintf("req-%s-%04d", scenario.Catalog.ID, sequence),
+			}))
+		}
+	} else if len(scenario.Services) > 0 {
+		logs = append(logs, logLine(scenario.Services[0].Name, "INFO", "request completed successfully status=200", map[string]any{
+			"http.request.id": fmt.Sprintf("req-%s-%04d", scenario.Catalog.ID, sequence),
+		}))
+	}
+	if sequence == 0 {
+		logs = append(logs, scenario.DistractorLogs...)
+	}
+	if len(logs) == 0 {
+		return nil
+	}
+
+	resourceLogs := make([]any, 0, len(logs))
+	for index, item := range logs {
+		record := map[string]any{
+			"timeUnixNano":         nanoString(at.Add(time.Duration(index) * time.Millisecond)),
+			"observedTimeUnixNano": nanoString(time.Now()),
+			"severityText":         strings.ToUpper(item.Severity),
+			"severityNumber":       severityNumber(item.Severity),
+			"body":                 map[string]any{"stringValue": item.Body},
+			"attributes": attributesFromMap(mergeAttributes(item.Attributes, map[string]any{
+				"scry.debug":         true,
+				"scry.dataset":       "diagnostic-evaluation",
+				"scry.debug.case_id": scenario.Catalog.ID,
+				"event.domain":       "application",
+			})),
+		}
+		if trace.traceID != "" {
+			record["traceId"] = trace.traceID
+			if spanID := trace.spanIDs[item.Service]; spanID != "" {
+				record["spanId"] = spanID
+			}
+		}
+		resourceLogs = append(resourceLogs, resourceWithScope(
+			"scopeLogs", item.Service, orgID, scenario.Catalog.ID, "logRecords", []any{record},
+		))
+	}
+	return g.post(ctx, "/v1/logs", map[string]any{"resourceLogs": resourceLogs})
+}
+
+func severityNumber(severity string) int {
+	switch strings.ToUpper(severity) {
+	case "TRACE":
+		return 1
+	case "DEBUG":
+		return 5
+	case "INFO", "NOTICE":
+		return 9
+	case "WARN", "WARNING":
+		return 13
+	case "ERROR":
+		return 17
+	case "FATAL":
+		return 21
+	default:
+		return 9
+	}
+}
+
+func mergeAttributes(primary, defaults map[string]any) map[string]any {
+	result := make(map[string]any, len(primary)+len(defaults))
+	for key, value := range defaults {
+		result[key] = value
+	}
+	for key, value := range primary {
+		result[key] = value
+	}
+	return result
+}
+
+func (g *Generator) sendMetrics(
+	ctx context.Context,
+	orgID string,
+	scenario scenarioDefinition,
+	config Config,
+	at time.Time,
+) error {
+	wave := (math.Sin(float64(at.Unix())/23) + 1) / 2
+	metrics := make([]any, 0, len(scenario.Metrics)+len(scenario.Services)*4+10)
 	if config.Signals.Metrics {
-		metrics = append(metrics,
-			gauge("scry_debug_requests_per_second", at, 40+wave*60, nil),
-			gauge("scry_debug_order_value", at, 120+wave*80, nil),
-		)
+		for index, service := range scenario.Services {
+			faultService := scenario.RootIndex >= 0 && index < scenario.RootIndex && scenario.Catalog.FaultRatio > 0
+			if index == scenario.RootIndex && (scenario.RootStatusCode >= 400 || service.Protocol != "http") {
+				faultService = scenario.Catalog.FaultRatio > 0
+			}
+			duration := float64(service.BaselineLatencyMS)
+			errorRatio := 0.002
+			active := 4.0 + float64(index)
+			if faultService {
+				duration = float64(maxInt(service.FaultLatencyMS, service.BaselineLatencyMS))
+				errorRatio = float64(scenario.Catalog.FaultRatio) / 100
+				active = 18 + float64(index*4)
+			}
+			attrs := []any{attribute("service.name", service.Name), attribute("operation", service.Operation)}
+			rateName, durationName, errorName, activeName := serviceMetricNames(service.Protocol)
+			metrics = append(metrics,
+				gauge(rateName, "{request}/s", at, 32+wave*18, attrs),
+				gauge(durationName, "ms", at, duration*(0.96+wave*0.08), attrs),
+				gauge(errorName, "1", at, errorRatio, attrs),
+				gauge(activeName, "{request}", at, active+wave*3, attrs),
+			)
+		}
 	}
 	if config.Signals.Infrastructure {
-		cpuTotal := float64(at.Unix())
+		rootName := scenario.Services[0].Name
+		if scenario.RootIndex >= 0 && scenario.RootIndex < len(scenario.Services) {
+			rootName = scenario.Services[scenario.RootIndex].Name
+		}
 		metrics = append(metrics,
-			gauge("system_cpu_load_average_15m", at, 0.8+wave*1.7, nil),
-			sum("system_cpu_time", at, cpuTotal*0.28, []any{attribute("state", "user")}),
-			sum("system_cpu_time", at, cpuTotal*0.02, []any{attribute("state", "wait")}),
-			sum("system_cpu_time", at, cpuTotal*0.70, []any{attribute("state", "idle")}),
-			nonMonotonicSum("system_memory_usage", at, 4.2e9+wave*1.5e9, []any{attribute("state", "used")}),
-			nonMonotonicSum("system_memory_usage", at, 8.0e9-wave*1.5e9, []any{attribute("state", "free")}),
+			gauge("system.cpu.utilization", "1", at, 0.31+wave*0.08, []any{attribute("host.name", "scry-debug-host-01"), attribute("service.name", rootName)}),
+			gauge("system.memory.utilization", "1", at, 0.54+wave*0.06, []any{attribute("host.name", "scry-debug-host-01"), attribute("service.name", rootName)}),
+			gauge("system.filesystem.utilization", "1", at, 0.46+wave*0.03, []any{attribute("host.name", "scry-debug-host-01"), attribute("mountpoint", "/")}),
+			gauge("system.network.io", "By/s", at, 8.4e6+wave*2.1e6, []any{attribute("host.name", "scry-debug-host-01"), attribute("direction", "receive")}),
 		)
 	}
-	if config.Signals.Messaging {
+
+	for _, item := range scenario.Metrics {
+		if !signalEnabled(config.Signals, item.Signal) {
+			continue
+		}
+		value := item.FaultValue + (wave-0.5)*2*item.Jitter
+		attrs := attributesFromMap(item.Attributes)
+		if item.Monotonic {
+			metrics = append(metrics, cumulativeSeries(item.Name, item.Unit, at, item.HealthyValue, math.Max(0, value), attrs))
+		} else {
+			metrics = append(metrics, gaugeSeries(item.Name, item.Unit, at, item.HealthyValue, value, attrs))
+		}
+	}
+
+	if config.Signals.Messaging && !hasSignalMetrics(scenario, "messaging") {
 		kafkaAttrs := []any{
-			attribute("topic", "orders"),
-			attribute("consumer_group", "scry-debug-orders"),
+			attribute("topic", "audit.events"),
+			attribute("consumer_group", "audit-indexer"),
 			attribute("partition", "0"),
 		}
 		metrics = append(metrics,
-			gauge("kafka_consumer_group_lag", at, 18+wave*65, kafkaAttrs),
-			gauge("kafka_consumer_fetch_latency_avg", at, 8+wave*18, kafkaAttrs),
-			gauge("kafka_producer_byte_rate", at, 12000+wave*8000, kafkaAttrs),
-			gauge("kafka_consumer_records_consumed_rate", at, 45+wave*30, kafkaAttrs),
-			gauge("kafka_brokers", at, 3, kafkaAttrs),
-			gauge("kafka_topic_partitions", at, 6, kafkaAttrs),
+			gauge("kafka.consumer.group.lag", "{message}", at, 8+wave*12, kafkaAttrs),
+			gauge("kafka.consumer.records.rate", "{message}/s", at, 46+wave*8, kafkaAttrs),
+			gauge("kafka.producer.records.rate", "{message}/s", at, 44+wave*8, kafkaAttrs),
+			gauge("kafka.cluster.under_replicated_partitions", "{partition}", at, 0, kafkaAttrs),
 		)
 	}
 
 	resource := map[string]any{
 		"attributes": []any{
-			attribute("service.name", "调试-基础设施代理"),
+			attribute("service.name", "调试-遥测生成器"),
 			attribute("service.namespace", "scry-debug"),
 			attribute("deployment.environment", "debug"),
 			attribute("scry.debug", true),
+			attribute("scry.dataset", "diagnostic-evaluation"),
+			attribute("scry.debug.case_id", scenario.Catalog.ID),
 			attribute("scry.org.id", orgID),
 			attribute("host.name", "scry-debug-host-01"),
 			attribute("host_name", "scry-debug-host-01"),
@@ -244,12 +446,56 @@ func (g *Generator) sendMetrics(ctx context.Context, orgID string, config Config
 		"resourceMetrics": []any{map[string]any{
 			"resource": resource,
 			"scopeMetrics": []any{map[string]any{
-				"scope":   map[string]any{"name": "scry.debug.generator", "version": "1.0.0"},
+				"scope":   map[string]any{"name": "scry.debug.generator", "version": "2.0.0"},
 				"metrics": metrics,
 			}},
 		}},
 	}
 	return g.post(ctx, "/v1/metrics", payload)
+}
+
+func maxInt(left, right int) int {
+	if left > right {
+		return left
+	}
+	return right
+}
+
+func serviceMetricNames(protocol string) (string, string, string, string) {
+	switch protocol {
+	case "grpc":
+		return "rpc.server.request.rate", "rpc.server.duration.p95", "rpc.server.error_ratio", "rpc.server.active_requests"
+	case "db", "redis":
+		return "db.client.operation.rate", "db.client.operation.duration.p95", "db.client.operation.error_ratio", "db.client.active_operations"
+	case "messaging":
+		return "messaging.process.rate", "messaging.process.duration.p95", "messaging.process.error_ratio", "messaging.active_messages"
+	case "http":
+		return "http.server.request.rate", "http.server.request.duration.p95", "http.server.error_ratio", "http.server.active_requests"
+	default:
+		return "dependency.request.rate", "dependency.request.duration.p95", "dependency.request.error_ratio", "dependency.active_requests"
+	}
+}
+
+func signalEnabled(signals Signals, signal string) bool {
+	switch signal {
+	case "metrics":
+		return signals.Metrics
+	case "infrastructure":
+		return signals.Infrastructure
+	case "messaging":
+		return signals.Messaging
+	default:
+		return false
+	}
+}
+
+func hasSignalMetrics(scenario scenarioDefinition, signal string) bool {
+	for _, item := range scenario.Metrics {
+		if item.Signal == signal {
+			return true
+		}
+	}
+	return false
 }
 
 func (g *Generator) post(ctx context.Context, path string, payload any) error {
@@ -273,39 +519,51 @@ func (g *Generator) post(ctx context.Context, path string, payload any) error {
 	return nil
 }
 
-func resourceWithScope(scopeKey, serviceName, orgID, recordsKey string, records []any) map[string]any {
+func resourceWithScope(scopeKey, serviceName, orgID, caseID, recordsKey string, records []any) map[string]any {
 	return map[string]any{
 		"resource": map[string]any{"attributes": []any{
 			attribute("service.name", serviceName),
 			attribute("service.namespace", "scry-debug"),
-			attribute("service.version", "1.0.0-debug"),
+			attribute("service.version", "2.0.0-debug"),
 			attribute("service.instance.id", serviceName+"-01"),
 			attribute("deployment.environment", "debug"),
 			attribute("scry.debug", true),
+			attribute("scry.dataset", "diagnostic-evaluation"),
+			attribute("scry.debug.case_id", caseID),
 			attribute("scry.org.id", orgID),
 		}},
 		scopeKey: []any{map[string]any{
-			"scope":    map[string]any{"name": "scry.debug.generator", "version": "1.0.0"},
+			"scope":    map[string]any{"name": "scry.debug.generator", "version": "2.0.0"},
 			recordsKey: records,
 		}},
 	}
 }
 
-func messagingAttributes(consumer bool) []any {
-	operation := "publish"
-	if consumer {
-		operation = "process"
-	}
+func messagingAttributes(caseID, topic, operation, consumerGroup string) []any {
 	return []any{
 		attribute("scry.debug", true),
+		attribute("scry.debug.case_id", caseID),
 		attribute("messaging.system", "kafka"),
-		attribute("messaging.destination.name", "orders"),
+		attribute("messaging.destination.name", topic),
 		attribute("messaging.destination.partition.id", "0"),
-		attribute("messaging.operation", operation),
-		attribute("messaging.kafka.consumer.group", "scry-debug-orders"),
+		attribute("messaging.operation.type", operation),
+		attribute("messaging.consumer.group.name", consumerGroup),
 		attribute("messaging.message.body.size", 512),
-		attribute("messaging.client_id", "scry-debug-client"),
+		attribute("messaging.client.id", "scry-debug-client"),
 	}
+}
+
+func attributesFromMap(values map[string]any) []any {
+	keys := make([]string, 0, len(values))
+	for key := range values {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	result := make([]any, 0, len(keys))
+	for _, key := range keys {
+		result = append(result, attribute(key, values[key]))
+	}
+	return result
 }
 
 func attribute(key string, value any) map[string]any {
@@ -316,9 +574,17 @@ func attribute(key string, value any) map[string]any {
 	case bool:
 		encoded["boolValue"] = typed
 	case int:
-		encoded["intValue"] = fmt.Sprintf("%d", typed)
+		encoded["intValue"] = strconv.Itoa(typed)
+	case int32:
+		encoded["intValue"] = strconv.FormatInt(int64(typed), 10)
 	case int64:
-		encoded["intValue"] = fmt.Sprintf("%d", typed)
+		encoded["intValue"] = strconv.FormatInt(typed, 10)
+	case uint:
+		encoded["intValue"] = strconv.FormatUint(uint64(typed), 10)
+	case uint64:
+		encoded["intValue"] = strconv.FormatUint(typed, 10)
+	case float32:
+		encoded["doubleValue"] = float64(typed)
 	case float64:
 		encoded["doubleValue"] = typed
 	default:
@@ -327,9 +593,10 @@ func attribute(key string, value any) map[string]any {
 	return map[string]any{"key": key, "value": encoded}
 }
 
-func gauge(name string, at time.Time, value float64, attributes []any) map[string]any {
+func gauge(name, unit string, at time.Time, value float64, attributes []any) map[string]any {
 	return map[string]any{
 		"name": name,
+		"unit": unit,
 		"gauge": map[string]any{"dataPoints": []any{map[string]any{
 			"timeUnixNano": nanoString(at),
 			"asDouble":     value,
@@ -338,32 +605,55 @@ func gauge(name string, at time.Time, value float64, attributes []any) map[strin
 	}
 }
 
-func sum(name string, at time.Time, value float64, attributes []any) map[string]any {
-	return sumMetric(name, at, value, attributes, true)
-}
-
-func nonMonotonicSum(name string, at time.Time, value float64, attributes []any) map[string]any {
-	return sumMetric(name, at, value, attributes, false)
-}
-
-func sumMetric(name string, at time.Time, value float64, attributes []any, isMonotonic bool) map[string]any {
+func gaugeSeries(name, unit string, at time.Time, baseline, current float64, attributes []any) map[string]any {
 	return map[string]any{
 		"name": name,
+		"unit": unit,
+		"gauge": map[string]any{"dataPoints": []any{
+			map[string]any{
+				"timeUnixNano": nanoString(at.Add(-10 * time.Minute)),
+				"asDouble":     baseline,
+				"attributes":   attributes,
+			},
+			map[string]any{
+				"timeUnixNano": nanoString(at),
+				"asDouble":     current,
+				"attributes":   attributes,
+			},
+		}},
+	}
+}
+
+func cumulativeSeries(name, unit string, at time.Time, healthyRate, faultRate float64, attributes []any) map[string]any {
+	baselineAt := at.Add(-10 * time.Minute)
+	baselineValue := math.Max(0, healthyRate) * float64(baselineAt.Unix()) / 60
+	currentValue := baselineValue + math.Max(0, faultRate)*10
+	return map[string]any{
+		"name": name,
+		"unit": unit,
 		"sum": map[string]any{
 			"aggregationTemporality": "AGGREGATION_TEMPORALITY_CUMULATIVE",
-			"isMonotonic":            isMonotonic,
-			"dataPoints": []any{map[string]any{
-				"startTimeUnixNano": nanoString(at.Add(-time.Hour)),
-				"timeUnixNano":      nanoString(at),
-				"asDouble":          value,
-				"attributes":        attributes,
-			}},
+			"isMonotonic":            true,
+			"dataPoints": []any{
+				map[string]any{
+					"startTimeUnixNano": nanoString(baselineAt.Add(-24 * time.Hour)),
+					"timeUnixNano":      nanoString(baselineAt),
+					"asDouble":          baselineValue,
+					"attributes":        attributes,
+				},
+				map[string]any{
+					"startTimeUnixNano": nanoString(baselineAt.Add(-24 * time.Hour)),
+					"timeUnixNano":      nanoString(at),
+					"asDouble":          currentValue,
+					"attributes":        attributes,
+				},
+			},
 		},
 	}
 }
 
 func nanoString(value time.Time) string {
-	return fmt.Sprintf("%d", value.UnixNano())
+	return strconv.FormatInt(value.UnixNano(), 10)
 }
 
 func randomHex(bytesCount int) string {

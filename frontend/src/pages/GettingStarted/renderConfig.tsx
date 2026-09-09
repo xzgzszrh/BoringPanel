@@ -6,8 +6,6 @@ import {
 	DashboardFilled,
 	SoundFilled,
 } from '@ant-design/icons';
-import { Typography } from 'antd';
-import Slack from 'container/SideNav/Slack';
 import store from 'store';
 
 import { TGetStartedContentSection } from './types';
@@ -142,23 +140,6 @@ export const GetStartedContent = (): TGetStartedContentSection[] => {
 					title: '配置告警通知渠道',
 					icon: <SoundFilled style={{ fontSize: '3.5rem' }} />,
 					url: '',
-				},
-			],
-		},
-		{
-			heading: 'Need help?',
-			description: <>加入我们的 Slack 社区并提出您可能有的任何问题 或者</>,
-
-			items: [
-				{
-					title: '加入 Scry 松弛社区',
-					icon: (
-						<div style={{ padding: '0.7rem' }}>
-							<Slack width={30} height={30} />
-						</div>
-					),
-
-					url: '/slack',
 				},
 			],
 		},

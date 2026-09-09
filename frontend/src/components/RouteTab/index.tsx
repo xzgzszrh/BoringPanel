@@ -1,4 +1,7 @@
+import './RouteTab.styles.scss';
+
 import { Tabs, TabsProps } from 'antd';
+import cx from 'classnames';
 
 import { RouteTabProps } from './types';
 
@@ -7,6 +10,7 @@ function RouteTab({
 	activeKey,
 	onChangeHandler,
 	history,
+	className,
 	...rest
 }: RouteTabProps & TabsProps): JSX.Element {
 	const onChange = (activeRoute: string): void => {
@@ -30,6 +34,7 @@ function RouteTab({
 
 	return (
 		<Tabs
+			className={cx('scry-route-tabs', className)}
 			onChange={onChange}
 			destroyInactiveTabPane
 			activeKey={activeKey}

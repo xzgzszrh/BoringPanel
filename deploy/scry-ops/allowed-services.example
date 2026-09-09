@@ -1,0 +1,2 @@
+# 每行一个允许由 Scry 重启的 systemd unit，部署时按实际环境收敛。
+scry-demo.service

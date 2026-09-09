@@ -1,6 +1,6 @@
 import './QueryFunctions.styles.scss';
 
-import { Button, Tooltip, Typography } from 'antd';
+import { Button, Tooltip } from 'antd';
 import cx from 'classnames';
 import { useIsDarkMode } from 'hooks/useDarkMode';
 import { cloneDeep, pullAt } from 'lodash-es';
@@ -211,7 +211,7 @@ export default function QueryFunctions({
 							hasAnomalyFunction ? 2 : 3
 						} function as of now.`
 					) : (
-						<div style={{ textAlign: 'center' }}>添加新功能</div>
+						<div style={{ textAlign: 'center' }}>添加函数</div>
 					)
 				}
 				placement="right"

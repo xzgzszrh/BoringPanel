@@ -12,8 +12,8 @@
     "success": "保存"
   },
   "retention_request_race_condition": "您更改保留周期的请求失败，因为另一个请求仍在处理中。",
-  "retention_error_message": "更改 {{name}} 的保留周期时出现问题。请重试或联系 support@signoz.io",
-  "retention_failed_message": "更改保留周期限时出现问题。请重试或联系 support@signoz.io",
+  "retention_error_message": "更改 {{name}} 的保留周期时出现问题。请重试或联系系统管理员",
+  "retention_failed_message": "更改保留周期限时出现问题。请重试或联系系统管理员",
   "retention_comparison_error": "{{name}} 的总保留周期不能低于或等于数据移至 s3 后的时间段。",
   "retention_null_value_error": "{{name}} 的保留周期限尚未设置。请通过以下选择进行设置",
   "retention_confirmation": "您确定要更改保留周期限吗？",

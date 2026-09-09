@@ -95,7 +95,10 @@ function HeaderContainer(): JSX.Element {
 			<Container>
 				<NavLink to={ROUTES.APPLICATION}>
 					<NavLinkWrapper>
-						<img src={`/signoz.svg?currentVersion=${currentVersion}`} alt="Scry" />
+						<img
+							src={`/Logos/scry-brand-logo.svg?currentVersion=${currentVersion}`}
+							alt="Scry"
+						/>
 						<Typography.Title
 							style={{ margin: 0, color: 'rgb(219, 219, 219)' }}
 							level={4}

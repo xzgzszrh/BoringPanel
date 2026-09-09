@@ -184,8 +184,15 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 	const isTracesView = (): boolean =>
 		routeKey === 'TRACES_EXPLORER' || routeKey === 'TRACES_SAVE_VIEWS';
 
-	const isMessagingQueues = (): boolean =>
-		routeKey === 'MESSAGING_QUEUES' || routeKey === 'MESSAGING_QUEUES_DETAIL';
+	const isMessagesAndAlerts = (): boolean =>
+		[
+			'LIST_ALL_ALERT',
+			'ALERT_HISTORY',
+			'ALERT_OVERVIEW',
+			'ALL_ERROR',
+			'MESSAGING_QUEUES',
+			'MESSAGING_QUEUES_DETAIL',
+		].includes(routeKey);
 
 	const isDashboardListView = (): boolean => routeKey === 'ALL_DASHBOARD';
 	const isAlertHistory = (): boolean => routeKey === 'ALERT_HISTORY';
@@ -203,7 +210,16 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 	const isTraceDetailsView = (): boolean =>
 		isPathMatch(/^\/trace\/[a-zA-Z0-9]+(\?.*)?$/);
 
+	const isAIWorkspace =
+		pathname === ROUTES.AI_ASSISTANT ||
+		pathname === ROUTES.AI_MEMORY ||
+		pathname === ROUTES.AI_LOOPS ||
+		pathname.startsWith(`${ROUTES.AI_LOOPS}/`) ||
+		pathname === ROUTES.AI_WORKFLOWS ||
+		pathname.startsWith(`${ROUTES.AI_WORKFLOWS}/`);
+
 	const isFullBleedContent =
+		isAIWorkspace ||
 		isLogsView() ||
 		isTracesView() ||
 		isDashboardView() ||
@@ -211,8 +227,9 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 		isDashboardListView() ||
 		isAlertHistory() ||
 		isAlertOverview() ||
-		isMessagingQueues() ||
+		isMessagesAndAlerts() ||
 		isInfraMonitoringHosts();
+	const hideGlobalPageHeader = isAIWorkspace;
 
 	useEffect(() => {
 		if (isDarkMode) {
@@ -236,14 +253,8 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 					<Sentry.ErrorBoundary fallback={<ErrorBoundaryFallback />}>
 						<LayoutContent data-overlayscrollbars-initialize>
 							<OverlayScrollbar>
-								<ChildrenContainer
-									style={{
-										margin: isFullBleedContent ? 0 : '0 1rem',
-
-										...(isTraceDetailsView() ? { marginRight: 0 } : {}),
-									}}
-								>
-									{isToDisplayLayout && !renderFullScreen && (
+								<ChildrenContainer className="page-shell">
+									{isToDisplayLayout && !renderFullScreen && !hideGlobalPageHeader && (
 										<div
 											className={cx('global-page-header', {
 												'global-page-header--full-bleed': isFullBleedContent,
@@ -253,7 +264,14 @@ function AppLayout(props: AppLayoutProps): JSX.Element {
 											<TopNav />
 										</div>
 									)}
-									{children}
+									<div
+										className={cx('global-page-body', {
+											'global-page-body--full-bleed': isFullBleedContent,
+											'global-page-body--trace-detail': isTraceDetailsView(),
+										})}
+									>
+										{children}
+									</div>
 								</ChildrenContainer>
 							</OverlayScrollbar>
 						</LayoutContent>

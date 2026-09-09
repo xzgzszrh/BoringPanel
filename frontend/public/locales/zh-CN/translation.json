@@ -6,7 +6,7 @@
   "release_notes": "发行说明",
   "read_how_to_upgrade": "阅读有关如何升级的说明",
   "latest_version_signoz": "您正在运行最新版本的 Scry。",
-  "stale_version": "您使用的是旧版本，可能会错过我们发布的最新功能。我们建议升级到最新版本",
+  "stale_version": "您使用的是旧版本，可能存在兼容性问题。建议升级到最新版本",
   "oops_something_went_wrong_version": "哎呀..面临获取更新版本信息的问题",
   "n_a": "不适用",
   "routes": {

@@ -4,6 +4,7 @@ import { ROLES, USER_ROLES } from 'types/roles';
 import { isCloudUser, isEECloudUser } from 'utils/app';
 
 import {
+	agentSettings,
 	alertChannels,
 	apiKeys,
 	debugModeSettings,
@@ -41,6 +42,7 @@ export const getRoutes = (
 	settings.push(...alertChannels(t));
 
 	if (userRole === USER_ROLES.ADMIN) {
+		settings.push(...agentSettings());
 		settings.push(...debugModeSettings());
 	}
 

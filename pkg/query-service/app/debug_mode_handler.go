@@ -3,9 +3,11 @@ package app
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
 
+	"github.com/gorilla/mux"
 	"go.signoz.io/signoz/pkg/query-service/app/debugmode"
 	"go.signoz.io/signoz/pkg/query-service/auth"
 	"go.signoz.io/signoz/pkg/query-service/model"
@@ -13,6 +15,20 @@ import (
 )
 
 const debugAlertName = "[调试] Scry 请求流量"
+
+func (aH *APIHandler) getDebugScenarios(w http.ResponseWriter, _ *http.Request) {
+	aH.Respond(w, debugmode.ScenarioCatalog())
+}
+
+func (aH *APIHandler) getDebugScenarioTruth(w http.ResponseWriter, r *http.Request) {
+	scenarioID := mux.Vars(r)["scenarioId"]
+	truth, ok := debugmode.ScenarioTruth(scenarioID)
+	if !ok {
+		RespondError(w, &model.ApiError{Typ: model.ErrorNotFound, Err: fmt.Errorf("debug scenario not found: %s", scenarioID)}, nil)
+		return
+	}
+	aH.Respond(w, truth)
+}
 
 func (aH *APIHandler) getDebugMode(w http.ResponseWriter, r *http.Request) {
 	orgID, apiErr := debugModeOrgID(r)

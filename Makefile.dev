@@ -1,6 +1,6 @@
 COMPOSE := docker compose --env-file .env -f compose.dev.yaml
 
-.PHONY: dev dev-infra dev-backend dev-frontend dev-backend-restart dev-frontend-restart
+.PHONY: dev dev-infra dev-backend dev-agent dev-frontend dev-backend-restart dev-agent-restart dev-frontend-restart
 .PHONY: dev-ps dev-logs dev-down dev-clean-containers
 
 dev:
@@ -12,12 +12,18 @@ dev-infra:
 dev-backend:
 	$(COMPOSE) up -d query-service
 
+dev-agent:
+	$(COMPOSE) up -d agent-service
+
 dev-frontend:
 	$(COMPOSE) up -d frontend
 
 # Source is compiled on container start; restart is the shortest backend rebuild loop.
 dev-backend-restart:
 	$(COMPOSE) restart query-service
+
+dev-agent-restart:
+	$(COMPOSE) restart agent-service
 
 # Webpack watches the bind-mounted frontend source; use this only if the dev server needs a reset.
 dev-frontend-restart:

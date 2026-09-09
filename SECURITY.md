@@ -1,18 +1,19 @@
-# Security Policy
+# Scry 安全响应说明
 
-SigNoz is looking forward to working with security researchers across the world to keep SigNoz and our users safe. If you have found an issue in our systems/applications, please reach out to us.
+## 支持范围
 
-## Supported Versions
-We always recommend using the latest version of SigNoz to ensure you get all security updates
+安全问题包括但不限于：身份认证绕过、组织或角色越权、密钥泄露、Prompt Injection 绕过、审批绕过、MCP 工具越权、SSH 任意命令执行、审计记录缺失和敏感信息未脱敏。
 
-## Reporting a Vulnerability
+## 报告内容
 
-If you believe you have found a security vulnerability within SigNoz, please let us know right away. We'll try and fix the problem as soon as possible.
+报告应包含受影响版本、部署方式、复现步骤、实际结果、预期结果、影响范围和必要日志。请勿在报告中附带真实生产密钥、用户隐私数据或未经脱敏的数据库内容。
 
-**Do not report vulnerabilities using public GitHub issues**. Instead, email <security@signoz.io> with a detailed account of the issue. Please submit one issue per email, this helps us triage vulnerabilities.
+## 处理原则
 
-Once we've received your email we'll keep you updated as we fix the vulnerability.
+1. 复现并确定影响边界。
+2. 暂停高风险入口或收紧工具策略。
+3. 修复后执行安全回归、权限回归和审计完整性检查。
+4. 在麒麟目标环境重新构建并完成验收。
+5. 轮换可能受影响的模型、MCP、SSH 和平台密钥。
 
-## Thanks
-
-Thank you for keeping SigNoz and our users safe. 🙇
+安全问题不应通过公开演示环境提交。交付团队应在项目登记材料中提供有效的安全联系人。

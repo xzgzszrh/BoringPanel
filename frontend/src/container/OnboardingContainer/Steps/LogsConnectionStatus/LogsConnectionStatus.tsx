@@ -168,7 +168,6 @@ export default function LogsConnectionStatus(): JSX.Element {
 						entity="kubernetes"
 						heading="Collecting Kubernetes Pod logs"
 						imgURL="/Logos/kubernetes.svg"
-						docsURL
 						imgClassName="supported-logs-type-img"
 					/>
 				);
@@ -179,7 +178,6 @@ export default function LogsConnectionStatus(): JSX.Element {
 						entity="docker"
 						heading="Collecting Docker container logs"
 						imgURL="/Logos/docker.svg"
-						docsURL
 						imgClassName="supported-logs-type-img"
 					/>
 				);
@@ -190,7 +188,6 @@ export default function LogsConnectionStatus(): JSX.Element {
 						entity="syslog"
 						heading="Collecting Syslogs"
 						imgURL="/Logos/syslogs.svg"
-						docsURL
 						imgClassName="supported-logs-type-img"
 					/>
 				);
@@ -201,7 +198,6 @@ export default function LogsConnectionStatus(): JSX.Element {
 						entity="nodejs"
 						heading="Collecting NodeJS winston logs"
 						imgURL="/Logos/node-js.svg"
-						docsURL
 						imgClassName="supported-logs-type-img"
 					/>
 				);
@@ -220,7 +216,6 @@ export default function LogsConnectionStatus(): JSX.Element {
 								? 'software-window'
 								: 'cmd-terminal'
 						}.svg`}
-						docsURL={logType === ApplicationLogsType.FROM_LOG_FILE ? '' : ''}
 						imgClassName="supported-logs-type-img"
 					/>
 				);

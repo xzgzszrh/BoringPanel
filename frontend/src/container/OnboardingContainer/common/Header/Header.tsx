@@ -4,7 +4,6 @@ interface HeaderProps {
 	entity: string;
 	heading: string;
 	imgURL: string;
-	docsURL: string;
 	imgClassName: string;
 }
 

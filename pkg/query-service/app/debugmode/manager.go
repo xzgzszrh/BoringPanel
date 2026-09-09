@@ -20,10 +20,6 @@ const (
 	ProfileLight    = "light"
 	ProfileStandard = "standard"
 	ProfileHigh     = "high"
-
-	ScenarioNormal = "normal"
-	ScenarioSlow   = "slow"
-	ScenarioErrors = "errors"
 )
 
 type Signals struct {
@@ -171,6 +167,11 @@ func (m *Manager) Update(orgID string, config Config) (Status, error) {
 	if !m.available {
 		return Status{}, errors.New("debug mode is not available")
 	}
+	canonicalScenario, ok := CanonicalScenarioID(config.Scenario)
+	if !ok {
+		return Status{}, fmt.Errorf("invalid scenario: %s", config.Scenario)
+	}
+	config.Scenario = canonicalScenario
 	if err := validateConfig(config); err != nil {
 		return Status{}, err
 	}
@@ -283,6 +284,11 @@ func (m *Manager) getConfig(orgID string) (Config, error) {
 	if err := json.Unmarshal([]byte(signalsJSON), &config.Signals); err != nil {
 		return Config{}, err
 	}
+	canonicalScenario, ok := CanonicalScenarioID(config.Scenario)
+	if !ok {
+		return Config{}, fmt.Errorf("invalid stored scenario: %s", config.Scenario)
+	}
+	config.Scenario = canonicalScenario
 	return config, nil
 }
 
@@ -415,7 +421,7 @@ func validateConfig(config Config) error {
 	if config.Profile != ProfileLight && config.Profile != ProfileStandard && config.Profile != ProfileHigh {
 		return fmt.Errorf("invalid profile: %s", config.Profile)
 	}
-	if config.Scenario != ScenarioNormal && config.Scenario != ScenarioSlow && config.Scenario != ScenarioErrors {
+	if _, validScenario := CanonicalScenarioID(config.Scenario); !validScenario {
 		return fmt.Errorf("invalid scenario: %s", config.Scenario)
 	}
 	if config.IntervalSeconds < 5 || config.IntervalSeconds > 60 {

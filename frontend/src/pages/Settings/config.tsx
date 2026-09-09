@@ -1,5 +1,6 @@
 import { RouteTabProps } from 'components/RouteTab/types';
 import ROUTES from 'constants/routes';
+import AgentSettings from 'container/AgentSettings';
 import AlertChannels from 'container/AllAlertChannels';
 import APIKeys from 'container/APIKeys/APIKeys';
 import DebugModeSettings from 'container/DebugModeSettings';
@@ -8,7 +9,28 @@ import IngestionSettings from 'container/IngestionSettings/IngestionSettings';
 import MultiIngestionSettings from 'container/IngestionSettings/MultiIngestionSettings';
 import OrganizationSettings from 'container/OrganizationSettings';
 import { TFunction } from 'i18next';
-import { Backpack, BellDot, Bug, Building, Cpu, KeySquare } from 'lucide-react';
+import {
+	Backpack,
+	BellDot,
+	Bot,
+	Bug,
+	Building,
+	Cpu,
+	KeySquare,
+} from 'lucide-react';
+
+export const agentSettings = (): RouteTabProps['routes'] => [
+	{
+		Component: AgentSettings,
+		name: (
+			<div className="periscope-tab">
+				<Bot size={16} /> AI 设置
+			</div>
+		),
+		route: ROUTES.AGENT_SETTINGS,
+		key: ROUTES.AGENT_SETTINGS,
+	},
+];
 
 export const debugModeSettings = (): RouteTabProps['routes'] => [
 	{
