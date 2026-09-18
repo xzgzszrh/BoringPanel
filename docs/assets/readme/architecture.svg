@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title desc">
+<title id="title">Scry system architecture</title><desc id="desc">The web console connects to Query Service and Agent Service. The agent connects to model endpoints, runtime storage and MCP tools. OpenTelemetry feeds ClickHouse. MCP tools access query APIs and controlled SSH or remote plugins. Auxiliary services are omitted.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#151d30"/><stop offset="1" stop-color="#0e1320"/></linearGradient><linearGradient id="accent"><stop stop-color="#f16bab"/><stop offset="1" stop-color="#f9db88"/></linearGradient><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#8c9db6"/></marker></defs>
+<rect width="1200" height="850" rx="24" fill="url(#bg)"/>
+<g font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">
+<text x="50" y="47" font-size="14" fill="#f16bab" font-weight="700" text-anchor="start">SCRY / 01</text>
+<text x="50" y="92" font-size="32" fill="#f2f5fc" font-weight="700" text-anchor="start">One workspace. Clear service boundaries.</text>
+<text x="50" y="124" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Core services and data paths; auxiliary infrastructure is omitted for clarity.</text>
+<rect x="50" y="160" width="718" height="80" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="50" y="178" width="4" height="44" rx="2" fill="#f16bab"/>
+<text x="74" y="196" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">Web Console</text>
+<text x="74" y="227" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Observability · Agent Workspace · Memory · Loop · Settings</text>
+<path d="M214 240 V287" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M598 240 V287" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="50" y="288" width="335" height="111" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="50" y="306" width="4" height="75" rx="2" fill="#83b8ff"/>
+<text x="74" y="324" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">Query Service</text>
+<text x="74" y="355" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Go · Query APIs · Alerts</text>
+<text x="74" y="381" font-size="17.728779023003913" fill="#adbad0" font-weight="400" text-anchor="start">Services · Logs · Metrics · Traces</text>
+<rect x="428" y="288" width="340" height="111" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="428" y="306" width="4" height="75" rx="2" fill="#f16bab"/>
+<text x="452" y="324" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">Agent Service</text>
+<text x="452" y="355" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Node.js · Mastra · TypeScript</text>
+<text x="452" y="381" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Evidence · TopoMem · Loop</text>
+<rect x="812" y="288" width="338" height="111" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="812" y="306" width="4" height="75" rx="2" fill="#f9db88"/>
+<text x="836" y="324" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">Model endpoints</text>
+<text x="836" y="355" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">OpenAI Responses</text>
+<text x="836" y="381" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Anthropic Messages</text>
+<path d="M768 330 H810" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="800" y="272" font-size="14" fill="#adbad0" font-weight="400" text-anchor="middle">Model calls</text>
+<path d="M214 399 V489" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="231" y="450" font-size="15" fill="#adbad0" font-weight="400" text-anchor="start">Query</text>
+<path d="M598 399 V489" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="616" y="450" font-size="15" fill="#adbad0" font-weight="400" text-anchor="start">Persist</text>
+<path d="M742 399 V435 H980 V489" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1000" y="453" font-size="15" fill="#adbad0" font-weight="400" text-anchor="start">Tools</text>
+<rect x="50" y="490" width="335" height="108" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="50" y="508" width="4" height="72" rx="2" fill="#83b8ff"/>
+<text x="74" y="526" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">ClickHouse</text>
+<text x="74" y="557" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Telemetry storage</text>
+<text x="74" y="583" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Metrics · Logs · Traces</text>
+<rect x="428" y="490" width="340" height="108" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="428" y="508" width="4" height="72" rx="2" fill="#65dcc4"/>
+<text x="452" y="526" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">Runtime state</text>
+<text x="452" y="557" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">PostgreSQL + local SQLite</text>
+<text x="452" y="583" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Threads · Evidence · Memory</text>
+<rect x="812" y="490" width="338" height="108" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="812" y="508" width="4" height="72" rx="2" fill="#f16bab"/>
+<text x="836" y="526" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">MCP tools</text>
+<text x="836" y="557" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Built-in server + remote clients</text>
+<text x="836" y="583" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Schemas · Policy · Approvals</text>
+<path d="M812 563 H791 V421 H357 V399" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6" marker-end="url(#arrow)"/>
+<text x="50" y="825" font-size="16" fill="#adbad0" font-weight="400" text-anchor="start">Dashed line: built-in MCP tools access Query Service APIs.</text>
+<rect x="50" y="686" width="335" height="96" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="50" y="704" width="4" height="60" rx="2" fill="#83b8ff"/>
+<text x="74" y="722" font-size="20.599960990832844" fill="#f2f5fc" font-weight="650" text-anchor="start">OpenTelemetry Collector</text>
+<text x="74" y="753" font-size="16.21739343699416" fill="#adbad0" font-weight="400" text-anchor="start">Receives application + host signals</text>
+<path d="M214 686 V600" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="231" y="653" font-size="15" fill="#adbad0" font-weight="400" text-anchor="start">Ingest</text>
+<rect x="812" y="686" width="338" height="96" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="812" y="704" width="4" height="60" rx="2" fill="#f9db88"/>
+<text x="836" y="722" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">Managed resources</text>
+<text x="836" y="753" font-size="17.902577568190342" fill="#adbad0" font-weight="400" text-anchor="start">scry-ops / SSH + remote plugins</text>
+<path d="M980 598 V684" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="428" y="686" width="340" height="96" rx="16" fill="#151f2a" stroke="#274a48"/>
+<text x="452" y="720" font-size="20" fill="#65dcc4" font-weight="650" text-anchor="start">Shared control plane</text>
+<text x="452" y="750" font-size="17" fill="#adbad0" font-weight="400" text-anchor="start">Authentication · Policy · Audit</text></g></svg>

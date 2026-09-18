@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+<title id="title">Evidence and memory have distinct roles</title><desc id="desc">Current observations become reviewable evidence. Historical TopoMem memories help choose hypotheses and tool targets but must be checked against current evidence. Verified experience can be written back with source references.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#151d30"/><stop offset="1" stop-color="#0e1320"/></linearGradient><linearGradient id="accent"><stop stop-color="#f16bab"/><stop offset="1" stop-color="#f9db88"/></linearGradient><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#8c9db6"/></marker></defs>
+<rect width="1200" height="780" rx="24" fill="url(#bg)"/>
+<g font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">
+<text x="50" y="47" font-size="14" fill="#f16bab" font-weight="700" text-anchor="start">SCRY / 02</text>
+<text x="50" y="92" font-size="32" fill="#f2f5fc" font-weight="700" text-anchor="start">Facts for today. Experience for the next incident.</text>
+<text x="50" y="124" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Historical memory guides the search; current evidence supports the conclusion.</text>
+<rect x="50" y="169" width="516" height="226" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="50" y="187" width="4" height="190" rx="2" fill="#83b8ff"/>
+<text x="74" y="205" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">CURRENT EVIDENCE</text>
+<text x="74" y="236" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Live tools: logs, metrics, traces, SSH</text>
+<text x="74" y="262" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Source · Summary · Hash · Relevance</text>
+<text x="74" y="288" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Accept · Reject · Suspend · Annotate</text>
+<text x="74" y="314" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Select evidence and request a revised answer</text>
+<rect x="634" y="169" width="516" height="226" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="634" y="187" width="4" height="190" rx="2" fill="#65dcc4"/>
+<text x="658" y="205" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">HISTORICAL MEMORY</text>
+<text x="658" y="236" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">TopoMem: topology + error-signature retrieval</text>
+<text x="658" y="262" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Working · Episodic · Semantic · Procedural</text>
+<text x="658" y="288" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Source links · Decay · Merge · Archive</text>
+<text x="658" y="314" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Suggest hypotheses and the next tool target</text>
+<rect x="74" y="344" width="208" height="34" rx="17" fill="#1d293a" stroke="#35475d"/>
+<text x="178.0" y="367" font-size="14" fill="#83b8ff" font-weight="600" text-anchor="middle">OBSERVED THIS RUN</text>
+<rect x="658" y="344" width="184" height="34" rx="17" fill="#1d293a" stroke="#35475d"/>
+<text x="750.0" y="367" font-size="14" fill="#f9db88" font-weight="600" text-anchor="middle">MUST RE-VERIFY</text>
+<path d="M308 395 V438 H485 V474" fill="none" stroke="#83b8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="75" y="441" font-size="17" fill="#83b8ff" font-weight="400" text-anchor="start">Verify with facts</text>
+<path d="M892 395 V438 H715 V474" fill="none" stroke="#65dcc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6" marker-end="url(#arrow)"/>
+<text x="925" y="443" font-size="17" fill="#65dcc4" font-weight="400" text-anchor="start">Hypotheses</text>
+<rect x="383" y="475" width="434" height="103" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="383" y="493" width="4" height="67" rx="2" fill="#f16bab"/>
+<text x="407" y="511" font-size="22.895273401297498" fill="#f2f5fc" font-weight="650" text-anchor="start">Evidence-grounded reasoning</text>
+<text x="407" y="542" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Use selected, eligible evidence</text>
+<text x="407" y="568" font-size="17.575273704596658" fill="#adbad0" font-weight="400" text-anchor="start">Keep facts and assumptions distinguishable</text>
+<path d="M600 578 V615" fill="none" stroke="#8c9db6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="383" y="616" width="434" height="78" rx="16" fill="#192132" stroke="#354257"/>
+<rect x="383" y="634" width="4" height="42" rx="2" fill="#f9db88"/>
+<text x="407" y="652" font-size="23" fill="#f2f5fc" font-weight="650" text-anchor="start">Conclusion + next step</text>
+<text x="407" y="683" font-size="18" fill="#adbad0" font-weight="400" text-anchor="start">Cite evidence and define verification</text>
+<path d="M817 655 H1115 V420 H1128 V397" fill="none" stroke="#65dcc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6" marker-end="url(#arrow)"/>
+<text x="873" y="583" font-size="16" fill="#65dcc4" font-weight="400" text-anchor="start">Write back reusable,</text>
+<text x="873" y="608" font-size="16" fill="#65dcc4" font-weight="400" text-anchor="start">verified experience</text>
+<text x="50" y="750" font-size="16" fill="#adbad0" font-weight="400" text-anchor="start">No memory item becomes a current fact without verification.</text></g></svg>
