@@ -1,12 +1,14 @@
 <div align="center">
 
-<img src="docs/assets/readme/hero.svg" alt="Scry：以证据驱动诊断，以策略约束执行的智能运维平台" width="100%" />
+**English** | [简体中文](README.zh-CN.md)
 
-# Scry · 安全智能运维平台
+<img src="docs/assets/readme/hero.svg" alt="Scry: evidence-led diagnosis and policy-controlled operations" width="100%" />
 
-**让每一次故障诊断有证据，让每一次运维操作可审批、可验证、可追溯。**
+# Scry · Secure AI Operations
 
-BoringPanel 是 Scry 的源码仓库。面向企业 Linux 与麒麟环境，将可观测数据、运维 Agent、MCP 工具和自动化流程整合到一个 Web 工作台。
+**Diagnose with evidence. Approve changes. Verify outcomes. Trace every action.**
+
+Scry brings observability, an operations agent, MCP tools, and automated workflows into one web workspace for enterprise Linux and Kylin environments.
 
 [![Agent](https://img.shields.io/badge/Agent-Mastra%20%2B%20TypeScript-d4237a)](agent-service/)
 [![MCP](https://img.shields.io/badge/MCP-Streamable%20HTTP-2563eb)](agent-service/src/mcp/)
@@ -14,98 +16,98 @@ BoringPanel 是 Scry 的源码仓库。面向企业 Linux 与麒麟环境，将�
 [![Platform](https://img.shields.io/badge/Platform-Kylin%20V11%20%2F%20LoongArch64-7c3aed)](deploy/kylin-loong64/)
 [![License](https://img.shields.io/badge/License-see%20LICENSE-475569)](LICENSE)
 
-[为什么选择 Scry](#为什么选择-scry) · [系统架构](#系统架构) · [快速开始](#快速开始) · [文档导航](#文档导航)
+[Why Scry](#why-scry) · [Architecture](#architecture) · [Quick start](#quick-start) · [Documentation](#documentation)
 
 </div>
 
-## 为什么选择 Scry
+## Why Scry
 
-Scry 把“发现异常、定位原因、审查方案、执行操作、验证结果”连接起来，适合日常排障、受控主机运维、故障演练与麒麟环境交付。
+Scry connects anomaly detection, diagnosis, plan review, controlled execution, and outcome verification. Use it for everyday troubleshooting, managed host operations, incident drills, and Kylin deployments.
 
-| 运维中的难题 | Scry 的做法 | 带来的价值 |
+| Operations challenge | How Scry addresses it | What you gain |
 | --- | --- | --- |
-| 指标、日志、链路分散，定位时反复切换 | 在同一工作台关联服务、基础设施、消息队列、告警与遥测 | 围绕同一个故障上下文取证 |
-| AI 给出判断，却难以核查依据 | 工具结果形成证据，提供来源、评分、关系与人工处置 | 结论可核查，争议证据可排除后重答 |
-| 自动化操作的权限与风险难控制 | 服务端策略、执行审批、命令复检与 `scry-ops` 受限账户 | 将操作限制在预先配置的主机与动作内 |
-| 同类故障重复排查，经验散落在聊天记录 | TopoMem 按异常拓扑、错误签名与历史经验检索 | 为本次诊断提供待验证的线索 |
-| 有效处置步骤难以复用 | 可视化 Loop，支持条件、并行、循环、审批与验证 | 将重复流程保存、调度并查看运行历史 |
-| 国产平台交付需要额外适配 | 麒麟 V11 / LoongArch64 原生构建、安装与验收脚本 | 提供可检查的部署路径 |
+| Metrics, logs, and traces are scattered across tools | Correlates services, infrastructure, messaging queues, alerts, and telemetry in one workspace | Investigate within a shared incident context |
+| AI conclusions are difficult to verify | Turns tool results into evidence with sources, scores, relationships, and review controls | Inspect the facts and request a revised answer after excluding disputed evidence |
+| Automated actions are difficult to constrain | Combines server-side policy, execution approval, command checks, and a restricted `scry-ops` account | Limit execution to configured hosts and actions |
+| Similar incidents require repeated investigation | TopoMem retrieves experience using anomalous topology and error signatures | Start with relevant hypotheses to verify against current data |
+| Effective remediation steps are hard to reuse | Visual Loops support conditions, parallel branches, iteration, approval, and verification | Save, schedule, and inspect repeatable workflows |
+| Kylin and LoongArch deployments require extra integration work | Provides native build, installation, and acceptance scripts for Kylin V11 / LoongArch64 | Follow an explicit, verifiable deployment path |
 
-### 一个工作台，三种 Agent 模式
+### One workspace, three agent modes
 
-| 模式 | 适合做什么 | 交互方式 |
+| Mode | Use it to | How it works |
 | --- | --- | --- |
-| **诊断** | 排查延迟、错误、资源异常与服务不可用 | 优先只读取证，给出结论、依据与下一步 |
-| **规划** | 形成处置步骤、依赖、风险与验证条件 | 先审查计划，再决定是否进入操作 |
-| **操作** | 执行管理员已配置的受控动作 | 工具在执行前暂停并生成审批卡，批准后继续 |
+| **Diagnose** | Investigate latency, errors, resource issues, and service outages | Prioritizes read-only evidence gathering and returns findings, supporting facts, and next steps |
+| **Plan** | Define remediation steps, dependencies, risks, and verification criteria | Produces a reviewable plan before moving to operations |
+| **Operate** | Run controlled actions configured by an administrator | Tools pause before execution and present an approval card; execution resumes after approval |
 
-Agent 支持持久对话、附件、流式工具状态与 A2UI 结构化结果；模型适配 OpenAI Responses、Anthropic Messages 及对应协议的兼容端点。
+The agent supports persistent conversations, attachments, streaming tool status, and A2UI structured results. Model integrations support OpenAI Responses, Anthropic Messages, and endpoints compatible with those protocols.
 
-## 系统架构
+## Architecture
 
-![Scry 系统架构：Web Console 连接 Query Service 和 Agent Service；遥测、运行状态与受控工具各有边界](docs/assets/readme/architecture.svg)
+![Scry architecture: the Web Console connects to Query Service and Agent Service, with separate telemetry, runtime state, and controlled tool paths](docs/assets/readme/architecture.svg)
 
-- **观测层**：OpenTelemetry Collector 接收遥测，ClickHouse 存储指标、日志与链路，Go Query Service 提供查询与告警相关能力。
-- **智能层**：Node.js / Mastra Agent 组织模型推理、MCP 工具、证据、TopoMem 与 Loop；PostgreSQL 和本地 SQLite 承担对应的运行状态存储。
-- **执行层**：内置 MCP 暴露有 Schema 的运维工具，可按组织接入远程 MCP；主机操作通过 SSH 与 `scry-ops` 包装器执行。
+- **Observability**: OpenTelemetry Collector receives telemetry; ClickHouse stores metrics, logs, and traces; the Go Query Service provides query and alert-related capabilities.
+- **Agent runtime**: Node.js / Mastra coordinates model calls, MCP tools, evidence, TopoMem, and Loops. PostgreSQL and local SQLite store the corresponding runtime state.
+- **Execution**: Built-in MCP tools expose schema-defined operations, with remote MCP plugins configured per organization. Host actions run through SSH and `scry-ops` wrappers.
 
-远程 MCP 插件使用独立认证配置，不接收用户的 Scry JWT。插件连接失败会单独报告；内置 MCP 不可用时，Agent 创建失败。
+Remote MCP plugins use separate authentication settings and do not receive the user's Scry JWT. Plugin connection failures are reported individually; agent creation fails if the built-in MCP server is unavailable.
 
-### 证据与记忆：当前事实和历史经验各司其职
+### Evidence and memory: current facts, reusable experience
 
-![证据与记忆关系图：当前工具结果形成证据，历史记忆提供假设，经当前证据验证后输出结论并沉淀经验](docs/assets/readme/evidence-memory.svg)
+![Evidence and memory: current tool results provide reviewable facts, while historical memories suggest hypotheses that must be verified before conclusions and reusable experience are recorded](docs/assets/readme/evidence-memory.svg)
 
-**证据**记录本轮工具结果，支持接受、驳回、挂起、选择和备注；选择证据后可要求 Agent 基于所选材料重新回答。**TopoMem**保存工作、情景、语义和程序记忆，支持来源追踪、衰减、合并、归档与遗忘。历史记忆用于指导查询，事实结论仍需本轮证据验证。
+**Evidence** captures results from the current run. Users can accept, reject, suspend, select, and annotate items, then request an answer based on the selected evidence. **TopoMem** stores working, episodic, semantic, and procedural memories, with source tracking, decay, merging, archiving, and forgetting. Historical memory guides investigation; factual conclusions still require current evidence.
 
-### 安全执行：策略、审批与主机权限共同约束
+### Safe execution: policy, approval, and host permissions
 
-![安全执行流程图：请求经过注入与意图检查；拒绝则停止，需审批则等待，允许后再进行工具与命令检查、受控执行和结果验证](docs/assets/readme/safe-execution.svg)
+![Safe execution: requests pass input and intent checks, branch into deny, approval, or allow decisions, then undergo tool and command checks before controlled execution, verification, and audit](docs/assets/readme/safe-execution.svg)
 
-安全边界落实在服务端策略和主机权限中：输入注入检测、风险分类、工具参数校验、审批参数绑定，以及执行前命令复检。受管主机使用非 root 的 `scry-ops` 账户、ForceCommand、固定包装器与服务白名单；审计事件通过 `traceId` 关联。
+Execution boundaries are enforced through server-side policy and host permissions: prompt injection detection, risk classification, tool argument validation, approval bound to parameters, and command checks before execution. Managed hosts use a non-root `scry-ops` account, ForceCommand, fixed wrappers, and a service allowlist. Audit events are linked by `traceId`.
 
-注入检测用于降低风险，实际执行范围仍由工具策略、审批和主机权限共同决定。配置方式见 [安全设计](docs/competition/security-design.md) 与 [最小权限执行部署](deploy/scry-ops/README.md)。
+Injection detection reduces risk; tool policy, approval, and host permissions jointly determine what can execute. See the [security design](docs/competition/security-design.md) and [least-privilege deployment guide](deploy/scry-ops/README.md).
 
-### Loop：把有效的处理步骤变成可复用流程
+### Loop: turn effective procedures into reusable workflows
 
-Loop 支持手动、Cron 与事件触发，提供版本、运行记录及暂停恢复。下面以服务恢复为例说明分支与验证关系：
+Loops support manual, Cron, and event triggers, with versioning, run history, and pause/resume. This service recovery example illustrates branching and verification:
 
 ```mermaid
 flowchart TD
-    A[告警或定时触发] --> B[查询证据并检查策略]
-    B --> C{是否允许继续}
-    C -->|拒绝| D[记录原因并结束]
-    C -->|需要变更| E[人工审批]
-    C -->|只需观测| H[输出诊断与审计记录]
-    E -->|拒绝| D
-    E -->|批准| F[执行已授权的恢复动作]
-    F --> G{验证服务状态}
-    G -->|恢复| H
-    G -->|仍异常| I[保留证据并转人工处理]
+    A[Alert or scheduled trigger] --> B[Gather evidence and check policy]
+    B --> C{Proceed?}
+    C -->|Denied| D[Record the reason and stop]
+    C -->|Change required| E[Human approval]
+    C -->|Observe only| H[Report findings and audit trail]
+    E -->|Rejected| D
+    E -->|Approved| F[Run an authorized recovery action]
+    F --> G{Service recovered?}
+    G -->|Yes| H
+    G -->|No| I[Retain evidence and hand off]
 ```
 
-流程示意对应可配置的 Loop 节点，具体动作需事先配置。另提供故障模拟与端到端评测工具，覆盖数据库、缓存、消息队列、网络、资源与复合故障，便于演示和验证诊断流程。
+This is an example built from configurable Loop nodes; actions must be configured in advance. The repository also includes fault simulation and end-to-end evaluation tools covering databases, caches, messaging queues, networks, resource exhaustion, and compound incidents.
 
-## 快速开始
+## Quick start
 
-### 1. 准备并启动开发环境
+### 1. Prepare and launch the development environment
 
-宿主机需要 **Git、Docker Engine / Docker Desktop、Docker Compose v2 与 Make**，并能访问所需镜像及依赖源。默认开发环境在容器内编译源码，首次启动需要等待依赖安装与数据库迁移。
+Install **Git, Docker Engine / Docker Desktop, Docker Compose v2, and Make** on the host, with access to the required image registries and dependency sources. The development stack builds from source inside containers; allow time for dependency installation and database migrations on the first run.
 
 ```bash
-git clone https://github.com/xzgzszrh/BoringPanel.git
-cd BoringPanel
+git clone https://github.com/xzgzszrh/Scry.git
+cd Scry
 cp .env.example .env
 ```
 
-启动前编辑 `.env`：
+Edit `.env` before starting:
 
-| 配置项 | 应如何设置 |
+| Setting | What to configure |
 | --- | --- |
-| `SCRY_AGENT_MASTER_KEY` | 填入随机主密钥，用于加密模型、MCP 与 SSH 等配置中的秘密；后续保持稳定并妥善备份 |
-| `SCRY_POSTGRES_PASSWORD` | 替换示例密码；建议使用随机十六进制字符串，避免连接 URL 中的特殊字符问题 |
-| `SCRY_JWT_SECRET` | 替换开发默认值，设置为独立的随机秘密 |
+| `SCRY_AGENT_MASTER_KEY` | Set a random master key for encrypting secrets in model, MCP, and SSH settings. Keep it stable and backed up. |
+| `SCRY_POSTGRES_PASSWORD` | Replace the example password. A random hexadecimal string avoids special-character issues in the connection URL. |
+| `SCRY_JWT_SECRET` | Replace the development default with a separate random secret. |
 
-可使用 `openssl rand -hex 32` 分别生成这些值，不要提交真实 `.env`。
+Run `openssl rand -hex 32` separately for each value. Keep the real `.env` out of version control.
 
 ```bash
 make -f Makefile.dev dev
@@ -113,37 +115,37 @@ make -f Makefile.dev dev-ps
 make -f Makefile.dev dev-logs
 ```
 
-### 2. 打开控制台，接入模型与数据
+### 2. Open the console and connect a model and data
 
-| 入口 | 默认地址 |
+| Endpoint | Default address |
 | --- | --- |
 | Web Console | <http://localhost:3301> |
-| Query Service 健康检查 | <http://localhost:8080/api/v1/health> |
-| Agent Service 健康检查 | <http://localhost:4111/health> |
-| MCP Streamable HTTP 端点 | `http://localhost:4111/mcp`（需认证的协议端点） |
-| OTLP 接收 | gRPC `127.0.0.1:4317` / HTTP `http://127.0.0.1:4318` |
+| Query Service health check | <http://localhost:8080/api/v1/health> |
+| Agent Service health check | <http://localhost:4111/health> |
+| MCP Streamable HTTP | `http://localhost:4111/mcp` — authenticated protocol endpoint |
+| OTLP ingestion | gRPC `127.0.0.1:4317` / HTTP `http://127.0.0.1:4318` |
 
-1. 在控制台完成首次账号配置并登录。
-2. 进入 **设置 → 工具与安全 → 模型设置**，填写模型、端点与 API Key，测试连接并保存。
-3. 接入 OpenTelemetry 数据；体验诊断时，也可在 **设置 → 调试模式** 启用模拟场景。
-4. 打开 **Agent Workspace**，选择诊断模式，开始询问。
+1. Complete initial account setup in the console and sign in.
+2. Open **Settings → Tools & Security → Model settings** (`设置 → 工具与安全 → 模型设置`), configure the model, endpoint, and API key, then test and save the connection.
+3. Connect OpenTelemetry data. To try a simulated incident, enable a scenario under **Settings → Debug mode** (`设置 → 调试模式`).
+4. Open **Agent Workspace**, select **Diagnose**, and describe the issue.
 
-> 试一试：**“排查最近 15 分钟 checkout 服务的错误率上升，先给出计划，再用日志和链路验证根因。”** 将 `checkout` 替换为环境中实际存在的服务。
+> Try: **“Investigate the increase in checkout service errors over the last 15 minutes. Start with a plan, then use logs and traces to verify the root cause.”** Replace `checkout` with a service that exists in your environment.
 
-开发端口默认只绑定 `127.0.0.1`。正式部署前应关闭调试模拟、配置访问入口，并按 [用户手册](docs/competition/03-software-product-manual.md) 完成主机纳管与权限配置。
+Development ports bind to `127.0.0.1` by default. Before production deployment, disable debug simulation, configure access, and follow the [user manual](docs/competition/03-software-product-manual.md) for host enrollment and permissions.
 
 <details>
-<summary>常用开发命令与排查入口</summary>
+<summary>Common development commands and troubleshooting</summary>
 
 ```bash
-# 重启源码服务
+# Restart services running from source
 make -f Makefile.dev dev-backend-restart
 make -f Makefile.dev dev-agent-restart
 
-# 停止开发环境，保留命名数据卷
+# Stop the development stack while retaining named data volumes
 make -f Makefile.dev dev-down
 
-# Agent 静态检查、测试与构建（宿主机单独开发需 Node.js >= 22.13.0）
+# Agent checks, tests, and build (host-based development needs Node.js >= 22.13.0)
 cd agent-service
 npm ci
 npm run typecheck
@@ -151,15 +153,15 @@ npm test
 npm run build
 ```
 
-页面暂不可用时，先查看 `dev-ps` 与 `dev-logs`，确认依赖安装、迁移与服务健康状态。模型连接失败时检查端点协议、模型 ID、凭证与网络。更多说明见 [开发环境文档](DEVELOPMENT_SETUP.md)。
+If the console is unavailable, inspect `dev-ps` and `dev-logs` for dependency installation, migration, and health-check status. For model connection failures, check the endpoint protocol, model ID, credentials, and network. See the [development guide](DEVELOPMENT_SETUP.md) for details.
 
 </details>
 
-## 麒麟 V11 / LoongArch64 部署
+## Kylin V11 / LoongArch64 deployment
 
-仓库提供原生构建路径：Go / CGO 编译 Query Service，Node.js 运行 Agent，Nginx 托管前端，systemd 管理服务。目标机需要准备 PostgreSQL、ClickHouse、编译工具链与网络依赖，修改 `platform.env` 中的部署配置。
+The native deployment path uses Go / CGO for Query Service, Node.js for Agent Service, Nginx for the frontend, and systemd for service management. Prepare PostgreSQL, ClickHouse, the required build toolchain, and dependency access on the target host, then configure `platform.env`.
 
-按 [麒麟部署说明](deploy/kylin-loong64/README.md) 完成 Node.js、数据库与主密钥准备后，在目标机执行：
+After preparing Node.js, the database, and the master key as described in the [Kylin deployment guide](deploy/kylin-loong64/README.md), run on the target host:
 
 ```bash
 cd deploy/kylin-loong64
@@ -171,39 +173,41 @@ sudo ./install-native.sh
 sudo ./acceptance.sh
 ```
 
-可通过 `./deploy/kylin-loong64/package-release.sh` 生成精简源码交付包。实际部署结果以目标机预检与验收输出为准。
+Use `./deploy/kylin-loong64/package-release.sh` to create a compact source distribution. Deployment readiness is determined by the target host's preflight and acceptance results.
 
-## 文档导航
+## Documentation
 
-| 我想了解… | 从这里开始 |
+The detailed guides and reports linked below are currently in Simplified Chinese.
+
+| Learn about | Start here |
 | --- | --- |
-| 产品功能与使用方法 | [功能说明](docs/competition/product-functional-specification.md) · [用户手册](docs/competition/03-software-product-manual.md) |
-| 架构与设计 | [功能设计](docs/competition/02-software-functional-design.md) · [技术架构 PDF](docs/scry-technical-architecture/scry-technical-architecture.pdf) |
-| 证据、安全与执行边界 | [证据系统](docs/competition/evidence-system.md) · [安全设计](docs/competition/security-design.md) · [scry-ops](deploy/scry-ops/README.md) |
-| 本地开发与原生部署 | [开发环境](DEVELOPMENT_SETUP.md) · [麒麟 / LoongArch64](deploy/kylin-loong64/README.md) |
-| 测试与评测 | [测试与验收计划](docs/competition/test-and-acceptance-plan.md) · [功能测试报告](docs/competition/04-software-functional-test-report.md) · [性能报告](docs/competition/05-software-performance-core-metrics-test-report.md) |
-| 比赛材料与实现范围 | [提交文档总览](docs/competition/README.md) · [符合性矩阵](docs/competition/compliance-matrix.md) · [开发边界](docs/competition/development-scope.md) |
+| Product features and usage | [Feature specification](docs/competition/product-functional-specification.md) · [User manual](docs/competition/03-software-product-manual.md) |
+| Architecture and design | [Functional design](docs/competition/02-software-functional-design.md) · [Technical architecture PDF](docs/scry-technical-architecture/scry-technical-architecture.pdf) |
+| Evidence, security, and execution boundaries | [Evidence system](docs/competition/evidence-system.md) · [Security design](docs/competition/security-design.md) · [scry-ops](deploy/scry-ops/README.md) |
+| Development and native deployment | [Development setup](DEVELOPMENT_SETUP.md) · [Kylin / LoongArch64](deploy/kylin-loong64/README.md) |
+| Testing and evaluation | [Test and acceptance plan](docs/competition/test-and-acceptance-plan.md) · [Functional test report](docs/competition/04-software-functional-test-report.md) · [Performance report](docs/competition/05-software-performance-core-metrics-test-report.md) |
+| Competition materials and implementation scope | [Submission overview](docs/competition/README.md) · [Compliance matrix](docs/competition/compliance-matrix.md) · [Development scope](docs/competition/development-scope.md) |
 
 <details>
-<summary>源码导览</summary>
+<summary>Source guide</summary>
 
-| 路径 | 主要内容 |
+| Path | Contents |
 | --- | --- |
-| [`frontend/`](frontend/) | React Web Console、Agent 工作区、记忆与 Loop 管理 |
-| [`agent-service/`](agent-service/) | 模型适配、MCP、证据、TopoMem、安全策略与工作流 |
-| [`pkg/query-service/`](pkg/query-service/) | Go 查询服务、遥测、告警与故障模拟 |
-| [`deploy/scry-ops/`](deploy/scry-ops/) | 最小权限 SSH 执行环境 |
-| [`deploy/kylin-loong64/`](deploy/kylin-loong64/) | 麒麟原生构建、安装、打包与验收 |
-| [`docs/`](docs/) | 产品、设计、测试与交付材料 |
+| [`frontend/`](frontend/) | React Web Console, Agent Workspace, memory and Loop management |
+| [`agent-service/`](agent-service/) | Model integrations, MCP, evidence, TopoMem, security policy, and workflows |
+| [`pkg/query-service/`](pkg/query-service/) | Go query service, telemetry, alerts, and fault simulation |
+| [`deploy/scry-ops/`](deploy/scry-ops/) | Least-privilege SSH execution environment |
+| [`deploy/kylin-loong64/`](deploy/kylin-loong64/) | Native Kylin builds, installation, packaging, and acceptance |
+| [`docs/`](docs/) | Product, design, testing, and delivery documentation |
 
 </details>
 
-## 维护与反馈
+## Maintenance and feedback
 
-当前仓库由 [@xzgzszrh](https://github.com/xzgzszrh) 维护。欢迎通过 [Issues](https://github.com/xzgzszrh/BoringPanel/issues) 提交问题与建议，请附上复现步骤、部署环境及脱敏后的日志；安全问题请参阅 [SECURITY.md](SECURITY.md)。
+Maintained by [@xzgzszrh](https://github.com/xzgzszrh). Use [Issues](https://github.com/xzgzszrh/Scry/issues) for bug reports and suggestions, including reproduction steps, deployment details, and redacted logs. For security concerns, see [SECURITY.md](SECURITY.md).
 
-## 许可证与第三方来源
+## Licensing and third-party sources
 
-Scry 基于 SigNoz 的可观测查询与界面基础代码扩展，集成 OpenTelemetry、ClickHouse、PostgreSQL、Mastra 等组件；自主实现模块与第三方范围见 [开发边界说明](docs/competition/development-scope.md)。
+Scry extends SigNoz observability query and interface code and integrates components including OpenTelemetry, ClickHouse, PostgreSQL, and Mastra. See the [development scope](docs/competition/development-scope.md) for the boundaries between Scry modules and third-party code.
 
-许可适用范围以根目录 [LICENSE](LICENSE)、[`ee/LICENSE`](ee/LICENSE) 及各第三方组件许可证为准。分发源码或部署包时，应保留要求保留的版权和许可声明。README 配图为依据仓库实现绘制的功能示意图。
+Licensing follows the root [LICENSE](LICENSE), [`ee/LICENSE`](ee/LICENSE), and each third-party component's license. Preserve the required copyright and license notices when distributing source or deployment packages. README illustrations describe capabilities implemented in the repository.
