@@ -1,0 +1,2 @@
+Defaults:scry-ops !requiretty,use_pty,secure_path=/usr/sbin:/usr/bin:/sbin:/bin:/opt/scry-ops/bin
+scry-ops ALL=(root) NOPASSWD:NOEXEC: /opt/scry-ops/bin/scry-restart-service *, /opt/scry-ops/bin/scry-clean-journal *

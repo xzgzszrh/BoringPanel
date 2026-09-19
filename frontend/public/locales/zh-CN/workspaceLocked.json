@@ -1,0 +1,22 @@
+{
+  "trialPlanExpired": "试用计划已过期",
+  "gotQuestions": "有疑问吗？",
+  "contactUs": "联系我们",
+  "upgradeToContinue": "升级以继续",
+  "upgradeNow": "立即升级，继续享受您一直在使用的所有强大功能。",
+  "yourDataIsSafe": "您的数据对我们来说是安全的，直到",
+  "actNow": "立即采取行动以避免任何干扰并从上次中断的地方继续。",
+  "contactAdmin": "请联系您的管理员以继续升级。",
+  "continueMyJourney": "继续我的旅程",
+  "needMoreTime": "需要更多时间吗？",
+  "extendTrial": "延长试用期",
+  "extendTrialMsgPart1": "如果您有无法在试用期内完成 PoC 的具体原因，请写信给我们：",
+  "extendTrialMsgPart2": "与原因。有时我们可以根据具体情况将试用期延长几天",
+  "whyChooseScry": "为什么选择Scry",
+  "enterpriseGradeObservability": "企业级可观测性",
+  "observabilityDescription": "通过高级安全性和合规性获得任何规模的可观察性。",
+  "continueToUpgrade": "继续升级",
+  "youAreInGoodCompany": "你们有很好的伙伴",
+  "faqs": "常见问题解答",
+  "somethingWentWrong": "出现错误"
+}

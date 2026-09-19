@@ -1,0 +1,162 @@
+.debug-mode-settings {
+	width: min(760px, 100%);
+	padding: 24px 0 40px;
+
+	.debug-mode-intro {
+		margin-bottom: 24px;
+		color: var(--text-vanilla-400);
+	}
+
+	.debug-mode-section {
+		padding: 20px 0;
+		border-top: 1px solid var(--bg-slate-400);
+
+		&:last-of-type {
+			border-bottom: 1px solid var(--bg-slate-400);
+		}
+	}
+
+	.debug-mode-section-header,
+	.debug-mode-setting-row,
+	.debug-mode-actions,
+	.debug-mode-status-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.debug-mode-section-header {
+		margin-bottom: 16px;
+	}
+
+	.debug-mode-section-title {
+		margin: 0;
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 22px;
+	}
+
+	.debug-mode-setting-row {
+		min-height: 48px;
+
+		.debug-mode-setting-copy {
+			min-width: 0;
+		}
+	}
+
+	.debug-mode-simulation-row {
+		margin-top: 14px;
+	}
+
+	.debug-mode-setting-label {
+		display: block;
+		font-weight: 500;
+	}
+
+	.debug-mode-setting-description,
+	.debug-mode-status-meta {
+		color: var(--text-vanilla-400);
+		font-size: 12px;
+		line-height: 18px;
+	}
+
+	.debug-mode-signals {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 4px 24px;
+	}
+
+	.debug-mode-select {
+		width: 220px;
+	}
+
+	.debug-mode-scenario-select {
+		width: min(420px, 55%);
+	}
+
+	.debug-mode-scenario-detail {
+		margin: 8px 0 16px;
+		padding: 16px 0 4px;
+		border-top: 1px dashed var(--bg-slate-400);
+	}
+
+	.debug-mode-scenario-heading,
+	.debug-mode-scenario-meta-row {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.debug-mode-scenario-heading {
+		margin-bottom: 14px;
+	}
+
+	.debug-mode-scenario-name {
+		display: block;
+		margin-bottom: 2px;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	.debug-mode-scenario-meta-row {
+		justify-content: flex-start;
+		margin-top: 8px;
+		font-size: 12px;
+		line-height: 22px;
+	}
+
+	.debug-mode-scenario-meta-label {
+		width: 64px;
+		flex: 0 0 64px;
+		color: var(--text-vanilla-400);
+	}
+
+	.debug-mode-number {
+		width: 120px;
+	}
+
+	.debug-mode-actions {
+		justify-content: space-between;
+		flex-wrap: wrap;
+		padding-top: 20px;
+	}
+}
+
+.lightMode {
+	.debug-mode-settings {
+		.debug-mode-intro,
+		.debug-mode-setting-description,
+		.debug-mode-status-meta {
+			color: var(--text-slate-400);
+		}
+
+		.debug-mode-section {
+			border-color: var(--bg-vanilla-300);
+		}
+	}
+}
+
+@media (max-width: 640px) {
+	.debug-mode-settings {
+		.debug-mode-signals {
+			grid-template-columns: 1fr;
+		}
+
+		.debug-mode-setting-row {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.debug-mode-select,
+		.debug-mode-scenario-select,
+		.debug-mode-number {
+			width: 100%;
+		}
+
+		.debug-mode-scenario-heading {
+			flex-direction: column;
+		}
+	}
+}

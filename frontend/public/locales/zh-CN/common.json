@@ -1,0 +1,11 @@
+{
+  "something_went_wrong": "出现错误",
+  "already_logged_in": "已登录",
+  "success": "成功",
+  "cancel": "取消",
+  "share": "分享",
+  "save": "保存",
+  "edit": "编辑",
+  "logged_in": "已登录",
+  "pending_data_placeholder": "正在找回您的 {{dataSource}}！"
+}

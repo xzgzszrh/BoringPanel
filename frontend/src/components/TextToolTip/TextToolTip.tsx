@@ -1,0 +1,67 @@
+import './TextToolTip.style.scss';
+
+import { blue, grey } from '@ant-design/colors';
+import {
+	QuestionCircleFilled,
+	QuestionCircleOutlined,
+} from '@ant-design/icons';
+import { Tooltip } from 'antd';
+import { themeColors } from 'constants/theme';
+import { useIsDarkMode } from 'hooks/useDarkMode';
+import { useMemo } from 'react';
+
+import { style } from './constant';
+
+function TextToolTip({
+	text,
+	url,
+	useFilledIcon = true,
+	urlText,
+}: TextToolTipProps): JSX.Element {
+	const isDarkMode = useIsDarkMode();
+
+	const overlay = useMemo(
+		() => <div className="overlay--text-wrap">{text}</div>,
+		[text],
+	);
+
+	const iconStyle = useMemo(
+		() => ({
+			...style,
+			color: isDarkMode ? themeColors.whiteCream : grey[0],
+		}),
+		[isDarkMode],
+	);
+
+	const iconOutlinedStyle = useMemo(
+		() => ({
+			...style,
+			color: isDarkMode ? themeColors.navyBlue : blue[6],
+		}),
+		[isDarkMode],
+	);
+
+	return (
+		<Tooltip overlay={overlay}>
+			{useFilledIcon ? (
+				<QuestionCircleFilled style={iconStyle} />
+			) : (
+				<QuestionCircleOutlined style={iconOutlinedStyle} />
+			)}
+		</Tooltip>
+	);
+}
+
+TextToolTip.defaultProps = {
+	url: '',
+	urlText: '',
+	useFilledIcon: true,
+};
+interface TextToolTipProps {
+	url?: string;
+	text: string;
+	useFilledIcon?: boolean;
+	urlText?: string;
+}
+
+export default TextToolTip;

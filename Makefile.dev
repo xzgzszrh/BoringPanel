@@ -1,0 +1,43 @@
+COMPOSE := docker compose --env-file .env -f compose.dev.yaml
+
+.PHONY: dev dev-infra dev-backend dev-agent dev-frontend dev-backend-restart dev-agent-restart dev-frontend-restart
+.PHONY: dev-ps dev-logs dev-down dev-clean-containers
+
+dev:
+	$(COMPOSE) up -d
+
+dev-infra:
+	$(COMPOSE) up -d zookeeper-1 clickhouse schema-migrator-sync schema-migrator-async alertmanager otel-collector
+
+dev-backend:
+	$(COMPOSE) up -d query-service
+
+dev-agent:
+	$(COMPOSE) up -d agent-service
+
+dev-frontend:
+	$(COMPOSE) up -d frontend
+
+# Source is compiled on container start; restart is the shortest backend rebuild loop.
+dev-backend-restart:
+	$(COMPOSE) restart query-service
+
+dev-agent-restart:
+	$(COMPOSE) restart agent-service
+
+# Webpack watches the bind-mounted frontend source; use this only if the dev server needs a reset.
+dev-frontend-restart:
+	$(COMPOSE) restart frontend
+
+dev-ps:
+	$(COMPOSE) ps
+
+dev-logs:
+	$(COMPOSE) logs -f --tail=200
+
+dev-down:
+	$(COMPOSE) down --remove-orphans
+
+# Removes this Compose project's containers and network, preserving every named volume.
+dev-clean-containers:
+	$(COMPOSE) down --remove-orphans

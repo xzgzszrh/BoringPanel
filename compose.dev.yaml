@@ -1,0 +1,287 @@
+name: ${COMPOSE_PROJECT_NAME:-scry-dev}
+
+x-proxy-environment: &proxy-environment
+  HTTP_PROXY: ${DEV_HTTP_PROXY:-}
+  HTTPS_PROXY: ${DEV_HTTPS_PROXY:-}
+  NO_PROXY: ${DEV_NO_PROXY:-localhost,127.0.0.1,clickhouse,zookeeper-1,query-service,agent-service,alertmanager,otel-collector}
+
+services:
+  postgres:
+    image: ${POSTGRES_IMAGE:-postgres:16-bookworm}
+    environment:
+      POSTGRES_DB: scry_agent
+      POSTGRES_USER: scry_agent
+      POSTGRES_PASSWORD: ${SCRY_POSTGRES_PASSWORD:-scry_agent}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scry_agent -d scry_agent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  zookeeper-1:
+    image: ${ZOOKEEPER_IMAGE:-bitnamilegacy/zookeeper:3.7.1}
+    hostname: zookeeper-1
+    environment:
+      ZOO_SERVER_ID: "1"
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+      ZOO_AUTOPURGE_INTERVAL: "1"
+    volumes:
+      - zookeeper_data:/bitnami/zookeeper
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/commands/ruok"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  clickhouse:
+    image: ${CLICKHOUSE_IMAGE:-clickhouse/clickhouse-server:24.1.2-alpine}
+    hostname: clickhouse
+    depends_on:
+      zookeeper-1:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${CLICKHOUSE_NATIVE_PORT:-9000}:9000"
+      - "127.0.0.1:${CLICKHOUSE_HTTP_PORT:-8123}:8123"
+    volumes:
+      - ./deploy/docker/clickhouse-setup/clickhouse-config.xml:/etc/clickhouse-server/config.xml:ro
+      - ./deploy/docker/clickhouse-setup/clickhouse-users.xml:/etc/clickhouse-server/users.xml:ro
+      - ./deploy/docker/clickhouse-setup/custom-function.xml:/etc/clickhouse-server/custom-function.xml:ro
+      - ./deploy/docker/clickhouse-setup/clickhouse-cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:ro
+      - ./deploy/docker/clickhouse-setup/user_scripts:/var/lib/clickhouse/user_scripts:ro
+      - clickhouse_data:/var/lib/clickhouse
+    restart: on-failure
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8123/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  schema-migrator-sync:
+    image: ${SCHEMA_MIGRATOR_IMAGE:-signoz/signoz-schema-migrator:0.111.16}
+    command: ["sync", "--dsn=tcp://clickhouse:9000", "--up="]
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    restart: "no"
+
+  schema-migrator-async:
+    image: ${SCHEMA_MIGRATOR_IMAGE:-signoz/signoz-schema-migrator:0.111.16}
+    command: ["async", "--dsn=tcp://clickhouse:9000", "--up="]
+    depends_on:
+      schema-migrator-sync:
+        condition: service_completed_successfully
+    restart: "no"
+
+  query-service:
+    image: ${GO_IMAGE:-golang:1.22.7-bookworm}
+    working_dir: /workspace
+    environment:
+      <<: *proxy-environment
+      ClickHouseUrl: tcp://clickhouse:9000
+      ALERTMANAGER_API_PREFIX: http://alertmanager:9093/api/
+      SCRY_LOCAL_DB_PATH: /var/lib/scry/scry.db
+      SCRY_JWT_SECRET: ${SCRY_JWT_SECRET:-scry-development-jwt-secret}
+      DASHBOARDS_PATH: /workspace/deploy/docker/dashboards
+      INVITE_EMAIL_TEMPLATE: /workspace/pkg/query-service/templates/invitation_email_template.html
+      STORAGE: clickhouse
+      GODEBUG: netdns=go
+      TELEMETRY_ENABLED: "false"
+      OSS_TELEMETRY_ENABLED: "false"
+      DEPLOYMENT_TYPE: docker-source-dev
+      SCRY_DEBUG_MODE_AVAILABLE: ${SCRY_DEBUG_MODE_AVAILABLE:-true}
+      SCRY_DEBUG_OTLP_ENDPOINT: ${SCRY_DEBUG_OTLP_ENDPOINT:-http://otel-collector:4318}
+      CGO_ENABLED: "1"
+    command:
+      - bash
+      - -c
+      - >-
+        go run ./pkg/query-service
+        -config=/workspace/pkg/query-service/config/prometheus.yml
+        --use-logs-new-schema=true
+        --use-trace-new-schema=true
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8080}:8080"
+      - "127.0.0.1:${BACKEND_INTERNAL_PORT:-8085}:8085"
+    volumes:
+      - ./go.mod:/workspace/go.mod:ro
+      - ./go.sum:/workspace/go.sum:ro
+      - ./pkg:/workspace/pkg:ro
+      - ./deploy/docker/dashboards:/workspace/deploy/docker/dashboards:ro
+      - query_service_data:/var/lib/scry
+      - go_build_cache:/root/.cache/go-build
+      - go_module_cache:/go/pkg/mod
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+      schema-migrator-sync:
+        condition: service_completed_successfully
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/127.0.0.1/8080'"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
+
+  agent-data-init:
+    image: ${NODE_IMAGE:-node:22-bookworm-slim}
+    user: root
+    command: ["chown", "-R", "1000:1000", "/var/lib/scry-agent"]
+    volumes:
+      - agent_service_data:/var/lib/scry-agent
+    restart: "no"
+    read_only: true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+    security_opt:
+      - no-new-privileges:true
+
+  agent-service:
+    build:
+      context: ./agent-service
+    image: ${AGENT_IMAGE:-scry-agent-service:dev}
+    user: node
+    working_dir: /workspace/agent-service
+    environment:
+      <<: *proxy-environment
+      SCRY_AGENT_PORT: 4111
+      SCRY_AGENT_HOST: 0.0.0.0
+      SCRY_QUERY_SERVICE_URL: http://query-service:8080
+      SCRY_AGENT_DATABASE_URL: file:/var/lib/scry-agent/agent.db
+      SCRY_AGENT_POSTGRES_URL: postgresql://scry_agent:${SCRY_POSTGRES_PASSWORD:-scry_agent}@postgres:5432/scry_agent
+      SCRY_AGENT_MASTER_KEY: ${SCRY_AGENT_MASTER_KEY}
+    command: ["npm", "run", "dev"]
+    ports:
+      - "127.0.0.1:${AGENT_PORT:-4111}:4111"
+    volumes:
+      - ./agent-service:/workspace/agent-service:ro
+      - agent_node_modules:/workspace/agent-service/node_modules
+      - agent_service_data:/var/lib/scry-agent
+      - agent_npm_cache:/root/.npm
+    depends_on:
+      query-service:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      agent-data-init:
+        condition: service_completed_successfully
+    restart: on-failure
+    read_only: true
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4111/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
+
+  alertmanager:
+    image: ${ALERTMANAGER_IMAGE:-signoz/alertmanager:0.23.7}
+    command:
+      - --queryService.url=http://query-service:8085
+      - --storage.path=/data
+    ports:
+      - "127.0.0.1:${ALERTMANAGER_PORT:-9093}:9093"
+    volumes:
+      - alertmanager_data:/data
+    depends_on:
+      query-service:
+        condition: service_healthy
+    restart: on-failure
+
+  otel-collector:
+    image: ${OTEL_COLLECTOR_IMAGE:-signoz/signoz-otel-collector:0.111.16}
+    command:
+      - --config=/etc/otel-collector-config.yaml
+      - --manager-config=/etc/manager-config.yaml
+      - --copy-path=/var/tmp/collector-config.yaml
+      - --feature-gates=-pkg.translator.prometheus.NormalizeName
+    environment:
+      LOW_CARDINAL_EXCEPTION_GROUPING: "false"
+      OTEL_RESOURCE_ATTRIBUTES: host.name=scry-dev,os.type=linux
+    ports:
+      - "127.0.0.1:${OTLP_GRPC_PORT:-4317}:4317"
+      - "127.0.0.1:${OTLP_HTTP_PORT:-4318}:4318"
+    volumes:
+      - ./deploy/docker/clickhouse-setup/otel-collector-config.dev.yaml:/etc/otel-collector-config.yaml:ro
+      - ./deploy/docker/clickhouse-setup/otel-collector-opamp-config.yaml:/etc/manager-config.yaml:ro
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+      schema-migrator-sync:
+        condition: service_completed_successfully
+      query-service:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:13133/"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  frontend:
+    image: ${NODE_IMAGE:-node:20-bookworm}
+    working_dir: /workspace/frontend
+    environment:
+      <<: *proxy-environment
+      CI: "1"
+      FRONTEND_API_ENDPOINT: http://localhost:${BACKEND_PORT:-8080}
+      AGENT_API_ENDPOINT: http://localhost:${AGENT_PORT:-4111}
+      WEBSOCKET_API_ENDPOINT: ws://localhost:${BACKEND_PORT:-8080}
+      WATCHPACK_POLLING: "true"
+    command:
+      - bash
+      - -c
+      - corepack enable && yarn install --frozen-lockfile && yarn dev --host 0.0.0.0 --no-open
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-3301}:3301"
+    volumes:
+      - ./frontend:/workspace/frontend
+      - frontend_node_modules:/workspace/frontend/node_modules
+      - yarn_cache:/usr/local/share/.cache/yarn
+    depends_on:
+      query-service:
+        condition: service_healthy
+      agent-service:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - http.get('http://127.0.0.1:3301',r=>process.exit(r.statusCode<500?0:1)).on('error',()=>process.exit(1))
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
+
+volumes:
+  postgres_data:
+  zookeeper_data:
+  clickhouse_data:
+  query_service_data:
+  alertmanager_data:
+  go_build_cache:
+  go_module_cache:
+  frontend_node_modules:
+  yarn_cache:
+  agent_node_modules:
+  agent_service_data:
+  agent_npm_cache:

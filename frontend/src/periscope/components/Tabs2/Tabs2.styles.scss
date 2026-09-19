@@ -1,0 +1,51 @@
+.tabs-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	.tab {
+		&.ant-btn-default {
+			height: 36px;
+			box-shadow: none;
+			display: flex;
+			align-items: center;
+			gap: 7px;
+			color: var(--text-vanilla-400);
+			background: var(--bg-ink-400);
+			font-size: 13px;
+			line-height: 18px;
+			letter-spacing: -0.07px;
+			padding: 0 14px;
+			border-color: var(--bg-slate-400);
+			justify-content: center;
+		}
+		&.reset-button {
+			.ant-btn-icon {
+				margin: 0;
+			}
+			padding: 6px 12px;
+		}
+		&.selected {
+			color: var(--text-vanilla-100);
+			border-color: var(--bg-robin-500);
+			background: rgba(78, 116, 248, 0.14);
+		}
+	}
+}
+
+.lightMode {
+	.tabs-wrapper {
+		.tab {
+			&.ant-btn-default {
+				color: var(--text-ink-400);
+				background: var(--bg-vanilla-300);
+				border-color: var(--bg-vanilla-300);
+			}
+			&.selected {
+				color: var(--text-robin-500);
+				border-color: var(--bg-robin-500);
+				background: rgba(78, 116, 248, 0.08);
+			}
+		}
+	}
+}

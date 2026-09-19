@@ -1,0 +1,141 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import './Header.styles.scss';
+
+import {
+	CaretDownFilled,
+	CaretUpFilled,
+	LogoutOutlined,
+} from '@ant-design/icons';
+import { Divider, MenuProps, Space, Typography } from 'antd';
+import { Logout } from 'api/utils';
+import ROUTES from 'constants/routes';
+import Config from 'container/ConfigDropdown';
+import { useIsDarkMode, useThemeMode } from 'hooks/useDarkMode';
+import {
+	Dispatch,
+	KeyboardEvent,
+	SetStateAction,
+	useCallback,
+	useMemo,
+	useState,
+} from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { AppState } from 'store/reducers';
+import AppReducer from 'types/reducer/app';
+
+import CurrentOrganization from './CurrentOrganization';
+import SignedIn from './SignedIn';
+import {
+	AvatarWrapper,
+	Container,
+	Header,
+	IconContainer,
+	LogoutContainer,
+	NavLinkWrapper,
+	ToggleButton,
+	UserDropdown,
+} from './styles';
+
+function HeaderContainer(): JSX.Element {
+	const { user, currentVersion } = useSelector<AppState, AppReducer>(
+		(state) => state.app,
+	);
+	const isDarkMode = useIsDarkMode();
+	const { toggleTheme } = useThemeMode();
+	const [isUserDropDownOpen, setIsUserDropDownOpen] = useState<boolean>(false);
+
+	const onToggleHandler = useCallback(
+		(functionToExecute: Dispatch<SetStateAction<boolean>>) => (): void => {
+			functionToExecute((state) => !state);
+		},
+		[],
+	);
+
+	const onLogoutKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
+		if (e.key === 'Enter' || e.key === 'Space') {
+			Logout();
+		}
+	}, []);
+
+	const menu: MenuProps = useMemo(
+		() => ({
+			items: [
+				{
+					key: 'main-menu',
+					label: (
+						<div>
+							<SignedIn onToggle={onToggleHandler(setIsUserDropDownOpen)} />
+							<Divider />
+							<CurrentOrganization onToggle={onToggleHandler(setIsUserDropDownOpen)} />
+							<Divider />
+							<LogoutContainer>
+								<LogoutOutlined />
+								<div
+									tabIndex={0}
+									onKeyDown={onLogoutKeyDown}
+									role="button"
+									onClick={Logout}
+								>
+									<Typography.Link>退出登录</Typography.Link>
+								</div>
+							</LogoutContainer>
+						</div>
+					),
+				},
+			],
+		}),
+		[onToggleHandler, onLogoutKeyDown],
+	);
+
+	return (
+		<Header>
+			<Container>
+				<NavLink to={ROUTES.APPLICATION}>
+					<NavLinkWrapper>
+						<img
+							src={`/Logos/scry-brand-logo.svg?currentVersion=${currentVersion}`}
+							alt="Scry"
+						/>
+						<Typography.Title
+							style={{ margin: 0, color: 'rgb(219, 219, 219)' }}
+							level={4}
+						>
+							Scry
+						</Typography.Title>
+					</NavLinkWrapper>
+				</NavLink>
+
+				<Space size="middle" align="center">
+					<Config frontendId="tooltip" />
+
+					<ToggleButton
+						checked={isDarkMode}
+						onChange={toggleTheme}
+						defaultChecked={isDarkMode}
+						checkedChildren="🌜"
+						unCheckedChildren="🌞"
+					/>
+
+					<UserDropdown
+						onOpenChange={onToggleHandler(setIsUserDropDownOpen)}
+						trigger={['click']}
+						menu={menu}
+						open={isUserDropDownOpen}
+					>
+						<Space>
+							<AvatarWrapper shape="circle">{user?.name[0]}</AvatarWrapper>
+							<IconContainer>
+								{!isUserDropDownOpen ? <CaretDownFilled /> : <CaretUpFilled />}
+							</IconContainer>
+						</Space>
+					</UserDropdown>
+				</Space>
+			</Container>
+		</Header>
+	);
+}
+
+export default HeaderContainer;
